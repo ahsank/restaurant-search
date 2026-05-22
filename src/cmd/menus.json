@@ -1,0 +1,229 @@
+{
+  "rest_1": [
+    {
+      "name": "Margherita Pizza",
+      "description": "Classic pizza with fresh mozzarella, basil, and tomato sauce",
+      "price": 14.99,
+      "category": "Pizza",
+      "dietary_info": [
+        "vegetarian"
+      ],
+      "restaurant_id": "rest_1"
+    },
+    {
+      "name": "Spaghetti Carbonara",
+      "description": "Traditional Roman pasta with eggs, pecorino cheese, and guanciale",
+      "price": 16.99,
+      "category": "Pasta",
+      "dietary_info": [],
+      "restaurant_id": "rest_1"
+    },
+    {
+      "name": "Fettuccine Alfredo",
+      "description": "Creamy Alfredo sauce with fettuccine pasta and Parmesan cheese",
+      "price": 15.99,
+      "category": "Pasta",
+      "dietary_info": [
+        "vegetarian"
+      ],
+      "restaurant_id": "rest_1"
+    },
+    {
+      "name": "CajunPasta",
+      "description": "Pasta with a Cajun cream sauce, clams, salmon, cod, bell peppers, broccoli, Parmesan",
+      "price": 17.99,
+      "category": "Pasta",
+      "dietary_info": [
+        "pasta"
+      ],
+      "restaurant_id": "rest_1"
+    },
+    {
+      "name": "Penne Arrabbiata",
+      "description": "Spicy tomato sauce with garlic, served with penne pasta",
+      "price": 13.99,
+      "category": "Pasta",
+      "dietary_info": [
+        "vegetarian",
+        "spicy",
+        "vegan"
+      ],
+      "restaurant_id": "rest_1"
+    },
+    {
+      "name": "Tiramisu",
+      "description": "Classic Italian dessert with espresso-soaked ladyfingers and mascarpone",
+      "price": 7.99,
+      "category": "Dessert",
+      "dietary_info": [
+        "vegetarian"
+      ],
+      "restaurant_id": "rest_1"
+    }
+  ],
+  "rest_2": [
+    {
+      "name": "Quinoa Buddha Bowl",
+      "description": "Nutritious bowl with quinoa, roasted vegetables, avocado, and tahini dressing",
+      "price": 12.99,
+      "category": "Bowls",
+      "dietary_info": [
+        "vegan",
+        "gluten-free"
+      ],
+      "restaurant_id": "rest_2"
+    },
+    {
+      "name": "Vegan Caesar Salad",
+      "description": "Crisp romaine with cashew caesar dressing, croutons, and nutritional yeast",
+      "price": 10.99,
+      "category": "Salads",
+      "dietary_info": [
+        "vegan"
+      ],
+      "restaurant_id": "rest_2"
+    },
+    {
+      "name": "Mushroom Risotto",
+      "description": "Creamy arborio rice with wild mushrooms, white wine, and truffle oil",
+      "price": 15.99,
+      "category": "Entrees",
+      "dietary_info": [
+        "vegetarian",
+        "gluten-free"
+      ],
+      "restaurant_id": "rest_2"
+    },
+    {
+      "name": "Acai Berry Bowl",
+      "description": "Blended acai with granola, fresh berries, banana, and coconut",
+      "price": 9.99,
+      "category": "Breakfast",
+      "dietary_info": [
+        "vegan",
+        "gluten-free"
+      ],
+      "restaurant_id": "rest_2"
+    }
+  ],
+  "rest_3": [
+    {
+      "name": "Pad Thai",
+      "description": "Classic stir-fried rice noodles with shrimp, peanuts, bean sprouts, and tamarind sauce",
+      "price": 13.99,
+      "category": "Noodles",
+      "dietary_info": [],
+      "restaurant_id": "rest_3"
+    },
+    {
+      "name": "Green Curry",
+      "description": "Spicy Thai curry with coconut milk, bamboo shoots, and basil",
+      "price": 14.99,
+      "category": "Curry",
+      "dietary_info": [
+        "spicy",
+        "gluten-free"
+      ],
+      "restaurant_id": "rest_3"
+    },
+    {
+      "name": "Tom Yum Soup",
+      "description": "Hot and sour soup with lemongrass, lime, mushrooms, and chili",
+      "price": 8.99,
+      "category": "Soup",
+      "dietary_info": [
+        "spicy",
+        "gluten-free"
+      ],
+      "restaurant_id": "rest_3"
+    },
+    {
+      "name": "Mango Sticky Rice",
+      "description": "Sweet sticky rice with fresh mango and coconut cream",
+      "price": 6.99,
+      "category": "Dessert",
+      "dietary_info": [
+        "vegan",
+        "gluten-free"
+      ],
+      "restaurant_id": "rest_3"
+    }
+  ],
+  "rest_4": [
+    {
+      "name": "Grilled Salmon",
+      "description": "Fresh Atlantic salmon with lemon butter, served with seasonal vegetables",
+      "price": 24.99,
+      "category": "Entrees",
+      "dietary_info": [
+        "gluten-free"
+      ],
+      "restaurant_id": "rest_4"
+    },
+    {
+      "name": "Lobster Roll",
+      "description": "Maine lobster with mayo on a toasted bun, served with fries",
+      "price": 22.99,
+      "category": "Sandwiches",
+      "dietary_info": [],
+      "restaurant_id": "rest_4"
+    },
+    {
+      "name": "Clam Chowder",
+      "description": "Creamy New England style chowder with clams and potatoes",
+      "price": 9.99,
+      "category": "Soup",
+      "dietary_info": [],
+      "restaurant_id": "rest_4"
+    },
+    {
+      "name": "Seared Scallops",
+      "description": "Pan-seared scallops with garlic butter and crispy pancetta",
+      "price": 28.99,
+      "category": "Entrees",
+      "dietary_info": [
+        "gluten-free"
+      ],
+      "restaurant_id": "rest_4"
+    }
+  ],
+  "rest_5": [
+    {
+      "name": "Classic Burger",
+      "description": "Juicy beef patty with lettuce, tomato, onion, and special sauce",
+      "price": 10.99,
+      "category": "Burgers",
+      "dietary_info": [],
+      "restaurant_id": "rest_5"
+    },
+    {
+      "name": "Veggie Burger",
+      "description": "House-made veggie patty with avocado, sprouts, and chipotle mayo",
+      "price": 11.99,
+      "category": "Burgers",
+      "dietary_info": [
+        "vegetarian"
+      ],
+      "restaurant_id": "rest_5"
+    },
+    {
+      "name": "BBQ Bacon Burger",
+      "description": "Double patty with bacon, cheddar, BBQ sauce, and onion rings",
+      "price": 14.99,
+      "category": "Burgers",
+      "dietary_info": [],
+      "restaurant_id": "rest_5"
+    },
+    {
+      "name": "Sweet Potato Fries",
+      "description": "Crispy sweet potato fries with garlic aioli",
+      "price": 5.99,
+      "category": "Sides",
+      "dietary_info": [
+        "vegetarian",
+        "vegan"
+      ],
+      "restaurant_id": "rest_5"
+    }
+  ]
+}
