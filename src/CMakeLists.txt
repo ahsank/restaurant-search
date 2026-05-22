@@ -1,4 +1,3 @@
 
-add_subdirectory(searchlib)
+add_subdirectory(search)
 add_subdirectory(cmd)
-

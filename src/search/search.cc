@@ -1,4 +1,4 @@
-#include <simplesearch.h>
+#include <search.h>
 #include <fstream>
 #include <stdexcept>
 

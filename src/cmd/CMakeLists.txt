@@ -1,10 +1,9 @@
 add_executable(
-  simplesearchdemo
-  simplesearchdemo.cc
+  searchdemo
+  searchdemo.cc
 )
 
 target_link_libraries(
-  simplesearchdemo
-  searchlib
+  searchdemo
+  search
 )
-
