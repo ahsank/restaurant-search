@@ -9,19 +9,11 @@ Limitation: only matches if query words appear literally in name/description.
 'seafood italian' will NOT find CajunPasta (clams, salmon, cod) because
 neither word appears in the text. That is the problem semantic search solves.
 """
-import json
 import sys
 from pathlib import Path
 
-DATA_DIR = Path(__file__).parents[2] / "data"
-
-
-def load_data() -> tuple[dict, dict]:
-    with open(DATA_DIR / "restaurants.json") as f:
-        restaurants = {r["id"]: r for r in json.load(f)}
-    with open(DATA_DIR / "menus.json") as f:
-        menus = json.load(f)
-    return restaurants, menus
+sys.path.insert(0, str(Path(__file__).parents[1]))
+from lib.data import load_data
 
 
 def search(query: str, restaurants: dict, menus: dict) -> list[dict]:
