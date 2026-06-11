@@ -1,0 +1,26 @@
+# Add dependencies here as you work on each algorithm.
+#
+# Planned additions (uncomment when needed):
+#
+# --- embeddings / dense retrieval ---
+# sentence-transformers
+# faiss-cpu
+#
+# --- BM25 ---
+# rank-bm25
+#
+# --- finetuning ---
+# torch
+# transformers
+# peft
+# datasets
+#
+# --- ONNX export ---
+# optimum[exporters]
+# onnxruntime
+#
+# --- local LLM inference ---
+# llama-cpp-python
+#
+# --- synthetic data generation ---
+# anthropic
