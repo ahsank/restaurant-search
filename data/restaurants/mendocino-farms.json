@@ -1,0 +1,16 @@
+{
+  "id": "mendocino-farms",
+  "name": "Mendocino Farms",
+  "address": "12540 120th Ave NE",
+  "city": "Kirkland",
+  "state": "WA",
+  "zip_code": "98034",
+  "latitude": 47.7028,
+  "longitude": -122.1883,
+  "phone": "",
+  "cuisine_type": ["american", "sandwiches", "salads", "farm-to-table"],
+  "price_range": "$$",
+  "rating": null,
+  "review_count": null,
+  "source": "manual-text"
+}

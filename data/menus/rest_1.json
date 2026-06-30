@@ -1,0 +1,12 @@
+{
+  "restaurant_id": "rest_1",
+  "menu_type": "dinner",
+  "items": [
+    {"name": "Margherita Pizza", "description": "Classic pizza with fresh mozzarella, basil, and tomato sauce", "price": 14.99, "category": "Pizza", "dietary_info": ["vegetarian"]},
+    {"name": "Spaghetti Carbonara", "description": "Traditional Roman pasta with eggs, pecorino cheese, and guanciale", "price": 16.99, "category": "Pasta", "dietary_info": []},
+    {"name": "Fettuccine Alfredo", "description": "Creamy Alfredo sauce with fettuccine pasta and Parmesan cheese", "price": 15.99, "category": "Pasta", "dietary_info": ["vegetarian"]},
+    {"name": "CajunPasta", "description": "Pasta with a Cajun cream sauce, clams, salmon, cod, bell peppers, broccoli, Parmesan", "price": 17.99, "category": "Pasta", "dietary_info": []},
+    {"name": "Penne Arrabbiata", "description": "Spicy tomato sauce with garlic, served with penne pasta", "price": 13.99, "category": "Pasta", "dietary_info": ["vegetarian", "vegan", "spicy"]},
+    {"name": "Tiramisu", "description": "Classic Italian dessert with espresso-soaked ladyfingers and mascarpone", "price": 7.99, "category": "Dessert", "dietary_info": ["vegetarian"]}
+  ]
+}

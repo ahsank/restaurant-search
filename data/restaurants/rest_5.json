@@ -1,0 +1,16 @@
+{
+  "id": "rest_5",
+  "name": "Burger Town",
+  "address": "555 Broadway",
+  "city": "Seattle",
+  "state": "WA",
+  "zip_code": "98122",
+  "latitude": 47.6140,
+  "longitude": -122.3200,
+  "phone": "(206) 555-0005",
+  "cuisine_type": ["american", "burgers", "fastfood"],
+  "price_range": "$",
+  "rating": 4.2,
+  "review_count": 892,
+  "source": "demo"
+}

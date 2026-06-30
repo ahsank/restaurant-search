@@ -54,21 +54,53 @@ Array of restaurant objects:
 }
 ```
 
-### `data/menus.json`
-Object keyed by `restaurant_id`, each value is an array of menu items:
+### `data/menus/<restaurant-id>.json`
+One file per restaurant (or one per menu type, e.g. `plaza-garcia-happy-hour.json`).
+Top-level `restaurant_id` and `menu_type` are shared across all items in the file.
+Adding a restaurant = dropping a new file; no existing file is modified.
+
+Supported `menu_type` values: `dinner`, `lunch`, `happy_hour`, `brunch`, `drinks`.
+
 ```json
 {
-  "rest_1": [
+  "restaurant_id": "rest_1",
+  "menu_type": "dinner",
+  "items": [
     {
       "name": "Spaghetti Carbonara",
       "description": "Traditional Roman pasta with eggs, pecorino cheese, and guanciale",
       "price": 16.99,
       "category": "Pasta",
-      "dietary_info": [],
-      "restaurant_id": "rest_1"
+      "dietary_info": []
     }
   ]
 }
+```
+
+### Markdown menu experiment
+For document-search experiments, menu content may also be stored as Markdown instead of JSON.
+
+Recommended convention:
+- Use a level-1 heading for the restaurant name.
+- Put restaurant metadata near the top in plain text or a short metadata block.
+- Use `##` for the menu type, for example `## Menu Type: Dinner`.
+- Use `###` for menu categories, for example `### Homemade Pasta`.
+- Render each item as a bullet with the item name, price, description, and dietary notes.
+- Keep the text faithful to the source menu so free-form search can match on real wording.
+
+Example:
+```markdown
+# Due' Cucina
+
+City: Kirkland, WA
+Source: manual-pdf
+
+## Menu Type: Dinner
+
+### Homemade Pasta
+- Zozzona — $15.90
+  - Homemade pasta with guanciale, sausage, egg yolk and tomato sauce.
+  - Dietary: gluten-free on request; contains egg, pork, dairy
 ```
 
 ## Search Requirements

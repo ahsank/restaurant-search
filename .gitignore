@@ -1,2 +1,4 @@
 /buildresearch/lib/__pycache__/
 research/**/__pycache__/
+build/
+*.pyc

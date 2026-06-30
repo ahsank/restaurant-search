@@ -1,0 +1,10 @@
+{
+  "restaurant_id": "rest_4",
+  "menu_type": "dinner",
+  "items": [
+    {"name": "Grilled Salmon", "description": "Fresh Atlantic salmon with lemon butter, served with seasonal vegetables", "price": 24.99, "category": "Entrees", "dietary_info": ["gluten-free"]},
+    {"name": "Lobster Roll", "description": "Maine lobster with mayo on a toasted bun, served with fries", "price": 22.99, "category": "Sandwiches", "dietary_info": []},
+    {"name": "Clam Chowder", "description": "Creamy New England style chowder with clams and potatoes", "price": 9.99, "category": "Soup", "dietary_info": []},
+    {"name": "Seared Scallops", "description": "Pan-seared scallops with garlic butter and crispy pancetta", "price": 28.99, "category": "Entrees", "dietary_info": ["gluten-free"]}
+  ]
+}

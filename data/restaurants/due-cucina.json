@@ -1,0 +1,14 @@
+{
+  "id": "due-cucina",
+  "name": "Due' Cucina",
+  "address": "",
+  "city": "Kirkland",
+  "state": "WA",
+  "zip_code": "",
+  "latitude": null,
+  "longitude": null,
+  "phone": "",
+  "cuisine_type": ["italian", "pasta", "sandwiches"],
+  "price_range": "$$",
+  "source": "manual-pdf"
+}

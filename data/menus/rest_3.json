@@ -1,0 +1,10 @@
+{
+  "restaurant_id": "rest_3",
+  "menu_type": "dinner",
+  "items": [
+    {"name": "Pad Thai", "description": "Classic stir-fried rice noodles with shrimp, peanuts, bean sprouts, and tamarind sauce", "price": 13.99, "category": "Noodles", "dietary_info": []},
+    {"name": "Green Curry", "description": "Spicy Thai curry with coconut milk, bamboo shoots, and basil", "price": 14.99, "category": "Curry", "dietary_info": ["spicy", "gluten-free"]},
+    {"name": "Tom Yum Soup", "description": "Hot and sour soup with lemongrass, lime, mushrooms, and chili", "price": 8.99, "category": "Soup", "dietary_info": ["spicy", "gluten-free"]},
+    {"name": "Mango Sticky Rice", "description": "Sweet sticky rice with fresh mango and coconut cream", "price": 6.99, "category": "Dessert", "dietary_info": ["vegan", "gluten-free"]}
+  ]
+}

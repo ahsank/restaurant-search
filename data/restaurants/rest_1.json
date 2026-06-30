@@ -1,0 +1,16 @@
+{
+  "id": "rest_1",
+  "name": "Bella Italia",
+  "address": "123 Main St",
+  "city": "Seattle",
+  "state": "WA",
+  "zip_code": "98101",
+  "latitude": 47.6062,
+  "longitude": -122.3321,
+  "phone": "(206) 555-0001",
+  "cuisine_type": ["italian", "pizza", "pasta"],
+  "price_range": "$$",
+  "rating": 4.5,
+  "review_count": 342,
+  "source": "demo"
+}

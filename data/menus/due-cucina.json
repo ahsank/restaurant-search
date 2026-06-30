@@ -1,0 +1,43 @@
+{
+  "restaurant_id": "due-cucina",
+  "menu_type": "dinner",
+  "items": [
+    {"name": "Zozzona", "description": "Homemade pasta with guanciale, sausage, egg yolk and tomato sauce.", "price": 15.90, "category": "Homemade Pasta", "dietary_info": ["gluten-free on request", "contains: egg, pork, dairy"]},
+    {"name": "Polpette", "description": "Homemade pasta with meatballs in tomato sauce.", "price": 13.90, "category": "Homemade Pasta", "dietary_info": ["contains: egg, wheat, beef"]},
+    {"name": "Mushroom & White Truffle Oil", "description": "Homemade pasta with sauteed mushrooms and white truffle oil.", "price": 13.90, "category": "Homemade Pasta", "dietary_info": ["vegetarian"]},
+    {"name": "Short Ribs Ragu'", "description": "Homemade pasta with slow-braised short ribs ragu.", "price": 15.90, "category": "Homemade Pasta", "dietary_info": ["gluten-free on request", "dairy-free on request"]},
+    {"name": "Bolognese Ragu'", "description": "Homemade pasta with classic Bolognese meat sauce.", "price": 14.90, "category": "Homemade Pasta", "dietary_info": ["gluten-free on request", "contains: pork, beef"]},
+    {"name": "Pomodoro", "description": "Homemade pasta with fresh tomato sauce.", "price": 12.90, "category": "Homemade Pasta", "dietary_info": ["vegan on request", "gluten-free on request"]},
+    {"name": "Carbonara", "description": "Homemade pasta with egg yolk, guanciale and Pecorino Romano.", "price": 14.90, "category": "Homemade Pasta", "dietary_info": ["gluten-free on request", "contains: egg, pork"]},
+    {"name": "Basil Pesto", "description": "Homemade pasta with classic Genovese basil pesto.", "price": 13.90, "category": "Homemade Pasta", "dietary_info": ["vegetarian", "gluten-free on request", "contains: nuts"]},
+
+    {"name": "Lasagna alla Bolognese", "description": "Traditional layered lasagna with Bolognese meat sauce, bechamel, and Parmigiano.", "price": 15.90, "category": "Italian Comfort Food", "dietary_info": ["contains: egg, pork, beef"]},
+    {"name": "Eggplant Parmigiana", "description": "Classic baked eggplant layered with tomato sauce and melted cheese.", "price": 13.90, "category": "Italian Comfort Food", "dietary_info": ["vegetarian", "gluten-free"]},
+    {"name": "Ravioli Burro & Salvia", "description": "Handmade ravioli tossed in brown butter and fresh sage.", "price": 13.90, "category": "Italian Comfort Food", "dietary_info": ["vegetarian", "contains: egg"]},
+
+    {"name": "Caprese", "description": "Artisan focaccia sandwich with fresh mozzarella, tomato, and basil.", "price": 13.90, "category": "Artisan Focaccia Sandwiches", "dietary_info": ["vegetarian", "contains: nuts, dairy"]},
+    {"name": "Mediterranea", "description": "Artisan focaccia sandwich with roasted vegetables and olive tapenade.", "price": 12.90, "category": "Artisan Focaccia Sandwiches", "dietary_info": ["vegan"]},
+    {"name": "Milanese", "description": "Artisan focaccia sandwich with breaded and pan-fried cutlet.", "price": 15.90, "category": "Artisan Focaccia Sandwiches", "dietary_info": ["contains: egg"]},
+    {"name": "Mortadella", "description": "Artisan focaccia sandwich with mortadella, pistachios and fresh cheese.", "price": 15.90, "category": "Artisan Focaccia Sandwiches", "dietary_info": ["contains: pork"]},
+    {"name": "Porchetta", "description": "Artisan focaccia sandwich with slow-roasted porchetta and herbs.", "price": 14.90, "category": "Artisan Focaccia Sandwiches", "dietary_info": ["contains: wheat, pork, nuts"]},
+
+    {"name": "Burrata Salad", "description": "Fresh burrata with seasonal vegetables and extra virgin olive oil.", "price": 11.90, "category": "Salads", "dietary_info": ["vegetarian", "gluten-free"]},
+    {"name": "Mediterranea Salad", "description": "Mixed greens with olives, roasted peppers, capers and lemon dressing.", "price": 10.90, "category": "Salads", "dietary_info": ["vegan", "gluten-free"]},
+
+    {"name": "Polpette Al Sugo", "description": "Meatballs in tomato sauce.", "price": 6.70, "category": "Sides", "dietary_info": ["contains: beef"]},
+    {"name": "Suppli Al Telefono", "description": "Roman fried risotto ball with melted mozzarella inside.", "price": 3.70, "category": "Sides", "dietary_info": ["vegetarian"]},
+    {"name": "Side Salad", "description": "Simple mixed greens salad.", "price": 3.40, "category": "Sides", "dietary_info": ["vegan", "gluten-free"]},
+
+    {"name": "Cannolo Siciliano", "description": "Crispy Sicilian pastry shell filled with sweetened ricotta and chocolate chips.", "price": 4.50, "category": "Desserts", "dietary_info": ["vegetarian", "contains: dairy"]},
+    {"name": "Tiramisu", "description": "Classic Italian dessert with espresso-soaked ladyfingers, mascarpone and cocoa.", "price": 7.90, "category": "Desserts", "dietary_info": ["vegetarian", "contains: egg, dairy"]},
+
+    {"name": "Kid Red Sauce Pasta", "description": "Kids pasta with tomato sauce, served with juice.", "price": 7.90, "category": "Kids", "dietary_info": []},
+    {"name": "Kid White Sauce Pasta", "description": "Kids pasta with butter or cream sauce, served with juice.", "price": 7.90, "category": "Kids", "dietary_info": ["vegetarian"]},
+
+    {"name": "Soft Drink", "description": "Can of soda.", "price": 2.50, "category": "Drinks", "dietary_info": ["vegan"]},
+    {"name": "Still Water", "description": "Bottled still water.", "price": 2.00, "category": "Drinks", "dietary_info": ["vegan"]},
+    {"name": "Sparkling Water", "description": "Bottled sparkling water.", "price": 2.00, "category": "Drinks", "dietary_info": ["vegan"]},
+
+    {"name": "Cook-at-Home Pasta", "description": "Fresh homemade pasta to cook at home, available in all sauces. Call ahead to order.", "price": 12.00, "category": "Cook-at-Home", "dietary_info": []}
+  ]
+}
