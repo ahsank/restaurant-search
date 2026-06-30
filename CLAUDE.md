@@ -80,27 +80,32 @@ Supported `menu_type` values: `dinner`, `lunch`, `happy_hour`, `brunch`, `drinks
 ### Markdown menu experiment
 For document-search experiments, menu content may also be stored as Markdown instead of JSON.
 
-Recommended convention:
-- Use a level-1 heading for the restaurant name.
-- Put restaurant metadata near the top in plain text or a short metadata block.
-- Use `##` for the menu type, for example `## Menu Type: Dinner`.
-- Use `###` for menu categories, for example `### Homemade Pasta`.
-- Render each item as a bullet with the item name, price, description, and dietary notes.
-- Keep the text faithful to the source menu so free-form search can match on real wording.
+Convention:
+- `#` for the restaurant name.
+- Known metadata as plain `Key: value` lines directly below the title — no heading. Only include fields that are actually known; omit anything absent or N/A. Common fields: `Address`, `City`, `Phone`, `Cuisine`, `Price`, `Rating`, `Source`.
+- `##` is reserved exclusively for menu types: `## Menu Type: Dinner`.
+- `###` for menu categories within a menu type.
+- Each item as `- Name — $price` with description and dietary info as indented continuation lines (not sub-bullets). Omit the `Dietary:` line entirely when there is no meaningful dietary information.
 
-Example:
 ```markdown
 # Due' Cucina
 
 City: Kirkland, WA
+Cuisine: italian, pasta, sandwiches
+Price: $$
 Source: manual-pdf
 
 ## Menu Type: Dinner
 
 ### Homemade Pasta
 - Zozzona — $15.90
-  - Homemade pasta with guanciale, sausage, egg yolk and tomato sauce.
-  - Dietary: gluten-free on request; contains egg, pork, dairy
+  Homemade pasta with guanciale, sausage, egg yolk and tomato sauce.
+  Dietary: gluten-free on request; contains egg, pork, dairy
+- Pomodoro — $12.90
+  Homemade pasta with fresh tomato sauce.
+  Dietary: vegan on request; gluten-free on request
+- Kid Red Sauce Pasta — $7.90
+  Kids pasta with tomato sauce, served with juice.
 ```
 
 ## Search Requirements
