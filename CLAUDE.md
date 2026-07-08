@@ -8,7 +8,8 @@ Semantic menu search for restaurants in the Seattle area (within 50 miles). User
 
 | Layer | Language | Location | Status |
 |-------|----------|----------|--------|
-| Search engine | C++ | `src/` | In progress |
+| Search experimentation | Python | `research/` | Active |
+| Search engine (production) | C++ | `src/` | Future |
 | Web scraper | Python | `scraper/` | Future |
 | Web frontend / API | TBD | `web/` | Future |
 
@@ -16,69 +17,25 @@ Semantic menu search for restaurants in the Seattle area (within 50 miles). User
 
 ```
 restaurant-search/
-├── CMakeLists.txt           # Root CMake build (C++23, GoogleTest)
 ├── CLAUDE.md
 ├── data/
-│   ├── menus.json           # Menu entries keyed by restaurant_id
-│   └── restaurants.json     # Restaurant metadata array
-├── src/                     # C++ source
-│   ├── search/              # Core search library (CMake target: search)
-│   │   ├── search.h
-│   │   └── search.cc
-│   └── cmd/                 # CLI tools
-│       └── searchdemo.cc    # Interactive search demo binary
-├── tests/                   # GoogleTest unit tests
-│   └── searchtests.cc
+│   ├── menus/               # One .md per restaurant — restaurant info + all menus
+│   └── dump/                # Raw source files (PDFs, copy-pasted text, etc.)
+├── research/                # Python search experimentation (active)
+│   ├── APPROACHES.md        # Search strategy options and trade-offs
+│   ├── lib/                 # Shared data loading utilities
+│   └── search/              # Search experiment scripts
+├── src/                     # Future: C++ production search engine
 ├── scraper/                 # Future: Python web scraper
 └── web/                     # Future: website / REST API
 ```
 
 ## Data Formats
 
-### `data/restaurants.json`
-Array of restaurant objects:
-```json
-{
-  "id": "rest_1",
-  "name": "Bella Italia",
-  "address": "123 Main St",
-  "city": "Seattle",
-  "state": "WA",
-  "latitude": 47.6062,
-  "longitude": -122.3321,
-  "cuisine_type": ["italian", "pizza", "pasta"],
-  "price_range": "$$",
-  "rating": 4.5,
-  "review_count": 342,
-  "source": "demo"
-}
-```
+### Markdown restaurant documents (`data/menus/<restaurant-id>.md`)
+Each `.md` file represents a single restaurant: it contains the restaurant's metadata (name, address, cuisine, price range, etc.) followed by one or more menus. This makes each file a self-contained document for search — no join with a separate restaurants file is needed. Keeping everything in one place also makes it easy to add a new restaurant by dropping a single file.
 
-### `data/menus/<restaurant-id>.json`
-One file per restaurant (or one per menu type, e.g. `plaza-garcia-happy-hour.json`).
-Top-level `restaurant_id` and `menu_type` are shared across all items in the file.
-Adding a restaurant = dropping a new file; no existing file is modified.
-
-Supported `menu_type` values: `dinner`, `lunch`, `happy_hour`, `brunch`, `drinks`.
-
-```json
-{
-  "restaurant_id": "rest_1",
-  "menu_type": "dinner",
-  "items": [
-    {
-      "name": "Spaghetti Carbonara",
-      "description": "Traditional Roman pasta with eggs, pecorino cheese, and guanciale",
-      "price": 16.99,
-      "category": "Pasta",
-      "dietary_info": []
-    }
-  ]
-}
-```
-
-### Markdown menu experiment
-For document-search experiments, menu content may also be stored as Markdown instead of JSON.
+Markdown is preferred over JSON for search experiments because it preserves the original menu wording in free-form text, which is important for semantic and embedding-based retrieval. JSON files remain available for structured access but are not the search target.
 
 Convention:
 - `#` for the restaurant name.
@@ -108,9 +65,9 @@ Source: manual-pdf
   Kids pasta with tomato sauce, served with juice.
 ```
 
-## Search Requirements
+## Search
 
-### Semantic Search (core requirement)
+### Goal
 
 Queries must match dishes by **concept**, not by keyword substring. Examples:
 
@@ -121,26 +78,13 @@ Queries must match dishes by **concept**, not by keyword substring. Examples:
 | `spicy noodles` | Pad Thai, Tom Yum | Noodles + spicy classification |
 | `healthy vegetarian` | Quinoa Buddha Bowl, Vegan Caesar Salad | Concept match on health/veg |
 
-Simple substring / keyword matching is insufficient. The search engine must expand query terms to related concepts (e.g., "seafood" → shrimp, clams, salmon, cod, lobster, scallops).
+### Current focus: Python experimentation (`research/`)
 
-Possible approaches (in increasing sophistication):
-1. **Concept thesaurus**: hardcoded or data-driven mapping of query terms to ingredient/category synonyms
-2. **TF-IDF + query expansion**: index all menu text, expand query with related terms
-3. **Embedding-based search**: encode menu items and queries as vectors, rank by cosine similarity
+All search work is done in Python under `research/`. Experiments read the markdown menu files in `data/menus/` directly. See [`research/APPROACHES.md`](research/APPROACHES.md) for a full discussion of search strategies — from a simple concept thesaurus through BM25, word embeddings, sentence transformers, and LLM-based retrieval — with trade-offs and recommended experimentation order.
 
-### Search API (C++ library `src/search/`)
+## Future: Production Search Engine (`src/`)
 
-The library must:
-- Load restaurant and menu data from the JSON files in `data/`
-- Accept a free-text query string
-- Return ranked menu entries with associated restaurant info
-- Be callable from the `searchdemo` CLI and later from a web API wrapper
-
-### CLI Demo (`src/cmd/searchdemo.cc`)
-
-Reads `data/menus.json` and `data/restaurants.json`, accepts a query on the command line or stdin, and prints matching menu items with restaurant names and prices.
-
-## Build
+C++ library that loads menu data and serves ranked results. Trained models from the Python experiments (Approaches 4–6 in APPROACHES.md) will be exported to ONNX and loaded via ONNX Runtime so the C++ engine stays dependency-free.
 
 Requires CMake 3.5+, a C++23-capable compiler. GoogleTest is fetched automatically via `FetchContent`.
 
@@ -150,10 +94,10 @@ cmake --build build
 ctest --test-dir build
 ```
 
-## Future: Python Scraper (`scraper/`)
+## Future: Web Scraper (`scraper/`)
 
-Will scrape restaurant menus from public web sources. Output must conform to the `data/menus.json` and `data/restaurants.json` schemas so the C++ search engine can consume scraped data directly. Target: all restaurants within 50 miles of Seattle.
+Will scrape restaurant menus from public web sources. Output must conform to the markdown and JSON schemas in `data/` so the search engine can consume scraped data directly. Target: all restaurants within 50 miles of Seattle.
 
 ## Future: Website (`web/`)
 
-Will expose the C++ search library through a REST API and serve a search UI. The search API will accept a query string and return ranked menu results with restaurant metadata.
+Will expose the search engine through a REST API and serve a search UI. The search API will accept a query string and return ranked menu results with restaurant metadata.
