@@ -20,14 +20,18 @@ def search(query: str, restaurants: dict, menus: dict) -> list[dict]:
     terms = query.lower().split()
     results = []
     for restaurant_id, items in menus.items():
+        restaurant_name = restaurants[restaurant_id].get("name", restaurant_id)
         for item in items:
             text = f"{item['name']} {item['description']}".lower()
             if all(term in text for term in terms):
                 results.append({
-                    "restaurant": restaurants[restaurant_id]["name"],
+                    "restaurant": restaurant_name,
                     "item": item["name"],
                     "description": item["description"],
                     "price": item["price"],
+                    "price_raw": item["price_raw"],
+                    "category": item["category"],
+                    "menu_type": item["menu_type"],
                 })
     return results
 
@@ -43,6 +47,8 @@ if __name__ == "__main__":
 
     print(f"Query: '{query}'  —  {len(results)} match(es)\n")
     for r in results:
-        print(f"  {r['restaurant']} | {r['item']}  ${r['price']:.2f}")
-        print(f"  {r['description']}")
+        price_str = f"${r['price']:.2f}" if r["price"] is not None else r["price_raw"]
+        print(f"  {r['restaurant']} | {r['item']}  {price_str}  [{r['category']} · {r['menu_type']}]")
+        if r["description"]:
+            print(f"  {r['description']}")
         print()
