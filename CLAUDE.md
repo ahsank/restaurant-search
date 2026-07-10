@@ -39,7 +39,7 @@ Markdown is preferred over JSON for search experiments because it preserves the 
 
 Convention:
 - `#` for the restaurant name.
-- Known metadata as plain `Key: value` lines directly below the title — no heading. Only include fields that are actually known; omit anything absent or N/A. Common fields: `Address`, `City`, `Phone`, `Cuisine`, `Price`, `Rating`, `Source`.
+- Known metadata as plain `Key: value` lines directly below the title — no heading. Only include fields that are actually known; omit anything absent or N/A. Common fields: `Address`, `City`, `Phone`, `Cuisine`, `Price`, `Rating`, `Source`, `Description` (one-sentence to one-paragraph summary of the restaurant's character and cuisine).
 - `##` is reserved exclusively for menu types: `## Menu Type: Dinner`.
 - `###` for menu categories within a menu type.
 - Each item as `- Name — $price` with description and dietary info as indented continuation lines (not sub-bullets). Omit the `Dietary:` line entirely when there is no meaningful dietary information.
