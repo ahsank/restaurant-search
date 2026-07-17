@@ -1,101 +1,101 @@
-query_id,category_id,query_text
-1,C01,Mexican food with shrimp
-2,C01,Italian pasta with meat sauce
-3,C01,Latin seafood dish
-4,C01,Tex-Mex combination plate
-5,C01,farm to table sandwich
-6,C01,taqueria style tacos
-7,C01,rustic Italian comfort food
-8,C01,fine dining pasta
-9,C02,seafood tacos
-10,C02,shellfish pasta
-11,C02,leafy green salad
-12,C02,stone fruit dessert
-13,C02,smoked meat sandwich
-14,C02,cured meat appetizer
-15,C02,steak dish
-16,C02,fresh cheese salad
-17,C02,pork dishes
-18,C02,citrus fish
-19,C03,spicy shrimp
-20,C03,something smoky
-21,C03,rich creamy pasta
-22,C03,light fresh starter
-23,C03,fire grilled meat
-24,C03,comfort food pasta
-25,C03,umami dish
-26,C03,gut feeling filling meal
-27,C03,cajun style shrimp
-28,C03,tangy dressing salad
-29,C03,charred vegetables
-30,C03,indulgent dessert
-31,C04,charbroiled steak
-32,C04,seared fish
-33,C04,pan seared salmon
-34,C04,blackened chicken
-35,C04,flame broiled burger
-36,C04,wood fired pizza
-37,C04,slow cooked pork
-38,C04,braised beef
-39,C04,deep fried appetizer
-40,C04,crispy fried chicken
-41,C05,caeser salad
-42,C05,quesedilla
-43,C05,guacamolee
-44,C05,enchilladas
-45,C05,fettucine carbonara
-46,C05,tiramisou
-47,C05,prosciuto
-48,C05,cevice
-49,C05,proscuitto and melon
-50,C05,rigatonni bolognese
-51,C05,canoli
-52,C05,burratta
-53,C05,halebut
-54,C05,focacia sandwich
-55,C06,roasted carrot
-56,C06,grilling octopus
-57,C06,fried artichoke
-58,C06,marinated steak
-59,C06,sauted mushroom
-60,C06,slow braising short rib
-61,C06,breading calamari
-62,C06,compress melon
-63,C06,season chicken
-64,C06,pickle vegetables
-65,C07,cacio e pepe
-66,C07,cacioepepe
-67,C07,al pastor
-68,C07,alpastor taco
-69,C07,mojo de ajo shrimp
-70,C07,arroz con pollo
-71,C07,arrozconpollo
-72,C07,due cucina pasta
-73,C07,staple fancy restaurant
-74,C07,non dairy pasta
-75,C07,gluten free pasta
-76,C07,glutenfree option
-77,C07,farm-to-table lunch
-78,C07,egg-free dessert
-79,C08,vegetarian Mexican food
-80,C08,vegan sandwich
-81,C08,no gluten pasta
-82,C08,without dairy
-83,C08,nut free salad
-84,C08,plant based option
-85,C08,meat free burrito
-86,C08,dairy free pasta
-87,C08,pescatarian dinner
-88,C08,keto friendly
-89,C09,prawn dish
-90,C09,mussel or clam appetizer
-91,C09,avocado toast
-92,C09,flatbread
-93,C09,corn tortilla chips and dip
-94,C09,Mexican cheese dip
-95,C09,cold raw fish
-96,C09,Italian rice balls
-97,C09,espresso based cocktail
-98,C09,after dinner drink
-99,C10,spicy vegetarian taco
-100,C10,gluten free seafood under $30
+query_id,category_id,query_text,difficulty,category_name
+1,C01,Mexican food with shrimp,Medium,Cuisine type inference
+2,C01,Italian pasta with meat sauce,Medium,Cuisine type inference
+3,C01,Latin seafood dish,Medium,Cuisine type inference
+4,C01,Tex-Mex combination plate,Hard,Cuisine type inference
+5,C01,farm to table sandwich,Medium,Cuisine type inference
+6,C01,taqueria style tacos,Hard,Cuisine type inference
+7,C01,rustic Italian comfort food,Hard,Cuisine type inference
+8,C01,fine dining pasta,Hard,Cuisine type inference
+9,C02,seafood tacos,Medium,Ingredient generalization
+10,C02,shellfish pasta,Medium,Ingredient generalization
+11,C02,leafy green salad,Medium,Ingredient generalization
+12,C02,stone fruit dessert,Hard,Ingredient generalization
+13,C02,smoked meat sandwich,Hard,Ingredient generalization
+14,C02,cured meat appetizer,Medium,Ingredient generalization
+15,C02,steak dish,Easy,Ingredient generalization
+16,C02,fresh cheese salad,Medium,Ingredient generalization
+17,C02,pork dishes,Easy,Ingredient generalization
+18,C02,citrus fish,Medium,Ingredient generalization
+19,C03,spicy shrimp,Medium,Attribute / implied meaning
+20,C03,something smoky,Hard,Attribute / implied meaning
+21,C03,rich creamy pasta,Medium,Attribute / implied meaning
+22,C03,light fresh starter,Medium,Attribute / implied meaning
+23,C03,fire grilled meat,Medium,Attribute / implied meaning
+24,C03,comfort food pasta,Hard,Attribute / implied meaning
+25,C03,umami dish,Hard,Attribute / implied meaning
+26,C03,gut feeling filling meal,Hard,Attribute / implied meaning
+27,C03,cajun style shrimp,Hard,Attribute / implied meaning
+28,C03,tangy dressing salad,Medium,Attribute / implied meaning
+29,C03,charred vegetables,Medium,Attribute / implied meaning
+30,C03,indulgent dessert,Hard,Attribute / implied meaning
+31,C04,charbroiled steak,Easy,Cooking method synonyms
+32,C04,seared fish,Medium,Cooking method synonyms
+33,C04,pan seared salmon,Medium,Cooking method synonyms
+34,C04,blackened chicken,Hard,Cooking method synonyms
+35,C04,flame broiled burger,Medium,Cooking method synonyms
+36,C04,wood fired pizza,Hard,Cooking method synonyms
+37,C04,slow cooked pork,Medium,Cooking method synonyms
+38,C04,braised beef,Medium,Cooking method synonyms
+39,C04,deep fried appetizer,Easy,Cooking method synonyms
+40,C04,crispy fried chicken,Easy,Cooking method synonyms
+41,C05,caeser salad,Easy,Spelling variations
+42,C05,quesedilla,Easy,Spelling variations
+43,C05,guacamolee,Easy,Spelling variations
+44,C05,enchilladas,Easy,Spelling variations
+45,C05,fettucine carbonara,Medium,Spelling variations
+46,C05,tiramisou,Easy,Spelling variations
+47,C05,prosciuto,Easy,Spelling variations
+48,C05,cevice,Easy,Spelling variations
+49,C05,proscuitto and melon,Medium,Spelling variations
+50,C05,rigatonni bolognese,Easy,Spelling variations
+51,C05,canoli,Easy,Spelling variations
+52,C05,burratta,Easy,Spelling variations
+53,C05,halebut,Easy,Spelling variations
+54,C05,focacia sandwich,Easy,Spelling variations
+55,C06,roasted carrot,Easy,Stemming & lemmatization
+56,C06,grilling octopus,Easy,Stemming & lemmatization
+57,C06,fried artichoke,Easy,Stemming & lemmatization
+58,C06,marinated steak,Easy,Stemming & lemmatization
+59,C06,sauted mushroom,Medium,Stemming & lemmatization
+60,C06,slow braising short rib,Medium,Stemming & lemmatization
+61,C06,breading calamari,Easy,Stemming & lemmatization
+62,C06,compress melon,Medium,Stemming & lemmatization
+63,C06,season chicken,Easy,Stemming & lemmatization
+64,C06,pickle vegetables,Easy,Stemming & lemmatization
+65,C07,cacio e pepe,Easy,Hyphenation / spacing / stop words
+66,C07,cacioepepe,Easy,Hyphenation / spacing / stop words
+67,C07,al pastor,Easy,Hyphenation / spacing / stop words
+68,C07,alpastor taco,Easy,Hyphenation / spacing / stop words
+69,C07,mojo de ajo shrimp,Easy,Hyphenation / spacing / stop words
+70,C07,arroz con pollo,Easy,Hyphenation / spacing / stop words
+71,C07,arrozconpollo,Easy,Hyphenation / spacing / stop words
+72,C07,due cucina pasta,Easy,Hyphenation / spacing / stop words
+73,C07,staple fancy restaurant,Easy,Hyphenation / spacing / stop words
+74,C07,non dairy pasta,Medium,Hyphenation / spacing / stop words
+75,C07,gluten free pasta,Easy,Hyphenation / spacing / stop words
+76,C07,glutenfree option,Easy,Hyphenation / spacing / stop words
+77,C07,farm-to-table lunch,Easy,Hyphenation / spacing / stop words
+78,C07,egg-free dessert,Hard,Hyphenation / spacing / stop words
+79,C08,vegetarian Mexican food,Medium,Dietary constraint / negation
+80,C08,vegan sandwich,Easy,Dietary constraint / negation
+81,C08,no gluten pasta,Medium,Dietary constraint / negation
+82,C08,without dairy,Medium,Dietary constraint / negation
+83,C08,nut free salad,Hard,Dietary constraint / negation
+84,C08,plant based option,Easy,Dietary constraint / negation
+85,C08,meat free burrito,Medium,Dietary constraint / negation
+86,C08,dairy free pasta,Hard,Dietary constraint / negation
+87,C08,pescatarian dinner,Hard,Dietary constraint / negation
+88,C08,keto friendly,Hard,Dietary constraint / negation
+89,C09,prawn dish,Medium,Synonym / paraphrase
+90,C09,mussel or clam appetizer,Medium,Synonym / paraphrase
+91,C09,avocado toast,Hard,Synonym / paraphrase
+92,C09,flatbread,Medium,Synonym / paraphrase
+93,C09,corn tortilla chips and dip,Medium,Synonym / paraphrase
+94,C09,Mexican cheese dip,Easy,Synonym / paraphrase
+95,C09,cold raw fish,Medium,Synonym / paraphrase
+96,C09,Italian rice balls,Hard,Synonym / paraphrase
+97,C09,espresso based cocktail,Medium,Synonym / paraphrase
+98,C09,after dinner drink,Hard,Synonym / paraphrase
+99,C10,spicy vegetarian taco,Hard,Multi-constraint compositional
+100,C10,gluten free seafood under $30,Hard,Multi-constraint compositional

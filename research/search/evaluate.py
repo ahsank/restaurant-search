@@ -1,0 +1,277 @@
+"""
+Evaluate a search function against the benchmark in data/queries/.
+
+Usage:
+    python3 research/search/evaluate.py                    # runs text_search baseline
+    python3 research/search/evaluate.py --category C01     # filter by category
+    python3 research/search/evaluate.py --difficulty Easy  # filter by difficulty
+
+Interface for custom search functions:
+    The search function must accept (query: str) -> list[dict], where each dict
+    has at least "restaurant_id" and "name" keys (same shape returned by load_data()).
+    Results must be ordered best-first; the list length determines the cutoff.
+"""
+
+import csv
+import math
+import sys
+from collections import defaultdict
+from pathlib import Path
+
+_ROOT = Path(__file__).parent.parent.parent
+_QUERIES_DIR = _ROOT / "data" / "queries"
+
+sys.path.insert(0, str(_ROOT / "research"))
+from lib.data import load_data
+
+
+# ---------------------------------------------------------------------------
+# Benchmark loading
+# ---------------------------------------------------------------------------
+
+def load_queries(category: str | None = None, difficulty: str | None = None) -> list[dict]:
+    rows = []
+    with open(_QUERIES_DIR / "queries.csv", newline="", encoding="utf-8") as f:
+        for row in csv.DictReader(f):
+            if category and row["category_id"] != category:
+                continue
+            if difficulty and row["difficulty"] != difficulty:
+                continue
+            rows.append(row)
+    return rows
+
+
+def load_relevance() -> dict[tuple[str, str], dict[str, int]]:
+    """Return {(restaurant_id, query_id): {item_name: relevance}}."""
+    judgments: dict[tuple[str, str], dict[str, int]] = defaultdict(dict)
+    for path in sorted(_QUERIES_DIR.glob("relevance_*.csv")):
+        with open(path, newline="", encoding="utf-8") as f:
+            for row in csv.DictReader(f):
+                key = (row["restaurant"], row["query_id"])
+                judgments[key][row["menu_item"]] = int(row["relevance"])
+    return dict(judgments)
+
+
+# ---------------------------------------------------------------------------
+# Metric computation
+# ---------------------------------------------------------------------------
+
+def _dcg(rels: list[int], k: int) -> float:
+    return sum(r / math.log2(i + 2) for i, r in enumerate(rels[:k]))
+
+
+def ndcg_at_k(ranked_rels: list[int], k: int) -> float:
+    ideal = sorted(ranked_rels, reverse=True)
+    idcg = _dcg(ideal, k)
+    return _dcg(ranked_rels, k) / idcg if idcg > 0 else 0.0
+
+
+def recall_at_k(ranked_rels: list[int], k: int) -> float:
+    n_rel = sum(1 for r in ranked_rels if r > 0)
+    if n_rel == 0:
+        return 0.0
+    return sum(1 for r in ranked_rels[:k] if r > 0) / n_rel
+
+
+def reciprocal_rank(ranked_rels: list[int]) -> float:
+    for i, r in enumerate(ranked_rels):
+        if r > 0:
+            return 1.0 / (i + 1)
+    return 0.0
+
+
+# ---------------------------------------------------------------------------
+# Evaluation loop
+# ---------------------------------------------------------------------------
+
+def evaluate(
+    search_fn,
+    *,
+    k_ndcg: int = 5,
+    k_recall: int = 10,
+    category: str | None = None,
+    difficulty: str | None = None,
+    verbose: bool = False,
+) -> dict:
+    """
+    Run all benchmark queries through search_fn and return aggregated metrics.
+
+    search_fn(query: str) -> list[dict]   where each dict has "restaurant_id" and "name"
+    """
+    queries = load_queries(category=category, difficulty=difficulty)
+    judgments = load_relevance()
+
+    per_query: list[dict] = []
+
+    for q in queries:
+        qid = q["query_id"]
+        results = search_fn(q["query_text"])
+
+        ranked_rels: list[int] = []
+        for item in results:
+            rid = item["restaurant_id"]
+            name = item["name"]
+            rel = judgments.get((rid, qid), {}).get(name, 0)
+            ranked_rels.append(rel)
+
+        # Collect all known relevance values for this query (across all restaurants)
+        all_rels = []
+        for (rid, q2), items in judgments.items():
+            if q2 == qid:
+                all_rels.extend(items.values())
+        n_relevant = sum(1 for r in all_rels if r > 0)
+
+        score = {
+            "query_id": qid,
+            "query_text": q["query_text"],
+            "category_id": q["category_id"],
+            "category_name": q["category_name"],
+            "difficulty": q["difficulty"],
+            "n_results": len(results),
+            "n_relevant": n_relevant,
+            f"ndcg@{k_ndcg}": ndcg_at_k(ranked_rels, k_ndcg),
+            f"recall@{k_recall}": recall_at_k(ranked_rels, k_recall),
+            "mrr": reciprocal_rank(ranked_rels),
+        }
+        per_query.append(score)
+
+        if verbose:
+            print(
+                f"  Q{qid:>3} [{q['category_id']}/{q['difficulty'][:1]}]"
+                f" NDCG@{k_ndcg}={score[f'ndcg@{k_ndcg}']:.3f}"
+                f" Recall@{k_recall}={score[f'recall@{k_recall}']:.3f}"
+                f" MRR={score['mrr']:.3f}"
+                f"  «{q['query_text']}»"
+            )
+
+    def avg(key: str, rows=per_query) -> float:
+        vals = [r[key] for r in rows if r["n_relevant"] > 0]
+        return sum(vals) / len(vals) if vals else 0.0
+
+    ndcg_key = f"ndcg@{k_ndcg}"
+    recall_key = f"recall@{k_recall}"
+
+    # Overall
+    overall = {
+        ndcg_key: avg(ndcg_key),
+        recall_key: avg(recall_key),
+        "mrr": avg("mrr"),
+        "n_queries": len(per_query),
+        "n_with_judgments": sum(1 for r in per_query if r["n_relevant"] > 0),
+    }
+
+    # By category
+    by_category: dict[str, dict] = {}
+    cat_ids = sorted({r["category_id"] for r in per_query})
+    for cat in cat_ids:
+        rows = [r for r in per_query if r["category_id"] == cat]
+        by_category[cat] = {
+            "name": rows[0]["category_name"],
+            ndcg_key: avg(ndcg_key, rows),
+            recall_key: avg(recall_key, rows),
+            "mrr": avg("mrr", rows),
+            "n_queries": len(rows),
+        }
+
+    # By difficulty
+    by_difficulty: dict[str, dict] = {}
+    for diff in ("Easy", "Medium", "Hard"):
+        rows = [r for r in per_query if r["difficulty"] == diff]
+        if rows:
+            by_difficulty[diff] = {
+                ndcg_key: avg(ndcg_key, rows),
+                recall_key: avg(recall_key, rows),
+                "mrr": avg("mrr", rows),
+                "n_queries": len(rows),
+            }
+
+    return {
+        "overall": overall,
+        "by_category": by_category,
+        "by_difficulty": by_difficulty,
+        "per_query": per_query,
+    }
+
+
+# ---------------------------------------------------------------------------
+# Report formatting
+# ---------------------------------------------------------------------------
+
+def print_report(results: dict, k_ndcg: int = 5, k_recall: int = 10) -> None:
+    ndcg_key = f"ndcg@{k_ndcg}"
+    recall_key = f"recall@{k_recall}"
+    o = results["overall"]
+
+    print(f"\n{'='*60}")
+    print(f"  Overall  ({o['n_with_judgments']}/{o['n_queries']} queries have judgments)")
+    print(f"{'='*60}")
+    print(f"  NDCG@{k_ndcg:<3}   {o[ndcg_key]:.4f}")
+    print(f"  Recall@{k_recall:<2}  {o[recall_key]:.4f}")
+    print(f"  MRR        {o['mrr']:.4f}")
+
+    print(f"\n{'─'*60}")
+    print(f"  By category")
+    print(f"{'─'*60}")
+    for cat, m in sorted(results["by_category"].items()):
+        print(
+            f"  {cat}  NDCG@{k_ndcg}={m[ndcg_key]:.3f}"
+            f"  Recall@{k_recall}={m[recall_key]:.3f}"
+            f"  MRR={m['mrr']:.3f}"
+            f"  n={m['n_queries']}"
+            f"  {m['name']}"
+        )
+
+    print(f"\n{'─'*60}")
+    print(f"  By difficulty")
+    print(f"{'─'*60}")
+    for diff, m in results["by_difficulty"].items():
+        print(
+            f"  {diff:<8}  NDCG@{k_ndcg}={m[ndcg_key]:.3f}"
+            f"  Recall@{k_recall}={m[recall_key]:.3f}"
+            f"  MRR={m['mrr']:.3f}"
+            f"  n={m['n_queries']}"
+        )
+    print()
+
+
+# ---------------------------------------------------------------------------
+# CLI entry point (uses text_search baseline)
+# ---------------------------------------------------------------------------
+
+if __name__ == "__main__":
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Evaluate search against the benchmark")
+    parser.add_argument("--category", help="Filter to one category, e.g. C01")
+    parser.add_argument("--difficulty", choices=["Easy", "Medium", "Hard"])
+    parser.add_argument("--verbose", "-v", action="store_true")
+    args = parser.parse_args()
+
+    # Import the baseline search function and adapt its signature
+    sys.path.insert(0, str(_ROOT / "research" / "search"))
+    from text_search import search as _text_search
+
+    restaurants, menus = load_data()
+
+    # Build reverse map: restaurant name → id
+    name_to_id = {v.get("name", k): k for k, v in restaurants.items()}
+
+    def search(query: str) -> list[dict]:
+        raw = _text_search(query, restaurants, menus)
+        out = []
+        for r in raw:
+            rid = name_to_id.get(r["restaurant"], r["restaurant"])
+            out.append({"restaurant_id": rid, "name": r["item"], **r})
+        return out
+
+    print("Running text_search baseline against benchmark...")
+    if args.verbose:
+        print()
+
+    results = evaluate(
+        search,
+        category=args.category,
+        difficulty=args.difficulty,
+        verbose=args.verbose,
+    )
+    print_report(results)

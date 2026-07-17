@@ -82,6 +82,20 @@ Queries must match dishes by **concept**, not by keyword substring. Examples:
 
 All search work is done in Python under `research/`. Experiments read the markdown menu files in `data/menus/` directly. See [`research/APPROACHES.md`](research/APPROACHES.md) for a full discussion of search strategies — from a simple concept thesaurus through BM25, word embeddings, sentence transformers, and LLM-based retrieval — with trade-offs and recommended experimentation order.
 
+### Benchmark (`data/queries/`)
+
+A 100-query benchmark with relevance judgments for 5 restaurants (Due' Cucina, Juanita Cantina, Mendocino Farms, Plaza Garcia, Staple & Fancy). See [`data/queries/README.md`](data/queries/README.md) for format details.
+
+Key files:
+- `data/queries/queries.csv` — 100 queries with `category_id`, `difficulty`, and `category_name`
+- `data/queries/relevance_<restaurant-id>.csv` — sparse relevance judgments (only relevance ≥ 1 stored; missing = 0)
+- `menu-search-benchmark-queries.md` — full documentation of the 10 query categories and challenge design
+- `research/search/evaluate.py` — script to compute NDCG@5, Recall@10, MRR against any search function
+
+**Relevance scale**: 0 = not relevant (implicit), 1 = partially relevant, 2 = highly relevant.
+
+Primary metric: **NDCG@5**. Stratify by `category_id` and `difficulty` to diagnose where a search approach falls short.
+
 ## Future: Production Search Engine (`src/`)
 
 C++ library that loads menu data and serves ranked results. Trained models from the Python experiments (Approaches 4–6 in APPROACHES.md) will be exported to ONNX and loaded via ONNX Runtime so the C++ engine stays dependency-free.
