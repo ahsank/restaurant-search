@@ -1,0 +1,117 @@
+restaurant,query_id,menu_item,relevance
+juanita-cantina,1,Shrimp Juanita,2
+juanita-cantina,1,Shrimp Fajitas,2
+juanita-cantina,1,Tacos De Camarones,2
+juanita-cantina,1,Camarones a la Diabla,2
+juanita-cantina,1,Camarones Mojo de Ajo,2
+juanita-cantina,1,Camarones con Bacon,2
+juanita-cantina,1,Camarones a la Crema,2
+juanita-cantina,1,Chipotle Shrimp Enchiladas,2
+juanita-cantina,1,Seafood Enchiladas,1
+juanita-cantina,1,Shrimp Ceviche,1
+juanita-cantina,3,Shrimp Ceviche,2
+juanita-cantina,3,Seafood Enchiladas,2
+juanita-cantina,3,Seafood Burrito,2
+juanita-cantina,3,Camarones a la Diabla,2
+juanita-cantina,3,Camarones Mojo de Ajo,2
+juanita-cantina,3,Tacos De Pescado,2
+juanita-cantina,3,Shrimp Fajitas,1
+juanita-cantina,6,3 Street Tacos,2
+juanita-cantina,6,Taco Birria,2
+juanita-cantina,6,Tacos Al Carbon,2
+juanita-cantina,6,Tacos De Pescado,1
+juanita-cantina,6,Los Taquitos,1
+juanita-cantina,9,Tacos De Pescado,2
+juanita-cantina,9,Tacos De Camarones,2
+juanita-cantina,9,Seafood Burrito,1
+juanita-cantina,15,Carne Asada,2
+juanita-cantina,15,Ribeye Steak,2
+juanita-cantina,15,Mexican Steak,2
+juanita-cantina,15,Steak Tapiqueño,2
+juanita-cantina,15,Carne and Camaron,1
+juanita-cantina,17,Michoacan Carnitas,2
+juanita-cantina,17,Burrito Chili Verde,2
+juanita-cantina,17,Burrito Al Pastor,2
+juanita-cantina,17,Chili Verde,2
+juanita-cantina,17,Posole,1
+juanita-cantina,19,Camarones a la Diabla,2
+juanita-cantina,19,Chipotle Shrimp Enchiladas,2
+juanita-cantina,19,Shrimp Juanita,1
+juanita-cantina,19,Wings,1
+juanita-cantina,22,Shrimp Ceviche,2
+juanita-cantina,22,Fresh Avocado,2
+juanita-cantina,22,Three Ceviche Tostadas,1
+juanita-cantina,23,Carne Asada,2
+juanita-cantina,23,Pollo Asado,2
+juanita-cantina,23,Tacos Al Carbon,1
+juanita-cantina,27,Camarones a la Diabla,2
+juanita-cantina,27,Camarones Mojo de Ajo,1
+juanita-cantina,31,Carne Asada,2
+juanita-cantina,31,Mexican Steak,1
+juanita-cantina,35,Jalapeño Cheeseburger,2
+juanita-cantina,35,Hawaiian Cheeseburger,2
+juanita-cantina,35,Cheeseburger,2
+juanita-cantina,37,Michoacan Carnitas,2
+juanita-cantina,37,Chili Verde,2
+juanita-cantina,37,Posole,1
+juanita-cantina,38,Taco Birria,2
+juanita-cantina,39,Taquitos Rancheros,2
+juanita-cantina,39,Cheese Sticks,2
+juanita-cantina,39,Breaded Calamari,2
+juanita-cantina,39,Cauliflower Wings,1
+juanita-cantina,40,Wings,2
+juanita-cantina,40,Taquitos Rancheros,1
+juanita-cantina,41,Caesar Salad,2
+juanita-cantina,42,Quesadillas,2
+juanita-cantina,43,Fresh Avocado,2
+juanita-cantina,43,Guacamole,2
+juanita-cantina,44,Enchiladas Suizas,2
+juanita-cantina,44,Enchiladas Juanita,2
+juanita-cantina,44,Seafood Enchiladas,2
+juanita-cantina,44,Enchiladas en Mole,2
+juanita-cantina,44,Enchiladas Rojas,2
+juanita-cantina,44,Spinach Enchilada,2
+juanita-cantina,44,Chipotle Shrimp Enchiladas,2
+juanita-cantina,48,Shrimp Ceviche,2
+juanita-cantina,48,Three Ceviche Tostadas,2
+juanita-cantina,59,Camarones Mojo de Ajo,2
+juanita-cantina,59,Arroz Con Pollo,1
+juanita-cantina,63,Pollo Asado,2
+juanita-cantina,63,Pollo Chipotle,1
+juanita-cantina,67,3 Street Tacos,2
+juanita-cantina,67,Burrito Al Pastor,2
+juanita-cantina,67,Tacos Al Carbon,1
+juanita-cantina,70,Arroz Con Pollo,2
+juanita-cantina,79,Veggie Fajitas,2
+juanita-cantina,79,Veggie Enchiladas,2
+juanita-cantina,79,Queso Dip,2
+juanita-cantina,79,Queso with Spinach,2
+juanita-cantina,79,Cauliflower Wings,1
+juanita-cantina,79,Chile Relleno,1
+juanita-cantina,85,Casa Burrito,1
+juanita-cantina,87,Seafood Enchiladas,2
+juanita-cantina,87,Seafood Burrito,2
+juanita-cantina,87,Tacos De Pescado,2
+juanita-cantina,87,Shrimp Fajitas,2
+juanita-cantina,87,Camarones a la Diabla,2
+juanita-cantina,87,Shrimp Ceviche,1
+juanita-cantina,89,Camarones a la Diabla,2
+juanita-cantina,89,Camarones Mojo de Ajo,2
+juanita-cantina,89,Shrimp Fajitas,2
+juanita-cantina,89,Seafood Enchiladas,1
+juanita-cantina,90,Clams with Chorizo,2
+juanita-cantina,93,Nacho Supreme,2
+juanita-cantina,93,Tijuana Nachos,2
+juanita-cantina,93,Queso Dip,2
+juanita-cantina,93,Chips,1
+juanita-cantina,94,Queso Dip,2
+juanita-cantina,94,Queso Dip with Chorizo,2
+juanita-cantina,94,Queso with Spinach,2
+juanita-cantina,95,Shrimp Ceviche,2
+juanita-cantina,95,Three Ceviche Tostadas,1
+juanita-cantina,99,Veggie Fajitas,1
+juanita-cantina,99,Cauliflower Wings,1
+juanita-cantina,100,Shrimp Fajitas,2
+juanita-cantina,100,Camarones a la Diabla,2
+juanita-cantina,100,Shrimp Ceviche,2
+juanita-cantina,100,Seafood Enchiladas,1

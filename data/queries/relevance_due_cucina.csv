@@ -1,0 +1,51 @@
+restaurant,query_id,menu_item,relevance
+due-cucina,2,Bolognese Ragu',2
+due-cucina,2,Short Ribs Ragu',2
+due-cucina,2,Zozzona,2
+due-cucina,2,Polpette,1
+due-cucina,7,Lasagna alla Bolognese,2
+due-cucina,7,Bolognese Ragu',2
+due-cucina,7,Carbonara,2
+due-cucina,7,Ravioli Burro & Salvia,1
+due-cucina,8,Zozzona,1
+due-cucina,8,Ravioli Burro & Salvia,1
+due-cucina,17,Zozzona,2
+due-cucina,17,Carbonara,2
+due-cucina,17,Bolognese Ragu',1
+due-cucina,21,Carbonara,2
+due-cucina,21,Ravioli Burro & Salvia,2
+due-cucina,21,Zozzona,1
+due-cucina,24,Lasagna alla Bolognese,2
+due-cucina,24,Bolognese Ragu',2
+due-cucina,24,Carbonara,2
+due-cucina,37,Short Ribs Ragu',2
+due-cucina,37,Bolognese Ragu',1
+due-cucina,38,Short Ribs Ragu',2
+due-cucina,45,Carbonara,2
+due-cucina,46,Tiramisu,2
+due-cucina,50,Bolognese Ragu',2
+due-cucina,51,Cannolo Siciliano,2
+due-cucina,54,Caprese,2
+due-cucina,54,Mediterranea,2
+due-cucina,54,Milanese,2
+due-cucina,54,Mortadella,2
+due-cucina,54,Porchetta,2
+due-cucina,60,Short Ribs Ragu',2
+due-cucina,75,Zozzona,1
+due-cucina,75,Carbonara,1
+due-cucina,75,Bolognese Ragu',1
+due-cucina,75,Pomodoro,1
+due-cucina,76,Pomodoro,1
+due-cucina,76,Zozzona,1
+due-cucina,78,Cannolo Siciliano,1
+due-cucina,80,Mediterranea,2
+due-cucina,81,Eggplant Parmigiana,2
+due-cucina,81,Pomodoro,1
+due-cucina,82,Pomodoro,1
+due-cucina,82,Mediterranea,2
+due-cucina,84,Pomodoro,2
+due-cucina,84,Mediterranea,2
+due-cucina,84,Mediterranea Salad,2
+due-cucina,86,Pomodoro,2
+due-cucina,86,Mediterranea,1
+due-cucina,96,Suppli Al Telefono,2
