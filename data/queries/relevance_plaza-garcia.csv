@@ -30,19 +30,13 @@ plaza-garcia,17,Burrito Chile Verde,1
 plaza-garcia,19,Camarones a la Diabla,2
 plaza-garcia,19,Camarones Bravos,2
 plaza-garcia,19,Garlic Shrimp,1
-plaza-garcia,26,Garcia Burrito,1
-plaza-garcia,26,Seafood Burrito,1
-plaza-garcia,26,Seafood Chimichangas,1
 plaza-garcia,27,Camarones a la Diabla,2
 plaza-garcia,27,Camarones Bravos,1
 plaza-garcia,31,Steak Matador,2
 plaza-garcia,31,Carne Asada,2
 plaza-garcia,31,Chef Special,1
-plaza-garcia,34,Pollo Asado,1
-plaza-garcia,34,Pollo Ranchero,1
 plaza-garcia,35,Kids Hamburger,1
 plaza-garcia,35,Kids Cheeseburger,1
-plaza-garcia,36,Mexican Pizza,1
 plaza-garcia,37,Carnitas De Puerco,2
 plaza-garcia,37,Chile Verde,2
 plaza-garcia,38,Chile Colorado,2
@@ -68,10 +62,7 @@ plaza-garcia,63,Pollo Asado,2
 plaza-garcia,63,Pollo Chipotle,1
 plaza-garcia,67,Street Tacos,2
 plaza-garcia,67,Burrito Al Pastor,2
-plaza-garcia,68,Tacos Al Pastor,2
-plaza-garcia,68,Street Tacos,1
 plaza-garcia,70,Arroz Con Pollo,2
-plaza-garcia,71,Arroz Con Pollo,2
 plaza-garcia,79,Vegetarian Fajitas,2
 plaza-garcia,79,Enchiladas Vegetarianas,2
 plaza-garcia,79,Burrito Vegetariano,2
@@ -89,7 +80,6 @@ plaza-garcia,89,Camarones Garcia,2
 plaza-garcia,89,Camarones al Mojo de Ajo,2
 plaza-garcia,89,Seafood Enchiladas,1
 plaza-garcia,90,Seafood Enchiladas,1
-plaza-garcia,92,Mexican Pizza,1
 plaza-garcia,93,Super Nachos Garcia,2
 plaza-garcia,93,Nachos,2
 plaza-garcia,93,Bean Dip,1
@@ -101,3 +91,133 @@ plaza-garcia,100,Camarones a la Diabla,2
 plaza-garcia,100,Camarones al Mojo de Ajo,2
 plaza-garcia,100,Ceviche De Camarones,2
 plaza-garcia,100,Seafood Enchiladas,1
+plaza-garcia,101,Tortilla Soup,2
+plaza-garcia,101,Sopa Del Mar,2
+plaza-garcia,102,Tortilla Soup,2
+plaza-garcia,104,Sopa Del Mar,2
+plaza-garcia,105,Sopa Del Mar,1
+plaza-garcia,106,Tortilla Soup,2
+plaza-garcia,106,Sopa Del Mar,2
+plaza-garcia,108,Kids Hamburger,1
+plaza-garcia,108,Kids Cheeseburger,1
+plaza-garcia,109,Kids Cheeseburger,1
+plaza-garcia,111,Kids Hamburger,1
+plaza-garcia,114,Street Tacos,2
+plaza-garcia,114,Tacos De Camaron,2
+plaza-garcia,114,Combo 1: Three Tacos,2
+plaza-garcia,114,Tacos De Asada,2
+plaza-garcia,114,Tacos Al Carbon,2
+plaza-garcia,114,Tacos Garcia,1
+plaza-garcia,115,Tacos de Pescado,2
+plaza-garcia,116,Tacos De Asada,2
+plaza-garcia,116,Street Tacos,1
+plaza-garcia,117,Street Tacos,1
+plaza-garcia,118,Tacos De Camaron,2
+plaza-garcia,119,Street Tacos,2
+plaza-garcia,152,Pollo Asado,2
+plaza-garcia,152,Pollo a la Crema,2
+plaza-garcia,152,Arroz Con Pollo,2
+plaza-garcia,152,Pollo Bravo,2
+plaza-garcia,152,Pollo En Mole,2
+plaza-garcia,152,Pollo Ranchero,2
+plaza-garcia,152,Pollo Chipotle,2
+plaza-garcia,152,Carnitas de Pollo,2
+plaza-garcia,152,Fajitas Chicken,1
+plaza-garcia,153,Pollo Asado,2
+plaza-garcia,153,Carlos Salad,1
+plaza-garcia,154,Pollo Ranchero,2
+plaza-garcia,154,Arroz Con Pollo,1
+plaza-garcia,155,Pollo a la Crema,2
+plaza-garcia,156,Pollo Bravo,2
+plaza-garcia,156,Pollo Chipotle,2
+plaza-garcia,156,Fajitas Chicken,2
+plaza-garcia,157,Carlos Salad,1
+plaza-garcia,158,Carne Asada,2
+plaza-garcia,158,Steak Matador,2
+plaza-garcia,158,Steak Garcia Ranchero,2
+plaza-garcia,158,Chile Colorado,2
+plaza-garcia,158,Carnitas De Res,2
+plaza-garcia,158,Fajitas Carne Asada,2
+plaza-garcia,159,Carne Asada,2
+plaza-garcia,159,Fajitas Carne Asada,1
+plaza-garcia,160,Chef Special,2
+plaza-garcia,161,Kids Hamburger,1
+plaza-garcia,162,Chile Colorado,2
+plaza-garcia,164,Chile Verde,2
+plaza-garcia,164,Carnitas De Puerco,2
+plaza-garcia,164,Piernas De Puerco,2
+plaza-garcia,164,Burrito Al Pastor,2
+plaza-garcia,165,Carnitas De Puerco,2
+plaza-garcia,165,Carnitas De Res,1
+plaza-garcia,167,Carnitas De Puerco,2
+plaza-garcia,168,Chile Verde,2
+plaza-garcia,168,Burrito Chile Verde,2
+plaza-garcia,169,Camarones Garcia,2
+plaza-garcia,170,Camarones a la Diabla,2
+plaza-garcia,170,Camarones al Mojo de Ajo,2
+plaza-garcia,170,Camarones Garcia,2
+plaza-garcia,170,Camarones a la Crema,2
+plaza-garcia,170,Garlic Shrimp,2
+plaza-garcia,170,Ceviche De Camarones,2
+plaza-garcia,170,Tacos De Camaron,2
+plaza-garcia,170,Coctel de Camaron,2
+plaza-garcia,170,Shrimp Chimichangas,2
+plaza-garcia,170,Mariscos Rancheros,2
+plaza-garcia,170,Arroz Con Mariscos,2
+plaza-garcia,170,Camarones Bravos,2
+plaza-garcia,170,Seafood Enchiladas,1
+plaza-garcia,171,Garlic Shrimp,2
+plaza-garcia,171,Camarones al Mojo de Ajo,2
+plaza-garcia,172,Arroz Con Mariscos,2
+plaza-garcia,172,Camarones a la Diabla,1
+plaza-garcia,173,Seafood Enchiladas,2
+plaza-garcia,173,Seafood Burrito,2
+plaza-garcia,173,Seafood Chimichangas,2
+plaza-garcia,174,Seafood Enchiladas,2
+plaza-garcia,174,Seafood Burrito,2
+plaza-garcia,174,Seafood Chimichangas,2
+plaza-garcia,176,Sopa Del Mar,2
+plaza-garcia,176,Tacos de Pescado,2
+plaza-garcia,176,Pescado a la Parrilla,2
+plaza-garcia,176,Seafood Enchiladas,1
+plaza-garcia,177,Pescado a la Parrilla,2
+plaza-garcia,179,Tostada,1
+plaza-garcia,180,Fiesta Avocado,2
+plaza-garcia,180,Avocado Tostada,2
+plaza-garcia,181,Pollo Chipotle,2
+plaza-garcia,182,Pollo En Mole,2
+plaza-garcia,182,Deluxe Mole Enchilada,2
+plaza-garcia,183,Chile Verde,2
+plaza-garcia,183,Enchiladas Suizas,1
+plaza-garcia,184,Fajitas Carne Asada,1
+plaza-garcia,187,Fiesta Avocado,2
+plaza-garcia,188,Chile Verde,1
+plaza-garcia,188,Enchiladas Suizas,1
+plaza-garcia,190,Enchilada Garcia,2
+plaza-garcia,190,Seafood Enchiladas,2
+plaza-garcia,190,Spinach Enchiladas,2
+plaza-garcia,190,Enchiladas Suizas,2
+plaza-garcia,190,Deluxe Camaron Enchilada,2
+plaza-garcia,190,Deluxe Mole Enchilada,2
+plaza-garcia,190,Enchiladas Rancheras,2
+plaza-garcia,191,Garcia Burrito,2
+plaza-garcia,191,Burrito Chile Verde,2
+plaza-garcia,191,Seafood Burrito,2
+plaza-garcia,191,Fajita Burrito,2
+plaza-garcia,191,Burrito Al Pastor,2
+plaza-garcia,191,Burrito Asada,2
+plaza-garcia,192,Quesadillas,2
+plaza-garcia,192,Grilled Quesadilla,2
+plaza-garcia,192,Veggie Quesadilla,2
+plaza-garcia,193,Fajitas Carne Asada,2
+plaza-garcia,193,Fajitas Chicken,2
+plaza-garcia,193,Fajitas Shrimp,2
+plaza-garcia,193,Fajitas Pork,2
+plaza-garcia,193,Vegetarian Fajitas,2
+plaza-garcia,193,Fajitas Mixto,2
+plaza-garcia,193,Fajitas Garcia,2
+plaza-garcia,194,Shrimp Chimichangas,2
+plaza-garcia,194,Seafood Chimichangas,2
+plaza-garcia,194,Combo 15: Chimichanga with Rice and Beans,2
+plaza-garcia,200,Ceviche De Camarones,2
+plaza-garcia,200,Coctel de Camaron,1
