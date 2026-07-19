@@ -108,12 +108,32 @@ plaza-garcia,114,Combo 1: Three Tacos,2
 plaza-garcia,114,Tacos De Asada,2
 plaza-garcia,114,Tacos Al Carbon,2
 plaza-garcia,114,Tacos Garcia,1
-plaza-garcia,115,Tacos de Pescado,2
+plaza-garcia,115,Tacos De Pescado,2
 plaza-garcia,116,Tacos De Asada,2
 plaza-garcia,116,Street Tacos,1
 plaza-garcia,117,Street Tacos,1
 plaza-garcia,118,Tacos De Camaron,2
 plaza-garcia,119,Street Tacos,2
+plaza-garcia,137,Taco Salad,2
+plaza-garcia,137,Carlos Salad,2
+plaza-garcia,137,Crispy Chicken Salad,2
+plaza-garcia,137,Cesar Salad,2
+plaza-garcia,137,Fajita Taco Salad,1
+plaza-garcia,137,Santa Fe Salad,2
+plaza-garcia,138,Cesar Salad,2
+plaza-garcia,139,Carlos Salad,2
+plaza-garcia,139,Crispy Chicken Salad,2
+
+plaza-garcia,140,Taco Salad,2
+plaza-garcia,140,Fajita Taco Salad,1
+plaza-garcia,144,Flan,2
+plaza-garcia,144,Pastel Tres Leches,2
+plaza-garcia,144,Fried Ice Cream,2
+plaza-garcia,144,Churros,2
+plaza-garcia,144,Sopapillas,2
+plaza-garcia,147,Churros,2
+plaza-garcia,147,Sopapillas,1
+plaza-garcia,148,Flan,2
 plaza-garcia,152,Pollo Asado,2
 plaza-garcia,152,Pollo a la Crema,2
 plaza-garcia,152,Arroz Con Pollo,2
@@ -177,7 +197,7 @@ plaza-garcia,174,Seafood Enchiladas,2
 plaza-garcia,174,Seafood Burrito,2
 plaza-garcia,174,Seafood Chimichangas,2
 plaza-garcia,176,Sopa Del Mar,2
-plaza-garcia,176,Tacos de Pescado,2
+plaza-garcia,176,Tacos De Pescado,2
 plaza-garcia,176,Pescado a la Parrilla,2
 plaza-garcia,176,Seafood Enchiladas,1
 plaza-garcia,177,Pescado a la Parrilla,2
@@ -221,3 +241,5 @@ plaza-garcia,194,Seafood Chimichangas,2
 plaza-garcia,194,Combo 15: Chimichanga with Rice and Beans,2
 plaza-garcia,200,Ceviche De Camarones,2
 plaza-garcia,200,Coctel de Camaron,1
+plaza-garcia,201,Camarones a la Diabla,2
+plaza-garcia,201,Camarones a la Crema,1

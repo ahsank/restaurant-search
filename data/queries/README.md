@@ -26,6 +26,10 @@ query_id,category_id,query_text,difficulty,category_name
 
 ### Query categories
 
+Queries 1–100 test search *difficulty*: how well a search engine handles retrieval challenges beyond simple keyword matching. Queries 101–200 are *typical* queries a real user might type, organized by food category.
+
+#### Challenge categories (C01–C10, queries 1–100)
+
 | ID | Name | What it tests |
 |----|------|---------------|
 | C01 | Cuisine type inference | Dish must be inferred from cuisine label, not item name |
@@ -38,6 +42,26 @@ query_id,category_id,query_text,difficulty,category_name
 | C08 | Dietary constraint / negation | "vegan", "no gluten", "nut free" |
 | C09 | Synonym / paraphrase | "prawn" → shrimp, "flatbread" → Mexican Pizza |
 | C10 | Multi-constraint compositional | Two or more constraints combined |
+
+#### Typical query categories (C11–C23, queries 101–200)
+
+Queries represent what users actually type. A query may name only part of what they want — "beef noodle" not "beef noodle with black bean sauce". Not all components of a dish need to appear in the query for it to be relevant.
+
+| ID | Name | Queries |
+|----|------|---------|
+| C11 | Soup varieties | 101–107 |
+| C12 | Burger varieties | 108–113 |
+| C13 | Taco varieties | 114–121 |
+| C14 | Pasta varieties | 122–129 |
+| C15 | Sandwich varieties | 130–136 |
+| C16 | Salad varieties | 137–143 |
+| C17 | Dessert varieties | 144–151 |
+| C18 | Chicken dishes | 152–157 |
+| C19 | Beef dishes | 158–163 |
+| C20 | Pork dishes | 164–169 |
+| C21 | Seafood dishes | 170–178 |
+| C22 | Ingredient focus | 179–188 |
+| C23 | Typical dish names | 189–200 |
 
 ## `relevance_<restaurant-id>.csv` — format
 

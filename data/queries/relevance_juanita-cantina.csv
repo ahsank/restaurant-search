@@ -2,17 +2,17 @@ restaurant,query_id,menu_item,relevance
 juanita-cantina,1,Shrimp Juanita,2
 juanita-cantina,1,Shrimp Fajitas,2
 juanita-cantina,1,Tacos De Camarones,2
-juanita-cantina,1,Camarones a la Diabla,2
+juanita-cantina,1,Camarones à la Diabla,2
 juanita-cantina,1,Camarones Mojo de Ajo,2
 juanita-cantina,1,Camarones con Bacon,2
-juanita-cantina,1,Camarones a la Crema,2
+juanita-cantina,1,Camarones à la Crema,2
 juanita-cantina,1,Chipotle Shrimp Enchiladas,2
 juanita-cantina,1,Seafood Enchiladas,1
 juanita-cantina,1,Shrimp Ceviche,1
 juanita-cantina,3,Shrimp Ceviche,2
 juanita-cantina,3,Seafood Enchiladas,2
 juanita-cantina,3,Seafood Burrito,2
-juanita-cantina,3,Camarones a la Diabla,2
+juanita-cantina,3,Camarones à la Diabla,2
 juanita-cantina,3,Camarones Mojo de Ajo,2
 juanita-cantina,3,Tacos De Pescado,2
 juanita-cantina,3,Shrimp Fajitas,1
@@ -34,7 +34,7 @@ juanita-cantina,17,Burrito Chili Verde,2
 juanita-cantina,17,Burrito Al Pastor,2
 juanita-cantina,17,Chili Verde,2
 juanita-cantina,17,Posole,1
-juanita-cantina,19,Camarones a la Diabla,2
+juanita-cantina,19,Camarones à la Diabla,2
 juanita-cantina,19,Chipotle Shrimp Enchiladas,2
 juanita-cantina,19,Shrimp Juanita,1
 juanita-cantina,19,Wings,1
@@ -44,7 +44,7 @@ juanita-cantina,22,Three Ceviche Tostadas,1
 juanita-cantina,23,Carne Asada,2
 juanita-cantina,23,Pollo Asado,2
 juanita-cantina,23,Tacos Al Carbon,1
-juanita-cantina,27,Camarones a la Diabla,2
+juanita-cantina,27,Camarones à la Diabla,2
 juanita-cantina,27,Camarones Mojo de Ajo,1
 juanita-cantina,31,Carne Asada,2
 juanita-cantina,31,Mexican Steak,1
@@ -93,9 +93,9 @@ juanita-cantina,87,Seafood Enchiladas,2
 juanita-cantina,87,Seafood Burrito,2
 juanita-cantina,87,Tacos De Pescado,2
 juanita-cantina,87,Shrimp Fajitas,2
-juanita-cantina,87,Camarones a la Diabla,2
+juanita-cantina,87,Camarones à la Diabla,2
 juanita-cantina,87,Shrimp Ceviche,1
-juanita-cantina,89,Camarones a la Diabla,2
+juanita-cantina,89,Camarones à la Diabla,2
 juanita-cantina,89,Camarones Mojo de Ajo,2
 juanita-cantina,89,Shrimp Fajitas,2
 juanita-cantina,89,Seafood Enchiladas,1
@@ -112,14 +112,14 @@ juanita-cantina,95,Three Ceviche Tostadas,1
 juanita-cantina,99,Veggie Fajitas,1
 juanita-cantina,99,Cauliflower Wings,1
 juanita-cantina,100,Shrimp Fajitas,2
-juanita-cantina,100,Camarones a la Diabla,2
+juanita-cantina,100,Camarones à la Diabla,2
 juanita-cantina,100,Shrimp Ceviche,2
 juanita-cantina,100,Seafood Enchiladas,1
 juanita-cantina,101,Tortilla Soup,2
 juanita-cantina,101,Posole,2
 juanita-cantina,102,Tortilla Soup,2
 juanita-cantina,103,Tortilla Soup,1
-juanita-cantina,104,Posole,0
+
 juanita-cantina,105,Posole,1
 juanita-cantina,106,Tortilla Soup,2
 juanita-cantina,106,Posole,2
@@ -155,6 +155,16 @@ juanita-cantina,119,Tacos Al Carbon,1
 juanita-cantina,120,Three Hard Tacos,2
 juanita-cantina,121,3 Street Tacos,2
 juanita-cantina,121,Tacos Al Carbon,1
+juanita-cantina,137,Caesar Salad,2
+juanita-cantina,137,Cantina Salad,2
+juanita-cantina,137,Taco Salad,1
+juanita-cantina,137,Avocado Tostada,1
+juanita-cantina,138,Caesar Salad,2
+juanita-cantina,139,Cantina Salad,2
+juanita-cantina,139,Caesar Salad,1
+juanita-cantina,140,Taco Salad,2
+juanita-cantina,141,Avocado Tostada,2
+juanita-cantina,141,Fresh Avocado,2
 juanita-cantina,152,Pollo Asado,2
 juanita-cantina,152,Pollo Chipotle,2
 juanita-cantina,152,Pollo en Mole,2
@@ -200,10 +210,10 @@ juanita-cantina,168,Chili Verde,2
 juanita-cantina,168,Burrito Chili Verde,2
 juanita-cantina,169,Camarones con Bacon,2
 juanita-cantina,169,Jalapeño Cheeseburger,1
-juanita-cantina,170,Camarones a la Diabla,2
+juanita-cantina,170,Camarones à la Diabla,2
 juanita-cantina,170,Camarones Mojo de Ajo,2
 juanita-cantina,170,Camarones con Bacon,2
-juanita-cantina,170,Camarones a la Crema,2
+juanita-cantina,170,Camarones à la Crema,2
 juanita-cantina,170,Shrimp Juanita,2
 juanita-cantina,170,Shrimp Fajitas,2
 juanita-cantina,170,Shrimp Ceviche,2
@@ -212,7 +222,7 @@ juanita-cantina,170,Chipotle Shrimp Enchiladas,2
 juanita-cantina,170,Seafood Enchiladas,1
 juanita-cantina,171,Shrimp Juanita,2
 juanita-cantina,171,Camarones Mojo de Ajo,2
-juanita-cantina,172,Camarones a la Diabla,2
+juanita-cantina,172,Camarones à la Diabla,2
 juanita-cantina,172,Camarones Mojo de Ajo,2
 juanita-cantina,172,Shrimp Fajitas,2
 juanita-cantina,173,Seafood Enchiladas,1
@@ -268,3 +278,5 @@ juanita-cantina,193,Beef Fajitas,2
 juanita-cantina,193,Veggie Fajitas,2
 juanita-cantina,200,Shrimp Ceviche,2
 juanita-cantina,200,Three Ceviche Tostadas,2
+juanita-cantina,201,Camarones à la Diabla,2
+juanita-cantina,201,Camarones à la Crema,1
