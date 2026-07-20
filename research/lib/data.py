@@ -53,9 +53,14 @@ def _parse_markdown_file(path: Path) -> tuple[dict, list[dict]]:
             current_category = line[4:].strip()
             i += 1
 
-        elif line.startswith("- ") and " — " in line:
+        elif line.startswith("- ") and current_menu_type is not None:
             item_line = line[2:]
-            name, _, price_raw = item_line.partition(" — ")
+            if " — " in item_line:
+                name, _, price_raw = item_line.partition(" — ")
+                price_raw = price_raw.strip()
+            else:
+                name = item_line.strip()
+                price_raw = ""
 
             # Collect indented continuation lines (description and dietary)
             description_parts = []
@@ -73,8 +78,8 @@ def _parse_markdown_file(path: Path) -> tuple[dict, list[dict]]:
                 "name": name.strip(),
                 "description": " ".join(description_parts),
                 "dietary": dietary,
-                "price": _parse_price(price_raw.strip()),
-                "price_raw": price_raw.strip(),
+                "price": _parse_price(price_raw),
+                "price_raw": price_raw,
                 "category": current_category,
                 "menu_type": current_menu_type,
                 "restaurant_id": restaurant["id"],

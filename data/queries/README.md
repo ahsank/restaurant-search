@@ -100,7 +100,7 @@ Not every query has entries for every restaurant — most queries are only relev
 
 - **Accents**: `Camarones à la Diabla` (Juanita Cantina) uses `à` — copy-paste from the md file.
 - **Capitalization**: e.g., `Tacos de Pescado` (Juanita) vs `Tacos De Pescado` (Plaza Garcia) — each matches its own md file.
-- **Chef's tasting menu items** at Staple & Fancy (e.g., `Little Gem`, `Spring Pea Soup`) appear in `relevance_staple_and_fancy.csv` but are listed without prices in the md and therefore not parsed as structured items by `research/lib/data.py`. These entries will never be found by an evaluation script using the current parser; they are kept as aspirational relevance that future full-text embedding search can target.
+- **Chef's tasting menu items** at Staple & Fancy (e.g., `Little Gem`, `Spring Pea Soup`, `Fried Oysters`) are listed without prices in the md. The parser handles these correctly — `price` is `None` and `price_raw` is `""`. Some items (e.g. `Mezze Rigatoni`, `Hamachi Crudo`) appear in both the chef's menu and the priced dinner menu and will produce two entries.
 
 ## Evaluation guidance
 

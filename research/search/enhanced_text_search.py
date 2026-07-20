@@ -156,7 +156,7 @@ if __name__ == "__main__":
     mode = "filtered" if args.filtered else "unfiltered"
     print(f"Query: '{query}'  [{mode}]  —  {len(results)} match(es)\n")
     for r in results:
-        price_str = f"${r['price']:.2f}" if r["price"] is not None else r["price_raw"]
+        price_str = f"${r['price']:.2f}" if r["price"] is not None else (r["price_raw"] or "N/A")
         print(
             f"  [{r['score']:>3}] {r['restaurant']} | {r['item']}  {price_str}"
             f"  [{r['category']} · {r['menu_type']}]"

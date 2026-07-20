@@ -200,3 +200,6 @@ query_id,category_id,query_text,difficulty,category_name
 199,C23,banh mi,Easy,Typical dish names
 200,C23,ceviche,Easy,Typical dish names
 201,C05,camarones a la diabla,Medium,Spelling variations
+202,C22,egg,Medium,Ingredient focus
+203,C22,turkey bacon,Medium,Ingredient focus
+204,C22,oyster,Easy,Ingredient focus

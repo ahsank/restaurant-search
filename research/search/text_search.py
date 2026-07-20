@@ -47,7 +47,7 @@ if __name__ == "__main__":
 
     print(f"Query: '{query}'  —  {len(results)} match(es)\n")
     for r in results:
-        price_str = f"${r['price']:.2f}" if r["price"] is not None else r["price_raw"]
+        price_str = f"${r['price']:.2f}" if r["price"] is not None else (r["price_raw"] or "N/A")
         print(f"  {r['restaurant']} | {r['item']}  {price_str}  [{r['category']} · {r['menu_type']}]")
         if r["description"]:
             print(f"  {r['description']}")
