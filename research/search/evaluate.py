@@ -245,11 +245,20 @@ if __name__ == "__main__":
     parser.add_argument("--category", help="Filter to one category, e.g. C01")
     parser.add_argument("--difficulty", choices=["Easy", "Medium", "Hard"])
     parser.add_argument("--verbose", "-v", action="store_true")
+    parser.add_argument(
+        "--engine", choices=["text", "enhanced", "filtered"], default="text",
+        help="Search engine: text (baseline), enhanced, filtered (default: text)",
+    )
     args = parser.parse_args()
 
-    # Import the baseline search function and adapt its signature
     sys.path.insert(0, str(_ROOT / "research" / "search"))
-    from text_search import search as _text_search
+    if args.engine in ("enhanced", "filtered"):
+        from enhanced_text_search import search as _enhanced_search
+        _filter = args.engine == "filtered"
+        def _raw_search(query, restaurants, menus):
+            return _enhanced_search(query, restaurants, menus, filter_restaurant_ctx=_filter)
+    else:
+        from text_search import search as _raw_search
 
     restaurants, menus = load_data()
 
@@ -257,14 +266,14 @@ if __name__ == "__main__":
     name_to_id = {v.get("name", k): k for k, v in restaurants.items()}
 
     def search(query: str) -> list[dict]:
-        raw = _text_search(query, restaurants, menus)
+        raw = _raw_search(query, restaurants, menus)
         out = []
         for r in raw:
             rid = name_to_id.get(r["restaurant"], r["restaurant"])
             out.append({"restaurant_id": rid, "name": r["item"], **r})
         return out
 
-    print("Running text_search baseline against benchmark...")
+    print(f"Running {args.engine} engine against benchmark...")
     if args.verbose:
         print()
 
