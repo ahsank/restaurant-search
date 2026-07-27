@@ -275,16 +275,22 @@ _DEFAULT_IDF = 5.0   # IDF for query tokens absent from the indexed corpus
 
 def _soft_tf(query_vec: np.ndarray, item_vecs: np.ndarray, threshold: float) -> float:
     """
-    Max cosine similarity of query_vec against all item token vectors,
-    clamped to zero below threshold.
+    Max cosine similarity of query_vec against all item token vectors.
 
-    item_vecs rows and query_vec are already unit-normalised, so
-    cosine similarity reduces to a dot product.
+    threshold is a hard minimum: tokens whose cosine similarity is below it are
+    ignored entirely. Returns the raw cosine of the best match (not cosine minus
+    threshold), so the score reflects actual similarity strength.
+
+    item_vecs rows and query_vec are already unit-normalised, so cosine
+    similarity reduces to a dot product. The result is clamped to [0, 1] to
+    guard against float32 rounding (a vector dotted with itself can give
+    0.9999998 rather than exactly 1.0).
     """
     if item_vecs.shape[0] == 0:
         return 0.0
-    sims = item_vecs @ query_vec          # (n_tokens,)
-    return max(0.0, float(sims.max()) - threshold)
+    sims = item_vecs @ query_vec                    # (n_tokens,)
+    max_sim = min(1.0, float(sims.max()))           # clamp for float32 precision
+    return max_sim if max_sim >= threshold else 0.0
 
 
 def _score_item(
