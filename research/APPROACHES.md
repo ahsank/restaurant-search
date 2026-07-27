@@ -85,6 +85,162 @@ embed("pasta")  ≈ embed("spaghetti") ≈ embed("italian")
 
 ---
 
+## Approach 3.5 — Phrase-Aware Soft-BM25
+
+Bridges the gap between Approach 3 (word averaging) and Approach 4 (SBERT).
+Combines two ideas: phrase-aware tokenisation so that "oyster sauce" is a single
+semantic unit distinct from "oyster", and soft (MaxSim) term frequency so that
+"seafood" finds "shrimp" even when the word "seafood" is absent.
+
+### How it works
+
+**Step 1 — Phrase-aware tokenisation (Forward Maximum Matching)**
+
+Before indexing or querying, text is tokenised by greedily taking the longest
+matching phrase (up to N words) found in the embedding vocabulary:
+
+```
+"Beef in Oyster Sauce"   →  ["beef", "in", "oyster_sauce"]
+"Egg Foo Young with rice" →  ["egg_foo_young", "with", "rice"]
+"Kung Pao Chicken"        →  ["kung_pao", "chicken"]   (if "kung_pao" is in vocab)
+```
+
+Same tokeniser is applied to both the index and every query.
+
+**Step 2 — Soft term frequency (MaxSim)**
+
+Instead of counting exact occurrences of a query term in the document, find the
+*maximum cosine similarity* between the query token's vector and any document
+token vector:
+
+```
+soft_tf(q, D) = max_{w ∈ D}  max(0,  cosine(embed(q), embed(w)) − threshold)
+```
+
+A threshold (default 0.5) suppresses noise from unrelated words.
+Examples with GloVe/ConceptNet vectors:
+
+```
+cosine(embed("oyster"), embed("oyster"))        ≈ 1.00  → counts fully
+cosine(embed("oyster"), embed("oyster_sauce"))  ≈ 0.45  → below threshold, 0
+cosine(embed("seafood"), embed("shrimp"))       ≈ 0.72  → counts at 0.22
+cosine(embed("italian"), embed("pasta"))        ≈ 0.68  → counts at 0.18
+```
+
+**Step 3 — BM25 scoring**
+
+soft_tf is plugged into the standard BM25 saturation formula:
+
+```
+tf_norm(q, D)  =  soft_tf(q, D) · (k1 + 1) / (soft_tf(q, D) + k1 · (1 − b + b · |D|/avgdl))
+score(Q, D)    =  Σ_{q ∈ Q}  IDF(q) · tf_norm(q, D)
+```
+
+IDF is computed over the phrase-tokenised corpus. Query terms absent from the
+corpus (OOV for the exact token) use a high default IDF so they are weighted
+heavily when a soft match is found.
+
+### Why this is better than Approach 3 (word averaging)
+
+Approach 3 collapses the whole document to one average vector, losing the
+AND-structure across query terms. A dish that is entirely Italian but has no
+seafood can score as high as CajunPasta for query "seafood italian" if its
+average vector happens to land near the query average. Soft-BM25 requires each
+query term to independently find a close match somewhere in the document.
+
+| | Approach 3 | Approach 3.5 | Approach 4 |
+|---|---|---|---|
+| "seafood" finds "shrimp" | ✓ (via avg) | ✓ (MaxSim) | ✓ (contextual) |
+| AND-semantics across terms | ✗ | ✓ | ✓ |
+| "oyster" ≠ "oyster sauce" | ✗ | ✓ (phrase detection) | ✓ (contextual) |
+| No ML / no GPU | ✓ | ✓ | ✓ |
+| Inference speed | Fast | Fast | Fast (offline) |
+
+### Neural equivalent
+
+ColBERT (Khattab & Zaharia 2020) implements this exact MaxSim scoring with BERT
+*contextual* embeddings instead of static word vectors. Because BERT reads the
+full phrase, "oyster" in "beef in oyster sauce" gets a different vector than
+"oyster" in "grilled oysters" — no phrase detection step needed.
+Approach 3.5 achieves some of this via explicit phrase detection instead, using
+cheaper static vectors.
+
+---
+
+### Design choices and alternatives
+
+#### Phrase detection options
+
+| Method | How | Vocabulary source | Notes |
+|---|---|---|---|
+| **FMM + ConceptNet** (default) | Greedy longest match | Multi-word entries in Numberbatch | Single file for vocab + vectors |
+| FMM + Word2Vec phrases vocab | Greedy longest match | Underscore entries in Google News model | Better English compound coverage |
+| gensim `Phrases` | Statistical bigram/trigram merging | Learned from your menu corpus | Auto-discovers domain phrases; needs `min_count≥2` on small corpora |
+| Manual glossary | Exact string list | Hand-curated food terms | Most predictable; easy to audit |
+
+The `PhraseTokenizer` in the implementation takes a `phrase_vocab: set[str]`
+argument — swap the set to change the detection strategy without touching
+anything else.
+
+#### Word vector model options
+
+| Model | Phrase vectors | OOV single words | Size | Food domain coverage |
+|---|---|---|---|---|
+| **ConceptNet Numberbatch** (recommended) | ✓ direct | Partial | 75 MB (EN) | Good for common dishes/condiments |
+| Word2Vec Google News phrases | ✓ trained | ✗ | 1.5 GB | Good English compounds; news-biased |
+| GloVe 6B 100d | ✗ (compose) | ✗ | 170 MB | Reasonable; needs composition fallback |
+| GloVe 840B 300d | ✗ (compose) | ✗ | 2.0 GB | Higher quality; still no phrases |
+| FastText crawl 300d | ✗ (compose) | ✓ char n-grams | 1.6 GB | Best for OOV / foreign food terms |
+| FastText wiki 300d | ✗ (compose) | ✓ char n-grams | 640 MB | Good balance of size and OOV coverage |
+
+The `VectorStore` in the implementation takes a `raw_vectors: dict[str, ndarray]`
+argument — swap the dict to change the embedding model.
+
+#### Phrase vector composition (for word-only models)
+
+When a detected phrase has no direct vector (unavoidable with GloVe/FastText),
+its vector is composed from its component word vectors:
+
+| Method | Formula | Notes |
+|---|---|---|
+| **Mean average** (default) | `mean(embed(w) for w in phrase)` | Simple; "oyster sauce" pulled between oyster-space and sauce-space |
+| IDF-weighted mean | `Σ idf(w)·embed(w) / Σ idf(w)` | Downweights "sauce", "with"; emphasises content words |
+| SIF (Arora et al. 2017) | `Σ a/(a+p(w))·embed(w)` then subtract 1st PC | Principled phrase embedding; best for longer phrases |
+
+---
+
+### References
+
+- **Soft-TF-IDF origin** — Cohen, Ravikumar, Fienberg (2003). *A Comparison of
+  String Distance Metrics for Name-Matching Tasks.* Introduced soft TF using
+  string edit distance; cosine similarity of word vectors is the natural extension.
+- **Word Mover's Distance** — Kusner, Sun, Kolkin, Weinberger (2015). *From Word
+  Embeddings To Document Distances.* Related approach: optimal transport over word
+  vector distributions instead of MaxSim per query term.
+- **SIF phrase embeddings** — Arora, Liang, Ma (2017). *A Simple but Tough-to-Beat
+  Baseline for Sentence Embeddings.* IDF-weighted averaging + PCA removal; strong
+  baseline for short phrase similarity.
+- **Word2Vec phrase detection** — Mikolov et al. (2013). *Distributed Representations
+  of Words and Phrases and their Compositionality.* Bigram scoring function that
+  produces trained phrase vectors in Google News model.
+- **ConceptNet Numberbatch** — Speer, Chin, Havasi (2017). *ConceptNet 5.5: An Open
+  Multilingual Graph of General Knowledge.* Retrofitted vectors grounded in a
+  knowledge graph; multi-word concept entries serve as both phrase vocabulary and
+  phrase vectors.
+- **ColBERT / MaxSim** — Khattab & Zaharia (2020). *ColBERT: Efficient and Effective
+  Passage Search via Contextualized Late Interaction over BERT.* Neural version of
+  Approach 3.5's MaxSim scoring, using BERT contextual embeddings.
+
+**Download ConceptNet Numberbatch (English):**
+```
+https://conceptnet.s3.amazonaws.com/downloads/2019/numberbatch/numberbatch-en-19.08.txt.gz
+```
+Uncompressed: ~75 MB, 516K entries, 300 dimensions.
+
+**Files:** `research/search/soft_bm25_search.py`
+
+---
+
 ## Approach 4 — Sentence Transformers / Dense Retrieval (SBERT)
 
 Encode entire menu item strings as a single dense vector using a pretrained transformer model. The model reads the whole sentence at once, so it captures context that word-averaging misses.
@@ -229,6 +385,7 @@ ollama run phi3.5
 | Thesaurus expansion | None | Manual map | Low–Medium | <1 ms | Low |
 | BM25 + expansion | None | Manual map | Medium | <5 ms | Low |
 | Word embeddings (GloVe) | None (pretrained) | None | Medium | <5 ms | Low–Medium |
+| **Phrase-aware Soft-BM25** | **None (pretrained)** | **None** | **Medium–Good** | **<10 ms** | **Medium** |
 | SBERT bi-encoder | None (pretrained) | None | Good | <10 ms | Medium |
 | Finetuned bi-encoder | Yes | Synthetic (LLM) | Very good | <10 ms | Medium–High |
 | Cross-encoder reranker | Yes | Synthetic (LLM) | Best | ~100 ms | High |
