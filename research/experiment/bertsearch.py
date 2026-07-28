@@ -12,7 +12,17 @@ recipes = [
     {"id": 1, "title": "Crunchy Almond Salad", "ingredients": "mixed greens, sliced cucumber, toasted almonds, vinaigrette"},
     {"id": 2, "title": "Peanut Butter Shake", "ingredients": "creamy peanut butter, frozen banana, milk, honey"},
     {"id": 3, "title": "Garlic Bread", "ingredients": "baguette, butter, minced garlic, parsley, salt"},
-    {"id": 4, "title": "Spicy Peanut Noodles", "ingredients": "ramen noodles, peanut butter, soy sauce, chili oil, green onions"}
+    {"id": 4, "title": "Spicy Peanut Noodles", "ingredients": "ramen noodles, peanut butter, soy sauce, chili oil, green onions"},
+    {"id": 5, "title": "Avocado Burrata", "ingredients": "Apricot agrodolce, arugula, grilled bread, olive oil, burrata cheese, Avocado, balsamic glaze, salt, pepper"},
+    {"id": 6, "title": "Roasted Nut Sauce Salad", "ingredients": "mixed greens, roasted nuts, vinaigrette, roasted nut sauce, Avocado, balsamic glaze, salt, pepper"},
+    {"id": 7, "title": "Orange Flavor Beef", "ingredients": "Crispy chunks of tender beef on vegetables tossed in an orange flavored spicy hot sauce."},
+    {"id": 8, "title": "Spicy Roasted Vegetables", "ingredients": "A medley of vegetables roasted with a spicy seasoning blend."},
+    {"id": 9, "title": "Kids hamburger", "ingredients": "Beef burger with lettuce, tomatoes, and fries."},
+    {"id": 10, "title": "Artisan focaccia sandwich", "ingredients": "breaded and pan-fried cutlet, fresh mozzarella, roasted peppers, arugula, balsamic glaze, and a side of mixed greens."},
+    {"id": 11, "title": "Grilled Chicken Caesar Salad", "ingredients": "grilled chicken breast, romaine lettuce, parmesan cheese, croutons, Caesar dressing"},
+    {"id": 12, "title": "Cantina Chicken Burger", "ingredients": "Pollo asado chicken, pepper jack cheese, avocado, onions, tomato and mayo on a bun. Comes with fries."},
+    {"id": 13, "title": "Curry Chicken", "ingredients": "Tender chicken pieces simmered in a rich and flavorful curry sauce with aromatic spices."},
+
 ]
 
 # Create searchable strings combining titles and ingredients
@@ -33,7 +43,13 @@ index.add(recipe_embeddings)
 
 # 5. Define your search query
 # Notice we are searching for "roasted" and "sauce", words not explicitly in the dataset text
-query = "salad with a roasted nut sauce" 
+# past queries beef burger, vegetarian salad
+# Take query from argument or use default
+query = "roasted nut sauce salad"  # Default query if none provided
+if __name__ == "__main__":
+    import sys
+    if len(sys.argv) > 1:
+        query = " ".join(sys.argv[1:])  # Join all command line arguments as the query
 
 # Convert query to a vector and normalize it
 query_embedding = model.encode([query], convert_to_numpy=True)
