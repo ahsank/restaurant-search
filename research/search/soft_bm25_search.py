@@ -302,19 +302,57 @@ def _score_item(
     threshold: float,
     k1: float,
     b: float,
+    combiner: str = "bm25",
 ) -> float:
+    """
+    Score one item against all query tokens, then combine per-term scores.
+
+    combiner options
+    ----------------
+    "bm25"    IDF-weighted sum of BM25-saturated soft-TF values (default).
+              Partial matches score positively — OR semantics across terms.
+
+    "product" Multiply raw soft-TF values across all query terms.
+              Any term with soft-TF = 0 collapses the whole score to 0,
+              enforcing AND semantics: every query concept must find a match.
+              Useful for multi-concept queries like "pasta seafood".
+
+    "min"     Take the minimum soft-TF across all query terms.
+              Also AND semantics; the score reflects the weakest match.
+              Similar to product but less sensitive to the exact magnitude
+              of strong matches.
+    """
     item_vecs = entry["vecs"]
     dl = max(len(entry["tokens"]), 1)
-    total = 0.0
+
+    term_scores: list[float] = []
     for qt, qv in zip(query_tokens, query_vecs):
         if qv is None:
             continue
         stf = _soft_tf(qv, item_vecs, threshold)
-        if stf == 0.0:
-            continue
-        tf_norm = stf * (k1 + 1) / (stf + k1 * (1 - b + b * dl / avgdl))
-        total  += idf.get(qt, _DEFAULT_IDF) * tf_norm
-    return total
+        if combiner == "bm25":
+            if stf == 0.0:
+                continue
+            tf_norm = stf * (k1 + 1) / (stf + k1 * (1 - b + b * dl / avgdl))
+            term_scores.append(idf.get(qt, _DEFAULT_IDF) * tf_norm)
+        else:
+            term_scores.append(stf)
+
+    if not term_scores:
+        return 0.0
+
+    if combiner == "bm25":
+        return sum(term_scores)
+    if combiner == "product":
+        result = 1.0
+        for s in term_scores:
+            if s == 0.0:
+                return 0.0
+            result *= s
+        return result
+    if combiner == "min":
+        return min(term_scores) if all(s > 0.0 for s in term_scores) else 0.0
+    raise ValueError(f"Unknown combiner: {combiner!r}. Choose bm25, product, or min.")
 
 
 # ── Public search function ─────────────────────────────────────────────────────
@@ -330,14 +368,17 @@ def search(
     similarity_threshold: float = 0.5,
     k1: float = 1.5,
     b: float = 0.75,
+    combiner: str = "bm25",
 ) -> list[dict]:
     """
     Search all indexed items for query, returning results sorted by score.
 
+    combiner controls how per-term scores are combined; see _score_item.
+
     To integrate with evaluate.py, build a wrapper:
         def search_fn(query, restaurants, menus):
             return search(query, restaurants, index, idf, tokenizer,
-                          vector_store, avgdl)
+                          vector_store, avgdl, combiner=combiner)
     """
     query_tokens = tokenizer.tokenize(query)
     query_vecs   = [vector_store.lookup(t) for t in query_tokens]
@@ -348,7 +389,7 @@ def search(
         for entry in entries:
             s = _score_item(
                 query_tokens, query_vecs, entry, idf, avgdl,
-                similarity_threshold, k1, b,
+                similarity_threshold, k1, b, combiner,
             )
             if s > 0:
                 item = entry["item"]
@@ -393,6 +434,11 @@ if __name__ == "__main__":
         help="How to compose phrase vectors missing from the model (default mean)",
     )
     parser.add_argument(
+        "--combiner", choices=["bm25", "product", "min"], default="bm25",
+        help="How to combine per-term scores: bm25 (sum, OR semantics), "
+             "product (AND semantics), min (AND semantics; default: bm25)",
+    )
+    parser.add_argument(
         "--show-tokens", action="store_true",
         help="Print phrase tokens for each result (useful for debugging)",
     )
@@ -420,6 +466,7 @@ if __name__ == "__main__":
     results = search(
         query, restaurants, index, idf, tokenizer, vector_store, avgdl,
         similarity_threshold=args.threshold,
+        combiner=args.combiner,
     )
 
     if not results:

@@ -246,24 +246,72 @@ if __name__ == "__main__":
     parser.add_argument("--difficulty", choices=["Easy", "Medium", "Hard"])
     parser.add_argument("--verbose", "-v", action="store_true")
     parser.add_argument(
-        "--engine", choices=["text", "enhanced", "filtered"], default="text",
-        help="Search engine: text (baseline), enhanced, filtered (default: text)",
+        "--engine",
+        choices=["text", "enhanced", "filtered", "soft_bm25", "sbert"],
+        default="text",
+        help="Search engine: text (baseline), enhanced, filtered, soft_bm25, sbert (default: text)",
+    )
+    parser.add_argument(
+        "--vectors",
+        help="Path to ConceptNet Numberbatch vectors file (required for --engine soft_bm25)",
+    )
+    parser.add_argument(
+        "--model", default="all-MiniLM-L6-v2",
+        help="Sentence-transformers model name (default: all-MiniLM-L6-v2, used by --engine sbert)",
+    )
+    parser.add_argument(
+        "--combiner", choices=["bm25", "product", "min"], default="bm25",
+        help="Score combiner for --engine soft_bm25 (default: bm25)",
     )
     args = parser.parse_args()
 
     sys.path.insert(0, str(_ROOT / "research" / "search"))
+
+    # Load data once — all engines share the same restaurants/menus.
+    restaurants, menus = load_data()
+    name_to_id = {v.get("name", k): k for k, v in restaurants.items()}
+
     if args.engine in ("enhanced", "filtered"):
         from enhanced_text_search import search as _enhanced_search
         _filter = args.engine == "filtered"
         def _raw_search(query, restaurants, menus):
             return _enhanced_search(query, restaurants, menus, filter_restaurant_ctx=_filter)
+
+    elif args.engine == "soft_bm25":
+        if not args.vectors:
+            parser.error("--vectors PATH is required for --engine soft_bm25")
+        from soft_bm25_search import (
+            load_conceptnet, PhraseTokenizer, VectorStore, build_index,
+            search as _sbm25_search,
+        )
+        print("Loading vectors...", end=" ", flush=True)
+        _raw_vecs, _phrase_vocab = load_conceptnet(args.vectors)
+        print(f"{len(_raw_vecs):,} entries")
+        _tokenizer = PhraseTokenizer(_phrase_vocab)
+        _vstore    = VectorStore(_raw_vecs)
+        print("Building index...", end=" ", flush=True)
+        _index, _idf, _avgdl = build_index(menus, _tokenizer, _vstore)
+        print(f"{sum(len(v) for v in _index.values())} items indexed")
+
+        def _raw_search(query, _restaurants, _menus):
+            return _sbm25_search(query, restaurants, _index, _idf, _tokenizer, _vstore, _avgdl,
+                                 combiner=args.combiner)
+
+    elif args.engine == "sbert":
+        from sbert_search import build_index as _sbert_build_index, search as _sbert_search
+        from sentence_transformers import SentenceTransformer
+        print(f"Loading model '{args.model}'...", end=" ", flush=True)
+        _sbert_model = SentenceTransformer(args.model)
+        print("done")
+        print("Building index...", end=" ", flush=True)
+        _sbert_index = _sbert_build_index(menus, restaurants, _sbert_model)
+        print(f"{sum(len(v) for v in _sbert_index.values())} items encoded")
+
+        def _raw_search(query, _restaurants, _menus):
+            return _sbert_search(query, restaurants, _sbert_index, _sbert_model)
+
     else:
         from text_search import search as _raw_search
-
-    restaurants, menus = load_data()
-
-    # Build reverse map: restaurant name → id
-    name_to_id = {v.get("name", k): k for k, v in restaurants.items()}
 
     def search(query: str) -> list[dict]:
         raw = _raw_search(query, restaurants, menus)
