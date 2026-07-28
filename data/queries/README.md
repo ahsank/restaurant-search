@@ -90,7 +90,7 @@ juanita-cantina,1,Seafood Enchiladas,1
 
 ### Coverage
 
-Restaurants covered: `due-cucina`, `juanita-cantina`, `mendocino-farms`, `plaza-garcia`, `staple-and-fancy`. The synthetic demo restaurants (`rest_1` through `rest_5`) are excluded from the benchmark.
+Restaurants covered: `bella-italia`, `due-cucina`, `great-china-restaurant`, `juanita-cantina`, `mendocino-farms`, `plaza-garcia`, `staple-and-fancy`.
 
 Not every query has entries for every restaurant — most queries are only relevant to a subset of restaurants. Queries with no entries in any file represent hard cases where no restaurant has a clear match (e.g., query 88 "keto friendly", query 36 "wood fired pizza").
 

@@ -260,8 +260,12 @@ if __name__ == "__main__":
         help="Sentence-transformers model name (default: all-MiniLM-L6-v2, used by --engine sbert)",
     )
     parser.add_argument(
-        "--combiner", choices=["bm25", "product", "min"], default="bm25",
+        "--combiner", choices=["bm25", "plus", "product", "min"], default="bm25",
         help="Score combiner for --engine soft_bm25 (default: bm25)",
+    )
+    parser.add_argument(
+        "--segmenter", choices=["fmm", "spacy_bert", "bert_subword"], default="fmm",
+        help="Tokeniser for --engine soft_bm25: fmm (default), spacy_bert, bert_subword",
     )
     args = parser.parse_args()
 
@@ -278,24 +282,42 @@ if __name__ == "__main__":
             return _enhanced_search(query, restaurants, menus, filter_restaurant_ctx=_filter)
 
     elif args.engine == "soft_bm25":
-        if not args.vectors:
-            parser.error("--vectors PATH is required for --engine soft_bm25")
-        from soft_bm25_search import (
-            load_conceptnet, PhraseTokenizer, VectorStore, build_index,
-            search as _sbm25_search,
-        )
-        print("Loading vectors...", end=" ", flush=True)
-        _raw_vecs, _phrase_vocab = load_conceptnet(args.vectors)
-        print(f"{len(_raw_vecs):,} entries")
-        _tokenizer = PhraseTokenizer(_phrase_vocab)
-        _vstore    = VectorStore(_raw_vecs)
-        print("Building index...", end=" ", flush=True)
-        _index, _idf, _avgdl = build_index(menus, _tokenizer, _vstore)
-        print(f"{sum(len(v) for v in _index.values())} items indexed")
+        if args.segmenter == "fmm":
+            if not args.vectors:
+                parser.error("--vectors PATH is required for --engine soft_bm25 --segmenter fmm")
+            from soft_bm25_search import (
+                load_conceptnet, PhraseTokenizer, VectorStore, build_index,
+                search as _sbm25_search,
+            )
+            print("Loading vectors...", end=" ", flush=True)
+            _raw_vecs, _phrase_vocab = load_conceptnet(args.vectors)
+            print(f"{len(_raw_vecs):,} entries")
+            _tokenizer = PhraseTokenizer(_phrase_vocab)
+            _vstore    = VectorStore(_raw_vecs)
+            print("Building index...", end=" ", flush=True)
+            _index, _idf, _avgdl = build_index(menus, _tokenizer, _vstore)
+            print(f"{sum(len(v) for v in _index.values())} items indexed")
 
-        def _raw_search(query, _restaurants, _menus):
-            return _sbm25_search(query, restaurants, _index, _idf, _tokenizer, _vstore, _avgdl,
-                                 combiner=args.combiner)
+            def _raw_search(query, _restaurants, _menus):
+                return _sbm25_search(query, restaurants, _index, _idf, _tokenizer, _vstore, _avgdl,
+                                     combiner=args.combiner)
+        else:
+            from soft_bm25_search import (
+                SpacyBertEncoder, BertSubwordEncoder,
+                build_index_contextual, search_contextual as _sbm25_ctx_search,
+            )
+            print(f"Loading BERT encoder ({args.segmenter})...", flush=True)
+            _encoder = (
+                SpacyBertEncoder() if args.segmenter == "spacy_bert"
+                else BertSubwordEncoder()
+            )
+            print("Building index...")
+            _index, _idf, _avgdl = build_index_contextual(menus, _encoder)
+            print(f"  {sum(len(v) for v in _index.values())} items indexed, avgdl={_avgdl:.1f}")
+
+            def _raw_search(query, _restaurants, _menus):
+                return _sbm25_ctx_search(query, restaurants, _index, _idf, _encoder, _avgdl,
+                                         combiner=args.combiner)
 
     elif args.engine == "sbert":
         from sbert_search import build_index as _sbert_build_index, search as _sbert_search

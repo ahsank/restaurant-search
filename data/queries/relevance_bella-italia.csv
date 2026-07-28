@@ -1,0 +1,46 @@
+restaurant,query_id,menu_item,relevance
+bella-italia,2,Spaghetti Carbonara,1
+bella-italia,7,Spaghetti Carbonara,2
+bella-italia,7,Fettuccine Alfredo,1
+bella-italia,7,Margherita Pizza,1
+bella-italia,7,Penne Arrabbiata,1
+bella-italia,10,CajunPasta,2
+bella-italia,17,Spaghetti Carbonara,2
+bella-italia,21,Fettuccine Alfredo,2
+bella-italia,21,Spaghetti Carbonara,2
+bella-italia,21,CajunPasta,1
+bella-italia,24,Fettuccine Alfredo,2
+bella-italia,24,Spaghetti Carbonara,2
+bella-italia,24,Penne Arrabbiata,1
+bella-italia,24,CajunPasta,1
+bella-italia,25,Spaghetti Carbonara,1
+bella-italia,27,CajunPasta,1
+bella-italia,30,Tiramisu,1
+bella-italia,45,Spaghetti Carbonara,2
+bella-italia,46,Tiramisu,2
+bella-italia,74,Penne Arrabbiata,2
+bella-italia,82,Penne Arrabbiata,2
+bella-italia,84,Penne Arrabbiata,2
+bella-italia,86,Penne Arrabbiata,2
+bella-italia,87,CajunPasta,2
+bella-italia,87,Fettuccine Alfredo,1
+bella-italia,87,Margherita Pizza,1
+bella-italia,87,Penne Arrabbiata,1
+bella-italia,90,CajunPasta,1
+bella-italia,92,Margherita Pizza,1
+bella-italia,122,Spaghetti Carbonara,2
+bella-italia,122,Fettuccine Alfredo,2
+bella-italia,122,CajunPasta,2
+bella-italia,122,Penne Arrabbiata,2
+bella-italia,123,Spaghetti Carbonara,2
+bella-italia,124,Penne Arrabbiata,1
+bella-italia,125,Spaghetti Carbonara,1
+bella-italia,126,Spaghetti Carbonara,2
+bella-italia,128,Penne Arrabbiata,2
+bella-italia,144,Tiramisu,2
+bella-italia,145,Tiramisu,2
+bella-italia,164,Spaghetti Carbonara,2
+bella-italia,166,Spaghetti Carbonara,2
+bella-italia,176,CajunPasta,2
+bella-italia,178,CajunPasta,2
+bella-italia,202,Spaghetti Carbonara,2

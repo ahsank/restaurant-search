@@ -77,8 +77,13 @@ class PhraseTokenizer:
         self.phrase_vocab = phrase_vocab
         self.max_phrase_len = max_phrase_len
 
+    # Punctuation stripped from word boundaries; hyphens kept (pan-fried, gluten-free).
+    _STRIP = str.maketrans("", "", ".,;:!?()[]{}\"'`—–&")
+
     def tokenize(self, text: str) -> list[str]:
-        words = normalize(text).split()
+        raw = normalize(text).split()
+        words = [w.translate(self._STRIP) for w in raw]
+        words = [w for w in words if w]   # drop anything that became empty
         tokens: list[str] = []
         i = 0
         while i < len(words):
@@ -161,6 +166,143 @@ class VectorStore:
 def _unit(v: np.ndarray) -> np.ndarray:
     norm = float(np.linalg.norm(v))
     return v / norm if norm > 1e-9 else v
+
+
+# ── Contextual encoders (BERT-based) ──────────────────────────────────────────
+
+class SpacyBertEncoder:
+    """
+    Segments text using spaCy noun chunks, then produces a BERT contextual
+    vector for each segment within the full sentence context.
+    Based on research/experiment/contextual-word-vec.py.
+
+    Unlike static ConceptNet vectors, the vector for "oyster" in
+    "beef in oyster sauce" differs from "oyster" in "grilled oysters"
+    because BERT reads the whole sentence.
+
+    Swap points:
+      bert_model_name — any HuggingFace model with last_hidden_state output
+      spacy_model     — any spaCy model with noun_chunks support
+    """
+
+    def __init__(
+        self,
+        bert_model_name: str = "bert-base-uncased",
+        spacy_model: str = "en_core_web_sm",
+    ):
+        import spacy
+        import torch
+        from transformers import AutoModel, AutoTokenizer
+        self._torch = torch
+        self._nlp = spacy.load(spacy_model)
+        self._bert_tok = AutoTokenizer.from_pretrained(bert_model_name)
+        self._bert_mod = AutoModel.from_pretrained(bert_model_name)
+        self._bert_mod.eval()
+
+    def encode(self, text: str) -> tuple[list[str], np.ndarray]:
+        """
+        Returns (segments, unit-normalised matrix of shape (n, 768)).
+        Each segment is a spaCy noun chunk or single word; its vector is the
+        mean of BERT subword hidden states for that span in context.
+        """
+        torch = self._torch
+
+        doc = self._nlp(text)
+        with doc.retokenize() as retokenizer:
+            for chunk in doc.noun_chunks:
+                if len(chunk) > 1 or chunk.root.dep_ != "nsubj":
+                    retokenizer.merge(chunk)
+        segments = [tok.text for tok in doc]
+
+        inputs = self._bert_tok(text, return_tensors="pt")
+        with torch.no_grad():
+            hidden = self._bert_mod(**inputs).last_hidden_state[0]
+        bert_toks = self._bert_tok.convert_ids_to_tokens(inputs["input_ids"][0])
+
+        valid_segs: list[str] = []
+        vecs: list[np.ndarray] = []
+        for seg in segments:
+            subtoks = self._bert_tok.tokenize(seg)
+            if not subtoks:
+                continue
+            start = None
+            for i in range(len(bert_toks) - len(subtoks) + 1):
+                if bert_toks[i : i + len(subtoks)] == subtoks:
+                    start = i
+                    break
+            if start is None:
+                continue
+            vec = hidden[start : start + len(subtoks)].mean(dim=0).numpy()
+            norm = float(np.linalg.norm(vec))
+            if norm > 1e-9:
+                valid_segs.append(seg.lower())
+                vecs.append(vec / norm)
+
+        if not vecs:
+            return [], np.zeros((0, 768), dtype=np.float32)
+        return valid_segs, np.stack(vecs).astype(np.float32)
+
+
+class BertSubwordEncoder:
+    """
+    Tokenises text with BERT's WordPiece tokeniser and produces a contextual
+    BERT vector for each word (subword vectors are averaged back into words).
+    Based on research/experiment/bertvector.py.
+
+    Swap point:
+      bert_model_name — any HuggingFace model with last_hidden_state output
+    """
+
+    def __init__(self, bert_model_name: str = "bert-base-uncased"):
+        import torch
+        from transformers import AutoModel, AutoTokenizer
+        self._torch = torch
+        self._bert_tok = AutoTokenizer.from_pretrained(bert_model_name)
+        self._bert_mod = AutoModel.from_pretrained(bert_model_name)
+        self._bert_mod.eval()
+
+    def encode(self, text: str) -> tuple[list[str], np.ndarray]:
+        """
+        Returns (words, unit-normalised matrix of shape (n, 768)).
+        Multi-subword words (e.g. "toast" + "##ed") have their subword
+        vectors averaged into one vector.
+        """
+        torch = self._torch
+
+        inputs = self._bert_tok(text, return_tensors="pt")
+        with torch.no_grad():
+            hidden = self._bert_mod(**inputs).last_hidden_state[0]
+        toks = self._bert_tok.convert_ids_to_tokens(inputs["input_ids"][0])
+
+        words: list[str] = []
+        vecs: list[np.ndarray] = []
+        cur_word = ""
+        cur_vecs: list = []
+
+        for tok, vec in zip(toks[1:-1], hidden[1:-1]):   # skip [CLS], [SEP]
+            if tok.startswith("##"):
+                cur_word += tok[2:]
+                cur_vecs.append(vec)
+            else:
+                if cur_word:
+                    avg = torch.stack(cur_vecs).mean(dim=0).numpy()
+                    norm = float(np.linalg.norm(avg))
+                    if norm > 1e-9:
+                        words.append(cur_word)
+                        vecs.append(avg / norm)
+                cur_word = tok
+                cur_vecs = [vec]
+
+        if cur_word:   # flush last word
+            avg = torch.stack(cur_vecs).mean(dim=0).numpy()
+            norm = float(np.linalg.norm(avg))
+            if norm > 1e-9:
+                words.append(cur_word)
+                vecs.append(avg / norm)
+
+        if not vecs:
+            return [], np.zeros((0, 768), dtype=np.float32)
+        return words, np.stack(vecs).astype(np.float32)
 
 
 # ── ConceptNet loader ──────────────────────────────────────────────────────────
@@ -312,6 +454,9 @@ def _score_item(
     "bm25"    IDF-weighted sum of BM25-saturated soft-TF values (default).
               Partial matches score positively — OR semantics across terms.
 
+    "plus"    Plain sum of raw soft-TF values, no IDF weighting or saturation.
+              Also OR semantics, simpler than bm25. Score = Σ soft_tf(q, D).
+
     "product" Multiply raw soft-TF values across all query terms.
               Any term with soft-TF = 0 collapses the whole score to 0,
               enforcing AND semantics: every query concept must find a match.
@@ -343,6 +488,8 @@ def _score_item(
 
     if combiner == "bm25":
         return sum(term_scores)
+    if combiner == "plus":
+        return sum(term_scores)           # raw soft-TF sum, no IDF/saturation
     if combiner == "product":
         result = 1.0
         for s in term_scores:
@@ -352,7 +499,7 @@ def _score_item(
         return result
     if combiner == "min":
         return min(term_scores) if all(s > 0.0 for s in term_scores) else 0.0
-    raise ValueError(f"Unknown combiner: {combiner!r}. Choose bm25, product, or min.")
+    raise ValueError(f"Unknown combiner: {combiner!r}. Choose bm25, plus, product, or min.")
 
 
 # ── Public search function ─────────────────────────────────────────────────────
@@ -409,6 +556,90 @@ def search(
     return [r for _, r in scored]
 
 
+# ── Contextual index / search (for SpacyBertEncoder / BertSubwordEncoder) ─────
+
+def build_index_contextual(
+    menus: dict,
+    encoder,
+) -> tuple[dict[str, list[dict]], dict[str, float], float]:
+    """
+    Like build_index but runs a contextual BERT encoder over each item instead
+    of using PhraseTokenizer + VectorStore. Each item is encoded once at index
+    time; the resulting per-token vectors are contextual (depend on the full
+    item text).
+    """
+    index: dict[str, list[dict]] = {}
+    doc_freq: dict[str, int] = {}
+    total_items = 0
+    total_tokens = 0
+
+    all_rids = list(menus.keys())
+    for n, rid in enumerate(all_rids, 1):
+        if n % 50 == 0 or n == len(all_rids):
+            print(f"\r  {n}/{len(all_rids)} restaurants", end="", flush=True)
+        entries: list[dict] = []
+        for item in menus[rid]:
+            segments, vecs_matrix = encoder.encode(_item_text(item))
+            for t in set(segments):
+                doc_freq[t] = doc_freq.get(t, 0) + 1
+            entries.append({"item": item, "tokens": segments, "vecs": vecs_matrix})
+            total_tokens += len(segments)
+            total_items  += 1
+        index[rid] = entries
+    print()
+
+    idf = {
+        t: math.log((total_items - df + 0.5) / (df + 0.5) + 1)
+        for t, df in doc_freq.items()
+    }
+    return index, idf, total_tokens / max(total_items, 1)
+
+
+def search_contextual(
+    query: str,
+    restaurants: dict,
+    index: dict[str, list[dict]],
+    idf: dict[str, float],
+    encoder,
+    avgdl: float,
+    similarity_threshold: float = 0.5,
+    k1: float = 1.5,
+    b: float = 0.75,
+    combiner: str = "bm25",
+) -> list[dict]:
+    """
+    Like search() but derives query vectors by running the contextual encoder
+    on the query string (so query-word vectors are also context-aware).
+    """
+    query_tokens, qvecs_matrix = encoder.encode(query)
+    query_vecs: list[np.ndarray | None] = list(qvecs_matrix) if len(qvecs_matrix) else []
+
+    scored: list[tuple[float, dict]] = []
+    for rid, entries in index.items():
+        restaurant_name = restaurants[rid].get("name", rid)
+        for entry in entries:
+            s = _score_item(
+                query_tokens, query_vecs, entry, idf, avgdl,
+                similarity_threshold, k1, b, combiner,
+            )
+            if s > 0:
+                item = entry["item"]
+                scored.append((s, {
+                    "restaurant":  restaurant_name,
+                    "item":        item["name"],
+                    "description": item["description"],
+                    "price":       item["price"],
+                    "price_raw":   item["price_raw"],
+                    "category":    item["category"],
+                    "menu_type":   item["menu_type"],
+                    "score":       round(s, 4),
+                    "tokens":      entry["tokens"],
+                }))
+
+    scored.sort(key=lambda t: t[0], reverse=True)
+    return [r for _, r in scored]
+
+
 # ── CLI ────────────────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
@@ -418,12 +649,23 @@ if __name__ == "__main__":
         description="Phrase-aware Soft-BM25 menu search (Approach 3.5)"
     )
     parser.add_argument(
-        "--vectors", required=True,
-        help="Path to ConceptNet Numberbatch txt or txt.gz file",
+        "--segmenter",
+        choices=["fmm", "spacy_bert", "bert_subword"],
+        default="fmm",
+        help=(
+            "Tokeniser/segmenter: "
+            "fmm (ConceptNet FMM, default), "
+            "spacy_bert (spaCy noun chunks + BERT contextual vectors), "
+            "bert_subword (BERT WordPiece + BERT contextual vectors)"
+        ),
+    )
+    parser.add_argument(
+        "--vectors",
+        help="Path to ConceptNet Numberbatch txt or txt.gz (required for --segmenter fmm)",
     )
     parser.add_argument(
         "--max-phrase-len", type=int, default=3,
-        help="Max words to merge into a phrase token (default 3)",
+        help="Max words to merge into a phrase token (fmm only, default 3)",
     )
     parser.add_argument(
         "--threshold", type=float, default=0.5,
@@ -431,12 +673,15 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--composition", choices=["mean", "idf_mean"], default="mean",
-        help="How to compose phrase vectors missing from the model (default mean)",
+        help="Phrase vector composition for fmm (default mean)",
     )
     parser.add_argument(
-        "--combiner", choices=["bm25", "product", "min"], default="bm25",
-        help="How to combine per-term scores: bm25 (sum, OR semantics), "
-             "product (AND semantics), min (AND semantics; default: bm25)",
+        "--combiner", choices=["bm25", "plus", "product", "min"], default="bm25",
+        help=(
+            "How to combine per-term scores: "
+            "bm25 (IDF-weighted sum, OR), plus (raw sum, OR), "
+            "product (AND), min (AND); default: bm25"
+        ),
     )
     parser.add_argument(
         "--show-tokens", action="store_true",
@@ -445,29 +690,48 @@ if __name__ == "__main__":
     parser.add_argument("terms", nargs="+", help="Query words")
     args = parser.parse_args()
 
-    print("Loading vectors…", end=" ", flush=True)
-    raw_vectors, phrase_vocab = load_conceptnet(args.vectors)
-    print(f"{len(raw_vectors):,} entries, {len(phrase_vocab):,} phrase vocab entries")
-
-    tokenizer    = PhraseTokenizer(phrase_vocab, max_phrase_len=args.max_phrase_len)
-    vector_store = VectorStore(raw_vectors, composition=args.composition)
-
-    print("Loading menus and building index…", end=" ", flush=True)
+    print("Loading menus…", end=" ", flush=True)
     restaurants, menus = load_data()
-    index, idf, avgdl = build_index(menus, tokenizer, vector_store)
-    total_items = sum(len(v) for v in index.values())
-    print(f"{total_items} items, avgdl={avgdl:.1f} tokens")
+    print(f"{sum(len(v) for v in menus.values())} items")
 
     query = " ".join(args.terms)
-    query_tokens = tokenizer.tokenize(query)
-    print(f"\nQuery : '{query}'")
-    print(f"Tokens: {query_tokens}\n")
 
-    results = search(
-        query, restaurants, index, idf, tokenizer, vector_store, avgdl,
-        similarity_threshold=args.threshold,
-        combiner=args.combiner,
-    )
+    if args.segmenter == "fmm":
+        if not args.vectors:
+            parser.error("--vectors PATH is required for --segmenter fmm")
+        print("Loading vectors…", end=" ", flush=True)
+        raw_vectors, phrase_vocab = load_conceptnet(args.vectors)
+        print(f"{len(raw_vectors):,} entries, {len(phrase_vocab):,} phrase vocab entries")
+        tokenizer    = PhraseTokenizer(phrase_vocab, max_phrase_len=args.max_phrase_len)
+        vector_store = VectorStore(raw_vectors, composition=args.composition)
+        print("Building index…", end=" ", flush=True)
+        index, idf, avgdl = build_index(menus, tokenizer, vector_store)
+        print(f"{sum(len(v) for v in index.values())} items, avgdl={avgdl:.1f}")
+        query_tokens = tokenizer.tokenize(query)
+        print(f"\nQuery : '{query}'")
+        print(f"Tokens: {query_tokens}\n")
+        results = search(
+            query, restaurants, index, idf, tokenizer, vector_store, avgdl,
+            similarity_threshold=args.threshold,
+            combiner=args.combiner,
+        )
+    else:
+        print(f"Loading BERT encoder ({args.segmenter})…", flush=True)
+        encoder = (
+            SpacyBertEncoder() if args.segmenter == "spacy_bert"
+            else BertSubwordEncoder()
+        )
+        print("Building index…")
+        index, idf, avgdl = build_index_contextual(menus, encoder)
+        print(f"  avgdl={avgdl:.1f} tokens")
+        query_tokens, _ = encoder.encode(query)
+        print(f"\nQuery : '{query}'")
+        print(f"Tokens: {query_tokens}\n")
+        results = search_contextual(
+            query, restaurants, index, idf, encoder, avgdl,
+            similarity_threshold=args.threshold,
+            combiner=args.combiner,
+        )
 
     if not results:
         print("No results.")
