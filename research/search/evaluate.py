@@ -267,6 +267,10 @@ if __name__ == "__main__":
         "--segmenter", choices=["fmm", "spacy_bert", "bert_subword"], default="fmm",
         help="Tokeniser for --engine soft_bm25: fmm (default), spacy_bert, bert_subword",
     )
+    parser.add_argument(
+        "--spell-correct", action="store_true",
+        help="Spell-correct query tokens that have no embedding (soft_bm25 + fmm only)",
+    )
     args = parser.parse_args()
 
     sys.path.insert(0, str(_ROOT / "research" / "search"))
@@ -298,9 +302,14 @@ if __name__ == "__main__":
             _index, _idf, _avgdl = build_index(menus, _tokenizer, _vstore)
             print(f"{sum(len(v) for v in _index.values())} items indexed")
 
+            _corrector = None
+            if args.spell_correct:
+                from soft_bm25_search import SpellCorrector
+                _corrector = SpellCorrector()
+
             def _raw_search(query, _restaurants, _menus):
                 return _sbm25_search(query, restaurants, _index, _idf, _tokenizer, _vstore, _avgdl,
-                                     combiner=args.combiner)
+                                     combiner=args.combiner, spell_corrector=_corrector)
         else:
             from soft_bm25_search import (
                 SpacyBertEncoder, BertSubwordEncoder,

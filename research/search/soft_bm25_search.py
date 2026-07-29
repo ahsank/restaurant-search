@@ -168,6 +168,35 @@ def _unit(v: np.ndarray) -> np.ndarray:
     return v / norm if norm > 1e-9 else v
 
 
+# ── Spell corrector ────────────────────────────────────────────────────────────
+
+class SpellCorrector:
+    """
+    Query-time spell correction using pyspellchecker's English dictionary.
+
+    Only fires when a query token has no embedding in the vector store — so
+    correctly-spelled words (even unusual ones like "guanciale") are never
+    touched. A correction is only accepted when the suggested word itself has
+    a vector; this rejects cases where the library guesses a wrong English word
+    that happens not to appear in ConceptNet.
+
+    Short tokens (< 4 chars) are skipped to avoid mangling abbreviations.
+
+    Install: pip install pyspellchecker
+    """
+
+    def __init__(self) -> None:
+        from spellchecker import SpellChecker
+        self._checker = SpellChecker()
+
+    def correct(self, word: str) -> str | None:
+        """Return a corrected form if one is found, else None."""
+        if len(word) < 4:
+            return None
+        corrected = self._checker.correction(word)
+        return corrected if corrected and corrected != word else None
+
+
 # ── Contextual encoders (BERT-based) ──────────────────────────────────────────
 
 class SpacyBertEncoder:
@@ -516,19 +545,40 @@ def search(
     k1: float = 1.5,
     b: float = 0.75,
     combiner: str = "bm25",
+    spell_corrector: SpellCorrector | None = None,
+    out_corrections: dict[str, str] | None = None,
 ) -> list[dict]:
     """
     Search all indexed items for query, returning results sorted by score.
 
     combiner controls how per-term scores are combined; see _score_item.
 
+    spell_corrector: optional SpellCorrector; when a query token has no vector,
+        its correction is tried. Only accepted if the corrected word also has a
+        vector. Pass out_corrections={} to receive a {original: corrected} map.
+
     To integrate with evaluate.py, build a wrapper:
         def search_fn(query, restaurants, menus):
             return search(query, restaurants, index, idf, tokenizer,
                           vector_store, avgdl, combiner=combiner)
     """
-    query_tokens = tokenizer.tokenize(query)
-    query_vecs   = [vector_store.lookup(t) for t in query_tokens]
+    raw_tokens   = tokenizer.tokenize(query)
+    query_tokens = []
+    query_vecs   = []
+    for t in raw_tokens:
+        vec = vector_store.lookup(t)
+        if vec is None and spell_corrector is not None:
+            suggestion = spell_corrector.correct(t)
+            if suggestion is not None:
+                vec2 = vector_store.lookup(suggestion)
+                if vec2 is not None:
+                    if out_corrections is not None:
+                        out_corrections[t] = suggestion
+                    query_tokens.append(suggestion)
+                    query_vecs.append(vec2)
+                    continue
+        query_tokens.append(t)
+        query_vecs.append(vec)
 
     scored: list[tuple[float, dict]] = []
     for rid, entries in index.items():
@@ -687,6 +737,10 @@ if __name__ == "__main__":
         "--show-tokens", action="store_true",
         help="Print phrase tokens for each result (useful for debugging)",
     )
+    parser.add_argument(
+        "--spell-correct", action="store_true",
+        help="Spell-correct query tokens that have no embedding (uses pyspellchecker)",
+    )
     parser.add_argument("terms", nargs="+", help="Query words")
     args = parser.parse_args()
 
@@ -707,6 +761,8 @@ if __name__ == "__main__":
         print("Building index…", end=" ", flush=True)
         index, idf, avgdl = build_index(menus, tokenizer, vector_store)
         print(f"{sum(len(v) for v in index.values())} items, avgdl={avgdl:.1f}")
+        corrector = SpellCorrector() if args.spell_correct else None
+        corrections: dict[str, str] = {}
         query_tokens = tokenizer.tokenize(query)
         print(f"\nQuery : '{query}'")
         print(f"Tokens: {query_tokens}\n")
@@ -714,7 +770,12 @@ if __name__ == "__main__":
             query, restaurants, index, idf, tokenizer, vector_store, avgdl,
             similarity_threshold=args.threshold,
             combiner=args.combiner,
+            spell_corrector=corrector,
+            out_corrections=corrections,
         )
+        if corrections:
+            print("Spell corrections: " +
+                  ", ".join(f"{o} → {c}" for o, c in corrections.items()) + "\n")
     else:
         print(f"Loading BERT encoder ({args.segmenter})…", flush=True)
         encoder = (
