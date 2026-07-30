@@ -247,9 +247,9 @@ if __name__ == "__main__":
     parser.add_argument("--verbose", "-v", action="store_true")
     parser.add_argument(
         "--engine",
-        choices=["text", "enhanced", "filtered", "soft_bm25", "sbert"],
+        choices=["text", "enhanced", "filtered", "soft_bm25", "sbert", "colbert"],
         default="text",
-        help="Search engine: text (baseline), enhanced, filtered, soft_bm25, sbert (default: text)",
+        help="Search engine: text (baseline), enhanced, filtered, soft_bm25, sbert, colbert (default: text)",
     )
     parser.add_argument(
         "--vectors",
@@ -340,6 +340,20 @@ if __name__ == "__main__":
 
         def _raw_search(query, _restaurants, _menus):
             return _sbert_search(query, restaurants, _sbert_index, _sbert_model)
+
+    elif args.engine == "colbert":
+        from colbert_search import build_index as _cb_build_index, search as _cb_search
+        from pylate import models as pylate_models
+        _cb_model_name = args.model if args.model != "all-MiniLM-L6-v2" else "colbert-ir/colbertv2.0"
+        print(f"Loading ColBERT model '{_cb_model_name}'...", end=" ", flush=True)
+        _cb_model = pylate_models.ColBERT(_cb_model_name)
+        print("done")
+        print("Building index...", end=" ", flush=True)
+        _cb_index = _cb_build_index(menus, restaurants, _cb_model)
+        print(f"{sum(len(v) for v in _cb_index.values())} items encoded")
+
+        def _raw_search(query, _restaurants, _menus):
+            return _cb_search(query, restaurants, _cb_index, _cb_model)
 
     else:
         from text_search import search as _raw_search

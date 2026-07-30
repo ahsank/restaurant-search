@@ -531,6 +531,45 @@ def _score_item(
     raise ValueError(f"Unknown combiner: {combiner!r}. Choose bm25, plus, product, or min.")
 
 
+# ── Query token resolution ────────────────────────────────────────────────────
+
+def resolve_query_tokens(
+    query: str,
+    tokenizer: PhraseTokenizer,
+    vector_store: VectorStore,
+    spell_corrector: SpellCorrector | None = None,
+) -> tuple[list[str], list[np.ndarray | None], dict[str, str]]:
+    """
+    Tokenise a query with FMM, resolve each token to a vector, and optionally
+    apply spell correction for tokens that have no embedding.
+
+    Returns:
+      tokens      — effective token strings (possibly corrected)
+      vecs        — unit-normalised vectors, None for tokens with no embedding
+      corrections — {original_token: corrected_token} for any corrections made
+    """
+    raw_tokens = tokenizer.tokenize(query)
+    tokens: list[str] = []
+    vecs:   list[np.ndarray | None] = []
+    corrections: dict[str, str] = {}
+
+    for t in raw_tokens:
+        vec = vector_store.lookup(t)
+        if vec is None and spell_corrector is not None:
+            suggestion = spell_corrector.correct(t)
+            if suggestion is not None:
+                vec2 = vector_store.lookup(suggestion)
+                if vec2 is not None:
+                    corrections[t] = suggestion
+                    tokens.append(suggestion)
+                    vecs.append(vec2)
+                    continue
+        tokens.append(t)
+        vecs.append(vec)
+
+    return tokens, vecs, corrections
+
+
 # ── Public search function ─────────────────────────────────────────────────────
 
 def search(
@@ -562,23 +601,11 @@ def search(
             return search(query, restaurants, index, idf, tokenizer,
                           vector_store, avgdl, combiner=combiner)
     """
-    raw_tokens   = tokenizer.tokenize(query)
-    query_tokens = []
-    query_vecs   = []
-    for t in raw_tokens:
-        vec = vector_store.lookup(t)
-        if vec is None and spell_corrector is not None:
-            suggestion = spell_corrector.correct(t)
-            if suggestion is not None:
-                vec2 = vector_store.lookup(suggestion)
-                if vec2 is not None:
-                    if out_corrections is not None:
-                        out_corrections[t] = suggestion
-                    query_tokens.append(suggestion)
-                    query_vecs.append(vec2)
-                    continue
-        query_tokens.append(t)
-        query_vecs.append(vec)
+    query_tokens, query_vecs, corrections = resolve_query_tokens(
+        query, tokenizer, vector_store, spell_corrector
+    )
+    if out_corrections is not None:
+        out_corrections.update(corrections)
 
     scored: list[tuple[float, dict]] = []
     for rid, entries in index.items():
@@ -762,20 +789,21 @@ if __name__ == "__main__":
         index, idf, avgdl = build_index(menus, tokenizer, vector_store)
         print(f"{sum(len(v) for v in index.values())} items, avgdl={avgdl:.1f}")
         corrector = SpellCorrector() if args.spell_correct else None
-        corrections: dict[str, str] = {}
-        query_tokens = tokenizer.tokenize(query)
+        query_tokens, _, corrections = resolve_query_tokens(
+            query, tokenizer, vector_store, corrector
+        )
         print(f"\nQuery : '{query}'")
-        print(f"Tokens: {query_tokens}\n")
+        print(f"Tokens: {query_tokens}")
+        if corrections:
+            print("Spell corrections: " +
+                  ", ".join(f"{o} → {c}" for o, c in corrections.items()))
+        print()
         results = search(
             query, restaurants, index, idf, tokenizer, vector_store, avgdl,
             similarity_threshold=args.threshold,
             combiner=args.combiner,
             spell_corrector=corrector,
-            out_corrections=corrections,
         )
-        if corrections:
-            print("Spell corrections: " +
-                  ", ".join(f"{o} → {c}" for o, c in corrections.items()) + "\n")
     else:
         print(f"Loading BERT encoder ({args.segmenter})…", flush=True)
         encoder = (
@@ -785,7 +813,7 @@ if __name__ == "__main__":
         print("Building index…")
         index, idf, avgdl = build_index_contextual(menus, encoder)
         print(f"  avgdl={avgdl:.1f} tokens")
-        query_tokens, _ = encoder.encode(query)
+        query_tokens, query_vecs = encoder.encode(query)
         print(f"\nQuery : '{query}'")
         print(f"Tokens: {query_tokens}\n")
         results = search_contextual(
