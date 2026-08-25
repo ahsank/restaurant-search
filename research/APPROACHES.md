@@ -163,7 +163,8 @@ ColBERT (Khattab & Zaharia 2020) implements this exact MaxSim scoring with BERT
 full phrase, "oyster" in "beef in oyster sauce" gets a different vector than
 "oyster" in "grilled oysters" — no phrase detection step needed.
 Approach 3.5 achieves some of this via explicit phrase detection instead, using
-cheaper static vectors.
+cheaper static vectors. Implemented and benchmarked below as **Approach 4.5** —
+it's the best-performing approach measured so far on this benchmark.
 
 ---
 
@@ -267,33 +268,139 @@ This is called a **bi-encoder** — two separate forward passes (one for the ite
 
 ---
 
-## Approach 5 — Finetuned Bi-Encoder with Synthetic Training Data
+## Approach 4.5 — ColBERT (Late Interaction Retrieval)
 
-Take a pretrained bi-encoder (Approach 4) and finetune it on domain-specific (query, menu item) pairs so it learns food semantics more precisely.
+Combines Approach 3.5's token-level MaxSim scoring with Approach 4's neural
+embeddings. Instead of collapsing a menu item to one sentence vector (bi-encoder,
+Approach 4), ColBERT keeps one **trained contextual vector per token** and scores
+with the same MaxSim formula as Soft-BM25:
 
-**The labeled data problem:** You need pairs like:
 ```
-("seafood pasta",  "CajunPasta with clams, salmon, cod")  → relevant
-("seafood pasta",  "Tiramisu with espresso")               → not relevant
+score(Q, D) = Σ_{q ∈ Q}  max_{d ∈ D}  cosine(embed(q), embed(d))
 ```
-This is expensive to collect manually.
 
-**Solution — synthetic data generation via LLM:**
-1. For each menu item, prompt Claude to generate 5–10 queries that should match it
-2. Example: "CajunPasta with clams, salmon, cod" → Claude generates:
-   - `"seafood pasta"`, `"Italian dish with fish"`, `"pasta with shellfish"`, `"cajun seafood"`, ...
-3. Treat other items in the same batch as negatives (in-batch negative sampling)
-4. Finetune `all-MiniLM-L6-v2` on these pairs using `MultipleNegativesRankingLoss`
+The difference from Approach 3.5 is entirely in where the vectors come from:
+Soft-BM25 uses static ConceptNet vectors (or composes them for unseen phrases);
+ColBERT's vectors come from a BERT encoder **fine-tuned end-to-end on real
+query-passage relevance judgments** (MS MARCO, ~500K pairs), so the vector
+geometry is explicitly calibrated for "does this token help answer this query,"
+not just general word similarity.
 
-**Pros:** Produces a model tuned specifically to food/menu retrieval. No manual labeling. The finetuned model exports to ONNX and runs in C++ just like the off-the-shelf SBERT model.
+This directly fixes the failure mode found while debugging raw BERT hidden
+states in `research/experiment/bert_maxsim.py`: an off-the-shelf `bert-base-uncased`
+gives `cosine("pasta", "juice") = 0.74` — higher than many genuinely related
+food terms — because masked-language-model pretraining was never asked to make
+that geometry meaningful for retrieval. ColBERT's contrastive retrieval
+fine-tuning is what actually fixes it.
 
-**Cons:** Requires running Claude API for synthetic data generation (~small cost). Requires a GPU or patience for finetuning (small model, ~30 min on CPU for this dataset size).
+**How it works:**
+1. Load a pretrained ColBERT checkpoint (`colbert-ir/colbertv2.0`) — no training required
+2. At index time: encode every menu item, keep the full per-token matrix (not a single pooled vector)
+3. At query time: encode the query the same way, score every item via MaxSim
 
-**Libraries:** `sentence-transformers`, `anthropic`, `datasets`
+**Pros:** Best measured quality so far on this benchmark (see table below). No
+training or labeled data needed — the retrieval fine-tuning was already done by
+the model authors. Keeps the AND-across-terms and phrase-context benefits of
+Approach 3.5, without needing a phrase vocabulary or a static vector file.
+
+**Cons:** Heavier at index time (one vector matrix per item instead of one
+vector or a static lookup) and at query time (per-query-token max over every
+item's token matrix, instead of one dot product). Requires a GPU-friendly
+transformer library (`pylate`) rather than a lightweight vector file.
+
+**Library:** `pip install pylate`
+
+**Measured results** (full 204-query benchmark, NDCG@5 / Recall@10 / MRR):
+
+| Engine | NDCG@5 | Recall@10 | MRR |
+|---|---|---|---|
+| Soft-BM25 (`plus` combiner + spell-correct) | 0.5063 | 0.5290 | 0.6033 |
+| SBERT `all-MiniLM-L6-v2` | 0.4983 | 0.5217 | 0.6169 |
+| SBERT `all-mpnet-base-v2` | 0.5033 | 0.5113 | 0.6358 |
+| **ColBERT `colbertv2.0`** | **0.5931** | **0.6121** | **0.6970** |
+
+ColBERT's gains are largest on categories where Approach 4's single-vector
+averaging dilutes the signal — C17 Desserts (0.56 → 0.92), C22 Ingredient focus
+(0.57 → 0.86), C05 Spelling variations (0.59 → 0.79). It does **not** meaningfully
+help the hardest concept-inference categories (C01–C04, C10) — those stay weak
+across every approach tried so far and likely need Approach 6 or 7.
+
+**Files:** `research/search/colbert_search.py`
+
+---
+
+## Approach 5 — Finetuned Bi-Encoder via Contrastive Learning (InfoNCE + Hard Negatives)
+
+Take a pretrained bi-encoder (Approach 4 — e.g. `bge-small-en`, `all-MiniLM-L6-v2`)
+and finetune it on domain-specific (anchor, positive, negative) triples so it
+learns food semantics more precisely.
+
+**Scoped to bi-encoders, not ColBERT.** Approach 4.5's ColBERT keeps one
+contextual vector *per token*, so there's no single item vector to index —
+retrieval requires the MaxSim/late-interaction loop over every candidate at
+query time. A finetuned bi-encoder produces exactly **one dense vector per
+menu item**, which is what makes it compatible with off-the-shelf
+nearest-neighbor search (FAISS, HNSW, ScaNN, or brute-force cosine top-K):
+encode every item once offline, and query time is a single vector lookup.
+That matters for the eventual C++ engine — one vector per item beats storing
+and scoring a per-token matrix per item.
+
+**Loss — InfoNCE, not a classifier.** `MultipleNegativesRankingLoss` in
+`sentence-transformers` *is* InfoNCE (softmax cross-entropy over one positive
+vs. many negatives) — this was never a binary relevant/not-relevant
+classifier. Triplet Loss (one negative per anchor-positive pair) is a
+plausible alternative but generally underperforms InfoNCE with the same data,
+since InfoNCE gets a gradient signal from every negative in the batch at once
+rather than one at a time. Prefer `MultipleNegativesRankingLoss`.
+
+**The real problem is negative quality, not label volume.** `data/queries/relevance_*.csv`
+already has 1,081 real judgments across 204 queries and 7 restaurants — plenty
+of positives (`positive` = any row with relevance ≥ 1). But **in-batch random
+negatives are usually easy**: a random other menu item in the batch is
+typically trivially distinguishable (a taco vs. a tiramisu), so the model
+learns coarse topic clustering and not the fine distinctions that sink the
+hardest benchmark categories (C01–C04 concept-inference). Compare:
+
+```
+("garlic shrimp", "Camarones Mojo de Ajo — shrimp in garlic butter sauce")     → positive
+("garlic shrimp", "Camarones à la Diabla — shrimp in spicy red chile sauce")   → hard negative
+```
+
+Both are shrimp dishes from the same menu — an in-batch sample would rarely
+produce a negative this close, so the model never learns that "garlic" vs.
+"diabla" is the deciding feature. Two hard-negative sources are already free
+in this repo (no LLM generation needed):
+
+1. **Relevance-graded pairs** — for a query, pair its relevance=2 item as
+   positive with a same-restaurant/same-category relevance=1 (or unlisted)
+   item as hard negative. The judgments already encode "close but not the
+   best match."
+2. **Retriever-error mining** — run the current best model (ColBERT, Approach
+   4.5) and take its top-K false positives per query as hard negatives.
+   Standard hard-negative-mining loop; `sentence_transformers.util.mine_hard_negatives`
+   automates this.
+
+`MultipleNegativesRankingLoss` accepts a 3rd (explicit hard negative) column
+directly, combined with in-batch negatives — no separate triplet-loss code
+path needed. LLM-generated synthetic queries (prompting Claude per item to
+produce paraphrase queries) remain useful for expanding *query* coverage
+beyond the 204 benchmark queries, but are not needed for negatives.
+
+**Pros:** Produces a single-vector model tuned specifically to food/menu
+retrieval, ANN-indexable. Negative supervision comes from data already in the
+repo — no LLM cost required for the core training loop. Exports to ONNX and
+runs in C++ like the off-the-shelf SBERT model.
+
+**Cons:** Hard-negative mining adds a preprocessing step (an extra retrieval
+pass over the current best model, or a join against the relevance CSVs)
+before training starts. Requires a GPU or patience for finetuning (small
+model, ~30 min on CPU for this dataset size).
+
+**Libraries:** `sentence-transformers`, `datasets`
 
 **Files:**
-- `data_gen/generate_pairs.py` — calls Claude to generate (query, item) pairs
-- `train/finetune_biencoder.py` — trains the model on those pairs
+- `data_gen/mine_hard_negatives.py` — builds (anchor, positive, hard negative) triples from `relevance_*.csv` and ColBERT retrieval errors
+- `train/finetune_biencoder.py` — trains the model on those triples with `MultipleNegativesRankingLoss`
 - `export/export_onnx.py` — exports to ONNX for C++ use
 - `search/finetuned_search.py` — inference using the finetuned model
 
@@ -310,13 +417,35 @@ Output: relevance score  0.0 – 1.0
 
 Because attention flows between the query and item tokens, the model can reason about their relationship more precisely than a bi-encoder.
 
-**Typical use:** Not as a first-pass retriever (too slow — O(N) forward passes for N items), but as a **reranker** on top of Approach 4 or 5:
-1. Bi-encoder retrieves top 20 candidates (fast)
+**Typical use:** Not as a first-pass retriever (too slow — O(N) forward passes for N items), but as a **reranker** on top of Approach 4, 4.5, or 5:
+1. Bi-encoder or ColBERT retrieves top 20 candidates (fast)
 2. Cross-encoder rescores those 20 and reorders them (slow but accurate)
 
-**Pros:** Highest quality of all trainable approaches. The quality ceiling for this problem.
+**Update — real training data now exists.** The benchmark (`data/queries/`) has
+grown to 204 queries with **1,081 real relevance judgments** (relevance ≥ 1)
+across 7 restaurants and 653 items, sparse-labeled in `relevance_*.csv`. Every
+`(query, item)` pair *not* listed is an implicit negative, so negatives can be
+sampled freely. This removes Approach 5's original blocker (needing an LLM to
+generate synthetic pairs) — real supervision is already sitting in the repo.
+1,081 labeled pairs is small for training a transformer's attention weights
+from scratch, but it's a normal size for **finetuning an already-pretrained
+checkpoint** (e.g. `cross-encoder/ms-marco-MiniLM-L6-v2`, itself pretrained on
+500K+ real query-passage judgments) — the same "pretrain once, finetune on a
+small labeled set" pattern as XCS224N A5's `NameDataset` finetuning step.
 
-**Cons:** Cannot precompute item vectors — must run at query time for every candidate. Slower than bi-encoder. Still needs labeled or synthetic training data.
+**Architecture note — bidirectional vs. causal.** A5's `minGPT` is decoder-only
+(causal): each token can only attend backward, so only the *last* token's
+hidden state has seen the whole input — that's what you'd pool for a score
+head if built the A5 way. It works (this is how the original GPT paper did
+classification), but it's not the natural fit here: a bidirectional encoder
+(BERT-style, what `sentence-transformers.CrossEncoder` uses) lets every query
+token attend directly to every item token from layer one, which is why every
+established IR cross-encoder is bidirectional rather than causal. Prefer
+bidirectional unless the goal is specifically to reproduce A5's mechanism.
+
+**Pros:** Highest quality of all trainable approaches. The quality ceiling for this problem. Real (not synthetic) labeled data already available.
+
+**Cons:** Cannot precompute item vectors — must run at query time for every candidate. Slower than bi-encoder/ColBERT. 1,081 pairs is enough to finetune a pretrained checkpoint but not to train from scratch.
 
 **Libraries:** `sentence-transformers` (CrossEncoder class), `transformers`
 
@@ -387,8 +516,9 @@ ollama run phi3.5
 | Word embeddings (GloVe) | None (pretrained) | None | Medium | <5 ms | Low–Medium |
 | **Phrase-aware Soft-BM25** | **None (pretrained)** | **None** | **Medium–Good** | **<10 ms** | **Medium** |
 | SBERT bi-encoder | None (pretrained) | None | Good | <10 ms | Medium |
-| Finetuned bi-encoder | Yes | Synthetic (LLM) | Very good | <10 ms | Medium–High |
-| Cross-encoder reranker | Yes | Synthetic (LLM) | Best | ~100 ms | High |
+| ColBERT (late interaction) | None (pretrained) | None | **Very good (best measured)** | ~20–50 ms | Medium |
+| Finetuned bi-encoder | Yes | Real (1,081 judgments) + mined hard negatives | Very good | <10 ms | Medium–High |
+| Cross-encoder reranker | Yes | Synthetic (LLM) or real (1,081 judgments) | Best | ~100 ms | High |
 | Local LLM reader | None | None | Very good | 0.5–5 s | Low (Ollama) |
 
 ---
@@ -397,9 +527,9 @@ ollama run phi3.5
 
 1. **Thesaurus expansion** — establish a working baseline, understand the data
 2. **Off-the-shelf SBERT** — how much does semantic embedding help over keywords?
-3. **Synthetic data generation** — use Claude to create (query → item) training pairs
-4. **Finetuned bi-encoder** — does domain adaptation improve over generic SBERT?
-5. **Cross-encoder reranker** — quality ceiling: rerank bi-encoder top-20 candidates
+3. **ColBERT (pretrained, no training)** — does token-level late interaction beat sentence-level pooling? (Yes — best result measured so far.)
+4. **Finetuned bi-encoder** — using the 1,081 real relevance judgments in `data/queries/`, does domain finetuning beat off-the-shelf ColBERT/SBERT?
+5. **Cross-encoder reranker** — quality ceiling: rerank ColBERT/bi-encoder top-20 candidates, finetuned on the same real judgments
 6. **Local LLM reader** — compare against trained approaches; useful for qualitative analysis
 
 Evaluate each step with **recall@K**: did the correct item appear in the top K results?
