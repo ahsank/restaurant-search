@@ -271,6 +271,12 @@ if __name__ == "__main__":
         "--spell-correct", action="store_true",
         help="Spell-correct query tokens that have no embedding (soft_bm25 + fmm only)",
     )
+    parser.add_argument(
+        "--query-length", type=int, default=None,
+        help="ColBERT query token length incl. mask-padding (--engine colbert only). "
+             "Default: model's own default (32 for colbertv2.0) — a benchmark sweep found "
+             "no reliable NDCG@5 gain from changing this.",
+    )
     args = parser.parse_args()
 
     sys.path.insert(0, str(_ROOT / "research" / "search"))
@@ -342,11 +348,16 @@ if __name__ == "__main__":
             return _sbert_search(query, restaurants, _sbert_index, _sbert_model)
 
     elif args.engine == "colbert":
-        from colbert_search import build_index as _cb_build_index, search as _cb_search
+        from colbert_search import (
+            build_index as _cb_build_index,
+            search as _cb_search,
+            _DEFAULT_QUERY_LENGTH as _CB_DEFAULT_QUERY_LENGTH,
+        )
         from pylate import models as pylate_models
         _cb_model_name = args.model if args.model != "all-MiniLM-L6-v2" else "colbert-ir/colbertv2.0"
-        print(f"Loading ColBERT model '{_cb_model_name}'...", end=" ", flush=True)
-        _cb_model = pylate_models.ColBERT(_cb_model_name)
+        _cb_query_length = args.query_length if args.query_length is not None else _CB_DEFAULT_QUERY_LENGTH
+        print(f"Loading ColBERT model '{_cb_model_name}' (query_length={_cb_query_length or 'model default'})...", end=" ", flush=True)
+        _cb_model = pylate_models.ColBERT(_cb_model_name, query_length=_cb_query_length)
         print("done")
         print("Building index...", end=" ", flush=True)
         _cb_index = _cb_build_index(menus, restaurants, _cb_model)

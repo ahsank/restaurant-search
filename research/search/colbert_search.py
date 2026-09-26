@@ -15,6 +15,17 @@ Library: pylate   (pip install pylate)
 Usage:
     python colbert_search.py shellfish pasta
     python colbert_search.py --show-tokens "rich creamy pasta"
+    python colbert_search.py --query-length 16 seafood pasta   # compare padding effect
+
+Query length: pylate pads queries to `query_length` tokens with [MASK]
+"expansion" tokens (ColBERT's query augmentation). For short 2-3 word
+queries, most of the padded length is mask tokens rather than real query
+words. Tried lowering this to reduce mask-token dilution (sweep 8-32 on
+the benchmark) — no consistent NDCG@5 improvement, so the model's own
+built-in default (query_length=None below) is kept. --query-length remains
+available to reproduce or extend that experiment. Raising it matters if
+longer natural-language queries are getting truncated (anything past
+query_length - 1 tokens is silently dropped, not chunked).
 """
 
 import sys
@@ -27,6 +38,7 @@ from lib.data import load_data
 
 
 _DEFAULT_MODEL = "colbert-ir/colbertv2.0"
+_DEFAULT_QUERY_LENGTH = None   # None = use the model's own built-in default (32 for colbertv2.0)
 
 
 # ── text field selection (matches sbert_search.py — no cuisine to avoid false positives) ──
@@ -131,6 +143,10 @@ if __name__ == "__main__":
     parser.add_argument("terms", nargs="+", help="Query words")
     parser.add_argument("--model", default=_DEFAULT_MODEL,
                         help=f"ColBERT model (default: {_DEFAULT_MODEL})")
+    parser.add_argument("--query-length", type=int, default=_DEFAULT_QUERY_LENGTH,
+                        help="Query token length incl. mask-padding (default: model's own "
+                             "default, 32 for colbertv2.0). Benchmark sweep found no reliable "
+                             "gain from changing this — flag exists to reproduce/extend that test.")
     parser.add_argument("--show-tokens", action="store_true",
                         help="Show number of ColBERT tokens per result")
     args = parser.parse_args()
@@ -141,9 +157,9 @@ if __name__ == "__main__":
     restaurants, menus = load_data()
     print(f"{sum(len(v) for v in menus.values())} items")
 
-    print(f"Loading ColBERT model '{args.model}'…", end=" ", flush=True)
+    print(f"Loading ColBERT model '{args.model}' (query_length={args.query_length or 'model default'})…", end=" ", flush=True)
     from pylate import models as pylate_models
-    model = pylate_models.ColBERT(args.model)
+    model = pylate_models.ColBERT(args.model, query_length=args.query_length)
     print("done")
 
     print("Building index…", end=" ", flush=True)
