@@ -80,7 +80,7 @@ Queries must match dishes by **concept**, not by keyword substring. Examples:
 
 ### Current focus: Python experimentation (`research/`)
 
-All search work is done in Python under `research/`. Experiments read the markdown menu files in `data/menus/` directly. See [`research/APPROACHES.md`](research/APPROACHES.md) for a full discussion of search strategies — from a simple concept thesaurus through BM25, word embeddings, sentence transformers, and LLM-based retrieval — with trade-offs and recommended experimentation order.
+All search work is done in Python under `research/`. Experiments read the markdown menu files in `data/menus/` directly. See [`research/APPROACHES.md`](research/APPROACHES.md) for a full discussion of search strategies — from a simple concept thesaurus through BM25, word embeddings, sentence transformers, and LLM-based retrieval — with trade-offs and recommended experimentation order. See [`research/COMMANDS.md`](research/COMMANDS.md) for example command lines for every script.
 
 ### Benchmark (`data/queries/`)
 
