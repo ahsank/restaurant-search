@@ -310,20 +310,35 @@ transformer library (`pylate`) rather than a lightweight vector file.
 
 **Library:** `pip install pylate`
 
-**Measured results** (full 204-query benchmark, NDCG@5 / Recall@10 / MRR):
+**Measured results** (full 209-query benchmark, NDCG@5 / Recall@10 / MRR):
 
 | Engine | NDCG@5 | Recall@10 | MRR |
 |---|---|---|---|
-| Soft-BM25 (`plus` combiner + spell-correct) | 0.5063 | 0.5290 | 0.6033 |
-| SBERT `all-MiniLM-L6-v2` | 0.4983 | 0.5217 | 0.6169 |
-| SBERT `all-mpnet-base-v2` | 0.5033 | 0.5113 | 0.6358 |
-| **ColBERT `colbertv2.0`** | **0.5931** | **0.6121** | **0.6970** |
+| Soft-BM25 (`plus` combiner + spell-correct) | 0.5180 | 0.5702 | 0.6459 |
+| SBERT `all-MiniLM-L6-v2` | 0.5063 | 0.5229 | 0.6240 |
+| SBERT `all-mpnet-base-v2` | 0.5101 | 0.5132 | 0.6400 |
+| **ColBERT `colbertv2.0`** | **0.5920** | **0.6114** | **0.6931** |
+
+(Previously measured on the 204-query benchmark: Soft-BM25 0.5063, SBERT MiniLM
+0.4983, SBERT mpnet 0.5033, ColBERT 0.5931. Rankings are unchanged after the
+benchmark grew to 209 queries — C24 "Pizza varieties" and C25 "Occasion /
+meal-time" were added, both of which score well across engines.)
 
 ColBERT's gains are largest on categories where Approach 4's single-vector
 averaging dilutes the signal — C17 Desserts (0.56 → 0.92), C22 Ingredient focus
 (0.57 → 0.86), C05 Spelling variations (0.59 → 0.79). It does **not** meaningfully
 help the hardest concept-inference categories (C01–C04, C10) — those stay weak
 across every approach tried so far and likely need Approach 6 or 7.
+
+Soft-BM25's `plus` combiner (raw sum of soft-tf, no BM25 saturation or document-
+length normalization) outperforms the `bm25` combiner here — the `bm25` combiner
+was found to systematically over-reward short documents when soft-tf is a
+continuous similarity rather than an integer count (see the "pizza" query
+investigation: a 3-token item with a weak 0.52 similarity match outscored an
+11-token item with a literal, exact match). Tuning `b=0` on the `bm25` combiner
+recovers most of that loss (NDCG@5 0.5063 → still short of `plus`'s 0.5180),
+but `plus` sidesteps the problem entirely by never applying length
+normalization in the first place.
 
 **Files:** `research/search/colbert_search.py`
 
@@ -354,7 +369,7 @@ since InfoNCE gets a gradient signal from every negative in the batch at once
 rather than one at a time. Prefer `MultipleNegativesRankingLoss`.
 
 **The real problem is negative quality, not label volume.** `data/queries/relevance_*.csv`
-already has 1,081 real judgments across 204 queries and 7 restaurants — plenty
+already has 1,143 real judgments across 209 queries and 7 restaurants — plenty
 of positives (`positive` = any row with relevance ≥ 1). But **in-batch random
 negatives are usually easy**: a random other menu item in the batch is
 typically trivially distinguishable (a taco vs. a tiramisu), so the model
@@ -422,12 +437,12 @@ Because attention flows between the query and item tokens, the model can reason 
 2. Cross-encoder rescores those 20 and reorders them (slow but accurate)
 
 **Update — real training data now exists.** The benchmark (`data/queries/`) has
-grown to 204 queries with **1,081 real relevance judgments** (relevance ≥ 1)
-across 7 restaurants and 653 items, sparse-labeled in `relevance_*.csv`. Every
+grown to 209 queries with **1,143 real relevance judgments** (relevance ≥ 1)
+across 7 restaurants and 637 items, sparse-labeled in `relevance_*.csv`. Every
 `(query, item)` pair *not* listed is an implicit negative, so negatives can be
 sampled freely. This removes Approach 5's original blocker (needing an LLM to
 generate synthetic pairs) — real supervision is already sitting in the repo.
-1,081 labeled pairs is small for training a transformer's attention weights
+1,143 labeled pairs is small for training a transformer's attention weights
 from scratch, but it's a normal size for **finetuning an already-pretrained
 checkpoint** (e.g. `cross-encoder/ms-marco-MiniLM-L6-v2`, itself pretrained on
 500K+ real query-passage judgments) — the same "pretrain once, finetune on a
@@ -445,7 +460,7 @@ bidirectional unless the goal is specifically to reproduce A5's mechanism.
 
 **Pros:** Highest quality of all trainable approaches. The quality ceiling for this problem. Real (not synthetic) labeled data already available.
 
-**Cons:** Cannot precompute item vectors — must run at query time for every candidate. Slower than bi-encoder/ColBERT. 1,081 pairs is enough to finetune a pretrained checkpoint but not to train from scratch.
+**Cons:** Cannot precompute item vectors — must run at query time for every candidate. Slower than bi-encoder/ColBERT. 1,143 pairs is enough to finetune a pretrained checkpoint but not to train from scratch.
 
 **Libraries:** `sentence-transformers` (CrossEncoder class), `transformers`
 
@@ -517,8 +532,8 @@ ollama run phi3.5
 | **Phrase-aware Soft-BM25** | **None (pretrained)** | **None** | **Medium–Good** | **<10 ms** | **Medium** |
 | SBERT bi-encoder | None (pretrained) | None | Good | <10 ms | Medium |
 | ColBERT (late interaction) | None (pretrained) | None | **Very good (best measured)** | ~20–50 ms | Medium |
-| Finetuned bi-encoder | Yes | Real (1,081 judgments) + mined hard negatives | Very good | <10 ms | Medium–High |
-| Cross-encoder reranker | Yes | Synthetic (LLM) or real (1,081 judgments) | Best | ~100 ms | High |
+| Finetuned bi-encoder | Yes | Real (1,143 judgments) + mined hard negatives | Very good | <10 ms | Medium–High |
+| Cross-encoder reranker | Yes | Synthetic (LLM) or real (1,143 judgments) | Best | ~100 ms | High |
 | Local LLM reader | None | None | Very good | 0.5–5 s | Low (Ollama) |
 
 ---
@@ -528,7 +543,7 @@ ollama run phi3.5
 1. **Thesaurus expansion** — establish a working baseline, understand the data
 2. **Off-the-shelf SBERT** — how much does semantic embedding help over keywords?
 3. **ColBERT (pretrained, no training)** — does token-level late interaction beat sentence-level pooling? (Yes — best result measured so far.)
-4. **Finetuned bi-encoder** — using the 1,081 real relevance judgments in `data/queries/`, does domain finetuning beat off-the-shelf ColBERT/SBERT?
+4. **Finetuned bi-encoder** — using the 1,143 real relevance judgments in `data/queries/`, does domain finetuning beat off-the-shelf ColBERT/SBERT?
 5. **Cross-encoder reranker** — quality ceiling: rerank ColBERT/bi-encoder top-20 candidates, finetuned on the same real judgments
 6. **Local LLM reader** — compare against trained approaches; useful for qualitative analysis
 

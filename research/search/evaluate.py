@@ -272,6 +272,14 @@ if __name__ == "__main__":
         help="Spell-correct query tokens that have no embedding (soft_bm25 + fmm only)",
     )
     parser.add_argument(
+        "--k1", type=float, default=None,
+        help="BM25 saturation steepness for --engine soft_bm25 --combiner bm25 (default: soft_bm25_search.py's own default, 2.0)",
+    )
+    parser.add_argument(
+        "--b", type=float, default=None,
+        help="BM25 document-length normalization for --engine soft_bm25 --combiner bm25 (default: soft_bm25_search.py's own default, 0.0 — benchmark sweep found b>0 monotonically hurts NDCG@5)",
+    )
+    parser.add_argument(
         "--query-length", type=int, default=None,
         help="ColBERT query token length incl. mask-padding (--engine colbert only). "
              "Default: model's own default (32 for colbertv2.0) — a benchmark sweep found "
@@ -313,9 +321,15 @@ if __name__ == "__main__":
                 from soft_bm25_search import SpellCorrector
                 _corrector = SpellCorrector()
 
+            _bm25_kwargs = {}
+            if args.k1 is not None:
+                _bm25_kwargs["k1"] = args.k1
+            if args.b is not None:
+                _bm25_kwargs["b"] = args.b
+
             def _raw_search(query, _restaurants, _menus):
                 return _sbm25_search(query, restaurants, _index, _idf, _tokenizer, _vstore, _avgdl,
-                                     combiner=args.combiner, spell_corrector=_corrector)
+                                     combiner=args.combiner, spell_corrector=_corrector, **_bm25_kwargs)
         else:
             from soft_bm25_search import (
                 SpacyBertEncoder, BertSubwordEncoder,
@@ -330,9 +344,15 @@ if __name__ == "__main__":
             _index, _idf, _avgdl = build_index_contextual(menus, _encoder)
             print(f"  {sum(len(v) for v in _index.values())} items indexed, avgdl={_avgdl:.1f}")
 
+            _bm25_kwargs = {}
+            if args.k1 is not None:
+                _bm25_kwargs["k1"] = args.k1
+            if args.b is not None:
+                _bm25_kwargs["b"] = args.b
+
             def _raw_search(query, _restaurants, _menus):
                 return _sbm25_ctx_search(query, restaurants, _index, _idf, _encoder, _avgdl,
-                                         combiner=args.combiner)
+                                         combiner=args.combiner, **_bm25_kwargs)
 
     elif args.engine == "sbert":
         from sbert_search import build_index as _sbert_build_index, search as _sbert_search

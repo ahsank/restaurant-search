@@ -22,6 +22,19 @@ Three pluggable components — swap any independently:
   Score parameters  similarity_threshold, k1, b
     Control BM25 soft-TF behaviour; tune on the benchmark.
 
+    b (document-length normalization, default 0.0): with continuous soft-tf
+    in [0,1] instead of BM25's usual raw integer counts, b>0 systematically
+    over-rewards short documents — a mediocre fuzzy match on a 3-token item
+    (just name + category) can outscore an exact match on an 11-token item
+    with a real description, purely because of the length term. Benchmark
+    sweep (b=0.0 vs 0.25/0.5/0.75/1.0, combiner=bm25) found NDCG@5 dropping
+    monotonically as b increases (0.507 -> 0.204), so b=0 is now the default.
+
+    k1 (saturation steepness, default 2.0): matters much less than b — at
+    b=0, NDCG@5 only moved between 0.498 and 0.508 across k1 in [0.1, 20],
+    plateauing for k1 >= 3. 2.0 sits in that plateau, close to the shipped
+    default of 1.5; not worth tuning further without new benchmark queries.
+
 Default implementation uses ConceptNet Numberbatch (English), which serves as
 both the phrase vocabulary and the vector source from a single ~75 MB file.
 
@@ -32,6 +45,7 @@ Usage:
   python soft_bm25_search.py --vectors /path/to/numberbatch-en-19.08.txt.gz seafood italian
   python soft_bm25_search.py --vectors /path/to/numberbatch-en-19.08.txt "oyster"
   python soft_bm25_search.py --vectors /path/to/numberbatch-en-19.08.txt --threshold 0.4 spicy noodles
+  python soft_bm25_search.py --vectors /path/to/numberbatch-en-19.08.txt --b 0.75 --k1 1.5 pizza   # reproduce old defaults
 """
 
 import gzip
@@ -581,8 +595,8 @@ def search(
     vector_store: VectorStore,
     avgdl: float,
     similarity_threshold: float = 0.5,
-    k1: float = 1.5,
-    b: float = 0.75,
+    k1: float = 2.0,
+    b: float = 0.0,
     combiner: str = "bm25",
     spell_corrector: SpellCorrector | None = None,
     out_corrections: dict[str, str] | None = None,
@@ -680,8 +694,8 @@ def search_contextual(
     encoder,
     avgdl: float,
     similarity_threshold: float = 0.5,
-    k1: float = 1.5,
-    b: float = 0.75,
+    k1: float = 2.0,
+    b: float = 0.0,
     combiner: str = "bm25",
 ) -> list[dict]:
     """
@@ -749,6 +763,14 @@ if __name__ == "__main__":
         help="Min cosine similarity to count as a soft match (default 0.5)",
     )
     parser.add_argument(
+        "--k1", type=float, default=2.0,
+        help="BM25 saturation steepness for --combiner bm25 (default 2.0; barely matters, see module docstring)",
+    )
+    parser.add_argument(
+        "--b", type=float, default=0.0,
+        help="BM25 document-length normalization for --combiner bm25 (default 0.0 — see module docstring for why)",
+    )
+    parser.add_argument(
         "--composition", choices=["mean", "idf_mean"], default="mean",
         help="Phrase vector composition for fmm (default mean)",
     )
@@ -801,6 +823,8 @@ if __name__ == "__main__":
         results = search(
             query, restaurants, index, idf, tokenizer, vector_store, avgdl,
             similarity_threshold=args.threshold,
+            k1=args.k1,
+            b=args.b,
             combiner=args.combiner,
             spell_corrector=corrector,
         )
@@ -819,6 +843,8 @@ if __name__ == "__main__":
         results = search_contextual(
             query, restaurants, index, idf, encoder, avgdl,
             similarity_threshold=args.threshold,
+            k1=args.k1,
+            b=args.b,
             combiner=args.combiner,
         )
 
