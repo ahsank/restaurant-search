@@ -1,205 +1,210 @@
 query_id,category_id,query_text,difficulty,category_name
-1,C01,Mexican food with shrimp,Medium,Cuisine type inference
-2,C01,Italian pasta with meat sauce,Medium,Cuisine type inference
-3,C01,Latin seafood dish,Medium,Cuisine type inference
-4,C01,Tex-Mex combination plate,Hard,Cuisine type inference
-5,C01,farm to table sandwich,Medium,Cuisine type inference
-6,C01,taqueria style tacos,Hard,Cuisine type inference
-7,C01,rustic Italian comfort food,Hard,Cuisine type inference
-8,C01,fine dining pasta,Hard,Cuisine type inference
-9,C02,seafood tacos,Medium,Ingredient generalization
-10,C02,shellfish pasta,Medium,Ingredient generalization
-11,C02,leafy green salad,Medium,Ingredient generalization
-12,C02,stone fruit dessert,Hard,Ingredient generalization
-13,C02,smoked meat sandwich,Hard,Ingredient generalization
-14,C02,cured meat appetizer,Medium,Ingredient generalization
-15,C02,steak dish,Easy,Ingredient generalization
-16,C02,fresh cheese salad,Medium,Ingredient generalization
-17,C02,pork dishes,Easy,Ingredient generalization
-18,C02,citrus fish,Medium,Ingredient generalization
-19,C03,spicy shrimp,Medium,Attribute / implied meaning
-20,C03,something smoky,Hard,Attribute / implied meaning
-21,C03,rich creamy pasta,Medium,Attribute / implied meaning
-22,C03,light fresh starter,Medium,Attribute / implied meaning
-23,C03,fire grilled meat,Medium,Attribute / implied meaning
-24,C03,comfort food pasta,Hard,Attribute / implied meaning
-25,C03,umami dish,Hard,Attribute / implied meaning
-26,C03,gut feeling filling meal,Hard,Attribute / implied meaning
-27,C03,cajun style shrimp,Hard,Attribute / implied meaning
-28,C03,tangy dressing salad,Medium,Attribute / implied meaning
-29,C03,charred vegetables,Medium,Attribute / implied meaning
-30,C03,indulgent dessert,Hard,Attribute / implied meaning
-31,C04,charbroiled steak,Easy,Cooking method synonyms
-32,C04,seared fish,Medium,Cooking method synonyms
-33,C04,pan seared salmon,Medium,Cooking method synonyms
-34,C04,blackened chicken,Hard,Cooking method synonyms
-35,C04,flame broiled burger,Medium,Cooking method synonyms
-36,C04,wood fired pizza,Hard,Cooking method synonyms
-37,C04,slow cooked pork,Medium,Cooking method synonyms
-38,C04,braised beef,Medium,Cooking method synonyms
-39,C04,deep fried appetizer,Easy,Cooking method synonyms
-40,C04,crispy fried chicken,Easy,Cooking method synonyms
-41,C05,caeser salad,Easy,Spelling variations
-42,C05,quesedilla,Easy,Spelling variations
-43,C05,guacamolee,Easy,Spelling variations
-44,C05,enchilladas,Easy,Spelling variations
-45,C05,fettucine carbonara,Medium,Spelling variations
-46,C05,tiramisou,Easy,Spelling variations
-47,C05,prosciuto,Easy,Spelling variations
-48,C05,cevice,Easy,Spelling variations
-49,C05,proscuitto and melon,Medium,Spelling variations
-50,C05,rigatonni bolognese,Easy,Spelling variations
-51,C05,canoli,Easy,Spelling variations
-52,C05,burratta,Easy,Spelling variations
-53,C05,halebut,Easy,Spelling variations
-54,C05,focacia sandwich,Easy,Spelling variations
-55,C06,roasted carrot,Easy,Stemming & lemmatization
-56,C06,grilling octopus,Easy,Stemming & lemmatization
-57,C06,fried artichoke,Easy,Stemming & lemmatization
-58,C06,marinated steak,Easy,Stemming & lemmatization
-59,C06,sauted mushroom,Medium,Stemming & lemmatization
-60,C06,slow braising short rib,Medium,Stemming & lemmatization
-61,C06,breading calamari,Easy,Stemming & lemmatization
-62,C06,compress melon,Medium,Stemming & lemmatization
-63,C06,season chicken,Easy,Stemming & lemmatization
-64,C06,pickle vegetables,Easy,Stemming & lemmatization
-65,C07,cacio e pepe,Easy,Hyphenation / spacing / stop words
-66,C07,cacioepepe,Easy,Hyphenation / spacing / stop words
-67,C07,al pastor,Easy,Hyphenation / spacing / stop words
-68,C07,alpastor taco,Easy,Hyphenation / spacing / stop words
-69,C07,mojo de ajo shrimp,Easy,Hyphenation / spacing / stop words
-70,C07,arroz con pollo,Easy,Hyphenation / spacing / stop words
-71,C07,arrozconpollo,Easy,Hyphenation / spacing / stop words
-72,C07,due cucina pasta,Easy,Hyphenation / spacing / stop words
-73,C07,staple fancy restaurant,Easy,Hyphenation / spacing / stop words
-74,C07,non dairy pasta,Medium,Hyphenation / spacing / stop words
-75,C07,gluten free pasta,Easy,Hyphenation / spacing / stop words
-76,C07,glutenfree option,Easy,Hyphenation / spacing / stop words
-77,C07,farm-to-table lunch,Easy,Hyphenation / spacing / stop words
-78,C07,egg-free dessert,Hard,Hyphenation / spacing / stop words
-79,C08,vegetarian Mexican food,Medium,Dietary constraint / negation
-80,C08,vegan sandwich,Easy,Dietary constraint / negation
-81,C08,no gluten pasta,Medium,Dietary constraint / negation
-82,C08,without dairy,Medium,Dietary constraint / negation
-83,C08,nut free salad,Hard,Dietary constraint / negation
-84,C08,plant based option,Easy,Dietary constraint / negation
-85,C08,meat free burrito,Medium,Dietary constraint / negation
-86,C08,dairy free pasta,Hard,Dietary constraint / negation
-87,C08,pescatarian dinner,Hard,Dietary constraint / negation
-88,C08,keto friendly,Hard,Dietary constraint / negation
-89,C09,prawn dish,Medium,Synonym / paraphrase
-90,C09,mussel or clam appetizer,Medium,Synonym / paraphrase
-91,C09,avocado toast,Hard,Synonym / paraphrase
-92,C09,flatbread,Medium,Synonym / paraphrase
-93,C09,corn tortilla chips and dip,Medium,Synonym / paraphrase
-94,C09,Mexican cheese dip,Easy,Synonym / paraphrase
-95,C09,cold raw fish,Medium,Synonym / paraphrase
-96,C09,Italian rice balls,Hard,Synonym / paraphrase
-97,C09,espresso based cocktail,Medium,Synonym / paraphrase
-98,C09,after dinner drink,Hard,Synonym / paraphrase
-99,C10,spicy vegetarian taco,Hard,Multi-constraint compositional
-100,C10,gluten free seafood under $30,Hard,Multi-constraint compositional
-101,C11,soup,Easy,Soup varieties
-102,C11,chicken soup,Easy,Soup varieties
-103,C11,tomato soup,Easy,Soup varieties
-104,C11,seafood soup,Easy,Soup varieties
-105,C11,spicy soup,Hard,Soup varieties
-106,C11,broth based soup,Hard,Soup varieties
-107,C11,vegetable soup,Medium,Soup varieties
-108,C12,burger,Easy,Burger varieties
-109,C12,cheeseburger,Easy,Burger varieties
-110,C12,chicken burger,Easy,Burger varieties
-111,C12,beef burger,Easy,Burger varieties
-112,C12,spicy burger,Medium,Burger varieties
-113,C12,Hawaiian burger,Easy,Burger varieties
-114,C13,taco,Easy,Taco varieties
-115,C13,fish taco,Easy,Taco varieties
-116,C13,beef taco,Easy,Taco varieties
-117,C13,chicken taco,Easy,Taco varieties
-118,C13,shrimp taco,Easy,Taco varieties
-119,C13,street taco,Easy,Taco varieties
-120,C13,hard taco,Easy,Taco varieties
-121,C13,soft taco,Medium,Taco varieties
-122,C14,pasta,Easy,Pasta varieties
-123,C14,spaghetti,Medium,Pasta varieties
-124,C14,rigatoni,Easy,Pasta varieties
-125,C14,bucatini,Easy,Pasta varieties
-126,C14,pasta with egg,Easy,Pasta varieties
-127,C14,homemade pasta,Easy,Pasta varieties
-128,C14,pasta in tomato sauce,Easy,Pasta varieties
-129,C14,pasta with truffle,Easy,Pasta varieties
-130,C15,sandwich,Easy,Sandwich varieties
-131,C15,turkey sandwich,Easy,Sandwich varieties
-132,C15,chicken sandwich,Easy,Sandwich varieties
-133,C15,BLT,Easy,Sandwich varieties
-134,C15,Italian sandwich,Medium,Sandwich varieties
-135,C15,focaccia sandwich,Easy,Sandwich varieties
-136,C15,club sandwich,Medium,Sandwich varieties
-137,C16,salad,Easy,Salad varieties
-138,C16,Caesar salad,Easy,Salad varieties
-139,C16,chicken salad,Easy,Salad varieties
-140,C16,taco salad,Easy,Salad varieties
-141,C16,avocado salad,Easy,Salad varieties
-142,C16,quinoa salad,Easy,Salad varieties
-143,C16,kale salad,Easy,Salad varieties
-144,C17,dessert,Medium,Dessert varieties
-145,C17,tiramisu,Easy,Dessert varieties
-146,C17,gelato,Easy,Dessert varieties
-147,C17,churros,Easy,Dessert varieties
-148,C17,flan,Easy,Dessert varieties
-149,C17,cheesecake,Easy,Dessert varieties
-150,C17,cookie,Easy,Dessert varieties
-151,C17,cannoli,Easy,Dessert varieties
-152,C18,chicken,Easy,Chicken dishes
-153,C18,grilled chicken,Easy,Chicken dishes
-154,C18,chicken with mushrooms,Easy,Chicken dishes
-155,C18,chicken in cream sauce,Easy,Chicken dishes
-156,C18,chicken with peppers,Easy,Chicken dishes
-157,C18,chicken with avocado,Easy,Chicken dishes
-158,C19,beef,Easy,Beef dishes
-159,C19,skirt steak,Easy,Beef dishes
-160,C19,ribeye,Easy,Beef dishes
-161,C19,ground beef,Easy,Beef dishes
-162,C19,beef stew,Medium,Beef dishes
-163,C19,short rib,Easy,Beef dishes
-164,C20,pork,Easy,Pork dishes
-165,C20,carnitas,Easy,Pork dishes
-166,C20,guanciale pasta,Easy,Pork dishes
-167,C20,pulled pork,Hard,Pork dishes
-168,C20,pork with green sauce,Medium,Pork dishes
-169,C20,bacon wrapped,Easy,Pork dishes
-170,C21,shrimp,Easy,Seafood dishes
-171,C21,garlic shrimp,Easy,Seafood dishes
-172,C21,shrimp with rice,Easy,Seafood dishes
-173,C21,crab,Easy,Seafood dishes
-174,C21,scallops,Easy,Seafood dishes
-175,C21,octopus,Easy,Seafood dishes
-176,C21,fish,Easy,Seafood dishes
-177,C21,tilapia,Easy,Seafood dishes
-178,C21,cod,Medium,Seafood dishes
-179,C22,black bean,Medium,Ingredient focus
-180,C22,avocado,Easy,Ingredient focus
-181,C22,chipotle sauce,Easy,Ingredient focus
-182,C22,mole sauce,Easy,Ingredient focus
-183,C22,tomatillo,Medium,Ingredient focus
-184,C22,pico de gallo,Easy,Ingredient focus
-185,C22,pesto,Easy,Ingredient focus
-186,C22,truffle,Easy,Ingredient focus
-187,C22,guacamole,Easy,Ingredient focus
-188,C22,salsa verde,Medium,Ingredient focus
-189,C23,noodle soup,Medium,Typical dish names
-190,C23,enchilada,Easy,Typical dish names
-191,C23,burrito,Easy,Typical dish names
-192,C23,quesadilla,Easy,Typical dish names
-193,C23,fajita,Easy,Typical dish names
-194,C23,chimichanga,Easy,Typical dish names
-195,C23,meatball,Easy,Typical dish names
-196,C23,lasagna,Easy,Typical dish names
-197,C23,risotto,Hard,Typical dish names
-198,C23,pancakes,Hard,Typical dish names
-199,C23,banh mi,Easy,Typical dish names
-200,C23,ceviche,Easy,Typical dish names
-201,C05,camarones a la diabla,Medium,Spelling variations
-202,C22,egg,Medium,Ingredient focus
-203,C22,turkey bacon,Medium,Ingredient focus
-204,C22,oyster,Easy,Ingredient focus
+C01-01,C01,Mexican food with shrimp,Medium,Cuisine type inference
+C01-02,C01,Italian pasta with meat sauce,Medium,Cuisine type inference
+C01-03,C01,Latin seafood dish,Medium,Cuisine type inference
+C01-04,C01,Tex-Mex combination plate,Hard,Cuisine type inference
+C01-05,C01,farm to table sandwich,Medium,Cuisine type inference
+C01-06,C01,taqueria style tacos,Hard,Cuisine type inference
+C01-07,C01,rustic Italian comfort food,Hard,Cuisine type inference
+C01-08,C01,fine dining pasta,Hard,Cuisine type inference
+C02-01,C02,seafood tacos,Medium,Ingredient generalization
+C02-02,C02,shellfish pasta,Medium,Ingredient generalization
+C02-03,C02,leafy green salad,Medium,Ingredient generalization
+C02-04,C02,stone fruit dessert,Hard,Ingredient generalization
+C02-05,C02,smoked meat sandwich,Hard,Ingredient generalization
+C02-06,C02,cured meat appetizer,Medium,Ingredient generalization
+C02-07,C02,steak dish,Easy,Ingredient generalization
+C02-08,C02,fresh cheese salad,Medium,Ingredient generalization
+C02-09,C02,pork dishes,Easy,Ingredient generalization
+C02-10,C02,citrus fish,Medium,Ingredient generalization
+C03-01,C03,spicy shrimp,Medium,Attribute / implied meaning
+C03-02,C03,something smoky,Hard,Attribute / implied meaning
+C03-03,C03,rich creamy pasta,Medium,Attribute / implied meaning
+C03-04,C03,light fresh starter,Medium,Attribute / implied meaning
+C03-05,C03,fire grilled meat,Medium,Attribute / implied meaning
+C03-06,C03,comfort food pasta,Hard,Attribute / implied meaning
+C03-07,C03,umami dish,Hard,Attribute / implied meaning
+C03-08,C03,gut feeling filling meal,Hard,Attribute / implied meaning
+C03-09,C03,cajun style shrimp,Hard,Attribute / implied meaning
+C03-10,C03,tangy dressing salad,Medium,Attribute / implied meaning
+C03-11,C03,charred vegetables,Medium,Attribute / implied meaning
+C03-12,C03,indulgent dessert,Hard,Attribute / implied meaning
+C04-01,C04,charbroiled steak,Easy,Cooking method synonyms
+C04-02,C04,seared fish,Medium,Cooking method synonyms
+C04-03,C04,pan seared salmon,Medium,Cooking method synonyms
+C04-04,C04,blackened chicken,Hard,Cooking method synonyms
+C04-05,C04,flame broiled burger,Medium,Cooking method synonyms
+C04-06,C04,wood fired pizza,Hard,Cooking method synonyms
+C04-07,C04,slow cooked pork,Medium,Cooking method synonyms
+C04-08,C04,braised beef,Medium,Cooking method synonyms
+C04-09,C04,deep fried appetizer,Easy,Cooking method synonyms
+C04-10,C04,crispy fried chicken,Easy,Cooking method synonyms
+C05-01,C05,caeser salad,Easy,Spelling variations
+C05-02,C05,quesedilla,Easy,Spelling variations
+C05-03,C05,guacamolee,Easy,Spelling variations
+C05-04,C05,enchilladas,Easy,Spelling variations
+C05-05,C05,fettucine carbonara,Medium,Spelling variations
+C05-06,C05,tiramisou,Easy,Spelling variations
+C05-07,C05,prosciuto,Easy,Spelling variations
+C05-08,C05,cevice,Easy,Spelling variations
+C05-09,C05,proscuitto and melon,Medium,Spelling variations
+C05-10,C05,rigatonni bolognese,Easy,Spelling variations
+C05-11,C05,canoli,Easy,Spelling variations
+C05-12,C05,burratta,Easy,Spelling variations
+C05-13,C05,halebut,Easy,Spelling variations
+C05-14,C05,focacia sandwich,Easy,Spelling variations
+C05-15,C05,camarones a la diabla,Medium,Spelling variations
+C06-01,C06,roasted carrot,Easy,Stemming & lemmatization
+C06-02,C06,grilling octopus,Easy,Stemming & lemmatization
+C06-03,C06,fried artichoke,Easy,Stemming & lemmatization
+C06-04,C06,marinated steak,Easy,Stemming & lemmatization
+C06-05,C06,sauted mushroom,Medium,Stemming & lemmatization
+C06-06,C06,slow braising short rib,Medium,Stemming & lemmatization
+C06-07,C06,breading calamari,Easy,Stemming & lemmatization
+C06-08,C06,compress melon,Medium,Stemming & lemmatization
+C06-09,C06,season chicken,Easy,Stemming & lemmatization
+C06-10,C06,pickle vegetables,Easy,Stemming & lemmatization
+C07-01,C07,cacio e pepe,Easy,Hyphenation / spacing / stop words
+C07-02,C07,cacioepepe,Easy,Hyphenation / spacing / stop words
+C07-03,C07,al pastor,Easy,Hyphenation / spacing / stop words
+C07-04,C07,alpastor taco,Easy,Hyphenation / spacing / stop words
+C07-05,C07,mojo de ajo shrimp,Easy,Hyphenation / spacing / stop words
+C07-06,C07,arroz con pollo,Easy,Hyphenation / spacing / stop words
+C07-07,C07,arrozconpollo,Easy,Hyphenation / spacing / stop words
+C07-08,C07,due cucina pasta,Easy,Hyphenation / spacing / stop words
+C07-09,C07,staple fancy restaurant,Easy,Hyphenation / spacing / stop words
+C07-10,C07,non dairy pasta,Medium,Hyphenation / spacing / stop words
+C07-11,C07,gluten free pasta,Easy,Hyphenation / spacing / stop words
+C07-12,C07,glutenfree option,Easy,Hyphenation / spacing / stop words
+C07-13,C07,farm-to-table lunch,Easy,Hyphenation / spacing / stop words
+C07-14,C07,egg-free dessert,Hard,Hyphenation / spacing / stop words
+C08-01,C08,vegetarian Mexican food,Medium,Dietary constraint / negation
+C08-02,C08,vegan sandwich,Easy,Dietary constraint / negation
+C08-03,C08,no gluten pasta,Medium,Dietary constraint / negation
+C08-04,C08,without dairy,Medium,Dietary constraint / negation
+C08-05,C08,nut free salad,Hard,Dietary constraint / negation
+C08-06,C08,plant based option,Easy,Dietary constraint / negation
+C08-07,C08,meat free burrito,Medium,Dietary constraint / negation
+C08-08,C08,dairy free pasta,Hard,Dietary constraint / negation
+C08-09,C08,pescatarian dinner,Hard,Dietary constraint / negation
+C08-10,C08,keto friendly,Hard,Dietary constraint / negation
+C09-01,C09,prawn dish,Medium,Synonym / paraphrase
+C09-02,C09,mussel or clam appetizer,Medium,Synonym / paraphrase
+C09-03,C09,avocado toast,Hard,Synonym / paraphrase
+C09-04,C09,flatbread,Medium,Synonym / paraphrase
+C09-05,C09,corn tortilla chips and dip,Medium,Synonym / paraphrase
+C09-06,C09,Mexican cheese dip,Easy,Synonym / paraphrase
+C09-07,C09,cold raw fish,Medium,Synonym / paraphrase
+C09-08,C09,Italian rice balls,Hard,Synonym / paraphrase
+C09-09,C09,espresso based cocktail,Medium,Synonym / paraphrase
+C09-10,C09,after dinner drink,Hard,Synonym / paraphrase
+C10-01,C10,spicy vegetarian taco,Hard,Multi-constraint compositional
+C10-02,C10,gluten free seafood under $30,Hard,Multi-constraint compositional
+C11-01,C11,soup,Easy,Soup varieties
+C11-02,C11,chicken soup,Easy,Soup varieties
+C11-03,C11,tomato soup,Easy,Soup varieties
+C11-04,C11,seafood soup,Easy,Soup varieties
+C11-05,C11,spicy soup,Hard,Soup varieties
+C11-06,C11,broth based soup,Hard,Soup varieties
+C11-07,C11,vegetable soup,Medium,Soup varieties
+C12-01,C12,burger,Easy,Burger varieties
+C12-02,C12,cheeseburger,Easy,Burger varieties
+C12-03,C12,chicken burger,Easy,Burger varieties
+C12-04,C12,beef burger,Easy,Burger varieties
+C12-05,C12,spicy burger,Medium,Burger varieties
+C12-06,C12,Hawaiian burger,Easy,Burger varieties
+C13-01,C13,taco,Easy,Taco varieties
+C13-02,C13,fish taco,Easy,Taco varieties
+C13-03,C13,beef taco,Easy,Taco varieties
+C13-04,C13,chicken taco,Easy,Taco varieties
+C13-05,C13,shrimp taco,Easy,Taco varieties
+C13-06,C13,street taco,Easy,Taco varieties
+C13-07,C13,hard taco,Easy,Taco varieties
+C13-08,C13,soft taco,Medium,Taco varieties
+C14-01,C14,pasta,Easy,Pasta varieties
+C14-02,C14,spaghetti,Medium,Pasta varieties
+C14-03,C14,rigatoni,Easy,Pasta varieties
+C14-04,C14,bucatini,Easy,Pasta varieties
+C14-05,C14,pasta with egg,Easy,Pasta varieties
+C14-06,C14,homemade pasta,Easy,Pasta varieties
+C14-07,C14,pasta in tomato sauce,Easy,Pasta varieties
+C14-08,C14,pasta with truffle,Easy,Pasta varieties
+C15-01,C15,sandwich,Easy,Sandwich varieties
+C15-02,C15,turkey sandwich,Easy,Sandwich varieties
+C15-03,C15,chicken sandwich,Easy,Sandwich varieties
+C15-04,C15,BLT,Easy,Sandwich varieties
+C15-05,C15,Italian sandwich,Medium,Sandwich varieties
+C15-06,C15,focaccia sandwich,Easy,Sandwich varieties
+C15-07,C15,club sandwich,Medium,Sandwich varieties
+C16-01,C16,salad,Easy,Salad varieties
+C16-02,C16,Caesar salad,Easy,Salad varieties
+C16-03,C16,chicken salad,Easy,Salad varieties
+C16-04,C16,taco salad,Easy,Salad varieties
+C16-05,C16,avocado salad,Easy,Salad varieties
+C16-06,C16,quinoa salad,Easy,Salad varieties
+C16-07,C16,kale salad,Easy,Salad varieties
+C17-01,C17,dessert,Medium,Dessert varieties
+C17-02,C17,tiramisu,Easy,Dessert varieties
+C17-03,C17,gelato,Easy,Dessert varieties
+C17-04,C17,churros,Easy,Dessert varieties
+C17-05,C17,flan,Easy,Dessert varieties
+C17-06,C17,cheesecake,Easy,Dessert varieties
+C17-07,C17,cookie,Easy,Dessert varieties
+C17-08,C17,cannoli,Easy,Dessert varieties
+C18-01,C18,chicken,Easy,Chicken dishes
+C18-02,C18,grilled chicken,Easy,Chicken dishes
+C18-03,C18,chicken with mushrooms,Easy,Chicken dishes
+C18-04,C18,chicken in cream sauce,Easy,Chicken dishes
+C18-05,C18,chicken with peppers,Easy,Chicken dishes
+C18-06,C18,chicken with avocado,Easy,Chicken dishes
+C19-01,C19,beef,Easy,Beef dishes
+C19-02,C19,skirt steak,Easy,Beef dishes
+C19-03,C19,ribeye,Easy,Beef dishes
+C19-04,C19,ground beef,Easy,Beef dishes
+C19-05,C19,beef stew,Medium,Beef dishes
+C19-06,C19,short rib,Easy,Beef dishes
+C20-01,C20,pork,Easy,Pork dishes
+C20-02,C20,carnitas,Easy,Pork dishes
+C20-03,C20,guanciale pasta,Easy,Pork dishes
+C20-04,C20,pulled pork,Hard,Pork dishes
+C20-05,C20,pork with green sauce,Medium,Pork dishes
+C20-06,C20,bacon wrapped,Easy,Pork dishes
+C21-01,C21,shrimp,Easy,Seafood dishes
+C21-02,C21,garlic shrimp,Easy,Seafood dishes
+C21-03,C21,shrimp with rice,Easy,Seafood dishes
+C21-04,C21,crab,Easy,Seafood dishes
+C21-05,C21,scallops,Easy,Seafood dishes
+C21-06,C21,octopus,Easy,Seafood dishes
+C21-07,C21,fish,Easy,Seafood dishes
+C21-08,C21,tilapia,Easy,Seafood dishes
+C21-09,C21,cod,Medium,Seafood dishes
+C22-01,C22,black bean,Medium,Ingredient focus
+C22-02,C22,avocado,Easy,Ingredient focus
+C22-03,C22,chipotle sauce,Easy,Ingredient focus
+C22-04,C22,mole sauce,Easy,Ingredient focus
+C22-05,C22,tomatillo,Medium,Ingredient focus
+C22-06,C22,pico de gallo,Easy,Ingredient focus
+C22-07,C22,pesto,Easy,Ingredient focus
+C22-08,C22,truffle,Easy,Ingredient focus
+C22-09,C22,guacamole,Easy,Ingredient focus
+C22-10,C22,salsa verde,Medium,Ingredient focus
+C22-11,C22,egg,Medium,Ingredient focus
+C22-12,C22,turkey bacon,Medium,Ingredient focus
+C22-13,C22,oyster,Easy,Ingredient focus
+C23-01,C23,noodle soup,Medium,Typical dish names
+C23-02,C23,enchilada,Easy,Typical dish names
+C23-03,C23,burrito,Easy,Typical dish names
+C23-04,C23,quesadilla,Easy,Typical dish names
+C23-05,C23,fajita,Easy,Typical dish names
+C23-06,C23,chimichanga,Easy,Typical dish names
+C23-07,C23,meatball,Easy,Typical dish names
+C23-08,C23,lasagna,Easy,Typical dish names
+C23-09,C23,risotto,Hard,Typical dish names
+C23-10,C23,pancakes,Hard,Typical dish names
+C23-11,C23,banh mi,Easy,Typical dish names
+C23-12,C23,ceviche,Easy,Typical dish names
+C24-01,C24,pizza,Easy,Pizza varieties
+C24-02,C24,cheese pizza,Easy,Pizza varieties
+C24-03,C24,mexican pizza,Easy,Pizza varieties
+C25-01,C25,happy hour,Easy,Occasion / meal-time
+C25-02,C25,happy hour appetizers,Medium,Occasion / meal-time

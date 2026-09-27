@@ -1,121 +1,146 @@
 restaurant,query_id,menu_item,relevance
-staple-and-fancy,2,Mezze Rigatoni,2
-staple-and-fancy,2,Shrimp & Clam Bucatini,1
-staple-and-fancy,7,Mezze Rigatoni,2
-staple-and-fancy,7,Cacio e Pepe Bucatini,2
-staple-and-fancy,7,Tiramisu,1
-staple-and-fancy,8,Pappardelle,2
-staple-and-fancy,8,Gramigna,2
-staple-and-fancy,8,Mezze Rigatoni,1
-staple-and-fancy,10,Pappardelle,2
-staple-and-fancy,10,Shrimp & Clam Bucatini,2
-staple-and-fancy,11,Gem Lettuce,2
-staple-and-fancy,11,Little Gem,1
-staple-and-fancy,12,Burrata,1
-staple-and-fancy,14,Prosciutto,2
-staple-and-fancy,14,Bruschetta,1
-staple-and-fancy,15,SRF Skirt Wagyu,2
-staple-and-fancy,15,Coulotte Steak,2
-staple-and-fancy,16,Burrata,2
-staple-and-fancy,18,Halibut,2
-staple-and-fancy,18,Pappardelle,1
-staple-and-fancy,20,Smoked Fish Bruschetta,2
-staple-and-fancy,21,Cacio e Pepe Bucatini,2
-staple-and-fancy,21,Pappardelle,1
-staple-and-fancy,22,Hamachi Crudo,2
-staple-and-fancy,22,Spring Pea Soup,1
-staple-and-fancy,23,SRF Skirt Wagyu,2
-staple-and-fancy,23,Duck Breast,2
-staple-and-fancy,23,Halibut,1
-staple-and-fancy,24,Mezze Rigatoni,2
-staple-and-fancy,24,Cacio e Pepe Bucatini,2
-staple-and-fancy,25,Cacio e Pepe Bucatini,2
-staple-and-fancy,25,Mezze Rigatoni,1
-staple-and-fancy,28,Gem Lettuce,2
-staple-and-fancy,29,Fried Artichokes,2
-staple-and-fancy,29,Roasted Carrots,2
-staple-and-fancy,30,Affogato Ubriaco,2
-staple-and-fancy,30,Espresso Affogato,1
-staple-and-fancy,30,Tiramisu,1
-staple-and-fancy,32,Halibut,2
-staple-and-fancy,32,Grilled Octopus,1
-staple-and-fancy,33,Halibut,1
-staple-and-fancy,39,Fried Oysters,2
-staple-and-fancy,39,Fried Artichokes,2
-staple-and-fancy,47,Prosciutto,2
-staple-and-fancy,49,Prosciutto,2
-staple-and-fancy,52,Burrata,2
-staple-and-fancy,53,Halibut,2
-staple-and-fancy,55,Roasted Carrots,2
-staple-and-fancy,56,Grilled Octopus,2
-staple-and-fancy,57,Fried Artichokes,2
-staple-and-fancy,62,Prosciutto,2
-staple-and-fancy,65,Cacio e Pepe Bucatini,2
-staple-and-fancy,66,Cacio e Pepe Bucatini,2
-staple-and-fancy,74,Gramigna,1
-staple-and-fancy,74,Shrimp & Clam Bucatini,1
-staple-and-fancy,75,Pappardelle,1
-staple-and-fancy,75,Shrimp & Clam Bucatini,1
-staple-and-fancy,76,Pappardelle,1
-staple-and-fancy,82,Hamachi Crudo,2
-staple-and-fancy,82,Gem Lettuce,1
-staple-and-fancy,87,Halibut,2
-staple-and-fancy,87,Pappardelle,2
-staple-and-fancy,87,Shrimp & Clam Bucatini,2
-staple-and-fancy,87,Grilled Octopus,1
-staple-and-fancy,95,Hamachi Crudo,2
-staple-and-fancy,97,Espresso Martini,2
-staple-and-fancy,97,"Oh, George",1
-staple-and-fancy,98,Averna,2
-staple-and-fancy,98,Montenegro,2
-staple-and-fancy,98,"10 yr Tawny Port, Douro",2
-staple-and-fancy,98,Badia a Coltibuono Vin Santo del Chianti Classico 2013,1
-staple-and-fancy,100,Grilled Octopus,2
-staple-and-fancy,100,Halibut,1
-staple-and-fancy,101,Spring Pea Soup,2
-staple-and-fancy,122,Pappardelle,2
-staple-and-fancy,122,Mezze Rigatoni,2
-staple-and-fancy,122,Shrimp & Clam Bucatini,2
-staple-and-fancy,122,Cacio e Pepe Bucatini,2
-staple-and-fancy,122,Gramigna,2
-staple-and-fancy,123,Cacio e Pepe Bucatini,1
-staple-and-fancy,124,Mezze Rigatoni,2
-staple-and-fancy,125,Shrimp & Clam Bucatini,2
-staple-and-fancy,125,Cacio e Pepe Bucatini,2
-
-staple-and-fancy,126,Cacio e Pepe Bucatini,1
-staple-and-fancy,127,Pappardelle,2
-staple-and-fancy,127,Mezze Rigatoni,2
-staple-and-fancy,127,Gramigna,2
-staple-and-fancy,128,Mezze Rigatoni,1
-
-staple-and-fancy,129,Cacio e Pepe Bucatini,2
-staple-and-fancy,129,Bucatini,2
-staple-and-fancy,137,Gem Lettuce,2
-staple-and-fancy,137,Little Gem,2
-
-staple-and-fancy,144,Tiramisu,2
-staple-and-fancy,144,Cheesecake,2
-staple-and-fancy,144,Espresso Affogato,2
-staple-and-fancy,144,Affogato Ubriaco,2
-staple-and-fancy,144,Vanilla Gelato,2
-staple-and-fancy,144,Sorbetto,2
-staple-and-fancy,145,Tiramisu,2
-staple-and-fancy,146,Vanilla Gelato,2
-staple-and-fancy,146,Espresso Affogato,1
-staple-and-fancy,146,Affogato Ubriaco,1
-staple-and-fancy,149,Cheesecake,2
-staple-and-fancy,152,Duck Breast,1
-staple-and-fancy,158,SRF Skirt Wagyu,2
-staple-and-fancy,158,Coulotte Steak,2
-staple-and-fancy,163,Mezze Rigatoni,1
-staple-and-fancy,170,Shrimp & Clam Bucatini,2
-staple-and-fancy,170,Pappardelle,1
-staple-and-fancy,173,Pappardelle,2
-staple-and-fancy,175,Grilled Octopus,2
-staple-and-fancy,176,Halibut,2
-staple-and-fancy,176,Smoked Fish Bruschetta,1
-staple-and-fancy,186,Cacio e Pepe Bucatini,2
-staple-and-fancy,186,Bucatini,2
-staple-and-fancy,195,Mezze Rigatoni,1
-staple-and-fancy,204,Fried Oysters,2
+staple-and-fancy,C01-02,Mezze Rigatoni,2
+staple-and-fancy,C01-02,Shrimp & Clam Bucatini,1
+staple-and-fancy,C01-07,Cacio e Pepe Bucatini,2
+staple-and-fancy,C01-07,Mezze Rigatoni,2
+staple-and-fancy,C01-07,Tiramisu,1
+staple-and-fancy,C01-08,Gramigna,2
+staple-and-fancy,C01-08,Mezze Rigatoni,1
+staple-and-fancy,C01-08,Pappardelle,2
+staple-and-fancy,C02-02,Pappardelle,2
+staple-and-fancy,C02-02,Shrimp & Clam Bucatini,2
+staple-and-fancy,C02-03,Gem Lettuce,2
+staple-and-fancy,C02-03,Little Gem,1
+staple-and-fancy,C02-04,Burrata,1
+staple-and-fancy,C02-06,Bruschetta,1
+staple-and-fancy,C02-06,Prosciutto,2
+staple-and-fancy,C02-07,Coulotte Steak,2
+staple-and-fancy,C02-07,SRF Skirt Wagyu,2
+staple-and-fancy,C02-08,Burrata,2
+staple-and-fancy,C02-10,Halibut,2
+staple-and-fancy,C02-10,Pappardelle,1
+staple-and-fancy,C03-02,Smoked Fish Bruschetta,2
+staple-and-fancy,C03-03,Cacio e Pepe Bucatini,2
+staple-and-fancy,C03-03,Pappardelle,1
+staple-and-fancy,C03-04,Hamachi Crudo,2
+staple-and-fancy,C03-04,Spring Pea Soup,1
+staple-and-fancy,C03-05,Duck Breast,2
+staple-and-fancy,C03-05,Halibut,1
+staple-and-fancy,C03-05,SRF Skirt Wagyu,2
+staple-and-fancy,C03-06,Cacio e Pepe Bucatini,2
+staple-and-fancy,C03-06,Mezze Rigatoni,2
+staple-and-fancy,C03-07,Cacio e Pepe Bucatini,2
+staple-and-fancy,C03-07,Mezze Rigatoni,1
+staple-and-fancy,C03-10,Gem Lettuce,2
+staple-and-fancy,C03-11,Fried Artichokes,2
+staple-and-fancy,C03-11,Roasted Carrots,2
+staple-and-fancy,C03-12,Affogato Ubriaco,2
+staple-and-fancy,C03-12,Espresso Affogato,1
+staple-and-fancy,C03-12,Tiramisu,1
+staple-and-fancy,C04-02,Grilled Octopus,1
+staple-and-fancy,C04-02,Halibut,2
+staple-and-fancy,C04-03,Halibut,1
+staple-and-fancy,C04-09,Fried Artichokes,2
+staple-and-fancy,C04-09,Fried Oysters,2
+staple-and-fancy,C05-07,Prosciutto,2
+staple-and-fancy,C05-09,Prosciutto,2
+staple-and-fancy,C05-12,Burrata,2
+staple-and-fancy,C05-13,Halibut,2
+staple-and-fancy,C06-01,Roasted Carrots,2
+staple-and-fancy,C06-02,Grilled Octopus,2
+staple-and-fancy,C06-03,Fried Artichokes,2
+staple-and-fancy,C06-08,Prosciutto,2
+staple-and-fancy,C07-01,Cacio e Pepe Bucatini,2
+staple-and-fancy,C07-02,Cacio e Pepe Bucatini,2
+staple-and-fancy,C07-10,Gramigna,1
+staple-and-fancy,C07-10,Shrimp & Clam Bucatini,1
+staple-and-fancy,C07-11,Pappardelle,1
+staple-and-fancy,C07-11,Shrimp & Clam Bucatini,1
+staple-and-fancy,C07-12,Pappardelle,1
+staple-and-fancy,C08-04,Gem Lettuce,1
+staple-and-fancy,C08-04,Hamachi Crudo,2
+staple-and-fancy,C08-09,Grilled Octopus,1
+staple-and-fancy,C08-09,Halibut,2
+staple-and-fancy,C08-09,Pappardelle,2
+staple-and-fancy,C08-09,Shrimp & Clam Bucatini,2
+staple-and-fancy,C09-07,Hamachi Crudo,2
+staple-and-fancy,C09-09,Espresso Martini,2
+staple-and-fancy,C09-09,"Oh, George",1
+staple-and-fancy,C09-10,"10 yr Tawny Port, Douro",2
+staple-and-fancy,C09-10,Averna,2
+staple-and-fancy,C09-10,Badia a Coltibuono Vin Santo del Chianti Classico 2013,1
+staple-and-fancy,C09-10,Montenegro,2
+staple-and-fancy,C10-02,Grilled Octopus,2
+staple-and-fancy,C10-02,Halibut,1
+staple-and-fancy,C11-01,Spring Pea Soup,2
+staple-and-fancy,C14-01,Cacio e Pepe Bucatini,2
+staple-and-fancy,C14-01,Gramigna,2
+staple-and-fancy,C14-01,Mezze Rigatoni,2
+staple-and-fancy,C14-01,Pappardelle,2
+staple-and-fancy,C14-01,Shrimp & Clam Bucatini,2
+staple-and-fancy,C14-02,Cacio e Pepe Bucatini,1
+staple-and-fancy,C14-03,Mezze Rigatoni,2
+staple-and-fancy,C14-04,Cacio e Pepe Bucatini,2
+staple-and-fancy,C14-04,Shrimp & Clam Bucatini,2
+staple-and-fancy,C14-05,Cacio e Pepe Bucatini,1
+staple-and-fancy,C14-06,Gramigna,2
+staple-and-fancy,C14-06,Mezze Rigatoni,2
+staple-and-fancy,C14-06,Pappardelle,2
+staple-and-fancy,C14-07,Mezze Rigatoni,1
+staple-and-fancy,C14-08,Bucatini,2
+staple-and-fancy,C14-08,Cacio e Pepe Bucatini,2
+staple-and-fancy,C16-01,Gem Lettuce,2
+staple-and-fancy,C16-01,Little Gem,2
+staple-and-fancy,C17-01,Affogato Ubriaco,2
+staple-and-fancy,C17-01,Cheesecake,2
+staple-and-fancy,C17-01,Espresso Affogato,2
+staple-and-fancy,C17-01,Sorbetto,2
+staple-and-fancy,C17-01,Tiramisu,2
+staple-and-fancy,C17-01,Vanilla Gelato,2
+staple-and-fancy,C17-02,Tiramisu,2
+staple-and-fancy,C17-03,Affogato Ubriaco,1
+staple-and-fancy,C17-03,Espresso Affogato,1
+staple-and-fancy,C17-03,Vanilla Gelato,2
+staple-and-fancy,C17-06,Cheesecake,2
+staple-and-fancy,C18-01,Duck Breast,1
+staple-and-fancy,C19-01,Coulotte Steak,2
+staple-and-fancy,C19-01,SRF Skirt Wagyu,2
+staple-and-fancy,C19-06,Mezze Rigatoni,1
+staple-and-fancy,C21-01,Pappardelle,1
+staple-and-fancy,C21-01,Shrimp & Clam Bucatini,2
+staple-and-fancy,C21-04,Pappardelle,2
+staple-and-fancy,C21-06,Grilled Octopus,2
+staple-and-fancy,C21-07,Halibut,2
+staple-and-fancy,C21-07,Smoked Fish Bruschetta,1
+staple-and-fancy,C22-08,Bucatini,2
+staple-and-fancy,C22-08,Cacio e Pepe Bucatini,2
+staple-and-fancy,C22-13,Fried Oysters,2
+staple-and-fancy,C23-07,Mezze Rigatoni,1
+staple-and-fancy,C25-01,Bale Breaker 'Field 41' Pale Ale,2
+staple-and-fancy,C25-01,Burrata,2
+staple-and-fancy,C25-01,Cacio e Pepe Bucatini,2
+staple-and-fancy,C25-01,Daiquiri,2
+staple-and-fancy,C25-01,ESR 'Annabelle' Friuli,2
+staple-and-fancy,C25-01,ESR 'Grace' Prosecco,2
+staple-and-fancy,C25-01,Fremont Pilsner,2
+staple-and-fancy,C25-01,Marinated Olives,2
+staple-and-fancy,C25-01,Mezze Rigatoni,2
+staple-and-fancy,C25-01,Old Fashioned,2
+staple-and-fancy,C25-01,Paloma,2
+staple-and-fancy,C25-01,Pegu Club,2
+staple-and-fancy,C25-01,Prosciutto,2
+staple-and-fancy,C25-01,Rainier,2
+staple-and-fancy,C25-01,Rigatoni alla Vodka,2
+staple-and-fancy,C25-01,Ship Canal Spritz,2
+staple-and-fancy,C25-01,Shrubs & Bubbs,2
+staple-and-fancy,C25-01,Smoked Fish Bruschetta,2
+staple-and-fancy,C25-01,Sourdough,2
+staple-and-fancy,C25-01,Trere 'Sperone',2
+staple-and-fancy,C25-02,Burrata,2
+staple-and-fancy,C25-02,Cacio e Pepe Bucatini,1
+staple-and-fancy,C25-02,Marinated Olives,2
+staple-and-fancy,C25-02,Mezze Rigatoni,1
+staple-and-fancy,C25-02,Prosciutto,2
+staple-and-fancy,C25-02,Rigatoni alla Vodka,1
+staple-and-fancy,C25-02,Smoked Fish Bruschetta,2
+staple-and-fancy,C25-02,Sourdough,2
