@@ -48,6 +48,7 @@ Usage:
   python soft_bm25_search.py --vectors /path/to/numberbatch-en-19.08.txt --b 0.75 --k1 1.5 pizza   # reproduce old defaults
 """
 
+import argparse
 import gzip
 import math
 import sys
@@ -58,6 +59,66 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).parents[1]))
 from lib.data import load_data
+
+
+def cli_args() -> argparse.ArgumentParser:
+    """
+    Reusable CLI-flag fragment for this module's scoring/segmentation parameters.
+
+    Any script can add these flags without redefining them by passing
+    `parents=[cli_args()]` to its own ArgumentParser — see evaluate.py.
+    `add_help=False` is required on parent parsers (argparse would otherwise
+    register -h/--help twice and raise a conflict).
+    """
+    parser = argparse.ArgumentParser(add_help=False)
+    parser.add_argument(
+        "--segmenter",
+        choices=["fmm", "spacy_bert", "bert_subword"],
+        default="fmm",
+        help=(
+            "Tokeniser/segmenter: "
+            "fmm (ConceptNet FMM, default), "
+            "spacy_bert (spaCy noun chunks + BERT contextual vectors), "
+            "bert_subword (BERT WordPiece + BERT contextual vectors)"
+        ),
+    )
+    parser.add_argument(
+        "--vectors",
+        help="Path to ConceptNet Numberbatch txt or txt.gz (required for --segmenter fmm)",
+    )
+    parser.add_argument(
+        "--max-phrase-len", type=int, default=3,
+        help="Max words to merge into a phrase token (fmm only, default 3)",
+    )
+    parser.add_argument(
+        "--threshold", type=float, default=0.5,
+        help="Min cosine similarity to count as a soft match (default 0.5)",
+    )
+    parser.add_argument(
+        "--k1", type=float, default=2.0,
+        help="BM25 saturation steepness for --combiner bm25 (default 2.0; barely matters, see module docstring)",
+    )
+    parser.add_argument(
+        "--b", type=float, default=0.0,
+        help="BM25 document-length normalization for --combiner bm25 (default 0.0 — see module docstring for why)",
+    )
+    parser.add_argument(
+        "--composition", choices=["mean", "idf_mean"], default="mean",
+        help="Phrase vector composition for fmm (default mean)",
+    )
+    parser.add_argument(
+        "--combiner", choices=["bm25", "plus", "product", "min"], default="bm25",
+        help=(
+            "How to combine per-term scores: "
+            "bm25 (IDF-weighted sum, OR), plus (raw sum, OR), "
+            "product (AND), min (AND); default: bm25"
+        ),
+    )
+    parser.add_argument(
+        "--spell-correct", action="store_true",
+        help="Spell-correct query tokens that have no embedding (uses pyspellchecker)",
+    )
+    return parser
 
 
 # ── Text normalisation ─────────────────────────────────────────────────────────
@@ -734,61 +795,13 @@ def search_contextual(
 # ── CLI ────────────────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
-    import argparse
-
     parser = argparse.ArgumentParser(
-        description="Phrase-aware Soft-BM25 menu search (Approach 3.5)"
-    )
-    parser.add_argument(
-        "--segmenter",
-        choices=["fmm", "spacy_bert", "bert_subword"],
-        default="fmm",
-        help=(
-            "Tokeniser/segmenter: "
-            "fmm (ConceptNet FMM, default), "
-            "spacy_bert (spaCy noun chunks + BERT contextual vectors), "
-            "bert_subword (BERT WordPiece + BERT contextual vectors)"
-        ),
-    )
-    parser.add_argument(
-        "--vectors",
-        help="Path to ConceptNet Numberbatch txt or txt.gz (required for --segmenter fmm)",
-    )
-    parser.add_argument(
-        "--max-phrase-len", type=int, default=3,
-        help="Max words to merge into a phrase token (fmm only, default 3)",
-    )
-    parser.add_argument(
-        "--threshold", type=float, default=0.5,
-        help="Min cosine similarity to count as a soft match (default 0.5)",
-    )
-    parser.add_argument(
-        "--k1", type=float, default=2.0,
-        help="BM25 saturation steepness for --combiner bm25 (default 2.0; barely matters, see module docstring)",
-    )
-    parser.add_argument(
-        "--b", type=float, default=0.0,
-        help="BM25 document-length normalization for --combiner bm25 (default 0.0 — see module docstring for why)",
-    )
-    parser.add_argument(
-        "--composition", choices=["mean", "idf_mean"], default="mean",
-        help="Phrase vector composition for fmm (default mean)",
-    )
-    parser.add_argument(
-        "--combiner", choices=["bm25", "plus", "product", "min"], default="bm25",
-        help=(
-            "How to combine per-term scores: "
-            "bm25 (IDF-weighted sum, OR), plus (raw sum, OR), "
-            "product (AND), min (AND); default: bm25"
-        ),
+        description="Phrase-aware Soft-BM25 menu search (Approach 3.5)",
+        parents=[cli_args()],
     )
     parser.add_argument(
         "--show-tokens", action="store_true",
         help="Print phrase tokens for each result (useful for debugging)",
-    )
-    parser.add_argument(
-        "--spell-correct", action="store_true",
-        help="Spell-correct query tokens that have no embedding (uses pyspellchecker)",
     )
     parser.add_argument("terms", nargs="+", help="Query words")
     args = parser.parse_args()

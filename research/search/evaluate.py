@@ -241,7 +241,16 @@ def print_report(results: dict, k_ndcg: int = 5, k_recall: int = 10) -> None:
 if __name__ == "__main__":
     import argparse
 
-    parser = argparse.ArgumentParser(description="Evaluate search against the benchmark")
+    # Needed before parser construction, not just before the engine branches below,
+    # since colbert_search/soft_bm25_search's own flags are pulled in via parents=.
+    sys.path.insert(0, str(_ROOT / "research" / "search"))
+    import colbert_search
+    import soft_bm25_search
+
+    parser = argparse.ArgumentParser(
+        description="Evaluate search against the benchmark",
+        parents=[colbert_search.cli_args(), soft_bm25_search.cli_args()],
+    )
     parser.add_argument("--category", help="Filter to one category, e.g. C01")
     parser.add_argument("--difficulty", choices=["Easy", "Medium", "Hard"])
     parser.add_argument("--verbose", "-v", action="store_true")
@@ -252,42 +261,10 @@ if __name__ == "__main__":
         help="Search engine: text (baseline), enhanced, filtered, soft_bm25, sbert, colbert (default: text)",
     )
     parser.add_argument(
-        "--vectors",
-        help="Path to ConceptNet Numberbatch vectors file (required for --engine soft_bm25)",
-    )
-    parser.add_argument(
         "--model", default="all-MiniLM-L6-v2",
         help="Sentence-transformers model name (default: all-MiniLM-L6-v2, used by --engine sbert)",
     )
-    parser.add_argument(
-        "--combiner", choices=["bm25", "plus", "product", "min"], default="bm25",
-        help="Score combiner for --engine soft_bm25 (default: bm25)",
-    )
-    parser.add_argument(
-        "--segmenter", choices=["fmm", "spacy_bert", "bert_subword"], default="fmm",
-        help="Tokeniser for --engine soft_bm25: fmm (default), spacy_bert, bert_subword",
-    )
-    parser.add_argument(
-        "--spell-correct", action="store_true",
-        help="Spell-correct query tokens that have no embedding (soft_bm25 + fmm only)",
-    )
-    parser.add_argument(
-        "--k1", type=float, default=None,
-        help="BM25 saturation steepness for --engine soft_bm25 --combiner bm25 (default: soft_bm25_search.py's own default, 2.0)",
-    )
-    parser.add_argument(
-        "--b", type=float, default=None,
-        help="BM25 document-length normalization for --engine soft_bm25 --combiner bm25 (default: soft_bm25_search.py's own default, 0.0 — benchmark sweep found b>0 monotonically hurts NDCG@5)",
-    )
-    parser.add_argument(
-        "--query-length", type=int, default=None,
-        help="ColBERT query token length incl. mask-padding (--engine colbert only). "
-             "Default: model's own default (32 for colbertv2.0) — a benchmark sweep found "
-             "no reliable NDCG@5 gain from changing this.",
-    )
     args = parser.parse_args()
-
-    sys.path.insert(0, str(_ROOT / "research" / "search"))
 
     # Load data once — all engines share the same restaurants/menus.
     restaurants, menus = load_data()
@@ -310,8 +287,8 @@ if __name__ == "__main__":
             print("Loading vectors...", end=" ", flush=True)
             _raw_vecs, _phrase_vocab = load_conceptnet(args.vectors)
             print(f"{len(_raw_vecs):,} entries")
-            _tokenizer = PhraseTokenizer(_phrase_vocab)
-            _vstore    = VectorStore(_raw_vecs)
+            _tokenizer = PhraseTokenizer(_phrase_vocab, max_phrase_len=args.max_phrase_len)
+            _vstore    = VectorStore(_raw_vecs, composition=args.composition)
             print("Building index...", end=" ", flush=True)
             _index, _idf, _avgdl = build_index(menus, _tokenizer, _vstore)
             print(f"{sum(len(v) for v in _index.values())} items indexed")
@@ -321,15 +298,10 @@ if __name__ == "__main__":
                 from soft_bm25_search import SpellCorrector
                 _corrector = SpellCorrector()
 
-            _bm25_kwargs = {}
-            if args.k1 is not None:
-                _bm25_kwargs["k1"] = args.k1
-            if args.b is not None:
-                _bm25_kwargs["b"] = args.b
-
             def _raw_search(query, _restaurants, _menus):
                 return _sbm25_search(query, restaurants, _index, _idf, _tokenizer, _vstore, _avgdl,
-                                     combiner=args.combiner, spell_corrector=_corrector, **_bm25_kwargs)
+                                     similarity_threshold=args.threshold, k1=args.k1, b=args.b,
+                                     combiner=args.combiner, spell_corrector=_corrector)
         else:
             from soft_bm25_search import (
                 SpacyBertEncoder, BertSubwordEncoder,
@@ -344,15 +316,10 @@ if __name__ == "__main__":
             _index, _idf, _avgdl = build_index_contextual(menus, _encoder)
             print(f"  {sum(len(v) for v in _index.values())} items indexed, avgdl={_avgdl:.1f}")
 
-            _bm25_kwargs = {}
-            if args.k1 is not None:
-                _bm25_kwargs["k1"] = args.k1
-            if args.b is not None:
-                _bm25_kwargs["b"] = args.b
-
             def _raw_search(query, _restaurants, _menus):
                 return _sbm25_ctx_search(query, restaurants, _index, _idf, _encoder, _avgdl,
-                                         combiner=args.combiner, **_bm25_kwargs)
+                                         similarity_threshold=args.threshold, k1=args.k1, b=args.b,
+                                         combiner=args.combiner)
 
     elif args.engine == "sbert":
         from sbert_search import build_index as _sbert_build_index, search as _sbert_search
@@ -368,16 +335,11 @@ if __name__ == "__main__":
             return _sbert_search(query, restaurants, _sbert_index, _sbert_model)
 
     elif args.engine == "colbert":
-        from colbert_search import (
-            build_index as _cb_build_index,
-            search as _cb_search,
-            _DEFAULT_QUERY_LENGTH as _CB_DEFAULT_QUERY_LENGTH,
-        )
+        from colbert_search import build_index as _cb_build_index, search as _cb_search
         from pylate import models as pylate_models
         _cb_model_name = args.model if args.model != "all-MiniLM-L6-v2" else "colbert-ir/colbertv2.0"
-        _cb_query_length = args.query_length if args.query_length is not None else _CB_DEFAULT_QUERY_LENGTH
-        print(f"Loading ColBERT model '{_cb_model_name}' (query_length={_cb_query_length or 'model default'})...", end=" ", flush=True)
-        _cb_model = pylate_models.ColBERT(_cb_model_name, query_length=_cb_query_length)
+        print(f"Loading ColBERT model '{_cb_model_name}' (query_length={args.query_length or 'model default'})...", end=" ", flush=True)
+        _cb_model = pylate_models.ColBERT(_cb_model_name, query_length=args.query_length)
         print("done")
         print("Building index...", end=" ", flush=True)
         _cb_index = _cb_build_index(menus, restaurants, _cb_model)

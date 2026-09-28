@@ -28,6 +28,7 @@ longer natural-language queries are getting truncated (anything past
 query_length - 1 tokens is silently dropped, not chunked).
 """
 
+import argparse
 import sys
 from pathlib import Path
 
@@ -39,6 +40,25 @@ from lib.data import load_data
 
 _DEFAULT_MODEL = "colbert-ir/colbertv2.0"
 _DEFAULT_QUERY_LENGTH = None   # None = use the model's own built-in default (32 for colbertv2.0)
+
+
+def cli_args() -> argparse.ArgumentParser:
+    """
+    Reusable CLI-flag fragment for this module's scoring parameters.
+
+    Any script can add these flags without redefining them by passing
+    `parents=[cli_args()]` to its own ArgumentParser — see evaluate.py.
+    `add_help=False` is required on parent parsers (argparse would otherwise
+    register -h/--help twice and raise a conflict).
+    """
+    parser = argparse.ArgumentParser(add_help=False)
+    parser.add_argument(
+        "--query-length", type=int, default=_DEFAULT_QUERY_LENGTH,
+        help="Query token length incl. mask-padding (default: model's own "
+             "default, 32 for colbertv2.0). Benchmark sweep found no reliable "
+             "gain from changing this — flag exists to reproduce/extend that test.",
+    )
+    return parser
 
 
 # ── text field selection (matches sbert_search.py — no cuisine to avoid false positives) ──
@@ -137,16 +157,13 @@ def search(
 # ── CLI ───────────────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
-    import argparse
-
-    parser = argparse.ArgumentParser(description="ColBERT late-interaction menu search")
+    parser = argparse.ArgumentParser(
+        description="ColBERT late-interaction menu search",
+        parents=[cli_args()],
+    )
     parser.add_argument("terms", nargs="+", help="Query words")
     parser.add_argument("--model", default=_DEFAULT_MODEL,
                         help=f"ColBERT model (default: {_DEFAULT_MODEL})")
-    parser.add_argument("--query-length", type=int, default=_DEFAULT_QUERY_LENGTH,
-                        help="Query token length incl. mask-padding (default: model's own "
-                             "default, 32 for colbertv2.0). Benchmark sweep found no reliable "
-                             "gain from changing this — flag exists to reproduce/extend that test.")
     parser.add_argument("--show-tokens", action="store_true",
                         help="Show number of ColBERT tokens per result")
     args = parser.parse_args()
