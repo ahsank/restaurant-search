@@ -30,7 +30,7 @@ import numpy as np
 from sentence_transformers import SentenceTransformer
 
 sys.path.insert(0, str(Path(__file__).parents[1]))
-from lib.data import load_data
+from lib.data import load_data, judged_restaurant_ids, restaurant_scope_cli_args
 
 
 def _item_text(item: dict) -> str:
@@ -116,7 +116,8 @@ if __name__ == "__main__":
     import argparse
 
     parser = argparse.ArgumentParser(
-        description="SBERT bi-encoder menu search (Approach 4)"
+        description="SBERT bi-encoder menu search (Approach 4)",
+        parents=[restaurant_scope_cli_args()],
     )
     parser.add_argument(
         "--model", default="all-MiniLM-L6-v2",
@@ -130,7 +131,7 @@ if __name__ == "__main__":
     print("done")
 
     print("Loading menus and building index...", end=" ", flush=True)
-    restaurants, menus = load_data()
+    restaurants, menus = load_data(judged_restaurant_ids() if args.benchmark_only else None)
     index = build_index(menus, restaurants, model)
     total = sum(len(v) for v in index.values())
     print(f"{total} items encoded")

@@ -58,7 +58,7 @@ from pathlib import Path
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).parents[1]))
-from lib.data import load_data
+from lib.data import load_data, judged_restaurant_ids, restaurant_scope_cli_args
 
 
 def cli_args() -> argparse.ArgumentParser:
@@ -797,7 +797,7 @@ def search_contextual(
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="Phrase-aware Soft-BM25 menu search (Approach 3.5)",
-        parents=[cli_args()],
+        parents=[cli_args(), restaurant_scope_cli_args()],
     )
     parser.add_argument(
         "--show-tokens", action="store_true",
@@ -807,8 +807,9 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     print("Loading menus…", end=" ", flush=True)
-    restaurants, menus = load_data()
-    print(f"{sum(len(v) for v in menus.values())} items")
+    restaurants, menus = load_data(judged_restaurant_ids() if args.benchmark_only else None)
+    print(f"{sum(len(v) for v in menus.values())} items"
+          + (" (benchmark subset)" if args.benchmark_only else ""))
 
     query = " ".join(args.terms)
 

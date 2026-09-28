@@ -37,7 +37,7 @@ import unicodedata
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parents[1]))
-from lib.data import load_data
+from lib.data import load_data, judged_restaurant_ids, restaurant_scope_cli_args
 
 
 def normalize(text: str) -> str:
@@ -143,14 +143,14 @@ def search(
 
 if __name__ == "__main__":
     import argparse
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(parents=[restaurant_scope_cli_args()])
     parser.add_argument("--filtered", action="store_true",
                         help="Filter restaurant context by menu vocabulary")
     parser.add_argument("terms", nargs="+")
     args = parser.parse_args()
 
     query = " ".join(args.terms)
-    restaurants, menus = load_data()
+    restaurants, menus = load_data(judged_restaurant_ids() if args.benchmark_only else None)
     results = search(query, restaurants, menus, filter_restaurant_ctx=args.filtered)
 
     mode = "filtered" if args.filtered else "unfiltered"

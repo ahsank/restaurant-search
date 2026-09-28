@@ -4,6 +4,7 @@ Shared data loading utilities for all research scripts.
 Parses restaurant markdown files from data/menus/*.md. Each file contains
 restaurant metadata followed by one or more menu sections.
 """
+import argparse
 import re
 from pathlib import Path
 
@@ -91,13 +92,59 @@ def _parse_markdown_file(path: Path) -> tuple[dict, list[dict]]:
     return restaurant, items
 
 
-def load_data() -> tuple[dict, dict]:
-    """Return (restaurants_by_id, items_by_restaurant_id) parsed from data/menus/*.md."""
+def load_data(restaurant_ids: set[str] | None = None) -> tuple[dict, dict]:
+    """
+    Return (restaurants_by_id, items_by_restaurant_id) parsed from data/menus/*.md.
+
+    restaurant_ids: if given, only parse restaurants whose filename stem is in
+    this set — e.g. pass judged_restaurant_ids() to restrict to the curated
+    benchmark subset. Default (None) loads every restaurant in data/menus/.
+    """
     restaurants: dict = {}
     menus: dict = {}
     for path in sorted((_DATA_DIR / "menus").glob("*.md")):
+        if restaurant_ids is not None and path.stem not in restaurant_ids:
+            continue
         restaurant, items = _parse_markdown_file(path)
         rid = restaurant["id"]
         restaurants[rid] = restaurant
         menus[rid] = items
     return restaurants, menus
+
+
+def judged_restaurant_ids() -> set[str]:
+    """
+    Restaurant IDs that have relevance judgments — i.e. a
+    data/queries/relevance_<id>.csv file exists, regardless of whether it
+    currently has any rows. This is what lets evaluate.py (and --benchmark-only
+    in the individual search scripts) stay scoped to a curated subset as more
+    restaurants are added to data/menus/ without judgments yet: a restaurant
+    only enters this set once its relevance file is created, not just because
+    its menu exists.
+    """
+    return {
+        p.stem.removeprefix("relevance_")
+        for p in (_DATA_DIR / "queries").glob("relevance_*.csv")
+    }
+
+
+def restaurant_scope_cli_args() -> argparse.ArgumentParser:
+    """
+    Reusable --benchmark-only flag fragment — pass via parents=[...] (see
+    colbert_search.cli_args() for the pattern) so every search script gets
+    this flag without redefining it.
+
+    Individual search scripts default to searching every restaurant in
+    data/menus/ (the realistic, production-like behavior once there are many
+    restaurants). --benchmark-only restricts to judged_restaurant_ids() — the
+    smaller set with relevance judgments — for focused debugging against
+    data/queries/relevance_*.csv without the noise of restaurants that have no
+    ground truth to check results against.
+    """
+    parser = argparse.ArgumentParser(add_help=False)
+    parser.add_argument(
+        "--benchmark-only", action="store_true",
+        help="Search only restaurants with relevance judgments in data/queries/ "
+             "(the benchmark subset) instead of every restaurant in data/menus/.",
+    )
+    return parser

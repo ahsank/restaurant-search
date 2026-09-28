@@ -35,7 +35,7 @@ from pathlib import Path
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).parents[1]))
-from lib.data import load_data
+from lib.data import load_data, judged_restaurant_ids, restaurant_scope_cli_args
 
 
 _DEFAULT_MODEL = "colbert-ir/colbertv2.0"
@@ -159,7 +159,7 @@ def search(
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="ColBERT late-interaction menu search",
-        parents=[cli_args()],
+        parents=[cli_args(), restaurant_scope_cli_args()],
     )
     parser.add_argument("terms", nargs="+", help="Query words")
     parser.add_argument("--model", default=_DEFAULT_MODEL,
@@ -171,8 +171,9 @@ if __name__ == "__main__":
     query = " ".join(args.terms)
 
     print("Loading menus…", end=" ", flush=True)
-    restaurants, menus = load_data()
-    print(f"{sum(len(v) for v in menus.values())} items")
+    restaurants, menus = load_data(judged_restaurant_ids() if args.benchmark_only else None)
+    print(f"{sum(len(v) for v in menus.values())} items"
+          + (" (benchmark subset)" if args.benchmark_only else ""))
 
     print(f"Loading ColBERT model '{args.model}' (query_length={args.query_length or 'model default'})…", end=" ", flush=True)
     from pylate import models as pylate_models

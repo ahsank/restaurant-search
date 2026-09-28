@@ -13,7 +13,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parents[1]))
-from lib.data import load_data
+from lib.data import load_data, judged_restaurant_ids, restaurant_scope_cli_args
 
 
 def search(query: str, restaurants: dict, menus: dict) -> list[dict]:
@@ -37,12 +37,13 @@ def search(query: str, restaurants: dict, menus: dict) -> list[dict]:
 
 
 if __name__ == "__main__":
-    query = " ".join(sys.argv[1:])
-    if not query:
-        print("Usage: python text_search.py <query terms>")
-        sys.exit(1)
+    import argparse
+    parser = argparse.ArgumentParser(parents=[restaurant_scope_cli_args()])
+    parser.add_argument("terms", nargs="+", help="Query words")
+    args = parser.parse_args()
 
-    restaurants, menus = load_data()
+    query = " ".join(args.terms)
+    restaurants, menus = load_data(judged_restaurant_ids() if args.benchmark_only else None)
     results = search(query, restaurants, menus)
 
     print(f"Query: '{query}'  —  {len(results)} match(es)\n")

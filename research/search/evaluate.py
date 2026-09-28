@@ -6,6 +6,14 @@ Usage:
     python3 research/search/evaluate.py --category C01     # filter by category
     python3 research/search/evaluate.py --difficulty Easy  # filter by difficulty
 
+Restaurant scope: always restricted to judged_restaurant_ids() — restaurants
+that have a data/queries/relevance_<id>.csv file — never all of data/menus/.
+This is not a flag; evaluating against unjudged restaurants would only ever
+score a correct hit there as a false positive (no ground truth to credit it
+against), so there's no scenario where searching the full corpus here is
+correct. As more restaurants are added to data/menus/ without judgments yet,
+this keeps the benchmark run scoped to just the curated subset automatically.
+
 Interface for custom search functions:
     The search function must accept (query: str) -> list[dict], where each dict
     has at least "restaurant_id" and "name" keys (same shape returned by load_data()).
@@ -22,7 +30,7 @@ _ROOT = Path(__file__).parent.parent.parent
 _QUERIES_DIR = _ROOT / "data" / "queries"
 
 sys.path.insert(0, str(_ROOT / "research"))
-from lib.data import load_data
+from lib.data import load_data, judged_restaurant_ids
 
 
 # ---------------------------------------------------------------------------
@@ -266,8 +274,9 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
 
-    # Load data once — all engines share the same restaurants/menus.
-    restaurants, menus = load_data()
+    # Load data once — all engines share the same restaurants/menus. Always scoped
+    # to judged restaurants; see the module docstring for why this isn't a flag.
+    restaurants, menus = load_data(judged_restaurant_ids())
     name_to_id = {v.get("name", k): k for k, v in restaurants.items()}
 
     if args.engine in ("enhanced", "filtered"):
