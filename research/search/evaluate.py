@@ -89,6 +89,55 @@ def reciprocal_rank(ranked_rels: list[int]) -> float:
 
 
 # ---------------------------------------------------------------------------
+# Aggregation (shared with restaurant_eval.py — same rollup shape, different
+# per-query rows: item-level ndcg/recall/mrr here, restaurant-level there)
+# ---------------------------------------------------------------------------
+
+def aggregate_scores(per_query: list[dict], score_keys: list[str], gate_key: str) -> dict:
+    """
+    Aggregate per-query score rows into overall / by_category / by_difficulty.
+    Only rows where row[gate_key] > 0 count toward the averages — queries with
+    no ground truth for this metric are excluded from the average, not scored
+    as 0 (a query nobody judged shouldn't drag the average down).
+
+    Each row must have "category_id", "category_name", "difficulty", gate_key,
+    and every key in score_keys (e.g. "ndcg@5", "recall@10", "mrr").
+    """
+    def avg(key: str, rows=per_query) -> float:
+        vals = [r[key] for r in rows if r[gate_key] > 0]
+        return sum(vals) / len(vals) if vals else 0.0
+
+    overall = {k: avg(k) for k in score_keys}
+    overall["n_queries"] = len(per_query)
+    overall["n_with_judgments"] = sum(1 for r in per_query if r[gate_key] > 0)
+
+    by_category: dict[str, dict] = {}
+    for cat in sorted({r["category_id"] for r in per_query}):
+        rows = [r for r in per_query if r["category_id"] == cat]
+        by_category[cat] = {
+            "name": rows[0]["category_name"],
+            "n_queries": len(rows),
+            **{k: avg(k, rows) for k in score_keys},
+        }
+
+    by_difficulty: dict[str, dict] = {}
+    for diff in ("Easy", "Medium", "Hard"):
+        rows = [r for r in per_query if r["difficulty"] == diff]
+        if rows:
+            by_difficulty[diff] = {
+                "n_queries": len(rows),
+                **{k: avg(k, rows) for k in score_keys},
+            }
+
+    return {
+        "overall": overall,
+        "by_category": by_category,
+        "by_difficulty": by_difficulty,
+        "per_query": per_query,
+    }
+
+
+# ---------------------------------------------------------------------------
 # Evaluation loop
 # ---------------------------------------------------------------------------
 
@@ -152,53 +201,9 @@ def evaluate(
                 f"  «{q['query_text']}»"
             )
 
-    def avg(key: str, rows=per_query) -> float:
-        vals = [r[key] for r in rows if r["n_relevant"] > 0]
-        return sum(vals) / len(vals) if vals else 0.0
-
     ndcg_key = f"ndcg@{k_ndcg}"
     recall_key = f"recall@{k_recall}"
-
-    # Overall
-    overall = {
-        ndcg_key: avg(ndcg_key),
-        recall_key: avg(recall_key),
-        "mrr": avg("mrr"),
-        "n_queries": len(per_query),
-        "n_with_judgments": sum(1 for r in per_query if r["n_relevant"] > 0),
-    }
-
-    # By category
-    by_category: dict[str, dict] = {}
-    cat_ids = sorted({r["category_id"] for r in per_query})
-    for cat in cat_ids:
-        rows = [r for r in per_query if r["category_id"] == cat]
-        by_category[cat] = {
-            "name": rows[0]["category_name"],
-            ndcg_key: avg(ndcg_key, rows),
-            recall_key: avg(recall_key, rows),
-            "mrr": avg("mrr", rows),
-            "n_queries": len(rows),
-        }
-
-    # By difficulty
-    by_difficulty: dict[str, dict] = {}
-    for diff in ("Easy", "Medium", "Hard"):
-        rows = [r for r in per_query if r["difficulty"] == diff]
-        if rows:
-            by_difficulty[diff] = {
-                ndcg_key: avg(ndcg_key, rows),
-                recall_key: avg(recall_key, rows),
-                "mrr": avg("mrr", rows),
-                "n_queries": len(rows),
-            }
-
-    return {
-        "overall": overall,
-        "by_category": by_category,
-        "by_difficulty": by_difficulty,
-        "per_query": per_query,
-    }
+    return aggregate_scores(per_query, [ndcg_key, recall_key, "mrr"], gate_key="n_relevant")
 
 
 # ---------------------------------------------------------------------------
@@ -249,124 +254,26 @@ def print_report(results: dict, k_ndcg: int = 5, k_recall: int = 10) -> None:
 if __name__ == "__main__":
     import argparse
 
-    # Needed before parser construction, not just before the engine branches below,
-    # since colbert_search/soft_bm25_search's own flags are pulled in via parents=.
+    # Needed before parser construction, not just before build_search_fn() below,
+    # since colbert_search/soft_bm25_search/engines' own flags are pulled in via parents=.
     sys.path.insert(0, str(_ROOT / "research" / "search"))
     import colbert_search
     import soft_bm25_search
+    import engines
 
     parser = argparse.ArgumentParser(
         description="Evaluate search against the benchmark",
-        parents=[colbert_search.cli_args(), soft_bm25_search.cli_args()],
+        parents=[engines.cli_args(), colbert_search.cli_args(), soft_bm25_search.cli_args()],
     )
     parser.add_argument("--category", help="Filter to one category, e.g. C01")
     parser.add_argument("--difficulty", choices=["Easy", "Medium", "Hard"])
     parser.add_argument("--verbose", "-v", action="store_true")
-    parser.add_argument(
-        "--engine",
-        choices=["text", "enhanced", "filtered", "soft_bm25", "sbert", "colbert"],
-        default="text",
-        help="Search engine: text (baseline), enhanced, filtered, soft_bm25, sbert, colbert (default: text)",
-    )
-    parser.add_argument(
-        "--model", default="all-MiniLM-L6-v2",
-        help="Sentence-transformers model name (default: all-MiniLM-L6-v2, used by --engine sbert)",
-    )
     args = parser.parse_args()
 
     # Load data once — all engines share the same restaurants/menus. Always scoped
     # to judged restaurants; see the module docstring for why this isn't a flag.
     restaurants, menus = load_data(judged_restaurant_ids())
-    name_to_id = {v.get("name", k): k for k, v in restaurants.items()}
-
-    if args.engine in ("enhanced", "filtered"):
-        from enhanced_text_search import search as _enhanced_search
-        _filter = args.engine == "filtered"
-        def _raw_search(query, restaurants, menus):
-            return _enhanced_search(query, restaurants, menus, filter_restaurant_ctx=_filter)
-
-    elif args.engine == "soft_bm25":
-        if args.segmenter == "fmm":
-            if not args.vectors:
-                parser.error("--vectors PATH is required for --engine soft_bm25 --segmenter fmm")
-            from soft_bm25_search import (
-                load_conceptnet, PhraseTokenizer, VectorStore, build_index,
-                search as _sbm25_search,
-            )
-            print("Loading vectors...", end=" ", flush=True)
-            _raw_vecs, _phrase_vocab = load_conceptnet(args.vectors)
-            print(f"{len(_raw_vecs):,} entries")
-            _tokenizer = PhraseTokenizer(_phrase_vocab, max_phrase_len=args.max_phrase_len)
-            _vstore    = VectorStore(_raw_vecs, composition=args.composition)
-            print("Building index...", end=" ", flush=True)
-            _index, _idf, _avgdl = build_index(menus, _tokenizer, _vstore)
-            print(f"{sum(len(v) for v in _index.values())} items indexed")
-
-            _corrector = None
-            if args.spell_correct:
-                from soft_bm25_search import SpellCorrector
-                _corrector = SpellCorrector()
-
-            def _raw_search(query, _restaurants, _menus):
-                return _sbm25_search(query, restaurants, _index, _idf, _tokenizer, _vstore, _avgdl,
-                                     similarity_threshold=args.threshold, k1=args.k1, b=args.b,
-                                     combiner=args.combiner, spell_corrector=_corrector)
-        else:
-            from soft_bm25_search import (
-                SpacyBertEncoder, BertSubwordEncoder,
-                build_index_contextual, search_contextual as _sbm25_ctx_search,
-            )
-            print(f"Loading BERT encoder ({args.segmenter})...", flush=True)
-            _encoder = (
-                SpacyBertEncoder() if args.segmenter == "spacy_bert"
-                else BertSubwordEncoder()
-            )
-            print("Building index...")
-            _index, _idf, _avgdl = build_index_contextual(menus, _encoder)
-            print(f"  {sum(len(v) for v in _index.values())} items indexed, avgdl={_avgdl:.1f}")
-
-            def _raw_search(query, _restaurants, _menus):
-                return _sbm25_ctx_search(query, restaurants, _index, _idf, _encoder, _avgdl,
-                                         similarity_threshold=args.threshold, k1=args.k1, b=args.b,
-                                         combiner=args.combiner)
-
-    elif args.engine == "sbert":
-        from sbert_search import build_index as _sbert_build_index, search as _sbert_search
-        from sentence_transformers import SentenceTransformer
-        print(f"Loading model '{args.model}'...", end=" ", flush=True)
-        _sbert_model = SentenceTransformer(args.model)
-        print("done")
-        print("Building index...", end=" ", flush=True)
-        _sbert_index = _sbert_build_index(menus, restaurants, _sbert_model)
-        print(f"{sum(len(v) for v in _sbert_index.values())} items encoded")
-
-        def _raw_search(query, _restaurants, _menus):
-            return _sbert_search(query, restaurants, _sbert_index, _sbert_model)
-
-    elif args.engine == "colbert":
-        from colbert_search import build_index as _cb_build_index, search as _cb_search
-        from pylate import models as pylate_models
-        _cb_model_name = args.model if args.model != "all-MiniLM-L6-v2" else "colbert-ir/colbertv2.0"
-        print(f"Loading ColBERT model '{_cb_model_name}' (query_length={args.query_length or 'model default'})...", end=" ", flush=True)
-        _cb_model = pylate_models.ColBERT(_cb_model_name, query_length=args.query_length)
-        print("done")
-        print("Building index...", end=" ", flush=True)
-        _cb_index = _cb_build_index(menus, restaurants, _cb_model)
-        print(f"{sum(len(v) for v in _cb_index.values())} items encoded")
-
-        def _raw_search(query, _restaurants, _menus):
-            return _cb_search(query, restaurants, _cb_index, _cb_model)
-
-    else:
-        from text_search import search as _raw_search
-
-    def search(query: str) -> list[dict]:
-        raw = _raw_search(query, restaurants, menus)
-        out = []
-        for r in raw:
-            rid = name_to_id.get(r["restaurant"], r["restaurant"])
-            out.append({"restaurant_id": rid, "name": r["item"], **r})
-        return out
+    search = engines.build_search_fn(args, restaurants, menus)
 
     print(f"Running {args.engine} engine against benchmark...")
     if args.verbose:
