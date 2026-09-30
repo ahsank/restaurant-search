@@ -1,5 +1,7 @@
-# Installed and imported by research/search/*.py — see research/COMMANDS.md
-# for full environment setup instructions (conda env, spacy model, vectors).
+# Installed and imported by research/search/*.py, research/data_gen/*.py, and
+# research/train/*.py — see research/COMMANDS.md for full environment setup
+# instructions (conda env, spacy model, vectors).
+datasets==5.0.1
 faiss-cpu==1.13.2
 Flask==3.1.3
 numpy==2.4.6
@@ -18,10 +20,6 @@ transformers==5.3.0
 #
 # --- BM25 (Approach 2) ---
 # rank-bm25
-#
-# --- finetuning (Approach 5/6) ---
-# peft
-# datasets
 #
 # --- ONNX export (Approach 5 -> C++) ---
 # optimum[exporters]

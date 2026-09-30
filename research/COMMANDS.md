@@ -99,6 +99,54 @@ python research/search/colbert_search.py --show-tokens spicy noodles
 python research/search/colbert_search.py --model colbert-ir/colbertv2.0 --query-length 32 healthy vegetarian
 ```
 
+## Approach 5 — finetuned bi-encoder
+
+Three steps: mine hard-negative training triples, finetune, then search/evaluate
+the result exactly like any other `sbert`-family model (a finetuned model is
+still just a `SentenceTransformer`, loaded from a local directory instead of
+a hub name).
+
+```bash
+# 1. Build (anchor, positive, hard_negative) triples from data/queries/relevance_*.csv
+python research/data_gen/mine_hard_negatives.py
+python research/data_gen/mine_hard_negatives.py --skip-retriever-mining   # fast, no model download
+python research/data_gen/mine_hard_negatives.py --mining-model all-mpnet-base-v2 --num-negatives 5
+
+# 2. Finetune (writes to models/finetuned-<base-model> by default)
+python research/train/finetune_biencoder.py
+python research/train/finetune_biencoder.py --base-model all-MiniLM-L6-v2 --epochs 10 --batch-size 16
+
+# 3a. Search directly
+python research/search/finetuned_search.py seafood italian
+python research/search/finetuned_search.py --model models/finetuned-all-mpnet-base-v2 spicy noodles
+
+# 3b. Or benchmark it like any sbert model (same --engine sbert path, just a local dir)
+python research/search/evaluate.py --engine sbert --model models/finetuned-all-MiniLM-L6-v2
+```
+
+## Approach 5, variant 2 — synthetic structural data (no relevance judgments needed)
+
+Mines triples purely from menu structure across every restaurant in
+`data/menus/` — specific-modifier confusion ("chicken sandwich" vs "turkey
+sandwich"), combo-vs-standalone, and length-bias negatives — then uses
+`claude -p` (the already-logged-in Claude Code CLI, no separate API key) to
+turn each case into natural paraphrase queries. Since training never touches
+`data/queries/`, the resulting model can be scored against the **entire**
+209-query benchmark with no held-out split needed.
+
+```bash
+# Mine structural cases + LLM paraphrase queries (~2,000 triples, ~7 min, ~$0.20 in claude -p calls)
+python research/data_gen/generate_synthetic_data.py
+python research/data_gen/generate_synthetic_data.py --skip-llm   # free dry run: seed queries only, check case counts
+
+# Train on synthetic triples only
+python research/train/finetune_biencoder.py --triples research/data_gen/synthetic_triples.jsonl \
+    --output-dir models/finetuned-synthetic-all-MiniLM-L6-v2
+
+# Evaluate on the full benchmark (no --query-ids-file needed — nothing leaked)
+python research/search/evaluate.py --engine sbert --model models/finetuned-synthetic-all-MiniLM-L6-v2
+```
+
 ## `evaluate.py` — benchmark scoring (NDCG@5, Recall@10, MRR)
 
 ```bash

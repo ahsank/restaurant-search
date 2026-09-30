@@ -37,13 +37,26 @@ from lib.data import load_data, judged_restaurant_ids
 # Benchmark loading
 # ---------------------------------------------------------------------------
 
-def load_queries(category: str | None = None, difficulty: str | None = None) -> list[dict]:
+def load_queries(
+    category: str | None = None,
+    difficulty: str | None = None,
+    query_ids: set[str] | None = None,
+) -> list[dict]:
+    """
+    query_ids: if given, only include queries whose query_id is in this set.
+    Used to score a finetuned model (Approach 5) exclusively against queries
+    held out of its training triples — see research/data_gen/mine_hard_negatives.py's
+    --held-out-file — so the benchmark number isn't inflated by the model
+    having partially memorized eval queries during training.
+    """
     rows = []
     with open(_QUERIES_DIR / "queries.csv", newline="", encoding="utf-8") as f:
         for row in csv.DictReader(f):
             if category and row["category_id"] != category:
                 continue
             if difficulty and row["difficulty"] != difficulty:
+                continue
+            if query_ids is not None and row["query_id"] not in query_ids:
                 continue
             rows.append(row)
     return rows
@@ -148,6 +161,7 @@ def evaluate(
     k_recall: int = 10,
     category: str | None = None,
     difficulty: str | None = None,
+    query_ids: set[str] | None = None,
     verbose: bool = False,
 ) -> dict:
     """
@@ -155,7 +169,7 @@ def evaluate(
 
     search_fn(query: str) -> list[dict]   where each dict has "restaurant_id" and "name"
     """
-    queries = load_queries(category=category, difficulty=difficulty)
+    queries = load_queries(category=category, difficulty=difficulty, query_ids=query_ids)
     judgments = load_relevance()
 
     per_query: list[dict] = []
@@ -267,8 +281,16 @@ if __name__ == "__main__":
     )
     parser.add_argument("--category", help="Filter to one category, e.g. C01")
     parser.add_argument("--difficulty", choices=["Easy", "Medium", "Hard"])
+    parser.add_argument("--query-ids-file", type=Path,
+                        help="Score only query_ids listed in this file (one per line) — e.g. "
+                             "research/data_gen/held_out_query_ids.txt, to evaluate a finetuned "
+                             "model (Approach 5) exclusively on queries it never trained on")
     parser.add_argument("--verbose", "-v", action="store_true")
     args = parser.parse_args()
+
+    query_ids = None
+    if args.query_ids_file:
+        query_ids = {line.strip() for line in args.query_ids_file.read_text().splitlines() if line.strip()}
 
     # Load data once — all engines share the same restaurants/menus. Always scoped
     # to judged restaurants; see the module docstring for why this isn't a flag.
@@ -283,6 +305,7 @@ if __name__ == "__main__":
         search,
         category=args.category,
         difficulty=args.difficulty,
+        query_ids=query_ids,
         verbose=args.verbose,
     )
     print_report(results)

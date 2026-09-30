@@ -390,10 +390,14 @@ in this repo (no LLM generation needed):
    positive with a same-restaurant/same-category relevance=1 (or unlisted)
    item as hard negative. The judgments already encode "close but not the
    best match."
-2. **Retriever-error mining** — run the current best model (ColBERT, Approach
-   4.5) and take its top-K false positives per query as hard negatives.
-   Standard hard-negative-mining loop; `sentence_transformers.util.mine_hard_negatives`
-   automates this.
+2. **Retriever-error mining** — embed every judged (query, positive) pair and
+   the full item corpus with a pretrained bi-encoder, then take its top-K
+   close-but-wrong items per query as hard negatives. Standard
+   hard-negative-mining loop; `sentence_transformers.util.mine_hard_negatives`
+   automates this. (ColBERT, Approach 4.5's current best model, keeps a
+   per-token matrix rather than one embedding per text, so it isn't a direct
+   fit for this embed-the-corpus-once utility — a bi-encoder is used instead,
+   configurable via `--mining-model`.)
 
 `MultipleNegativesRankingLoss` accepts a 3rd (explicit hard negative) column
 directly, combined with in-batch negatives — no separate triplet-loss code
@@ -408,16 +412,128 @@ runs in C++ like the off-the-shelf SBERT model.
 
 **Cons:** Hard-negative mining adds a preprocessing step (an extra retrieval
 pass over the current best model, or a join against the relevance CSVs)
-before training starts. Requires a GPU or patience for finetuning (small
-model, ~30 min on CPU for this dataset size).
+before training starts. Measured: mining ~2,500 triples takes well under a
+minute; 10 epochs over them takes ~6 minutes on an Apple Silicon GPU (MPS) —
+small enough that CPU-only finetuning is also practical for this dataset size.
 
 **Libraries:** `sentence-transformers`, `datasets`
 
+**Implemented.** Two negative sources, as described above:
+`mine_hard_negatives.py`'s Method 1 pairs each relevance=2 item with a
+same-restaurant/same-category weaker item straight from `relevance_*.csv`
+(no model needed); Method 2 uses `sentence_transformers.util.mine_hard_negatives`
+with a pretrained bi-encoder to mine close-but-wrong items from the full
+corpus, dropping any mined "negative" that's actually another judged-relevant
+item for that query.
+
+**Held-out split, to keep the eventual benchmark number honest.**
+`evaluate.py` always scores against the full `data/queries/` benchmark, and
+naively mining triples from every judged query would let a finetuned model
+partially memorize eval queries during training — the first training run
+this way scored NDCG@5 **0.9029**, which is leakage, not signal.
+`mine_hard_negatives.py` now excludes `--held-out-fraction` (default 20%) of
+queries per category from triple generation and writes their ids to
+`held_out_query_ids.txt`; `evaluate.py --query-ids-file` scores exclusively
+on those unseen queries.
+
+**Measured results** (42 held-out queries, stratified across all 25
+categories, never used to build a training triple):
+
+| Engine | NDCG@5 | Recall@10 | MRR |
+|---|---|---|---|
+| SBERT `all-MiniLM-L6-v2` (stock) | 0.5141 | 0.5089 | 0.6213 |
+| **Finetuned `all-MiniLM-L6-v2`** | **0.5376** | **0.5418** | 0.6219 |
+| ColBERT `colbertv2.0` (pretrained) | 0.5619 | 0.5434 | 0.6926 |
+
+Finetuning gives a modest, real gain over the same base model off-the-shelf
+(+0.024 NDCG@5, +0.033 Recall@10) — the hard negatives do teach the model
+something the stock checkpoint didn't have. It does **not** close the gap to
+ColBERT: 2,464 triples over a 22M-parameter model apparently isn't enough
+signal to beat token-level late interaction with MS MARCO-scale pretraining
+behind it. Answers the question posed in the Recommended Experimentation
+Order below — domain finetuning beats stock SBERT, but not pretrained
+ColBERT, at this data size.
+
 **Files:**
-- `data_gen/mine_hard_negatives.py` — builds (anchor, positive, hard negative) triples from `relevance_*.csv` and ColBERT retrieval errors
+- `data_gen/mine_hard_negatives.py` — builds (anchor, positive, hard negative) triples from `relevance_*.csv` and retriever-mined negatives; also handles the held-out split above
 - `train/finetune_biencoder.py` — trains the model on those triples with `MultipleNegativesRankingLoss`
-- `export/export_onnx.py` — exports to ONNX for C++ use
 - `search/finetuned_search.py` — inference using the finetuned model
+- `export/export_onnx.py` — exports to ONNX for C++ use (not yet implemented — no C++ engine to consume it yet)
+
+### Variant 2 — synthetic structural data (no relevance judgments at all)
+
+A second, independent way to build Approach 5's training triples: instead of
+leaning on the 209-query benchmark's real judgments (small, and requires
+holding out queries to avoid leakage, per above), mine triples purely from
+**menu structure** across every restaurant in `data/menus/` — including the
+2 restaurants (`anthonys-homeport`, `sparrow`) that have no relevance
+judgments at all — targeting three specific confusion patterns by
+construction:
+
+1. **Specific-modifier confusion** — items sharing a dish-type head noun
+   ("sandwich", "taco", "pollo", "camarones", ...) but a different modifier
+   are hard negatives for each other: `Pollo Ranchero` vs `Pollo Asado`,
+   `Camarones al Mojo de Ajo` vs `Camarones a la Diabla`. A pretrained
+   bi-encoder tends to cluster these as near-duplicates.
+2. **Combo/bundle vs standalone** — a combo naming a *different* core dish
+   (`Combo 8: Two Beef Burritos`) shares generic bundling vocabulary with a
+   query for an unrelated standalone item without actually containing it;
+   attached as an extra hard negative wherever one exists in the same
+   restaurant.
+3. **Length-bias negatives** — mirrors the length-normalization failure mode
+   already documented above in the Soft-BM25 "pizza" investigation: a long,
+   fully-matching item is paired against a short item sharing exactly one
+   concept keyword but naming a different dish (reuses Approach 1's example
+   concept thesaurus: seafood/italian/spicy/healthy).
+
+Patterns 1-2 are turned into natural paraphrase queries via `claude -p` — the
+already-authenticated Claude Code CLI, invoked with `cwd` set outside the
+repo to skip this project's CLAUDE.md/auto-memory context (cuts per-call
+cost from ~$0.056 to ~$0.015 and latency from ~15s to ~8s) — grounded in the
+specific siblings each case must NOT match. Pattern 3's anchor is already a
+natural short phrase (e.g. the project's own canonical "seafood italian"),
+so it skips the LLM call. Since training never touches `data/queries/` at
+all, the resulting model can be scored against the **entire** 209-query
+benchmark with no held-out split needed — a cleaner evaluation story than
+Variant 1's.
+
+**Measured**: mining produced 2,014 triples (2,007 specific-modifier +
+combo, 7 length-bias) from 836 items across 9 restaurants, in ~7 minutes for
+about $0.20 in `claude -p` calls.
+
+| Training run | NDCG@5 | Recall@10 | MRR |
+|---|---|---|---|
+| SBERT `all-MiniLM-L6-v2` (stock) | 0.5063 | 0.5229 | 0.6240 |
+| **Synthetic-trained, 10 epochs** | **0.5415** | **0.5238** | 0.6781 |
+| Synthetic-trained, 30 epochs | 0.5271 | 0.5159 | 0.6636 |
+| ColBERT `colbertv2.0` (pretrained) | 0.5920 | 0.6114 | 0.6931 |
+
+All four rows score the **same full 209-query benchmark** — no held-out
+split, since this variant's training data is fully independent of
+`data/queries/`. Two findings:
+
+- **Training longer did not help — it mildly hurt.** Train loss kept
+  dropping (0.083 → 0.054 from epoch 10 to 30) while benchmark NDCG@5
+  *fell* (0.5415 → 0.5271): classic overfitting to the synthetic set's
+  narrow vocabulary once the easy structural distinctions are learned.
+  10 epochs (the same default used for Variant 1) was already the better
+  stopping point here, not an undertrained one.
+- **Strength profile is the mirror image of what it was trained on.** Per-
+  category breakdown (10-epoch run) is strong exactly where the three
+  patterns target it — C05 Spelling 0.708, C17 Desserts 0.958, C21 Seafood
+  0.839, C24 Pizza 0.956 — but weak on broad concept-inference categories
+  the synthetic data barely touches: C01 Cuisine inference 0.320, C03
+  Attribute/implied meaning 0.239, C08 Dietary/negation 0.275, C10
+  Multi-constraint 0.000. Variant 1 (real relevance judgments) doesn't show
+  this same lopsidedness, because its positives come from queries humans
+  actually wrote across all 25 categories, not from three structural rules.
+  The two variants look like they'd combine well (structural data for the
+  confusions it's designed for, real judgments for everything else) — not
+  yet tried here.
+
+**Files:**
+- `data_gen/generate_synthetic_data.py` — structural mining (patterns 1-3) + `claude -p` paraphrase generation → `synthetic_triples.jsonl`
+- Same `train/finetune_biencoder.py` and `search/finetuned_search.py` as Variant 1 — just point `--triples` / `--model` at the synthetic files
 
 ---
 
@@ -532,7 +648,7 @@ ollama run phi3.5
 | **Phrase-aware Soft-BM25** | **None (pretrained)** | **None** | **Medium–Good** | **<10 ms** | **Medium** |
 | SBERT bi-encoder | None (pretrained) | None | Good | <10 ms | Medium |
 | ColBERT (late interaction) | None (pretrained) | None | **Very good (best measured)** | ~20–50 ms | Medium |
-| Finetuned bi-encoder | Yes | Real (1,143 judgments) + mined hard negatives | Very good | <10 ms | Medium–High |
+| Finetuned bi-encoder | Yes | Real (1,143 judgments) + mined hard negatives | Good (beats stock SBERT, below ColBERT — measured) | <10 ms | Medium–High |
 | Cross-encoder reranker | Yes | Synthetic (LLM) or real (1,143 judgments) | Best | ~100 ms | High |
 | Local LLM reader | None | None | Very good | 0.5–5 s | Low (Ollama) |
 
@@ -543,7 +659,7 @@ ollama run phi3.5
 1. **Thesaurus expansion** — establish a working baseline, understand the data
 2. **Off-the-shelf SBERT** — how much does semantic embedding help over keywords?
 3. **ColBERT (pretrained, no training)** — does token-level late interaction beat sentence-level pooling? (Yes — best result measured so far.)
-4. **Finetuned bi-encoder** — using the 1,143 real relevance judgments in `data/queries/`, does domain finetuning beat off-the-shelf ColBERT/SBERT?
+4. **Finetuned bi-encoder** — using the 1,143 real relevance judgments in `data/queries/`, does domain finetuning beat off-the-shelf ColBERT/SBERT? (Yes vs. SBERT, not vs. ColBERT — see Approach 5's measured results.)
 5. **Cross-encoder reranker** — quality ceiling: rerank ColBERT/bi-encoder top-20 candidates, finetuned on the same real judgments
 6. **Local LLM reader** — compare against trained approaches; useful for qualitative analysis
 
