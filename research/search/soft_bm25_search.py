@@ -35,6 +35,15 @@ Three pluggable components — swap any independently:
     plateauing for k1 >= 3. 2.0 sits in that plateau, close to the shipped
     default of 1.5; not worth tuning further without new benchmark queries.
 
+  Combiner and spell-correct: bm25 (with b=0, k1=2.0 above) + --spell-correct
+    beats every other combiner/spell-correct combination measured, including
+    the `plus` combiner that was previously recommended in this file's
+    header comment — NDCG@5 0.5410 vs. 0.5281 for plus+spell-correct, on the
+    209-query / 8-restaurant benchmark. Both are now on by default
+    (--combiner already defaulted to bm25; --spell-correct now does too).
+    Use --no-spell-correct to disable, or --combiner plus to reproduce the
+    old recommendation.
+
 Default implementation uses ConceptNet Numberbatch (English), which serves as
 both the phrase vocabulary and the vector source from a single ~75 MB file.
 
@@ -45,7 +54,7 @@ Usage:
   python soft_bm25_search.py --vectors /path/to/numberbatch-en-19.08.txt.gz seafood italian
   python soft_bm25_search.py --vectors /path/to/numberbatch-en-19.08.txt "oyster"
   python soft_bm25_search.py --vectors /path/to/numberbatch-en-19.08.txt --threshold 0.4 spicy noodles
-  python soft_bm25_search.py --vectors /path/to/numberbatch-en-19.08.txt --b 0.75 --k1 1.5 pizza   # reproduce old defaults
+  python soft_bm25_search.py --vectors /path/to/numberbatch-en-19.08.txt --b 0.75 --k1 1.5 --no-spell-correct --combiner plus pizza   # reproduce old defaults
 """
 
 import argparse
@@ -115,8 +124,14 @@ def cli_args() -> argparse.ArgumentParser:
         ),
     )
     parser.add_argument(
-        "--spell-correct", action="store_true",
-        help="Spell-correct query tokens that have no embedding (uses pyspellchecker)",
+        "--spell-correct", action="store_true", dest="spell_correct", default=True,
+        help="Spell-correct query tokens that have no embedding (uses pyspellchecker). "
+             "On by default — benchmark sweep found bm25+b=0+spell-correct beats every "
+             "other combiner/spell-correct combination measured. Use --no-spell-correct to disable.",
+    )
+    parser.add_argument(
+        "--no-spell-correct", action="store_false", dest="spell_correct",
+        help="Disable spell correction (see --spell-correct).",
     )
     return parser
 
