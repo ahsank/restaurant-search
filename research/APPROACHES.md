@@ -581,6 +581,32 @@ examples (~1 `claude -p` batch call).
 - `data_gen/mine_gap_triples.py` — diagnoses worst-performing queries for a given model, mines a small number of real-error triples, rewords via `claude -p`
 - `train/finetune_biencoder.py` — now accepts multiple `--triples` files, concatenated (used here to combine Variant 2's set with the gap-fill patch)
 
+### Does the base model matter?
+
+Before settling on `all-MiniLM-L6-v2`, swapped in `BAAI/bge-small-en-v1.5` —
+a model pretrained specifically for retrieval (query/passage contrastive
+pairs) rather than general sentence similarity — using the exact same
+Variant 3 recipe (synthetic + gap-fill triples, 10 epochs):
+
+| Base model | Stock NDCG@5 | Finetuned NDCG@5 (Variant 3 recipe) |
+|---|---|---|
+| `all-MiniLM-L6-v2` | 0.5063 | 0.5875 |
+| `bge-small-en-v1.5` | 0.4918 | **0.5892** |
+
+Essentially a tie post-finetuning (+0.0017, well within noise on a
+199-judged-query eval) — despite BGE starting from a *worse* stock baseline.
+That stock gap is likely an artifact of this pipeline, not the model: BGE
+models are trained expecting a `"Represent this sentence for searching
+relevant passages: "`-style prefix on the query side, which `sbert_search.py`
+doesn't apply (every engine here is treated uniformly, with no per-model
+prompt handling). Finetuning appears to wash that disadvantage out, but
+doesn't produce a net edge over just finetuning MiniLM directly. Given the
+tie, MiniLM remains the better default — smaller (22M vs 33M params) and
+faster to encode with no loss in measured quality — unless BGE's query-prefix
+convention gets wired in (untried here; would need `build_index`/`search` in
+`sbert_search.py` to apply different prompts to queries vs. items, which
+today treats both sides identically).
+
 ---
 
 ## Approach 6 — Cross-Encoder Reranker
