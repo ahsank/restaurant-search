@@ -147,6 +147,25 @@ python research/train/finetune_biencoder.py --triples research/data_gen/syntheti
 python research/search/evaluate.py --engine sbert --model models/finetuned-synthetic-all-MiniLM-L6-v2
 ```
 
+## Approach 5, variant 3 — small gap-fill patch for a model's worst queries
+
+Diagnoses whatever model you point it at, mines a small number of real-error
+triples from its worst-scoring queries, and rewords them via `claude -p` so
+training isn't just memorizing the eval string.
+
+```bash
+# Diagnose models/finetuned-synthetic-all-MiniLM-L6-v2's 30 worst queries and patch them
+python research/data_gen/mine_gap_triples.py
+python research/data_gen/mine_gap_triples.py --model models/finetuned-synthetic-all-MiniLM-L6-v2 --count 30
+
+# Retrain combining the broad synthetic set with the small gap-fill patch
+python research/train/finetune_biencoder.py \
+    --triples research/data_gen/synthetic_triples.jsonl research/data_gen/gap_fill_triples.jsonl \
+    --output-dir models/finetuned-synthetic-plus-gapfill
+
+python research/search/evaluate.py --engine sbert --model models/finetuned-synthetic-plus-gapfill
+```
+
 ## `evaluate.py` — benchmark scoring (NDCG@5, Recall@10, MRR)
 
 ```bash

@@ -41,8 +41,10 @@ _DEFAULT_TRIPLES = _ROOT / "research" / "data_gen" / "triples.jsonl"
 _DEFAULT_BASE_MODEL = "all-MiniLM-L6-v2"
 
 
-def load_triples(path: Path) -> Dataset:
-    rows = [json.loads(line) for line in open(path, encoding="utf-8")]
+def load_triples(paths: list[Path]) -> Dataset:
+    rows = []
+    for path in paths:
+        rows.extend(json.loads(line) for line in open(path, encoding="utf-8"))
     return Dataset.from_dict({
         "anchor": [r["anchor"] for r in rows],
         "positive": [r["positive"] for r in rows],
@@ -52,8 +54,8 @@ def load_triples(path: Path) -> Dataset:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--triples", type=Path, default=_DEFAULT_TRIPLES,
-                        help=f"Triples JSONL from mine_hard_negatives.py (default: {_DEFAULT_TRIPLES})")
+    parser.add_argument("--triples", type=Path, nargs="+", default=[_DEFAULT_TRIPLES],
+                        help=f"One or more triples JSONL files, concatenated (default: {_DEFAULT_TRIPLES})")
     parser.add_argument("--base-model", default=_DEFAULT_BASE_MODEL,
                         help=f"Pretrained sentence-transformers model to finetune (default: {_DEFAULT_BASE_MODEL})")
     parser.add_argument("--output-dir", type=Path, default=None,
@@ -68,7 +70,7 @@ if __name__ == "__main__":
 
     output_dir = args.output_dir or (_ROOT / "models" / f"finetuned-{args.base_model.split('/')[-1]}")
 
-    print(f"Loading triples from {args.triples}...", end=" ", flush=True)
+    print(f"Loading triples from {', '.join(str(p) for p in args.triples)}...", end=" ", flush=True)
     dataset = load_triples(args.triples)
     print(f"{len(dataset)} triples")
 
