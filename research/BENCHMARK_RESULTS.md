@@ -12,6 +12,38 @@ python research/search/evaluate.py --engine <name> [options]
 
 ---
 
+## Update — current benchmark (8 restaurants) and Approach 6
+
+The rest of this page is a snapshot from the 204-query, 7-restaurant
+benchmark. Since then, the benchmark has grown to 209 queries, 199 of them
+judged, with 1,494 relevance labels and 795 items. Anthony's HomePort now has
+judgments too, which shifted every engine's numbers. Re-run on the current
+benchmark, in one environment:
+
+| Engine | NDCG@5 | Recall@10 | MRR | Easy | Medium | Hard |
+|---|---|---|---|---|---|---|
+| `sbert` all-MiniLM-L6-v2 | 0.5288 | 0.5115 | 0.6561 | 0.621 | 0.481 | 0.197 |
+| `colbert` colbertv2.0 | 0.6067 | 0.5895 | 0.7255 | 0.728 | 0.505 | 0.254 |
+| **`crossencoder` ms-marco-MiniLM-L6-v2 (stock, scores every item)** | **0.6261** | **0.6185** | **0.7714** | 0.734 | **0.528** | 0.329 |
+| `crossencoder` finetuned, synthetic only | 0.6258 | 0.6097 | 0.7476 | 0.732 | 0.511 | 0.370 |
+| `crossencoder` finetuned, synthetic + gap-fill | 0.6272 | 0.6139 | 0.7405 | **0.739** | 0.500 | **0.375** |
+
+(Easy/Medium/Hard columns are NDCG@5.)
+
+**The stock cross-encoder (Approach 6) is now the best engine measured**,
+ahead of ColBERT on every overall metric and by the widest margin on Hard
+queries, with no training. Finetuning it on Approach 5's synthetic triples
+leaves NDCG@5 flat: Hard queries improve while Medium queries and MRR drop.
+See Approach 6 in [`APPROACHES.md`](APPROACHES.md) for the training setup,
+leakage analysis and per-category notes.
+
+```bash
+python research/search/evaluate.py --engine crossencoder
+python research/search/evaluate.py --engine crossencoder --model models/crossencoder-synthetic-plus-gapfill
+```
+
+---
+
 ## Method summary
 
 | Engine | Technique | Training | Complexity |
