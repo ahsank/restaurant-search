@@ -92,6 +92,26 @@ def _parse_markdown_file(path: Path) -> tuple[dict, list[dict]]:
     return restaurant, items
 
 
+def item_text(item: dict) -> str:
+    """
+    Build the single-string form of a menu item ("name. description. category")
+    used by the sbert/finetuned/cross-encoder engines and by every training-
+    triple generator in research/data_gen/ — kept here, not in sbert_search.py,
+    so those scripts don't have to import sentence-transformers just for it.
+
+    Restaurant-level fields (cuisine, description) are intentionally excluded:
+    appending them to every item text causes all items from e.g. a "seafood"
+    restaurant to score highly for "seafood" queries regardless of what the
+    dish actually is.
+    """
+    parts = [item.get("name", "")]
+    if item.get("description"):
+        parts.append(item["description"])
+    if item.get("category"):
+        parts.append(item["category"])
+    return ". ".join(p for p in parts if p)
+
+
 def load_data(restaurant_ids: set[str] | None = None) -> tuple[dict, dict]:
     """
     Return (restaurants_by_id, items_by_restaurant_id) parsed from data/menus/*.md.

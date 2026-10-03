@@ -52,10 +52,9 @@ from pathlib import Path
 
 _ROOT = Path(__file__).parent.parent.parent
 sys.path.insert(0, str(_ROOT / "research"))
-from lib.data import load_data, judged_restaurant_ids
+from lib.data import item_text, load_data, judged_restaurant_ids
 
 sys.path.insert(0, str(_ROOT / "research" / "search"))
-from sbert_search import _item_text
 from evaluate import load_queries, load_relevance
 
 _DEFAULT_OUT = Path(__file__).parent / "triples.jsonl"
@@ -138,8 +137,8 @@ def mine_csv_pairs(
             for neg_item in (weak + unlisted)[:negatives_per_positive]:
                 triples.append({
                     "anchor": query["query_text"],
-                    "positive": _item_text(pos_item),
-                    "negative": _item_text(neg_item),
+                    "positive": item_text(pos_item),
+                    "negative": item_text(neg_item),
                     "source": "csv_pairs",
                 })
     return triples
@@ -179,7 +178,7 @@ def mine_retriever_negatives(
             item = item_lookup.get((rid, name))
             if item is None:
                 continue
-            text = _item_text(item)
+            text = item_text(item)
             relevant_texts_by_query[query["query_text"]].add(text)
             anchors.append(query["query_text"])
             positives.append(text)
@@ -188,7 +187,7 @@ def mine_retriever_negatives(
         return []
 
     dataset = Dataset.from_dict({"anchor": anchors, "positive": positives})
-    corpus = sorted({_item_text(it) for items in menus.values() for it in items})
+    corpus = sorted({item_text(it) for items in menus.values() for it in items})
 
     print(f"Loading mining model '{mining_model_name}'...", end=" ", flush=True)
     model = SentenceTransformer(mining_model_name)

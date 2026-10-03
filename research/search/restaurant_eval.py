@@ -187,14 +187,10 @@ def print_report(results: dict, top_restaurants: int) -> None:
 
 
 if __name__ == "__main__":
-    import argparse
     import engines
-    import colbert_search
-    import soft_bm25_search
 
-    parser = argparse.ArgumentParser(
-        description="Evaluate restaurant-level ranking against ground truth derived from relevance_*.csv",
-        parents=[engines.cli_args(), colbert_search.cli_args(), soft_bm25_search.cli_args()],
+    parser = engines.build_arg_parser(
+        "Evaluate restaurant-level ranking against ground truth derived from relevance_*.csv",
     )
     parser.add_argument("--category", help="Filter to one category, e.g. C01")
     parser.add_argument("--difficulty", choices=["Easy", "Medium", "Hard"])

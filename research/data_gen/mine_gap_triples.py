@@ -36,10 +36,10 @@ from pathlib import Path
 
 _ROOT = Path(__file__).parent.parent.parent
 sys.path.insert(0, str(_ROOT / "research"))
-from lib.data import load_data, judged_restaurant_ids
+from lib.data import item_text, load_data, judged_restaurant_ids
 
 sys.path.insert(0, str(_ROOT / "research" / "search"))
-from sbert_search import _item_text, build_index, search as _sbert_search
+from sbert_search import build_index, search as _sbert_search
 from evaluate import evaluate, load_relevance
 
 _DEFAULT_OUT = Path(__file__).parent / "gap_fill_triples.jsonl"
@@ -203,8 +203,8 @@ if __name__ == "__main__":
     for case in cases:
         triples.append({
             "anchor": case["anchor"],
-            "positive": _item_text(case["positive_item"]),
-            "negative": _item_text(case["negative_item"]),
+            "positive": item_text(case["positive_item"]),
+            "negative": item_text(case["negative_item"]),
             "source": "gap_fill",
             "gap_query_id": case["gap_query_id"],
         })

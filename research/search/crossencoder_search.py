@@ -12,7 +12,7 @@ Cost: one forward pass per item per query. Over the 7 benchmark restaurants
 (~640 items) that's a few seconds per query on CPU — fine for the benchmark,
 not for a web request.
 
-Item text is sbert_search._item_text() (name. description. category) — the
+Item text is lib.data.item_text() (name. description. category) — the
 same format as the positives/negatives in the Approach 5 triples the model
 was finetuned on.
 
@@ -31,9 +31,7 @@ from pathlib import Path
 from sentence_transformers.cross_encoder import CrossEncoder
 
 sys.path.insert(0, str(Path(__file__).parents[1]))
-from lib.data import load_data, judged_restaurant_ids, restaurant_scope_cli_args
-
-from sbert_search import _item_text
+from lib.data import item_text, load_data, judged_restaurant_ids, restaurant_scope_cli_args
 
 _ROOT = Path(__file__).parents[2]
 _DEFAULT_MODEL = _ROOT / "models" / "crossencoder-synthetic-plus-gapfill"
@@ -43,7 +41,7 @@ STOCK_MODEL = "cross-encoder/ms-marco-MiniLM-L6-v2"
 def build_index(menus: dict, restaurants: dict) -> list[tuple[str, dict, str]]:
     """Flatten every item into (restaurant_id, item, item_text). Nothing to encode up front."""
     return [
-        (rid, item, _item_text(item))
+        (rid, item, item_text(item))
         for rid, items in menus.items()
         for item in items
     ]

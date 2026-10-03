@@ -61,9 +61,7 @@ from sentence_transformers.cross_encoder.losses import BinaryCrossEntropyLoss
 
 _ROOT = Path(__file__).parent.parent.parent
 sys.path.insert(0, str(_ROOT / "research"))
-sys.path.insert(0, str(_ROOT / "research" / "search"))
-from lib.data import load_data
-from sbert_search import _item_text
+from lib.data import item_text, load_data
 
 _DATA_GEN = _ROOT / "research" / "data_gen"
 _DEFAULT_TRIPLES = [_DATA_GEN / "synthetic_triples.jsonl", _DATA_GEN / "gap_fill_triples.jsonl"]
@@ -132,7 +130,7 @@ if __name__ == "__main__":
     print(f"{len(triples)} triples")
 
     _, menus = load_data()  # every restaurant — the random-negative pool, not the eval scope
-    corpus = sorted({_item_text(item) for items in menus.values() for item in items})
+    corpus = sorted({item_text(item) for items in menus.values() for item in items})
 
     pairs = build_pairs(triples, corpus, args.random_negatives, args.seed)
     n_pos = sum(1 for p in pairs if p["label"] == 1.0)

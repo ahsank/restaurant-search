@@ -266,19 +266,10 @@ def print_report(results: dict, k_ndcg: int = 5, k_recall: int = 10) -> None:
 # ---------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    import argparse
-
-    # Needed before parser construction, not just before build_search_fn() below,
-    # since colbert_search/soft_bm25_search/engines' own flags are pulled in via parents=.
     sys.path.insert(0, str(_ROOT / "research" / "search"))
-    import colbert_search
-    import soft_bm25_search
     import engines
 
-    parser = argparse.ArgumentParser(
-        description="Evaluate search against the benchmark",
-        parents=[engines.cli_args(), colbert_search.cli_args(), soft_bm25_search.cli_args()],
-    )
+    parser = engines.build_arg_parser("Evaluate search against the benchmark")
     parser.add_argument("--category", help="Filter to one category, e.g. C01")
     parser.add_argument("--difficulty", choices=["Easy", "Medium", "Hard"])
     parser.add_argument("--query-ids-file", type=Path,

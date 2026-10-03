@@ -54,15 +54,11 @@ def group_results(results: list[dict], n_restaurants: int, k_items: int) -> list
 
 
 if __name__ == "__main__":
-    import argparse
     import engines
-    import colbert_search
-    import soft_bm25_search
 
-    parser = argparse.ArgumentParser(
-        description="Search grouped by restaurant — top N restaurants, top K dishes each",
-        parents=[engines.cli_args(), colbert_search.cli_args(), soft_bm25_search.cli_args(),
-                 restaurant_scope_cli_args()],
+    parser = engines.build_arg_parser(
+        "Search grouped by restaurant — top N restaurants, top K dishes each",
+        parents=[restaurant_scope_cli_args()],
     )
     parser.add_argument("--top-restaurants", type=int, default=3,
                         help="How many restaurants to show (default 3 — raise once the "
