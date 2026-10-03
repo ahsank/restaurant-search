@@ -30,24 +30,7 @@ import numpy as np
 from sentence_transformers import SentenceTransformer
 
 sys.path.insert(0, str(Path(__file__).parents[1]))
-from lib.data import load_data, judged_restaurant_ids, restaurant_scope_cli_args
-
-
-def _item_text(item: dict) -> str:
-    """
-    Build the string encoded for each menu item.
-
-    Restaurant-level fields (cuisine, description) are intentionally excluded:
-    appending them to every item text causes all items from e.g. a "seafood"
-    restaurant to score highly for "seafood" queries regardless of what the
-    dish actually is.
-    """
-    parts = [item.get("name", "")]
-    if item.get("description"):
-        parts.append(item["description"])
-    if item.get("category"):
-        parts.append(item["category"])
-    return ". ".join(p for p in parts if p)
+from lib.data import item_text, load_data, judged_restaurant_ids, restaurant_scope_cli_args
 
 
 def build_index(
@@ -64,7 +47,7 @@ def build_index(
     """
     index: dict[str, list[dict]] = {}
     for rid, items in menus.items():
-        texts = [_item_text(item) for item in items]
+        texts = [item_text(item) for item in items]
         vecs = model.encode(
             texts,
             normalize_embeddings=True,

@@ -47,7 +47,8 @@ def cli_args() -> argparse.ArgumentParser:
     Reusable CLI-flag fragment for this module's scoring parameters.
 
     Any script can add these flags without redefining them by passing
-    `parents=[cli_args()]` to its own ArgumentParser — see evaluate.py.
+    `parents=[cli_args()]` to its own ArgumentParser — engines.build_arg_parser()
+    does this only when this engine is selected.
     `add_help=False` is required on parent parsers (argparse would otherwise
     register -h/--help twice and raise a conflict).
     """

@@ -60,10 +60,9 @@ from pathlib import Path
 
 _ROOT = Path(__file__).parent.parent.parent
 sys.path.insert(0, str(_ROOT / "research"))
-from lib.data import load_data
+from lib.data import item_text, load_data
 
 sys.path.insert(0, str(_ROOT / "research" / "search"))
-from sbert_search import _item_text
 from evaluate import load_queries
 
 _DEFAULT_OUT = Path(__file__).parent / "synthetic_triples.jsonl"
@@ -195,7 +194,7 @@ def find_length_bias_cases(menus: dict) -> list[dict]:
     cases: list[dict] = []
     for rid, items in menus.items():
         for item in items:
-            words = _item_text(item).lower().split()
+            words = item_text(item).lower().split()
             if len(words) < _LONG_WORDS:
                 continue
             word_set = set(words)
@@ -209,7 +208,7 @@ def find_length_bias_cases(menus: dict) -> list[dict]:
             for other in items:
                 if other["name"] == item["name"]:
                     continue
-                other_words = _item_text(other).lower().split()
+                other_words = item_text(other).lower().split()
                 if len(other_words) > _SHORT_WORDS:
                     continue
                 other_word_set = set(other_words)
@@ -292,13 +291,13 @@ def generate_queries_for_cases(cases: list[dict], model: str, batch_size: int) -
 def build_triples(cases: list[dict]) -> list[dict]:
     triples = []
     for case in cases:
-        positive_text = _item_text(case["item"])
+        positive_text = item_text(case["item"])
         for q in case.get("queries") or [case["seed_query"]]:
             for neg_item in case["negatives"]:
                 triples.append({
                     "anchor": q,
                     "positive": positive_text,
-                    "negative": _item_text(neg_item),
+                    "negative": item_text(neg_item),
                     "source": f"synthetic_{case['pattern']}",
                 })
     return triples

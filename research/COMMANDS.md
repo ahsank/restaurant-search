@@ -166,7 +166,43 @@ python research/train/finetune_biencoder.py \
 python research/search/evaluate.py --engine sbert --model models/finetuned-synthetic-plus-gapfill
 ```
 
+## Approach 6 — cross-encoder (exhaustive scoring)
+
+Scores every menu item against the query (no first-stage retriever).
+Training reuses Approach 5's triples, expanded in memory into labeled
+(query, item) pairs plus random negatives, so there's no separate data-gen step.
+On a 4-core CPU, training takes ~3.5 min and a full benchmark run ~13.5 min.
+Both use a GPU automatically when one is present.
+
+```bash
+# Stock checkpoint, no training (--model defaults to cross-encoder/ms-marco-MiniLM-L6-v2 here)
+python research/search/evaluate.py --engine crossencoder
+
+# Finetune on synthetic + gap-fill triples (default) -> models/crossencoder-synthetic-plus-gapfill
+python research/train/finetune_crossencoder.py
+python research/train/finetune_crossencoder.py --epochs 3 --random-negatives 5 --dump-pairs /tmp/ce_pairs.jsonl
+
+# Control: synthetic only (no benchmark judgments at all)
+python research/train/finetune_crossencoder.py --triples research/data_gen/synthetic_triples.jsonl \
+    --output-dir models/crossencoder-synthetic
+
+# Evaluate a finetuned model on the full benchmark
+python research/search/evaluate.py --engine crossencoder --model models/crossencoder-synthetic-plus-gapfill
+
+# Leakage check: score only the queries NOT used to build gap_fill_triples.jsonl
+python -c "import json; print('\n'.join(sorted({json.loads(l)['gap_query_id'] for l in open('research/data_gen/gap_fill_triples.jsonl')})))" > /tmp/gap_ids.txt
+python research/search/evaluate.py --engine crossencoder --model models/crossencoder-synthetic-plus-gapfill \
+    --exclude-query-ids-file /tmp/gap_ids.txt
+
+# Search directly
+python research/search/crossencoder_search.py --benchmark-only seafood italian
+```
+
 ## `evaluate.py` — benchmark scoring (NDCG@5, Recall@10, MRR)
+
+Engine modules load lazily: only the selected `--engine`'s code and libraries
+are imported, and its extra flags appear in `--help` only when the engine is
+given (e.g. `--engine soft_bm25 --help`).
 
 ```bash
 # baseline keyword search
@@ -185,6 +221,9 @@ python research/search/evaluate.py --engine sbert --model all-mpnet-base-v2
 
 # ColBERT late interaction
 python research/search/evaluate.py --engine colbert
+
+# Cross-encoder (scores every item; stock checkpoint unless --model is given)
+python research/search/evaluate.py --engine crossencoder
 
 # Stratify by category / difficulty
 python research/search/evaluate.py --engine colbert --category C01

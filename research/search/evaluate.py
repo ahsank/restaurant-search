@@ -266,31 +266,31 @@ def print_report(results: dict, k_ndcg: int = 5, k_recall: int = 10) -> None:
 # ---------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    import argparse
-
-    # Needed before parser construction, not just before build_search_fn() below,
-    # since colbert_search/soft_bm25_search/engines' own flags are pulled in via parents=.
     sys.path.insert(0, str(_ROOT / "research" / "search"))
-    import colbert_search
-    import soft_bm25_search
     import engines
 
-    parser = argparse.ArgumentParser(
-        description="Evaluate search against the benchmark",
-        parents=[engines.cli_args(), colbert_search.cli_args(), soft_bm25_search.cli_args()],
-    )
+    parser = engines.build_arg_parser("Evaluate search against the benchmark")
     parser.add_argument("--category", help="Filter to one category, e.g. C01")
     parser.add_argument("--difficulty", choices=["Easy", "Medium", "Hard"])
     parser.add_argument("--query-ids-file", type=Path,
                         help="Score only query_ids listed in this file (one per line) — e.g. "
                              "research/data_gen/held_out_query_ids.txt, to evaluate a finetuned "
                              "model (Approach 5) exclusively on queries it never trained on")
+    parser.add_argument("--exclude-query-ids-file", type=Path,
+                        help="Skip query_ids listed in this file (one per line) — e.g. the gap_query_id "
+                             "values in gap_fill_triples.jsonl, to score only the queries a model was "
+                             "NOT patched on (the leakage check for Approach 5 variant 3 / Approach 6)")
     parser.add_argument("--verbose", "-v", action="store_true")
     args = parser.parse_args()
 
     query_ids = None
     if args.query_ids_file:
         query_ids = {line.strip() for line in args.query_ids_file.read_text().splitlines() if line.strip()}
+    if args.exclude_query_ids_file:
+        excluded = {line.strip() for line in args.exclude_query_ids_file.read_text().splitlines() if line.strip()}
+        if query_ids is None:
+            query_ids = {q["query_id"] for q in load_queries()}
+        query_ids -= excluded
 
     # Load data once — all engines share the same restaurants/menus. Always scoped
     # to judged restaurants; see the module docstring for why this isn't a flag.

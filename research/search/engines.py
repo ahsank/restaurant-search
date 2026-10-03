@@ -4,13 +4,16 @@ search_grouped.py can reuse every engine (and every engine-specific flag from
 colbert_search.cli_args() / soft_bm25_search.cli_args()) without copy-pasting
 the "given --engine X, build the index and return a search_fn" logic.
 
+Engine modules are imported lazily: only the module for the selected --engine
+is ever imported, both for its CLI flags (build_arg_parser) and for its search
+code (build_search_fn). Running `--engine text` never imports colbert_search,
+soft_bm25_search, sentence-transformers, pylate, torch, etc.
+
 Usage in a CLI script:
-    parser = argparse.ArgumentParser(
-        parents=[engines.cli_args(), colbert_search.cli_args(), soft_bm25_search.cli_args()],
-    )
-    ...
+    parser = engines.build_arg_parser("My script", parents=[...])
+    parser.add_argument(...)            # script-specific flags
     args = parser.parse_args()
-    search_fn = build_search_fn(args, restaurants, menus)
+    search_fn = engines.build_search_fn(args, restaurants, menus)
     results = search_fn("seafood pasta")
 
 search_fn(query) -> list[dict], each dict has at least "restaurant_id" and
@@ -18,13 +21,20 @@ search_fn(query) -> list[dict], each dict has at least "restaurant_id" and
 "score", "description", "price", "restaurant" display name).
 """
 import argparse
+import importlib
 import sys
 from pathlib import Path
 from typing import Callable
 
 sys.path.insert(0, str(Path(__file__).parent))
 
-ENGINE_CHOICES = ["text", "enhanced", "filtered", "soft_bm25", "sbert", "colbert"]
+ENGINE_CHOICES = ["text", "enhanced", "filtered", "soft_bm25", "sbert", "colbert", "crossencoder"]
+
+# Engines whose module contributes extra CLI flags via its own cli_args().
+_ENGINE_FLAG_MODULES = {
+    "soft_bm25": "soft_bm25_search",
+    "colbert": "colbert_search",
+}
 
 
 def cli_args() -> argparse.ArgumentParser:
@@ -32,22 +42,44 @@ def cli_args() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(add_help=False)
     parser.add_argument(
         "--engine", choices=ENGINE_CHOICES, default="text",
-        help="Search engine: text (baseline), enhanced, filtered, soft_bm25, sbert, colbert (default: text)",
+        help="Search engine: text (baseline), enhanced, filtered, soft_bm25, sbert, colbert, crossencoder (default: text)",
     )
     parser.add_argument(
         "--model", default="all-MiniLM-L6-v2",
-        help="Sentence-transformers model name (default: all-MiniLM-L6-v2, used by --engine sbert/colbert)",
+        help="Model name or local directory (default: all-MiniLM-L6-v2 for sbert; colbert and crossencoder substitute their own stock checkpoint when left at this default)",
     )
     return parser
+
+
+def build_arg_parser(description: str, parents: list[argparse.ArgumentParser] = ()) -> argparse.ArgumentParser:
+    """
+    ArgumentParser with --engine/--model plus the selected engine's own flags.
+
+    Pre-parses sys.argv for --engine alone, then imports only that engine's
+    module to pull in its cli_args() fragment. Flags of unselected engines are
+    therefore not registered: `--engine colbert --help` lists ColBERT's flags,
+    plain `--help` doesn't.
+    """
+    pre = argparse.ArgumentParser(add_help=False, parents=[cli_args()])
+    known, _ = pre.parse_known_args()
+    engine_parents = []
+    if known.engine in _ENGINE_FLAG_MODULES:
+        engine_parents.append(importlib.import_module(_ENGINE_FLAG_MODULES[known.engine]).cli_args())
+    return argparse.ArgumentParser(
+        description=description,
+        parents=[cli_args(), *engine_parents, *parents],
+        epilog="Engine-specific flags are listed when --engine is given, "
+               "e.g. --engine soft_bm25 --help",
+    )
 
 
 def build_search_fn(args: argparse.Namespace, restaurants: dict, menus: dict) -> Callable[[str], list[dict]]:
     """
     Build search_fn(query) -> list[dict] for args.engine. Prints load/index-
     building progress to stdout. Requires args to have been parsed from a
-    parser that included cli_args() above, plus colbert_search.cli_args() /
-    soft_bm25_search.cli_args() if --engine colbert / soft_bm25 will be used
-    (--vectors is required and will raise if missing for soft_bm25 + fmm).
+    parser built by build_arg_parser() above, so the selected engine's own
+    flags are present (--vectors is required and will raise if missing for
+    soft_bm25 + fmm). Only the selected engine's module is imported.
     """
     name_to_id = {v.get("name", k): k for k, v in restaurants.items()}
 
@@ -128,6 +160,19 @@ def build_search_fn(args: argparse.Namespace, restaurants: dict, menus: dict) ->
 
         def _raw_search(query, _restaurants, _menus):
             return _cb_search(query, _restaurants, _cb_index, _cb_model)
+
+    elif args.engine == "crossencoder":
+        from crossencoder_search import STOCK_MODEL, build_index as _ce_build_index, search as _ce_search
+        from sentence_transformers.cross_encoder import CrossEncoder
+        _ce_model_name = args.model if args.model != "all-MiniLM-L6-v2" else STOCK_MODEL
+        print(f"Loading cross-encoder '{_ce_model_name}'...", end=" ", flush=True)
+        _ce_model = CrossEncoder(_ce_model_name)
+        print("done")
+        _ce_index = _ce_build_index(menus, restaurants)
+        print(f"{len(_ce_index)} items to score per query (exhaustive, no first-stage retriever)")
+
+        def _raw_search(query, _restaurants, _menus):
+            return _ce_search(query, _restaurants, _ce_index, _ce_model)
 
     else:
         from text_search import search as _raw_search
