@@ -298,7 +298,8 @@ fine-tuning is what actually fixes it.
 2. At index time: encode every menu item, keep the full per-token matrix (not a single pooled vector)
 3. At query time: encode the query the same way, score every item via MaxSim
 
-**Pros:** Best measured quality so far on this benchmark (see table below). No
+**Pros:** Best measured quality of any engine with precomputable item vectors
+(see table below; only Approach 6's cross-encoder scores higher). No
 training or labeled data needed — the retrieval fine-tuning was already done by
 the model authors. Keeps the AND-across-terms and phrase-context benefits of
 Approach 3.5, without needing a phrase vocabulary or a static vector file.
@@ -310,25 +311,28 @@ transformer library (`pylate`) rather than a lightweight vector file.
 
 **Library:** `pip install pylate`
 
-**Measured results** (full 209-query benchmark, NDCG@5 / Recall@10 / MRR):
+**Measured results** (full 209-query benchmark, 8 restaurants, 199 judged
+queries, NDCG@5 / Recall@10 / MRR):
 
 | Engine | NDCG@5 | Recall@10 | MRR |
 |---|---|---|---|
-| Soft-BM25 (`plus` combiner + spell-correct) | 0.5180 | 0.5702 | 0.6459 |
-| SBERT `all-MiniLM-L6-v2` | 0.5063 | 0.5229 | 0.6240 |
-| SBERT `all-mpnet-base-v2` | 0.5101 | 0.5132 | 0.6400 |
-| **ColBERT `colbertv2.0`** | **0.5920** | **0.6114** | **0.6931** |
+| Soft-BM25 (`plus` combiner + spell-correct) | 0.5258 | 0.5422 | 0.6700 |
+| SBERT `all-MiniLM-L6-v2` | 0.5288 | 0.5115 | 0.6561 |
+| SBERT `all-mpnet-base-v2` | 0.5334 | 0.5029 | 0.6806 |
+| **ColBERT `colbertv2.0`** | **0.6067** | **0.5895** | **0.7255** |
 
-(Previously measured on the 204-query benchmark: Soft-BM25 0.5063, SBERT MiniLM
-0.4983, SBERT mpnet 0.5033, ColBERT 0.5931. Rankings are unchanged after the
-benchmark grew to 209 queries — C24 "Pizza varieties" and C25 "Occasion /
-meal-time" were added, both of which score well across engines.)
+(Earlier measurements on the 7-restaurant benchmark, before Anthony's HomePort
+was judged: Soft-BM25 0.5180, SBERT MiniLM 0.5063, SBERT mpnet 0.5101, ColBERT
+0.5920 NDCG@5. On the original 204-query set: 0.5063, 0.4983, 0.5033, 0.5931.
+ColBERT has led every time.)
 
-ColBERT's gains are largest on categories where Approach 4's single-vector
-averaging dilutes the signal — C17 Desserts (0.56 → 0.92), C22 Ingredient focus
-(0.57 → 0.86), C05 Spelling variations (0.59 → 0.79). It does **not** meaningfully
-help the hardest concept-inference categories (C01–C04, C10) — those stay weak
-across every approach tried so far and likely need Approach 6 or 7.
+ColBERT's gains over MiniLM are largest on categories where Approach 4's
+single-vector averaging dilutes the signal: C18 Chicken dishes (0.17 → 0.55),
+C15 Sandwich varieties (0.46 → 0.79), C11 Soup varieties (0.48 → 0.74),
+C22 Ingredient focus (0.72 → 0.85) and C05 Spelling variations (0.63 → 0.76).
+It does **not** meaningfully help the hardest concept-inference categories
+(C01–C04, C10). Those stay weak across every approach tried so far; Approach 6's
+cross-encoder improves C01 only modestly (0.44).
 
 Soft-BM25's `plus` combiner (raw sum of soft-tf, no BM25 saturation or document-
 length normalization) outperforms the `bm25` combiner here — the `bm25` combiner
@@ -336,7 +340,8 @@ was found to systematically over-reward short documents when soft-tf is a
 continuous similarity rather than an integer count (see the "pizza" query
 investigation: a 3-token item with a weak 0.52 similarity match outscored an
 11-token item with a literal, exact match). Tuning `b=0` on the `bm25` combiner
-recovers most of that loss (NDCG@5 0.5063 → still short of `plus`'s 0.5180),
+recovers most of that loss (NDCG@5 0.5063 → still short of `plus`'s 0.5180,
+both measured on the 7-restaurant benchmark),
 but `plus` sidesteps the problem entirely by never applying length
 normalization in the first place.
 
@@ -437,7 +442,10 @@ queries per category from triple generation and writes their ids to
 on those unseen queries.
 
 **Measured results** (42 held-out queries, stratified across all 25
-categories, never used to build a training triple):
+categories, never used to build a training triple). Re-running the stock
+SBERT and ColBERT rows on the current 8-restaurant benchmark reproduces the
+same scores (0.5141 and 0.5620 NDCG@5), so this comparison is unaffected by
+Anthony's HomePort judgments:
 
 | Engine | NDCG@5 | Recall@10 | MRR |
 |---|---|---|---|
@@ -510,7 +518,12 @@ about $0.20 in `claude -p` calls.
 
 All four rows score the **same full 209-query benchmark** — no held-out
 split, since this variant's training data is fully independent of
-`data/queries/`. Two findings:
+`data/queries/`. This table, and the Variant 3 and base-model tables below,
+were measured on the 7-restaurant benchmark, before Anthony's HomePort was
+judged. The finetuned models weren't re-run after that. On the current
+8-restaurant benchmark the stock baselines are SBERT MiniLM 0.5288 and
+ColBERT 0.6067 (see `BENCHMARK_RESULTS.md`), so compare the finetuned rows
+only against the stock rows in the same table. Two findings:
 
 - **Training longer did not help — it mildly hurt.** Train loss kept
   dropping (0.083 → 0.054 from epoch 10 to 30) while benchmark NDCG@5
@@ -740,7 +753,10 @@ Three findings:
    (Approach 5's finetuned bi-encoders were measured before Anthony's
    HomePort judgments were added, so their 0.5875/0.5892 aren't directly
    comparable. On that older benchmark ColBERT scored 0.5920 vs. 0.6067
-   here, so all numbers shifted.)
+   here, so all numbers shifted.) The one clean comparison is Variant 1's
+   42 held-out queries, whose scores didn't change with the new judgments.
+   There, the stock cross-encoder scores 0.5920 NDCG@5, vs. 0.5620 for
+   ColBERT and 0.5376 for the bi-encoder finetuned on real judgments.
 2. **Finetuning on Approach 5's triples does not help the cross-encoder.**
    NDCG@5 moves by ±0.001 (noise on 199 queries), and MRR *drops* about 0.025–0.03.
    The gains are real but offset: Hard queries improve (+0.04, consistent
