@@ -285,12 +285,21 @@ if __name__ == "__main__":
                         help="Score only query_ids listed in this file (one per line) — e.g. "
                              "research/data_gen/held_out_query_ids.txt, to evaluate a finetuned "
                              "model (Approach 5) exclusively on queries it never trained on")
+    parser.add_argument("--exclude-query-ids-file", type=Path,
+                        help="Skip query_ids listed in this file (one per line) — e.g. the gap_query_id "
+                             "values in gap_fill_triples.jsonl, to score only the queries a model was "
+                             "NOT patched on (the leakage check for Approach 5 variant 3 / Approach 6)")
     parser.add_argument("--verbose", "-v", action="store_true")
     args = parser.parse_args()
 
     query_ids = None
     if args.query_ids_file:
         query_ids = {line.strip() for line in args.query_ids_file.read_text().splitlines() if line.strip()}
+    if args.exclude_query_ids_file:
+        excluded = {line.strip() for line in args.exclude_query_ids_file.read_text().splitlines() if line.strip()}
+        if query_ids is None:
+            query_ids = {q["query_id"] for q in load_queries()}
+        query_ids -= excluded
 
     # Load data once — all engines share the same restaurants/menus. Always scoped
     # to judged restaurants; see the module docstring for why this isn't a flag.
