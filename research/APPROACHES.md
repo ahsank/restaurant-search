@@ -852,6 +852,10 @@ so each menu's KV cache is reused across the 209 queries): 1,672 prompts in
 
 By difficulty: Easy 0.706, Medium 0.576, Hard 0.247 NDCG@5.
 
+Runs are not bit-for-bit reproducible even at temperature 0, because vLLM's
+batching changes floating-point reduction order. A second run in the notebook
+scored 0.6157 / 0.7489 / 0.6807, so treat differences under ~0.005 NDCG@5 as noise.
+
 **Recall is the standout:** +0.13 Recall@10 over the best engine. The LLM finds
 relevant items that every embedding approach misses. **Ordering is the
 weakness:** NDCG@5 lands between ColBERT and the cross-encoder, and MRR is
