@@ -62,10 +62,23 @@ echo "=== creating $GPU session $SESSION ==="
 "${COLAB[@]}" new -s "$SESSION" --gpu "$GPU"
 trap cleanup EXIT
 
-"${COLAB[@]}" upload -s "$SESSION" "$TARBALL" /content/restaurant-search.tgz
+# Upload in ~20 MB parts with per-part retries: one large upload (code + a ~90 MB
+# model) can be dropped mid-transfer by the session's network relay.
+remote_py 60 "import os; os.makedirs('/content/upload', exist_ok=True); print('upload dir ready')"
+split -b 20m -d "$TARBALL" "$WORK/part-"
+for part in "$WORK"/part-*; do
+  for attempt in 1 2 3; do
+    if timeout 300 "${COLAB[@]}" upload -s "$SESSION" "$part" "/content/upload/$(basename "$part")"; then
+      break
+    fi
+    [ "$attempt" = 3 ] && { echo "ERROR: upload of $(basename "$part") failed"; exit 1; }
+    echo "upload of $(basename "$part") failed (attempt $attempt), retrying"
+  done
+done
 remote_py 600 "
 import subprocess
-r = subprocess.run('mkdir -p $REMOTE && tar -xzf /content/restaurant-search.tgz -C $REMOTE'
+r = subprocess.run('cat /content/upload/part-* > /content/restaurant-search.tgz'
+                   ' && mkdir -p $REMOTE && tar -xzf /content/restaurant-search.tgz -C $REMOTE'
                    ' && pip install -q sentence-transformers 2>&1 | tail -3'
                    ' && nvidia-smi --query-gpu=name,memory.total --format=csv',
                    shell=True, capture_output=True, text=True)
