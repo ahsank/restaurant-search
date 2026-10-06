@@ -141,17 +141,12 @@ See `research/search/evaluate.py` for a reference implementation that:
 
 ### Label review log
 
-`label_review_2026-10.csv` records every judgment changed in the October 2026
-review, one row per changed (query, restaurant, item) with old and new
-relevance and the reason. The review compared the labels against
-`research/results/llm/qwen2.5-7b-instruct.jsonl`. Every disagreement in Qwen's
-top 10, and every labeled item Qwen missed, was judged against the query
-intent in `menu-search-benchmark-queries.md`. Queries whose intent names a
-whole set ("all enchilada variants", "Mendocino Farms sandwiches", a
-restaurant's happy-hour menu) were completed from the menus rather than from
-Qwen's picks. Result: 1,494 → 2,265 judgments; 7 previously unjudged queries
-now have labels. It also fixed 9 labels that used "Tacos De Pescado" where the
-menu says "Tacos de Pescado", so no engine could ever match them.
+`label_review_2026-10.csv` lists judgments added in the October 2026 review,
+with the reason for each. The review covered items that the Qwen2.5-7B run
+(`research/results/llm/qwen2.5-7b-instruct.jsonl`) returned for a query but
+that had no judgment here. Each one was checked against the query intent in
+`menu-search-benchmark-queries.md`, and those found relevant were added
+(1,494 → 1,864 judgments). Existing judgments were not changed or removed.
 
 ### Adding new relevance judgments
 
