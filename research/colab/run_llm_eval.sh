@@ -71,37 +71,42 @@ assert r.returncode == 0
 
 echo "=== starting run: $MODEL ==="
 ARGS="--model $MODEL --out $REMOTE_OUT ${LIMIT:+--limit $LIMIT} $EXTRA_ARGS"
-remote_py 60 "
+LOCAL_LOG="$OUT_DIR/$TAG.log"
+# Idempotent launch: a dropped exec connection may or may not have started the
+# job, so a retry skips launching when /content/run.log already exists.
+for attempt in 1 2 3; do
+  remote_py 60 "
 import os, subprocess
-env = dict(os.environ, HF_TOKEN='${HF_TOKEN:-}') if '${HF_TOKEN:-}' else dict(os.environ)
-log = open('/content/run.log', 'w')
-p = subprocess.Popen('cd $REMOTE && exec python research/search/llm_search.py $ARGS', shell=True,
-                     stdout=log, stderr=subprocess.STDOUT, env=env, start_new_session=True)
-open('/content/run.pid', 'w').write(str(p.pid))
-print('started pid', p.pid)
-"
+if os.path.exists('/content/run.log'):
+    print('already started')
+else:
+    env = dict(os.environ, HF_TOKEN='${HF_TOKEN:-}') if '${HF_TOKEN:-}' else dict(os.environ)
+    subprocess.Popen('cd $REMOTE && (python research/search/llm_search.py $ARGS; echo RUN_EXIT=\$?) > /content/run.log 2>&1',
+                     shell=True, env=env, start_new_session=True)
+    print('started')
+" || true
+  if timeout 90 "${COLAB[@]}" download -s "$SESSION" /content/run.log "$LOCAL_LOG" >/dev/null 2>&1; then
+    break
+  fi
+  [ "$attempt" = 3 ] && { echo "ERROR: run did not start"; exit 1; }
+  echo "launch not confirmed (attempt $attempt), retrying"
+done
 
+# Poll through the file API (download), which survives dropped kernel connections.
 echo "=== polling every ${POLL_SECONDS}s ==="
 while true; do
   sleep "$POLL_SECONDS"
-  STATUS="$(remote_py 60 "
-import os
-pid = int(open('/content/run.pid').read())
-try:
-    os.kill(pid, 0); alive = os.waitpid(pid, os.WNOHANG) == (0, 0)
-except (ProcessLookupError, ChildProcessError):
-    alive = False
-lines = open('/content/run.log', errors='replace').read().replace(chr(13), chr(10)).splitlines()
-print(chr(10).join(l[-200:] for l in lines[-3:]))
-print('RUNNING' if alive else 'FINISHED')
-" 2>&1 || echo "POLL_FAILED")"
-  echo "[$(date +%H:%M:%S)] $(echo "$STATUS" | tail -4 | tr '\n' ' ')"
-  case "$STATUS" in *FINISHED*) break ;; esac
+  if ! timeout 90 "${COLAB[@]}" download -s "$SESSION" /content/run.log "$LOCAL_LOG" >/dev/null 2>&1; then
+    echo "[$(date +%H:%M:%S)] poll failed, retrying"; continue
+  fi
+  echo "[$(date +%H:%M:%S)] $(tr '\r' '\n' < "$LOCAL_LOG" | grep -v '^\s*$' | tail -2 | cut -c1-200 | tr '\n' ' ')"
+  grep -q '^RUN_EXIT=' "$LOCAL_LOG" && break
 done
+grep -q '^RUN_EXIT=0$' "$LOCAL_LOG" || { echo "ERROR: run failed"; tail -40 "$LOCAL_LOG"; exit 1; }
 
 echo "=== downloading results ==="
-"${COLAB[@]}" download -s "$SESSION" /content/run.log "$OUT_DIR/$TAG.log"
-tail -40 "$OUT_DIR/$TAG.log"
+tr '\r' '\n' < "$LOCAL_LOG" | grep -vE 'it/s\]|INFO|WARNING|Processed prompts|^\s*$' > "$LOCAL_LOG.tmp" && mv "$LOCAL_LOG.tmp" "$LOCAL_LOG"
+tail -40 "$LOCAL_LOG"
 "${COLAB[@]}" download -s "$SESSION" "$REMOTE_OUT" "$OUT_DIR/$TAG.jsonl"
 "${COLAB[@]}" download -s "$SESSION" "${REMOTE_OUT%.jsonl}.metrics.json" "$OUT_DIR/$TAG.metrics.json"
 echo "Results in $OUT_DIR/$TAG.{jsonl,metrics.json,log}"
