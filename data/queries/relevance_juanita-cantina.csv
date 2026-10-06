@@ -15,15 +15,16 @@ juanita-cantina,C01-03,Seafood Burrito,2
 juanita-cantina,C01-03,Seafood Enchiladas,2
 juanita-cantina,C01-03,Shrimp Ceviche,2
 juanita-cantina,C01-03,Shrimp Fajitas,1
-juanita-cantina,C01-03,Tacos De Pescado,2
+juanita-cantina,C01-03,Tacos de Pescado,2
+juanita-cantina,C01-03,Camarones à la Crema,2
 juanita-cantina,C01-06,3 Street Tacos,2
 juanita-cantina,C01-06,Los Taquitos,1
 juanita-cantina,C01-06,Taco Birria,2
 juanita-cantina,C01-06,Tacos Al Carbon,2
-juanita-cantina,C01-06,Tacos De Pescado,1
+juanita-cantina,C01-06,Tacos de Pescado,1
 juanita-cantina,C02-01,Seafood Burrito,1
 juanita-cantina,C02-01,Tacos De Camarones,2
-juanita-cantina,C02-01,Tacos De Pescado,2
+juanita-cantina,C02-01,Tacos de Pescado,2
 juanita-cantina,C02-03,Caesar Salad,2
 juanita-cantina,C02-03,Cantina Salad,2
 juanita-cantina,C02-03,Taco Salad,1
@@ -49,8 +50,13 @@ juanita-cantina,C03-04,Three Ceviche Tostadas,1
 juanita-cantina,C03-05,Carne Asada,2
 juanita-cantina,C03-05,Pollo Asado,2
 juanita-cantina,C03-05,Tacos Al Carbon,1
+juanita-cantina,C03-05,Burrito Asada,1
+juanita-cantina,C03-08,Casa Burrito,2
+juanita-cantina,C03-08,Burrito Asada,2
+juanita-cantina,C03-08,Seafood Burrito,2
 juanita-cantina,C03-09,Camarones Mojo de Ajo,1
 juanita-cantina,C03-09,Camarones à la Diabla,2
+juanita-cantina,C03-10,Caesar Salad,2
 juanita-cantina,C04-01,Carne Asada,2
 juanita-cantina,C04-01,Mexican Steak,1
 juanita-cantina,C04-05,Cheeseburger,2
@@ -59,15 +65,18 @@ juanita-cantina,C04-05,Jalapeño Cheeseburger,2
 juanita-cantina,C04-07,Chili Verde,2
 juanita-cantina,C04-07,Michoacan Carnitas,2
 juanita-cantina,C04-07,Posole,1
+juanita-cantina,C04-07,Burrito Chili Verde,1
 juanita-cantina,C04-08,Taco Birria,2
 juanita-cantina,C04-09,Breaded Calamari,2
 juanita-cantina,C04-09,Cauliflower Wings,1
 juanita-cantina,C04-09,Cheese Sticks,2
 juanita-cantina,C04-09,Taquitos Rancheros,2
+juanita-cantina,C04-09,Calamari,2
 juanita-cantina,C04-10,Taquitos Rancheros,1
 juanita-cantina,C04-10,Wings,2
 juanita-cantina,C05-01,Caesar Salad,2
 juanita-cantina,C05-02,Quesadillas,2
+juanita-cantina,C05-02,Quesadilla,2
 juanita-cantina,C05-03,Fresh Avocado,2
 juanita-cantina,C05-03,Guacamole,2
 juanita-cantina,C05-04,Chipotle Shrimp Enchiladas,2
@@ -77,36 +86,59 @@ juanita-cantina,C05-04,Enchiladas Suizas,2
 juanita-cantina,C05-04,Enchiladas en Mole,2
 juanita-cantina,C05-04,Seafood Enchiladas,2
 juanita-cantina,C05-04,Spinach Enchilada,2
+juanita-cantina,C05-04,Veggie Enchiladas,2
 juanita-cantina,C05-08,Shrimp Ceviche,2
 juanita-cantina,C05-08,Three Ceviche Tostadas,2
 juanita-cantina,C05-15,Camarones à la Crema,1
 juanita-cantina,C05-15,Camarones à la Diabla,2
+juanita-cantina,C06-04,Mexican Steak,2
+juanita-cantina,C06-04,Tacos Al Carbon,1
+juanita-cantina,C06-04,Carne Asada,1
+juanita-cantina,C06-04,Steak Tapiqueño,1
 juanita-cantina,C06-05,Arroz Con Pollo,1
 juanita-cantina,C06-05,Camarones Mojo de Ajo,2
+juanita-cantina,C06-05,Camarones à la Diabla,2
+juanita-cantina,C06-07,Breaded Calamari,2
+juanita-cantina,C06-07,Calamari,2
 juanita-cantina,C06-09,Pollo Asado,2
 juanita-cantina,C06-09,Pollo Chipotle,1
 juanita-cantina,C07-03,3 Street Tacos,2
 juanita-cantina,C07-03,Burrito Al Pastor,2
 juanita-cantina,C07-03,Tacos Al Carbon,1
+juanita-cantina,C07-04,3 Street Tacos,2
+juanita-cantina,C07-05,Camarones Mojo de Ajo,2
+juanita-cantina,C07-05,Shrimp Juanita,1
 juanita-cantina,C07-06,Arroz Con Pollo,2
+juanita-cantina,C07-07,Arroz Con Pollo,2
 juanita-cantina,C08-01,Cauliflower Wings,1
 juanita-cantina,C08-01,Chile Relleno,1
 juanita-cantina,C08-01,Queso Dip,2
 juanita-cantina,C08-01,Queso with Spinach,2
 juanita-cantina,C08-01,Veggie Enchiladas,2
 juanita-cantina,C08-01,Veggie Fajitas,2
+juanita-cantina,C08-01,Fresh Avocado,2
+juanita-cantina,C08-01,Veggie Tostadas,2
+juanita-cantina,C08-01,Spinach Enchilada,2
+juanita-cantina,C08-01,Quesadillas,1
+juanita-cantina,C08-04,Queso with Spinach,2
+juanita-cantina,C08-04,Fresh Avocado,2
+juanita-cantina,C08-05,Taco Salad,2
+juanita-cantina,C08-06,Queso with Spinach,2
+juanita-cantina,C08-06,Fresh Avocado,2
 juanita-cantina,C08-07,Casa Burrito,1
 juanita-cantina,C08-09,Camarones à la Diabla,2
 juanita-cantina,C08-09,Seafood Burrito,2
 juanita-cantina,C08-09,Seafood Enchiladas,2
 juanita-cantina,C08-09,Shrimp Ceviche,1
 juanita-cantina,C08-09,Shrimp Fajitas,2
-juanita-cantina,C08-09,Tacos De Pescado,2
+juanita-cantina,C08-09,Tacos de Pescado,2
 juanita-cantina,C09-01,Camarones Mojo de Ajo,2
 juanita-cantina,C09-01,Camarones à la Diabla,2
 juanita-cantina,C09-01,Seafood Enchiladas,1
 juanita-cantina,C09-01,Shrimp Fajitas,2
+juanita-cantina,C09-01,Camarones à la Crema,2
 juanita-cantina,C09-02,Clams with Chorizo,2
+juanita-cantina,C09-04,Mexican Flatbread,2
 juanita-cantina,C09-05,Chips,1
 juanita-cantina,C09-05,Nacho Supreme,2
 juanita-cantina,C09-05,Queso Dip,2
@@ -122,6 +154,8 @@ juanita-cantina,C10-02,Camarones à la Diabla,2
 juanita-cantina,C10-02,Seafood Enchiladas,1
 juanita-cantina,C10-02,Shrimp Ceviche,2
 juanita-cantina,C10-02,Shrimp Fajitas,2
+juanita-cantina,C10-02,Camarones Zarandeados,1
+juanita-cantina,C10-02,Clams with Chorizo,1
 juanita-cantina,C11-01,Posole,2
 juanita-cantina,C11-01,Tortilla Soup,2
 juanita-cantina,C11-02,Tortilla Soup,2
@@ -136,6 +170,7 @@ juanita-cantina,C12-01,Juanita Chicken Burger,1
 juanita-cantina,C12-02,Cheeseburger,2
 juanita-cantina,C12-02,Hawaiian Cheeseburger,2
 juanita-cantina,C12-02,Jalapeño Cheeseburger,2
+juanita-cantina,C12-02,Juanita Chicken Burger,1
 juanita-cantina,C12-03,Juanita Chicken Burger,2
 juanita-cantina,C12-04,Cheeseburger,2
 juanita-cantina,C12-04,Hawaiian Cheeseburger,2
@@ -147,8 +182,10 @@ juanita-cantina,C13-01,Los Taquitos,1
 juanita-cantina,C13-01,Taco Birria,2
 juanita-cantina,C13-01,Tacos Al Carbon,2
 juanita-cantina,C13-01,Tacos De Camarones,2
-juanita-cantina,C13-01,Tacos De Pescado,2
-juanita-cantina,C13-02,Tacos De Pescado,2
+juanita-cantina,C13-01,Tacos de Pescado,2
+juanita-cantina,C13-01,Three Hard Tacos,2
+juanita-cantina,C13-01,Three Cantina Tacos,2
+juanita-cantina,C13-02,Tacos de Pescado,2
 juanita-cantina,C13-03,3 Street Tacos,1
 juanita-cantina,C13-03,Taco Birria,2
 juanita-cantina,C13-03,Tacos Al Carbon,2
@@ -158,6 +195,7 @@ juanita-cantina,C13-04,Tacos Al Carbon,2
 juanita-cantina,C13-05,Tacos De Camarones,2
 juanita-cantina,C13-06,3 Street Tacos,2
 juanita-cantina,C13-06,Tacos Al Carbon,1
+juanita-cantina,C13-06,Three Cantina Tacos,1
 juanita-cantina,C13-07,Three Hard Tacos,2
 juanita-cantina,C13-08,3 Street Tacos,2
 juanita-cantina,C13-08,Tacos Al Carbon,1
@@ -168,9 +206,11 @@ juanita-cantina,C16-01,Taco Salad,1
 juanita-cantina,C16-02,Caesar Salad,2
 juanita-cantina,C16-03,Caesar Salad,1
 juanita-cantina,C16-03,Cantina Salad,2
+juanita-cantina,C16-03,Taco Salad,1
 juanita-cantina,C16-04,Taco Salad,2
 juanita-cantina,C16-05,Avocado Tostada,2
 juanita-cantina,C16-05,Fresh Avocado,2
+juanita-cantina,C16-05,Cantina Salad,1
 juanita-cantina,C18-01,Arroz Con Pollo,2
 juanita-cantina,C18-01,Caesar Salad,1
 juanita-cantina,C18-01,Chicken Fajitas,2
@@ -179,9 +219,13 @@ juanita-cantina,C18-01,Pollo Asado,2
 juanita-cantina,C18-01,Pollo Chipotle,2
 juanita-cantina,C18-01,Pollo en Mole,2
 juanita-cantina,C18-01,Tortilla Soup,1
+juanita-cantina,C18-01,Juanita Chicken Burger,2
+juanita-cantina,C18-01,Wings,2
 juanita-cantina,C18-02,Caesar Salad,1
 juanita-cantina,C18-02,Pollo Asado,2
 juanita-cantina,C18-02,Tacos Al Carbon,2
+juanita-cantina,C18-02,Juanita Chicken Burger,2
+juanita-cantina,C18-02,Pollo Chipotle,1
 juanita-cantina,C18-03,Arroz Con Pollo,2
 juanita-cantina,C18-03,Pollo Ala Crema,1
 juanita-cantina,C18-03,Pollo Asado,2
@@ -189,6 +233,7 @@ juanita-cantina,C18-04,Pollo Ala Crema,2
 juanita-cantina,C18-05,Arroz Con Pollo,2
 juanita-cantina,C18-05,Chicken Fajitas,2
 juanita-cantina,C18-05,Pollo Chipotle,1
+juanita-cantina,C18-05,Pollo Ala Crema,1
 juanita-cantina,C18-06,Cantina Salad,1
 juanita-cantina,C18-06,Juanita Chicken Burger,2
 juanita-cantina,C19-01,Beef Fajitas,2
@@ -197,12 +242,22 @@ juanita-cantina,C19-01,Carne Asada,2
 juanita-cantina,C19-01,Mexican Steak,2
 juanita-cantina,C19-01,Ribeye Steak,2
 juanita-cantina,C19-01,Taco Birria,2
+juanita-cantina,C19-01,Cheeseburger,2
+juanita-cantina,C19-01,Jalapeño Cheeseburger,2
+juanita-cantina,C19-01,Hawaiian Cheeseburger,2
+juanita-cantina,C19-01,Carne Asada Fajitas,2
+juanita-cantina,C19-01,Steak Tapiqueño,2
+juanita-cantina,C19-01,Asada Fries,1
+juanita-cantina,C19-01,Carne and Camaron,1
 juanita-cantina,C19-02,Carne Asada,2
 juanita-cantina,C19-02,Mexican Steak,2
 juanita-cantina,C19-02,Steak Tapiqueño,2
+juanita-cantina,C19-02,Tacos Al Carbon,1
 juanita-cantina,C19-03,Ribeye Steak,2
 juanita-cantina,C19-04,Cheeseburger,2
 juanita-cantina,C19-04,Nacho Supreme,1
+juanita-cantina,C19-04,Jalapeño Cheeseburger,2
+juanita-cantina,C19-04,Hawaiian Cheeseburger,2
 juanita-cantina,C19-05,Posole,1
 juanita-cantina,C20-01,Burrito Al Pastor,2
 juanita-cantina,C20-01,Burrito Chili Verde,2
@@ -226,27 +281,49 @@ juanita-cantina,C21-01,Shrimp Ceviche,2
 juanita-cantina,C21-01,Shrimp Fajitas,2
 juanita-cantina,C21-01,Shrimp Juanita,2
 juanita-cantina,C21-01,Tacos De Camarones,2
+juanita-cantina,C21-01,Camarones Zarandeados,2
+juanita-cantina,C21-01,Seafood Burrito,1
+juanita-cantina,C21-01,Carne and Camaron,1
 juanita-cantina,C21-02,Camarones Mojo de Ajo,2
 juanita-cantina,C21-02,Shrimp Juanita,2
 juanita-cantina,C21-03,Camarones Mojo de Ajo,2
 juanita-cantina,C21-03,Camarones à la Diabla,2
 juanita-cantina,C21-03,Shrimp Fajitas,2
+juanita-cantina,C21-03,Camarones à la Crema,2
+juanita-cantina,C21-03,Camarones con Bacon,1
+juanita-cantina,C21-03,Tacos De Camarones,1
 juanita-cantina,C21-04,Seafood Enchiladas,1
 juanita-cantina,C21-05,Seafood Burrito,1
 juanita-cantina,C21-05,Seafood Enchiladas,2
 juanita-cantina,C21-07,Seafood Burrito,1
 juanita-cantina,C21-07,Seafood Enchiladas,1
-juanita-cantina,C21-07,Tacos De Pescado,2
-juanita-cantina,C21-08,Tacos De Pescado,1
-juanita-cantina,C21-09,Tacos De Pescado,2
+juanita-cantina,C21-07,Tacos de Pescado,2
+juanita-cantina,C21-08,Tacos de Pescado,1
+juanita-cantina,C21-09,Tacos de Pescado,2
 juanita-cantina,C22-01,Beans,2
 juanita-cantina,C22-01,Nacho Supreme,1
 juanita-cantina,C22-01,Rice & Beans,2
 juanita-cantina,C22-01,Tijuana Nachos,1
+juanita-cantina,C22-01,Avocado Tostada,1
+juanita-cantina,C22-01,Veggie Tostadas,1
 juanita-cantina,C22-02,Asada Fries,1
 juanita-cantina,C22-02,Avocado Slices,2
 juanita-cantina,C22-02,Avocado Tostada,2
 juanita-cantina,C22-02,Fresh Avocado,2
+juanita-cantina,C22-02,Cantina Salad,1
+juanita-cantina,C22-02,Veggie Tostadas,1
+juanita-cantina,C22-02,Tortilla Soup,1
+juanita-cantina,C22-02,Juanita Chicken Burger,1
+juanita-cantina,C22-02,Seafood Enchiladas,1
+juanita-cantina,C22-02,Tacos Al Carbon,1
+juanita-cantina,C22-02,Tacos de Pescado,1
+juanita-cantina,C22-02,Pollo Chipotle,1
+juanita-cantina,C22-02,Burrito Al Pastor,1
+juanita-cantina,C22-02,Camarones à la Diabla,1
+juanita-cantina,C22-02,Camarones Mojo de Ajo,1
+juanita-cantina,C22-02,Camarones con Bacon,1
+juanita-cantina,C22-02,Camarones à la Crema,1
+juanita-cantina,C22-02,Tacos De Camarones,1
 juanita-cantina,C22-03,Chipotle Shrimp Enchiladas,2
 juanita-cantina,C22-03,Pollo Chipotle,2
 juanita-cantina,C22-04,Enchiladas en Mole,2
@@ -255,13 +332,68 @@ juanita-cantina,C22-04,Steak Tapiqueño,1
 juanita-cantina,C22-05,Burrito Chili Verde,2
 juanita-cantina,C22-05,Chili Verde,2
 juanita-cantina,C22-05,Veggie Enchiladas,1
+juanita-cantina,C22-05,Enchiladas Suizas,2
+juanita-cantina,C22-05,Spinach Enchilada,2
 juanita-cantina,C22-06,Carne Asada,1
 juanita-cantina,C22-06,Pico De Gallo,2
+juanita-cantina,C22-06,Quesadillas,1
+juanita-cantina,C22-06,Veggie Tostadas,1
+juanita-cantina,C22-06,Chile Relleno,1
+juanita-cantina,C22-06,Veggie Fajitas,1
+juanita-cantina,C22-06,Veggie Enchiladas,1
+juanita-cantina,C22-06,Enchiladas Suizas,1
+juanita-cantina,C22-06,Enchiladas Juanita,1
+juanita-cantina,C22-06,Seafood Enchiladas,1
+juanita-cantina,C22-06,Spinach Enchilada,1
+juanita-cantina,C22-06,Casa Burrito,1
+juanita-cantina,C22-06,Burrito Asada,1
+juanita-cantina,C22-06,Seafood Burrito,1
+juanita-cantina,C22-06,Fajita Burrito,1
+juanita-cantina,C22-06,Tacos Al Carbon,1
+juanita-cantina,C22-06,Tacos de Pescado,1
+juanita-cantina,C22-06,Pollo Asado,1
+juanita-cantina,C22-06,Pollo Chipotle,1
+juanita-cantina,C22-06,Pollo en Mole,1
+juanita-cantina,C22-06,Burrito Chili Verde,1
+juanita-cantina,C22-06,Burrito Al Pastor,1
+juanita-cantina,C22-06,Chili Verde,1
+juanita-cantina,C22-06,Camarones à la Diabla,1
+juanita-cantina,C22-06,Camarones Mojo de Ajo,1
+juanita-cantina,C22-06,Camarones con Bacon,1
+juanita-cantina,C22-06,Camarones à la Crema,1
+juanita-cantina,C22-06,Tacos De Camarones,1
+juanita-cantina,C22-06,Mexican Steak,1
+juanita-cantina,C22-06,Steak Tapiqueño,1
+juanita-cantina,C22-06,Carne and Camaron,1
+juanita-cantina,C22-06,Ribeye Steak,1
 juanita-cantina,C22-09,Fresh Avocado,2
 juanita-cantina,C22-09,Guacamole,2
 juanita-cantina,C22-09,Nacho Supreme,1
+juanita-cantina,C22-09,Quesadillas,1
+juanita-cantina,C22-09,Asada Fries,1
+juanita-cantina,C22-09,Taco Salad,1
+juanita-cantina,C22-09,Carne Asada Fajitas,1
+juanita-cantina,C22-09,Chicken Fajitas,1
+juanita-cantina,C22-09,Shrimp Fajitas,1
+juanita-cantina,C22-09,Beef Fajitas,1
+juanita-cantina,C22-09,Veggie Fajitas,1
+juanita-cantina,C22-09,Veggie Enchiladas,1
+juanita-cantina,C22-09,Enchiladas Rojas,1
+juanita-cantina,C22-09,Burrito Asada,1
+juanita-cantina,C22-09,Seafood Burrito,1
+juanita-cantina,C22-09,Fajita Burrito,1
+juanita-cantina,C22-09,Michoacan Carnitas,1
+juanita-cantina,C22-09,Carne Asada,1
+juanita-cantina,C22-09,Mexican Steak,1
+juanita-cantina,C22-09,Steak Tapiqueño,1
+juanita-cantina,C22-09,Carne and Camaron,1
+juanita-cantina,C22-09,Ribeye Steak,1
 juanita-cantina,C22-10,Chili Verde,1
 juanita-cantina,C22-10,Veggie Enchiladas,2
+juanita-cantina,C22-10,Chiliquiles,1
+juanita-cantina,C22-10,Enchiladas Suizas,1
+juanita-cantina,C22-10,Spinach Enchilada,1
+juanita-cantina,C22-10,Burrito Chili Verde,1
 juanita-cantina,C22-11,Chile Relleno,1
 juanita-cantina,C22-11,Chiliquiles,1
 juanita-cantina,C23-02,Chipotle Shrimp Enchiladas,2
@@ -279,11 +411,13 @@ juanita-cantina,C23-03,Casa Burrito,2
 juanita-cantina,C23-03,Fajita Burrito,2
 juanita-cantina,C23-03,Seafood Burrito,2
 juanita-cantina,C23-04,Quesadillas,2
+juanita-cantina,C23-04,Quesadilla,2
 juanita-cantina,C23-05,Beef Fajitas,2
 juanita-cantina,C23-05,Carne Asada Fajitas,2
 juanita-cantina,C23-05,Chicken Fajitas,2
 juanita-cantina,C23-05,Shrimp Fajitas,2
 juanita-cantina,C23-05,Veggie Fajitas,2
+juanita-cantina,C23-05,Fajita Burrito,1
 juanita-cantina,C23-12,Shrimp Ceviche,2
 juanita-cantina,C23-12,Three Ceviche Tostadas,2
 juanita-cantina,C24-01,Mexican Flatbread,1

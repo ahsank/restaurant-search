@@ -1,0 +1,801 @@
+query_id,restaurant,menu_item,old_relevance,new_relevance,reason
+C01-01,plaza-garcia,Arroz Con Mariscos,0,2,shrimp on rice
+C01-01,plaza-garcia,Camarones a la Crema,0,2,shrimp entree
+C01-01,plaza-garcia,Ceviche De Camarones,0,2,shrimp ceviche
+C01-01,plaza-garcia,Mariscos Rancheros,0,2,shrimp entree
+C01-01,plaza-garcia,Shrimp Chimichangas,0,2,shrimp
+C01-02,due-cucina,Lasagna alla Bolognese,0,2,bolognese meat sauce (named in intent)
+C01-03,juanita-cantina,Camarones à la Crema,0,2,shrimp entree
+C01-03,juanita-cantina,Tacos De Pescado,2,0,old spelling; label moved to 'Tacos de Pescado'
+C01-03,juanita-cantina,Tacos de Pescado,0,2,renamed 'Tacos De Pescado' -> 'Tacos de Pescado' (menu spelling)
+C01-03,plaza-garcia,Mariscos Rancheros,0,2,shrimp entree
+C01-03,plaza-garcia,Pescado a la Parrilla,0,2,grilled fish Mexican seafood
+C01-03,plaza-garcia,Quesadilla Camarones,0,2,shrimp dish in Seafood section
+C01-03,plaza-garcia,Shrimp Chimichangas,0,2,shrimp
+C01-04,plaza-garcia,"Combo 3: Two Enchiladas, One Taco or Bean Tostada",0,2,combo plate like Combo 1/2/6
+C01-04,plaza-garcia,"Combo 4: One Enchilada, Bean Tostada, One Taco",0,2,combo plate
+C01-04,plaza-garcia,"Combo 5: One Chile Relleno, One Enchilada and Choice",0,2,combo plate
+C01-04,plaza-garcia,"Combo 7: One Enchilada, One Beef Burrito or Chalupa",0,2,combo plate
+C01-04,plaza-garcia,Combo 8: Two Beef Burritos,0,2,combo plate
+C01-04,plaza-garcia,Combo 9: Two Chalupas,0,2,combo plate
+C01-05,mendocino-farms,1/2 Chicken Pesto Caprese,0,2,Mendocino sandwich (intent: all Mendocino sandwiches)
+C01-05,mendocino-farms,1/2 Turkey Avo Salsa Verde,0,2,Mendocino sandwich (intent: all Mendocino sandwiches)
+C01-05,mendocino-farms,1/2 Vegan Banh Mi,0,2,Mendocino sandwich (intent: all Mendocino sandwiches)
+C01-05,mendocino-farms,1/2 Vegetarian Pesto Caprese,0,2,Mendocino sandwich (intent: all Mendocino sandwiches)
+C01-05,mendocino-farms,Chicken Parm Dip,0,2,Mendocino sandwich (intent: all Mendocino sandwiches)
+C01-05,mendocino-farms,Chicken Pesto Caprese,0,2,Mendocino sandwich (intent: all Mendocino sandwiches)
+C01-05,mendocino-farms,Chimichurri Steak & Bacon,0,2,Mendocino sandwich (intent: all Mendocino sandwiches)
+C01-05,mendocino-farms,The Happy Hippie,0,2,Mendocino sandwich (intent: all Mendocino sandwiches)
+C01-05,mendocino-farms,Turkey Avo Salsa Verde,0,2,Mendocino sandwich (intent: all Mendocino sandwiches)
+C01-05,mendocino-farms,Vegan Banh Mi,0,2,Mendocino sandwich (intent: all Mendocino sandwiches)
+C01-05,mendocino-farms,Vegetarian Pesto Caprese,0,2,Mendocino sandwich (intent: all Mendocino sandwiches)
+C01-06,juanita-cantina,Tacos De Pescado,1,0,old spelling; label moved to 'Tacos de Pescado'
+C01-06,juanita-cantina,Tacos de Pescado,0,1,renamed 'Tacos De Pescado' -> 'Tacos de Pescado' (menu spelling)
+C01-06,plaza-garcia,Tacos Al Carbon,0,2,same dish labeled 2 at Juanita
+C01-06,plaza-garcia,Tacos Al Pastor,0,2,classic taqueria taco
+C01-06,plaza-garcia,Tacos De Pescado,0,1,fish tacos (Juanita's labeled 1)
+C01-06,plaza-garcia,Taquitos Rancheros (Entree),0,1,taquitos (Los Taquitos labeled 1)
+C01-07,due-cucina,Eggplant Parmigiana,0,2,in Due' 'Italian Comfort Food' section
+C01-07,due-cucina,Mediterranea,0,1,rustic focaccia sandwich
+C01-07,staple-and-fancy,Bucatini,0,2,same cacio e pepe as Cacio e Pepe Bucatini (2)
+C01-07,staple-and-fancy,Spaghetti,0,2,same cacio e pepe as the sample-menu Bucatini
+C01-08,due-cucina,Ravioli Burro & Salvia,1,0,$$ casual restaurant; intent is price/context inference
+C01-08,due-cucina,Zozzona,1,0,$$ casual restaurant; intent is price/context inference
+C01-08,staple-and-fancy,Bucatini,0,2,pasta course of $$$$ chef's tasting menu
+C01-08,staple-and-fancy,Cacio e Pepe Bucatini,0,2,$32 truffle pasta at $$$$ restaurant (consistency)
+C01-08,staple-and-fancy,Shrimp & Clam Bucatini,0,2,$32 pasta at $$$$ restaurant
+C01-08,staple-and-fancy,Spaghetti,0,2,same cacio e pepe as the sample-menu Bucatini
+C02-01,juanita-cantina,Tacos De Pescado,2,0,old spelling; label moved to 'Tacos de Pescado'
+C02-01,juanita-cantina,Tacos de Pescado,0,2,renamed 'Tacos De Pescado' -> 'Tacos de Pescado' (menu spelling)
+C02-01,plaza-garcia,Tacos De Pescado,0,2,tilapia fish tacos
+C02-03,mendocino-farms,Not So Fried Chicken - Salad Style!,0,1,composed salad; greens not stated
+C02-03,mendocino-farms,Tuscan Pesto Salad,0,1,composed salad; greens not stated
+C02-03,staple-and-fancy,Gem Salad,0,2,gem lettuce salad
+C02-07,mendocino-farms,Chimichurri Steak & Bacon,0,1,steak sandwich
+C02-08,due-cucina,Burrata Salad,0,2,fresh burrata salad (named in intent)
+C02-09,great-china-restaurant,Dinner Combination G,0,1,sweet & sour chicken or pork
+C02-09,great-china-restaurant,Jalapeño Pork,0,2,GCH Pork section
+C02-09,great-china-restaurant,Mu Shu Pork,0,2,GCH Pork section
+C02-09,great-china-restaurant,Onion Pork,0,2,GCH Pork section
+C02-09,great-china-restaurant,Pork Egg Foo Young,0,2,GCH Pork section
+C02-09,great-china-restaurant,Pork in Garlic Sauce,0,2,GCH Pork section
+C02-09,great-china-restaurant,String Beans Pork,0,2,GCH Pork section
+C02-09,great-china-restaurant,Sweet & Sour Pork,0,2,GCH Pork section
+C02-09,great-china-restaurant,Szechuan Tofu with Pork,0,2,GCH Pork section
+C02-09,great-china-restaurant,Wild Basil Pork Thai Style,0,2,GCH Pork section
+C02-09,plaza-garcia,Enchiladas Verdes,0,2,seasoned pork enchiladas
+C02-10,staple-and-fancy,Hamachi Crudo,0,2,fish with lemon oil
+C03-01,great-china-restaurant,Kung Pao Prawns,0,2,spicy prawns
+C03-01,great-china-restaurant,Kung Pao Shrimp & Chicken,0,2,spicy shrimp stir-fry
+C03-01,great-china-restaurant,Szechuan Prawns,0,2,spicy prawns
+C03-03,anthonys-homeport,Butter Noodles,0,1,kids buttered pasta (Kids Fettuccine is 1)
+C03-04,due-cucina,Burrata Salad,0,1,fresh starter salad
+C03-04,due-cucina,Mediterranea Salad,0,2,mixed greens with lemon dressing
+C03-05,juanita-cantina,Burrito Asada,0,1,contains flame-grilled carne asada
+C03-05,plaza-garcia,Carne Asada,0,2,skirt steak grilled over charcoal (consistency)
+C03-05,plaza-garcia,Fajitas Carne Asada,0,1,carne asada on sizzling plate
+C03-05,plaza-garcia,Steak Garcia Ranchero,0,1,sliced sirloin; grilling not stated
+C03-05,plaza-garcia,Steak Matador,0,2,char-broiled sirloin
+C03-06,due-cucina,Short Ribs Ragu',0,2,homemade pasta with braised ragu (like Bolognese 2)
+C03-06,staple-and-fancy,Shrimp & Clam Bucatini,0,1,seafood pasta (seafood fettuccines are 1)
+C03-07,anthonys-homeport,Portabello Mushroom,0,2,mushroom with tamari glaze
+C03-07,anthonys-homeport,Portobello Mushroom,0,2,mushroom with tamari glaze
+C03-07,due-cucina,Mushroom & White Truffle Oil,0,2,named in intent
+C03-08,due-cucina,Zozzona,0,1,heavy pasta
+C03-08,great-china-restaurant,Family Dinner A,0,1,multi-course meal
+C03-08,great-china-restaurant,Family Dinner B,0,1,multi-course meal
+C03-08,juanita-cantina,Burrito Asada,0,2,named in intent
+C03-08,juanita-cantina,Casa Burrito,0,2,named in intent
+C03-08,juanita-cantina,Seafood Burrito,0,2,named in intent
+C03-08,plaza-garcia,Seafood Burrito,0,2,large burrito
+C03-10,anthonys-homeport,Anthony's House Salad,0,1,blue cheese dressing
+C03-10,anthonys-homeport,Caesar Salad,0,2,Caesar (named in intent)
+C03-10,anthonys-homeport,Classic Caesar Salad,0,2,Caesar (named in intent)
+C03-10,juanita-cantina,Caesar Salad,0,2,Caesar (named in intent)
+C03-10,mendocino-farms,The Modern Caesar,0,2,Caesar (named in intent)
+C03-10,mendocino-farms,The Seasonal GOAT with Summer Peaches,0,1,farmhouse vinaigrette
+C03-10,mendocino-farms,Tuscan Pesto Salad,0,1,basil-Dijon vinaigrette
+C03-10,staple-and-fancy,Gem Salad,0,2,Meyer lemon vinaigrette
+C03-12,due-cucina,Cannolo Siciliano,0,1,rich dessert
+C03-12,due-cucina,Tiramisu,0,1,tiramisu (other tiramisus are 1)
+C03-12,plaza-garcia,Churros,0,1,rich dessert
+C03-12,plaza-garcia,Flan,0,1,custard dessert (Burnt Cream is 1)
+C03-12,plaza-garcia,Fried Ice Cream,0,1,rich dessert
+C03-12,plaza-garcia,Pastel Tres Leches,0,1,rich dessert
+C03-12,staple-and-fancy,Cheesecake,0,1,rich dessert
+C04-01,plaza-garcia,Carnitas De Res,0,1,sirloin steak; grilling not stated
+C04-01,plaza-garcia,Steak Garcia Ranchero,0,1,sirloin; grilling not stated (like Mexican Steak 1)
+C04-02,anthonys-homeport,Wild Alaska King Salmon with Sun-dried Tomato Basil Butter,0,2,chargrilled fish
+C04-02,anthonys-homeport,Wild Alaska Silver Salmon Chargrilled,0,2,chargrilled fish (intent: seared = grilled)
+C04-02,anthonys-homeport,Wild Alaska Silver Salmon with Red Pepper Beurre Blanc,0,1,plank-roasted fish
+C04-02,plaza-garcia,Pescado a la Parrilla,0,2,grilled fish (named in intent)
+C04-03,anthonys-homeport,Pan Fried Petrale Sole,0,1,pan seared fish but not salmon (Halibut is 1)
+C04-03,anthonys-homeport,Salmon Ponzu Bowl,0,1,chargrilled salmon
+C04-03,anthonys-homeport,Wild Alaska Silver Salmon Chargrilled,0,1,salmon grilled not pan seared
+C04-03,anthonys-homeport,Wild Northwest Salmon,0,1,chargrilled salmon
+C04-05,anthonys-homeport,Beach Burger*,0,2,burger with chargrilled onion
+C04-05,anthonys-homeport,Northwest Salmon Burger,0,1,burger but salmon
+C04-07,juanita-cantina,Burrito Chili Verde,0,1,chile verde pork in burrito
+C04-08,due-cucina,Bolognese Ragu',0,1,simmered beef ragu (consistency)
+C04-08,due-cucina,Lasagna alla Bolognese,0,1,simmered beef ragu
+C04-09,great-china-restaurant,Fried Chicken Wing (8),0,2,fried appetizer
+C04-09,great-china-restaurant,Golden Prawns (8),0,2,fried appetizer
+C04-09,great-china-restaurant,Pot Stickers Chicken (8),0,1,pan-fried appetizer
+C04-09,great-china-restaurant,Vegetables Spring Roll (2),0,2,fried appetizer
+C04-09,juanita-cantina,Calamari,0,2,fried calamari (Breaded Calamari is 2)
+C04-09,plaza-garcia,Appetizer Combo Plate,0,1,includes fried taquitos
+C04-09,plaza-garcia,Cheese Crispy Garcia,0,1,crispy shell appetizer
+C04-10,great-china-restaurant,Almond Fried Chicken,0,2,crispy fried chicken
+C04-10,great-china-restaurant,Fried Chicken Wing (8),0,2,fried chicken
+C04-10,great-china-restaurant,Sweet & Sour Chicken,0,1,battered fried chicken
+C05-01,mendocino-farms,The Modern Caesar,0,2,Caesar salad
+C05-02,juanita-cantina,Quesadilla,0,2,quesadilla (happy hour)
+C05-02,plaza-garcia,Appetizer Combo Plate,0,1,includes a quesadilla
+C05-04,juanita-cantina,Veggie Enchiladas,0,2,enchilada (intent: all variants)
+C05-04,plaza-garcia,Combo 10: One Chile Relleno and One Enchilada,0,1,combo with an enchilada
+C05-04,plaza-garcia,Combo 12: Two Enchiladas,0,2,enchilada plate
+C05-04,plaza-garcia,"Combo 14: Enchilada, Taco or Tostada",0,1,combo with an enchilada
+C05-04,plaza-garcia,"Combo 2: One Taco, One Enchilada, One Tamal",0,1,combo with an enchilada
+C05-04,plaza-garcia,"Combo 3: Two Enchiladas, One Taco or Bean Tostada",0,1,combo with enchiladas
+C05-04,plaza-garcia,"Combo 4: One Enchilada, Bean Tostada, One Taco",0,1,combo with an enchilada
+C05-04,plaza-garcia,"Combo 5: One Chile Relleno, One Enchilada and Choice",0,1,combo with an enchilada
+C05-04,plaza-garcia,Combo 6: Three Enchiladas,0,2,enchilada plate
+C05-04,plaza-garcia,"Combo 7: One Enchilada, One Beef Burrito or Chalupa",0,1,combo with an enchilada
+C05-04,plaza-garcia,Deluxe Enchilada,0,2,enchilada (intent: all variants)
+C05-04,plaza-garcia,Deluxe Enchilada Especial,0,2,enchilada (intent: all variants)
+C05-04,plaza-garcia,Enchiladas Rancheras,0,2,enchilada (intent: all variants)
+C05-04,plaza-garcia,Enchiladas Vegetarianas,0,2,enchilada (intent: all variants)
+C05-04,plaza-garcia,Enchiladas Verdes,0,2,enchilada (intent: all variants)
+C05-04,plaza-garcia,Kids Enchilada,0,2,enchilada (intent: all variants)
+C05-04,plaza-garcia,Small Enchilada,0,2,enchilada (intent: all variants)
+C05-05,bella-italia,Fettuccine Alfredo,0,1,fettuccine but not carbonara
+C05-09,mendocino-farms,Prosciutto & Chicken,0,1,prosciutto without melon
+C05-10,staple-and-fancy,Mezze Rigatoni,0,2,rigatoni with ragu (named in intent)
+C05-10,staple-and-fancy,Rigatoni alla Vodka,0,1,rigatoni but not bolognese
+C05-12,due-cucina,Burrata Salad,0,2,burrata
+C06-04,juanita-cantina,Carne Asada,0,1,grilled skirt steak; marinade implied
+C06-04,juanita-cantina,Mexican Steak,0,2,marinated skirt steak
+C06-04,juanita-cantina,Steak Tapiqueño,0,1,grilled skirt steak
+C06-04,juanita-cantina,Tacos Al Carbon,0,1,steak or marinated chicken
+C06-04,plaza-garcia,Fajitas Carne Asada,0,2,named in intent
+C06-04,plaza-garcia,Steak Matador,0,2,named in intent
+C06-04,plaza-garcia,Tacos Al Carbon,0,1,named in intent; marinade not stated
+C06-05,due-cucina,Mushroom & White Truffle Oil,0,2,sauteed mushrooms
+C06-05,juanita-cantina,Camarones à la Diabla,0,2,mushrooms sauteed (like Mojo de Ajo 2)
+C06-05,plaza-garcia,Camarones a la Diabla,0,2,sauteed mushrooms (like Mojo de Ajo 2)
+C06-05,plaza-garcia,Garlic Shrimp,0,2,mushrooms sauteed in butter
+C06-07,anthonys-homeport,Calamari Salad,0,1,crispy calamari on salad
+C06-07,anthonys-homeport,Crispy Calamari,0,2,crispy breaded calamari
+C06-07,anthonys-homeport,Crispy Calamari Salad,0,1,crispy calamari on salad
+C06-07,juanita-cantina,Breaded Calamari,0,2,named in intent (query had no labels)
+C06-07,juanita-cantina,Calamari,0,2,calamari appetizer (likely the same breaded dish)
+C06-09,plaza-garcia,Pollo Ranchero,0,2,named in intent
+C06-10,mendocino-farms,1/2 Not So Fried Chicken,0,1,pickled ingredient
+C06-10,mendocino-farms,1/2 The Farm Club,0,1,pickled ingredient
+C06-10,mendocino-farms,Dill Pickle Chips,0,2,named in intent
+C06-10,mendocino-farms,Golden State Cobb,0,1,pickled ingredient
+C06-10,mendocino-farms,Golden State Cobb Wrap,0,1,pickled ingredient
+C06-10,mendocino-farms,Not So Fried Chicken,0,1,pickled ingredient
+C06-10,mendocino-farms,Not So Fried Chicken - Salad Style!,0,1,pickled ingredient
+C06-10,mendocino-farms,Southern Potato Salad,0,1,pickled ingredient
+C06-10,mendocino-farms,Thai Mango Salad,0,1,pickled ingredient
+C06-10,mendocino-farms,Thai Mango Wrap,0,1,pickled ingredient
+C06-10,mendocino-farms,The Farm Club,0,1,pickled ingredient
+C06-10,mendocino-farms,The Seasonal GOAT with Summer Peaches,0,1,pickled ingredient
+C07-01,staple-and-fancy,Bucatini,0,2,cacio e pepe (sample menu)
+C07-01,staple-and-fancy,Spaghetti,0,2,same cacio e pepe as the sample-menu Bucatini
+C07-02,staple-and-fancy,Bucatini,0,2,cacio e pepe (sample menu)
+C07-02,staple-and-fancy,Spaghetti,0,2,same cacio e pepe as the sample-menu Bucatini
+C07-03,plaza-garcia,Tacos Al Pastor,0,2,al pastor tacos
+C07-04,juanita-cantina,3 Street Tacos,0,2,street tacos with pastor option (named in intent)
+C07-04,plaza-garcia,Street Tacos,0,1,street tacos; pastor not listed
+C07-04,plaza-garcia,Tacos Al Pastor,0,2,al pastor tacos (query had no labels)
+C07-05,juanita-cantina,Camarones Mojo de Ajo,0,2,named in intent (query had no labels)
+C07-05,juanita-cantina,Shrimp Juanita,0,1,garlic shrimp
+C07-05,plaza-garcia,Camarones al Mojo de Ajo,0,2,mojo de ajo shrimp
+C07-05,plaza-garcia,Garlic Shrimp,0,1,garlic shrimp
+C07-07,juanita-cantina,Arroz Con Pollo,0,2,named in intent (query had no labels)
+C07-07,plaza-garcia,Arroz Con Pollo,0,2,named in intent
+C07-08,due-cucina,Basil Pesto,0,2,Due' Cucina pasta
+C07-08,due-cucina,Bolognese Ragu',0,2,Due' Cucina pasta
+C07-08,due-cucina,Carbonara,0,2,Due' Cucina pasta
+C07-08,due-cucina,Cook-at-Home Pasta,0,1,Due' Cucina pasta (kids / cook-at-home)
+C07-08,due-cucina,Kid Red Sauce Pasta,0,1,Due' Cucina pasta (kids / cook-at-home)
+C07-08,due-cucina,Kid White Sauce Pasta,0,1,Due' Cucina pasta (kids / cook-at-home)
+C07-08,due-cucina,Lasagna alla Bolognese,0,2,Due' Cucina pasta
+C07-08,due-cucina,Mushroom & White Truffle Oil,0,2,Due' Cucina pasta
+C07-08,due-cucina,Polpette,0,2,Due' Cucina pasta
+C07-08,due-cucina,Pomodoro,0,2,Due' Cucina pasta
+C07-08,due-cucina,Ravioli Burro & Salvia,0,2,Due' Cucina pasta
+C07-08,due-cucina,Short Ribs Ragu',0,2,Due' Cucina pasta
+C07-08,due-cucina,Zozzona,0,2,Due' Cucina pasta
+C07-09,staple-and-fancy,"10 yr Tawny Port, Douro",0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,3G's,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Affogato Ubriaco,0,2,Staple & Fancy item (intent: the restaurant)
+C07-09,staple-and-fancy,Almost Summer Camp,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,"Alvear PX Solera, Montilla-Morales",0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Americano,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Avennia x ESR 'Franc the Blanc' Columbia Valley,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Avennia x ESR 'Frank the Tank' Columbia Valley,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Averna,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Badia a Coltibuono Vin Santo del Chianti Classico 2013,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Bale Breaker 'Field 41' Pale Ale,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Branca Menta,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Braulio,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Bring Me A Shrubbery!,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Bruschetta,0,2,Staple & Fancy item (intent: the restaurant)
+C07-09,staple-and-fancy,Bucatini,0,2,Staple & Fancy item (intent: the restaurant)
+C07-09,staple-and-fancy,Burrata,0,2,Staple & Fancy item (intent: the restaurant)
+C07-09,staple-and-fancy,Butternut Squash Soup,0,2,Staple & Fancy item (intent: the restaurant)
+C07-09,staple-and-fancy,Cacio e Pepe Bucatini,0,2,Staple & Fancy item (intent: the restaurant)
+C07-09,staple-and-fancy,Cappuccino,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Cardamaro,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Carrots,0,2,Staple & Fancy item (intent: the restaurant)
+C07-09,staple-and-fancy,Cheesecake,0,2,Staple & Fancy item (intent: the restaurant)
+C07-09,staple-and-fancy,Cleto Chiarli Brut Rosé,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,"Coke, Diet Coke, Sprite, Tonic, Club Soda",0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Colle Massari 'Melacce' Tuscany,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Coulotte Steak,0,2,Staple & Fancy item (intent: the restaurant)
+C07-09,staple-and-fancy,Cynar,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Daiquiri,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Damilano 'Lecinquevigne' Barolo,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Domaines Tariquet Armagnac,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Duck Breast,0,2,Staple & Fancy item (intent: the restaurant)
+C07-09,staple-and-fancy,Dudognon Folle Blanche Cognac,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,ESR 'Annabelle',0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,ESR 'Annabelle' Friuli,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,ESR 'Grace' Brut Prosecco,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,ESR 'Grace' Prosecco,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,"ESR 'Helen', Provence",0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Espresso,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Espresso Affogato,0,2,Staple & Fancy item (intent: the restaurant)
+C07-09,staple-and-fancy,Espresso Martini,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Fancy-tini,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Farratto,0,2,Staple & Fancy item (intent: the restaurant)
+C07-09,staple-and-fancy,Foro,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Fremont 'Golden Pilsner',0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Fremont 'Lush' IPA,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Fremont Brewing N/A IPA,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Fremont Pilsner,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Fried Artichokes,0,2,Staple & Fancy item (intent: the restaurant)
+C07-09,staple-and-fancy,Fried Oysters,0,2,Staple & Fancy item (intent: the restaurant)
+C07-09,staple-and-fancy,"Garofoli 'Antica Osteria', Marche",0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Gem Lettuce,0,2,Staple & Fancy item (intent: the restaurant)
+C07-09,staple-and-fancy,Gem Salad,0,2,Staple & Fancy item (intent: the restaurant)
+C07-09,staple-and-fancy,Gramigna,0,2,Staple & Fancy item (intent: the restaurant)
+C07-09,staple-and-fancy,Grilled Octopus,0,2,Staple & Fancy item (intent: the restaurant)
+C07-09,staple-and-fancy,Halibut,0,2,Staple & Fancy item (intent: the restaurant)
+C07-09,staple-and-fancy,Hamachi Crudo,0,2,Staple & Fancy item (intent: the restaurant)
+C07-09,staple-and-fancy,Housemade Ginger Beer,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Jacopo Poli Torcolato Grappa,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,"Kopke 2003 Colheita Port, Douro",0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Latte,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Letterpress Limoncello,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Little Bittery,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Little Gem,0,2,Staple & Fancy item (intent: the restaurant)
+C07-09,staple-and-fancy,Marinated Olives,0,2,Staple & Fancy item (intent: the restaurant)
+C07-09,staple-and-fancy,Mark Ryan 'Numbskull' Columbia Valley,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Mark Ryan x ESR 'Adrian' Columbia Valley,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Mark Ryan x ESR 'Ivy Lou' Columbia Valley,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Marquis de Saint Loup Calvados 15yr,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Meletti Sambuca,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Mezze Rigatoni,0,2,Staple & Fancy item (intent: the restaurant)
+C07-09,staple-and-fancy,Montenegro,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Nardini,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Nonino,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Nux Alpina Walnut Liqueur,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,"Oh, George",0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Old Fashioned,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Orcas Island Distillery Apple Brandy,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Paloma,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Pappardelle,0,2,Staple & Fancy item (intent: the restaurant)
+C07-09,staple-and-fancy,Pegu Club,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Pink-Tai,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Prosciutto,0,2,Staple & Fancy item (intent: the restaurant)
+C07-09,staple-and-fancy,Radiatore alla Vodka,0,2,Staple & Fancy item (intent: the restaurant)
+C07-09,staple-and-fancy,Rainier,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Ramazzotti,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Rigatoni alla Vodka,0,2,Staple & Fancy item (intent: the restaurant)
+C07-09,staple-and-fancy,Roasted Carrots,0,2,Staple & Fancy item (intent: the restaurant)
+C07-09,staple-and-fancy,Roasted Cauliflower,0,2,Staple & Fancy item (intent: the restaurant)
+C07-09,staple-and-fancy,Roots Wine 'Klee' Willamette Valley,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,SRF Skirt Wagyu,0,2,Staple & Fancy item (intent: the restaurant)
+C07-09,staple-and-fancy,Sanpellegrino Sparkling Water,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Sennza Finne Autumn,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Sennza Finne Winter,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Ship Canal Spritz,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Shrimp & Clam Bucatini,0,2,Staple & Fancy item (intent: the restaurant)
+C07-09,staple-and-fancy,Shrubs & Bubbs,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Sibona,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Smoked Fish Bruschetta,0,2,Staple & Fancy item (intent: the restaurant)
+C07-09,staple-and-fancy,Sorbetto,0,2,Staple & Fancy item (intent: the restaurant)
+C07-09,staple-and-fancy,Sourdough,0,2,Staple & Fancy item (intent: the restaurant)
+C07-09,staple-and-fancy,Spaghetti,0,2,Staple & Fancy item (intent: the restaurant)
+C07-09,staple-and-fancy,Spring Equinox,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Spring Pea Soup,0,2,Staple & Fancy item (intent: the restaurant)
+C07-09,staple-and-fancy,Sun Mule,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Thomson & Scott Sparkling Rosé,0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Tiramisu,0,2,Staple & Fancy item (intent: the restaurant)
+C07-09,staple-and-fancy,Trere 'Sperone',0,1,Staple & Fancy item (intent: the restaurant) — drink
+C07-09,staple-and-fancy,Vanilla Gelato,0,2,Staple & Fancy item (intent: the restaurant)
+C07-10,due-cucina,Mediterranea,0,1,vegan but a sandwich (named in intent)
+C07-10,due-cucina,Pomodoro,0,2,vegan on request (named in intent)
+C07-10,due-cucina,Short Ribs Ragu',0,2,dairy-free on request
+C07-11,due-cucina,Basil Pesto,0,1,pasta; gluten-free on request
+C07-11,due-cucina,Short Ribs Ragu',0,1,pasta; gluten-free on request
+C07-11,staple-and-fancy,Cacio e Pepe Bucatini,0,1,pasta; GF penne substitution available
+C07-11,staple-and-fancy,Gramigna,0,1,pasta; GF penne substitution available
+C07-11,staple-and-fancy,Mezze Rigatoni,0,1,pasta; GF penne substitution available
+C07-11,staple-and-fancy,Rigatoni alla Vodka,0,1,pasta; GF penne substitution available
+C07-12,due-cucina,Basil Pesto,0,1,pasta; gluten-free on request
+C07-12,due-cucina,Bolognese Ragu',0,1,pasta; gluten-free on request
+C07-12,due-cucina,Carbonara,0,1,pasta; gluten-free on request
+C07-12,due-cucina,Short Ribs Ragu',0,1,pasta; gluten-free on request
+C07-12,staple-and-fancy,Cacio e Pepe Bucatini,0,1,pasta; GF penne substitution available
+C07-12,staple-and-fancy,Gramigna,0,1,pasta; GF penne substitution available
+C07-12,staple-and-fancy,Mezze Rigatoni,0,1,pasta; GF penne substitution available
+C07-12,staple-and-fancy,Rigatoni alla Vodka,0,1,pasta; GF penne substitution available
+C07-12,staple-and-fancy,Shrimp & Clam Bucatini,0,1,pasta; GF penne substitution available
+C07-13,mendocino-farms,1/2 Chicken Pesto Caprese,0,2,Mendocino Farms sandwich (intent: Mendocino Farms)
+C07-13,mendocino-farms,1/2 Not So Fried Chicken,1,2,Mendocino Farms sandwich (intent: Mendocino Farms)
+C07-13,mendocino-farms,1/2 Turkey Avo Salsa Verde,0,2,Mendocino Farms sandwich (intent: Mendocino Farms)
+C07-13,mendocino-farms,1/2 Vegan Banh Mi,0,2,Mendocino Farms sandwich (intent: Mendocino Farms)
+C07-13,mendocino-farms,1/2 Vegetarian Pesto Caprese,0,2,Mendocino Farms sandwich (intent: Mendocino Farms)
+C07-13,mendocino-farms,Chicken Parm Dip,0,2,Mendocino Farms sandwich (intent: Mendocino Farms)
+C07-13,mendocino-farms,Chicken Pesto Caprese,0,2,Mendocino Farms sandwich (intent: Mendocino Farms)
+C07-13,mendocino-farms,Chimichurri Steak & Bacon,0,2,Mendocino Farms sandwich (intent: Mendocino Farms)
+C07-13,mendocino-farms,Not So Fried Chicken,1,2,Mendocino Farms sandwich (intent: Mendocino Farms)
+C07-13,mendocino-farms,Peruvian Steak,0,2,Mendocino Farms sandwich (intent: Mendocino Farms)
+C07-13,mendocino-farms,Prosciutto & Chicken,0,2,Mendocino Farms sandwich (intent: Mendocino Farms)
+C07-13,mendocino-farms,The Happy Hippie,0,2,Mendocino Farms sandwich (intent: Mendocino Farms)
+C07-13,mendocino-farms,Turkey Avo Salsa Verde,0,2,Mendocino Farms sandwich (intent: Mendocino Farms)
+C07-13,mendocino-farms,Vegan Banh Mi,0,2,Mendocino Farms sandwich (intent: Mendocino Farms)
+C07-13,mendocino-farms,Vegetarian Pesto Caprese,0,2,Mendocino Farms sandwich (intent: Mendocino Farms)
+C07-14,plaza-garcia,Sopapillas,0,1,fried dough; usually egg-free
+C07-14,staple-and-fancy,Affogato Ubriaco,0,1,gelato-based; egg not stated
+C07-14,staple-and-fancy,Espresso Affogato,0,1,gelato-based; egg not stated
+C07-14,staple-and-fancy,Sorbetto,0,2,named in intent
+C07-14,staple-and-fancy,Vanilla Gelato,0,2,named in intent
+C08-01,juanita-cantina,Fresh Avocado,0,2,vegetarian Mexican appetizer
+C08-01,juanita-cantina,Quesadillas,0,1,vegetarian with no-meat option
+C08-01,juanita-cantina,Spinach Enchilada,0,2,vegetarian (named in intent)
+C08-01,juanita-cantina,Veggie Tostadas,0,2,vegetarian
+C08-01,plaza-garcia,Esspresso Burrito,0,2,Plaza Vegetarian section
+C08-01,plaza-garcia,Fiesta Avocado,0,2,vegan appetizer
+C08-01,plaza-garcia,Spinach Enchiladas,0,2,vegetarian
+C08-01,plaza-garcia,Taco Salad Vegetariano,0,2,Plaza Vegetarian section
+C08-03,due-cucina,Basil Pesto,0,1,pasta; gluten-free on request
+C08-03,due-cucina,Bolognese Ragu',0,1,pasta; gluten-free on request
+C08-03,due-cucina,Carbonara,0,1,pasta; gluten-free on request
+C08-03,due-cucina,Short Ribs Ragu',0,1,pasta; gluten-free on request
+C08-03,due-cucina,Zozzona,0,1,pasta; gluten-free on request
+C08-03,staple-and-fancy,Cacio e Pepe Bucatini,0,1,pasta; GF penne substitution available
+C08-03,staple-and-fancy,Gramigna,0,1,pasta; GF penne substitution available
+C08-03,staple-and-fancy,Mezze Rigatoni,0,1,pasta; GF penne substitution available
+C08-03,staple-and-fancy,Pappardelle,0,1,pasta; GF penne substitution available
+C08-03,staple-and-fancy,Rigatoni alla Vodka,0,1,pasta; GF penne substitution available
+C08-03,staple-and-fancy,Shrimp & Clam Bucatini,0,1,pasta; GF penne substitution available
+C08-04,juanita-cantina,Fresh Avocado,0,2,marked vegan
+C08-04,juanita-cantina,Queso with Spinach,0,2,marked vegan
+C08-04,mendocino-farms,Heirloom BLT,0,1,no dairy listed (mayo)
+C08-04,plaza-garcia,Fiesta Avocado,0,2,marked vegan
+C08-05,anthonys-homeport,Anthony's House Salad,0,1,no nuts listed
+C08-05,due-cucina,Burrata Salad,0,1,no nuts listed
+C08-05,juanita-cantina,Taco Salad,0,2,named in intent
+C08-05,mendocino-farms,Not So Fried Chicken - Salad Style!,0,2,Mendocino salad without nuts tag
+C08-05,plaza-garcia,Taco Salad,0,2,named in intent
+C08-05,staple-and-fancy,Gem Salad,0,1,no nuts listed
+C08-06,anthonys-homeport,Portabello Mushroom,0,1,same dish as Portobello Mushroom
+C08-06,great-china-restaurant,Vegetable Chow Mein,0,1,vegetarian (dinner version is 1)
+C08-06,juanita-cantina,Fresh Avocado,0,2,marked vegan
+C08-06,juanita-cantina,Queso with Spinach,0,2,marked vegan
+C08-06,plaza-garcia,Fiesta Avocado,0,2,marked vegan
+C08-07,plaza-garcia,Enchiladas Vegetarianas,0,1,meat-free but not a burrito
+C08-08,due-cucina,Kid Red Sauce Pasta,0,1,tomato sauce kids pasta
+C08-08,due-cucina,Short Ribs Ragu',0,2,dairy-free on request
+C08-08,staple-and-fancy,Shrimp & Clam Bucatini,0,2,no dairy listed (named in intent)
+C08-09,anthonys-homeport,Crispy Calamari,0,2,seafood
+C08-09,anthonys-homeport,Crispy Coconut Prawns,0,2,seafood
+C08-09,anthonys-homeport,Dungeness Crab & Shrimp Dip,0,1,seafood appetizer
+C08-09,juanita-cantina,Tacos De Pescado,2,0,old spelling; label moved to 'Tacos de Pescado'
+C08-09,juanita-cantina,Tacos de Pescado,0,2,renamed 'Tacos De Pescado' -> 'Tacos de Pescado' (menu spelling)
+C08-09,plaza-garcia,Coctel de Camaron,0,2,shrimp dish
+C08-09,plaza-garcia,Pescado a la Parrilla,0,2,grilled fish dinner
+C08-09,staple-and-fancy,Bucatini,0,1,vegetarian pasta (meatless pastas are 1)
+C08-09,staple-and-fancy,Spaghetti,0,1,same cacio e pepe as the sample-menu Bucatini
+C09-01,juanita-cantina,Camarones à la Crema,0,2,shrimp
+C09-01,plaza-garcia,Coctel de Camaron,0,2,shrimp
+C09-01,plaza-garcia,Seafood Chimichangas,0,1,contains shrimp (like Seafood Enchiladas 1)
+C09-02,anthonys-homeport,Anthony's Award-Winning Clam Chowder,0,1,clam soup
+C09-02,anthonys-homeport,Anthony's Clam Chowder,0,1,clam soup not an appetizer
+C09-04,juanita-cantina,Mexican Flatbread,0,2,named in intent
+C09-04,staple-and-fancy,Bruschetta,0,1,grilled bread (named in intent)
+C09-04,staple-and-fancy,Smoked Fish Bruschetta,0,1,grilled bread
+C09-10,staple-and-fancy,"Alvear PX Solera, Montilla-Morales",0,2,after-dinner Dessert Wine
+C09-10,staple-and-fancy,Americano,0,1,after-dinner coffee
+C09-10,staple-and-fancy,Badia a Coltibuono Vin Santo del Chianti Classico 2013,1,2,after-dinner Dessert Wine
+C09-10,staple-and-fancy,Branca Menta,0,2,after-dinner Amaro & Liqueur
+C09-10,staple-and-fancy,Braulio,0,2,after-dinner Amaro & Liqueur
+C09-10,staple-and-fancy,Cappuccino,0,1,after-dinner coffee
+C09-10,staple-and-fancy,Cardamaro,0,2,after-dinner Amaro & Liqueur
+C09-10,staple-and-fancy,Cynar,0,2,after-dinner Amaro & Liqueur
+C09-10,staple-and-fancy,Domaines Tariquet Armagnac,0,2,after-dinner Grappa & Brandy
+C09-10,staple-and-fancy,Dudognon Folle Blanche Cognac,0,2,after-dinner Grappa & Brandy
+C09-10,staple-and-fancy,Espresso,0,1,after-dinner coffee
+C09-10,staple-and-fancy,Espresso Martini,0,2,after-dinner Cocktails
+C09-10,staple-and-fancy,Foro,0,2,after-dinner Amaro & Liqueur
+C09-10,staple-and-fancy,Jacopo Poli Torcolato Grappa,0,2,after-dinner Grappa & Brandy
+C09-10,staple-and-fancy,"Kopke 2003 Colheita Port, Douro",0,2,after-dinner Dessert Wine
+C09-10,staple-and-fancy,Latte,0,1,after-dinner coffee
+C09-10,staple-and-fancy,Letterpress Limoncello,0,2,after-dinner Amaro & Liqueur
+C09-10,staple-and-fancy,Marquis de Saint Loup Calvados 15yr,0,2,after-dinner Grappa & Brandy
+C09-10,staple-and-fancy,Meletti Sambuca,0,2,after-dinner Amaro & Liqueur
+C09-10,staple-and-fancy,Nardini,0,2,after-dinner Amaro & Liqueur
+C09-10,staple-and-fancy,Nonino,0,2,after-dinner Amaro & Liqueur
+C09-10,staple-and-fancy,Nux Alpina Walnut Liqueur,0,2,after-dinner Amaro & Liqueur
+C09-10,staple-and-fancy,"Oh, George",0,2,after-dinner Cocktails
+C09-10,staple-and-fancy,Orcas Island Distillery Apple Brandy,0,2,after-dinner Grappa & Brandy
+C09-10,staple-and-fancy,Ramazzotti,0,2,after-dinner Amaro & Liqueur
+C09-10,staple-and-fancy,Sennza Finne Autumn,0,2,after-dinner Amaro & Liqueur
+C09-10,staple-and-fancy,Sennza Finne Winter,0,2,after-dinner Amaro & Liqueur
+C09-10,staple-and-fancy,Sibona,0,2,after-dinner Amaro & Liqueur
+C10-02,juanita-cantina,Camarones Zarandeados,0,1,shrimp under $30; gluten-free not stated
+C10-02,juanita-cantina,Clams with Chorizo,0,1,clams under $30; gluten-free not stated
+C11-01,plaza-garcia,Coctel de Camaron,0,2,shrimp soup
+C11-01,staple-and-fancy,Butternut Squash Soup,0,2,soup
+C11-03,plaza-garcia,Tortilla Soup,0,1,tomato-ish broth (Juanita's is 1)
+C11-04,plaza-garcia,Coctel de Camaron,0,2,shrimp soup in seafood broth
+C11-06,great-china-restaurant,B.B.Q. Pork Noodle Soup,0,2,broth noodle soup
+C11-06,great-china-restaurant,Bean Curd Noodle Soup,0,2,broth noodle soup
+C11-06,great-china-restaurant,Bean Curd Vegetable Soup,0,2,broth soup
+C11-06,great-china-restaurant,Chicken Noodle Soup,0,2,broth noodle soup
+C11-06,great-china-restaurant,Chicken and Vegetable Soup,0,2,broth soup
+C11-06,great-china-restaurant,Egg Flower Soup,0,2,broth soup
+C11-06,great-china-restaurant,Hot & Sour Soup (Pork),0,2,broth soup
+C11-06,great-china-restaurant,Pork & Spicy Cabbage Noodle Soup,0,2,broth noodle soup
+C11-06,great-china-restaurant,Prawn Noodle Soup,0,2,broth noodle soup
+C11-06,great-china-restaurant,"Spicy Cabbage, Pork Soup",0,2,broth soup
+C11-06,great-china-restaurant,Wonton Soup (Pork),0,2,broth soup
+C11-06,mendocino-farms,Lemon Chicken & Farro Soup,0,2,named in intent
+C11-06,plaza-garcia,Coctel de Camaron,0,2,shrimp in seafood broth
+C11-07,staple-and-fancy,Butternut Squash Soup,0,2,vegetable soup
+C11-07,staple-and-fancy,Spring Pea Soup,0,2,vegetable soup
+C12-02,juanita-cantina,Juanita Chicken Burger,0,1,burger with cheese but chicken
+C12-04,plaza-garcia,Kids Cheeseburger,0,1,kids beef burger (Kids Hamburger is 1)
+C13-01,juanita-cantina,Tacos De Pescado,2,0,old spelling; label moved to 'Tacos de Pescado'
+C13-01,juanita-cantina,Tacos de Pescado,0,2,renamed 'Tacos De Pescado' -> 'Tacos de Pescado' (menu spelling)
+C13-01,juanita-cantina,Three Cantina Tacos,0,2,taco
+C13-01,juanita-cantina,Three Hard Tacos,0,2,taco
+C13-01,plaza-garcia,Kids Taco,0,2,taco
+C13-01,plaza-garcia,Tacos Al Pastor,0,2,taco
+C13-01,plaza-garcia,Tacos De Pescado,0,2,taco (named in intent)
+C13-01,plaza-garcia,Taquitos Rancheros (Entree),0,1,taquitos (Los Taquitos is 1)
+C13-02,juanita-cantina,Tacos De Pescado,2,0,old spelling; label moved to 'Tacos de Pescado'
+C13-02,juanita-cantina,Tacos de Pescado,0,2,renamed 'Tacos De Pescado' -> 'Tacos de Pescado' (menu spelling)
+C13-03,plaza-garcia,Tacos Al Carbon,0,2,carne asada option (Juanita's is 2)
+C13-04,plaza-garcia,Tacos Al Carbon,0,2,grilled chicken option (Juanita's is 2)
+C13-06,juanita-cantina,Three Cantina Tacos,0,1,small tacos with street-style meats
+C13-06,plaza-garcia,Tacos Al Carbon,0,1,like Juanita's Tacos Al Carbon (1)
+C13-08,plaza-garcia,Tacos Al Carbon,0,2,described as soft tacos
+C13-08,plaza-garcia,Tacos Al Pastor,0,2,described as soft tacos
+C13-08,plaza-garcia,Tacos De Asada,0,2,described as soft tacos
+C14-01,due-cucina,Cook-at-Home Pasta,0,1,pasta (kids / baked / take-home)
+C14-01,due-cucina,Kid Red Sauce Pasta,0,1,pasta (kids / baked / take-home)
+C14-01,due-cucina,Kid White Sauce Pasta,0,1,pasta (kids / baked / take-home)
+C14-01,due-cucina,Lasagna alla Bolognese,0,1,pasta (kids / baked / take-home)
+C14-01,due-cucina,Ravioli Burro & Salvia,0,2,pasta dish
+C14-01,staple-and-fancy,Bucatini,0,2,pasta dish
+C14-01,staple-and-fancy,Radiatore alla Vodka,0,2,pasta dish
+C14-01,staple-and-fancy,Rigatoni alla Vodka,0,2,pasta dish
+C14-01,staple-and-fancy,Spaghetti,0,2,pasta dish
+C14-02,staple-and-fancy,Bucatini,0,1,spaghetti-like shape (Cacio e Pepe Bucatini is 1)
+C14-02,staple-and-fancy,Spaghetti,0,2,spaghetti on the vegetarian chef's menu (named in intent)
+C14-03,staple-and-fancy,Rigatoni alla Vodka,0,2,rigatoni
+C14-04,staple-and-fancy,Bucatini,0,2,bucatini (named in intent)
+C14-05,staple-and-fancy,Bucatini,0,1,like Cacio e Pepe Bucatini (1)
+C14-05,staple-and-fancy,Spaghetti,0,1,same cacio e pepe as the sample-menu Bucatini
+C14-06,due-cucina,Cook-at-Home Pasta,0,2,fresh homemade pasta to cook at home
+C14-06,due-cucina,Lasagna alla Bolognese,0,1,baked pasta
+C14-06,due-cucina,Mushroom & White Truffle Oil,0,2,house-made pasta (intent: all Due' and Staple & Fancy pasta)
+C14-06,due-cucina,Ravioli Burro & Salvia,0,2,house-made pasta (intent: all Due' and Staple & Fancy pasta)
+C14-06,due-cucina,Short Ribs Ragu',0,2,house-made pasta (intent: all Due' and Staple & Fancy pasta)
+C14-06,staple-and-fancy,Bucatini,0,2,house-made pasta (intent: all Due' and Staple & Fancy pasta)
+C14-06,staple-and-fancy,Cacio e Pepe Bucatini,0,2,house-made pasta (intent: all Due' and Staple & Fancy pasta)
+C14-06,staple-and-fancy,Radiatore alla Vodka,0,2,house-made pasta (intent: all Due' and Staple & Fancy pasta)
+C14-06,staple-and-fancy,Rigatoni alla Vodka,0,2,house-made pasta (intent: all Due' and Staple & Fancy pasta)
+C14-06,staple-and-fancy,Shrimp & Clam Bucatini,0,2,house-made pasta (intent: all Due' and Staple & Fancy pasta)
+C14-06,staple-and-fancy,Spaghetti,0,2,house-made pasta (intent: all Due' and Staple & Fancy pasta)
+C14-07,due-cucina,Kid Red Sauce Pasta,0,2,pasta in tomato sauce
+C14-07,due-cucina,Lasagna alla Bolognese,0,1,bolognese (tomato meat sauce)
+C14-07,staple-and-fancy,Radiatore alla Vodka,0,2,tomato pasta (named in intent)
+C14-07,staple-and-fancy,Rigatoni alla Vodka,0,2,tomato vodka sauce
+C14-08,staple-and-fancy,Spaghetti,0,2,same cacio e pepe as the sample-menu Bucatini
+C15-01,mendocino-farms,Grilled Cheddar Cheese Sandwich,0,2,sandwich
+C15-01,mendocino-farms,Grilled Turkey & Cheddar Sandwich,0,2,sandwich
+C15-01,plaza-garcia,Torta Garcia,0,2,Mexican sandwich
+C15-02,mendocino-farms,Grilled Turkey & Cheddar Sandwich,0,2,turkey sandwich
+C15-03,plaza-garcia,Torta Garcia,0,1,sandwich with choice of meat
+C15-05,due-cucina,Mediterranea,0,2,Due' Cucina focaccia sandwich (others are 2)
+C15-05,mendocino-farms,Chicken Parm Dip,0,1,Italian-American flavors
+C15-05,mendocino-farms,Chicken Pesto Caprese,0,1,caprese-style
+C15-05,mendocino-farms,Prosciutto & Chicken,0,1,prosciutto + mozzarella + pesto
+C15-05,mendocino-farms,Vegetarian Pesto Caprese,0,1,caprese-style
+C16-01,due-cucina,Side Salad,0,2,salad
+C16-01,mendocino-farms,Avocado & Quinoa Superfood Ensalada Wrap,0,1,salad as a wrap
+C16-01,mendocino-farms,Kale & Apple Rainbow Salad,0,2,salad
+C16-01,mendocino-farms,Southern Potato Salad,0,1,potato salad side
+C16-01,plaza-garcia,Taco Salad Vegetariano,0,2,salad
+C16-01,staple-and-fancy,Gem Salad,0,2,salad
+C16-02,mendocino-farms,The Modern Caesar Wrap,0,1,Caesar in a wrap
+C16-03,juanita-cantina,Taco Salad,0,1,choice of meat
+C16-03,mendocino-farms,Not So Fried Chicken - Salad Style!,0,2,chicken salad
+C16-03,mendocino-farms,Thai Mango Salad,0,2,chicken salad
+C16-03,plaza-garcia,Taco Salad,0,1,choice of meat
+C16-04,plaza-garcia,Taco Salad Vegetariano,0,2,named in intent
+C16-05,juanita-cantina,Cantina Salad,0,1,salad with avocado slices
+C16-05,mendocino-farms,Golden State Cobb,0,1,salad with avocado (Anthony's Cobb is 1)
+C16-05,mendocino-farms,The Modern Caesar,0,1,salad with avocado
+C16-05,plaza-garcia,Avocado Tostada,0,2,like Juanita's Avocado Tostada (2)
+C16-05,plaza-garcia,Deluxe Tostada,0,1,tostada salad with guacamole
+C17-06,mendocino-farms,Lemon Cheesecake Cookie,0,1,named in intent
+C18-01,great-china-restaurant,"Golden Crispy Noodle with Chicken, Beef and Shrimp",0,1,chicken among other meats
+C18-01,great-china-restaurant,Kung Pao Shrimp & Chicken,0,1,chicken with shrimp
+C18-01,juanita-cantina,Juanita Chicken Burger,0,2,chicken
+C18-01,juanita-cantina,Wings,0,2,chicken wings
+C18-01,mendocino-farms,Crispy Chicken Tenders,0,2,chicken
+C18-01,mendocino-farms,Lemon Chicken & Farro Soup,0,2,chicken
+C18-01,mendocino-farms,Not So Fried Chicken - Salad Style!,0,2,chicken
+C18-01,plaza-garcia,Chicken Strips,0,2,chicken
+C18-01,plaza-garcia,Chicken Wings,0,2,chicken
+C18-01,plaza-garcia,Crispy Chicken Salad,0,2,chicken
+C18-02,juanita-cantina,Juanita Chicken Burger,0,2,pollo asado (grilled) chicken
+C18-02,juanita-cantina,Pollo Chipotle,0,1,pollo asado chicken in chipotle salsa
+C18-02,plaza-garcia,Tacos Al Carbon,0,2,grilled chicken option (Juanita's is 2)
+C18-03,plaza-garcia,Arroz Con Pollo,1,2,chicken with mushrooms (Juanita's is 2)
+C18-03,plaza-garcia,Pollo Asado,0,2,chicken sauteed with mushrooms
+C18-03,plaza-garcia,Pollo a la Crema,0,1,chicken in cream with mushrooms (Juanita's is 1)
+C18-05,juanita-cantina,Pollo Ala Crema,0,1,chicken with bell peppers in cream
+C18-05,plaza-garcia,Arroz Con Pollo,0,2,chicken with peppers (Juanita's is 2)
+C18-05,plaza-garcia,Pollo a la Crema,0,1,chicken with peppers in cream
+C18-06,mendocino-farms,1/2 The Farm Club,2,1,turkey not chicken (was 2)
+C18-06,mendocino-farms,1/2 Turkey Avo Salsa Verde,0,1,turkey with avocado
+C18-06,mendocino-farms,The Farm Club,2,1,turkey not chicken (was 2)
+C18-06,mendocino-farms,Turkey Avo Salsa Verde,0,1,turkey with avocado (same as Farm Club)
+C19-01,due-cucina,Bolognese Ragu',0,2,beef meat sauce (named in intent)
+C19-01,due-cucina,Lasagna alla Bolognese,0,2,contains beef
+C19-01,due-cucina,Polpette,0,2,beef meatballs
+C19-01,due-cucina,Short Ribs Ragu',0,2,beef short ribs (named in intent)
+C19-01,great-china-restaurant,"Golden Crispy Noodle with Chicken, Beef and Shrimp",0,1,beef among other meats
+C19-01,juanita-cantina,Asada Fries,0,1,carne asada option
+C19-01,juanita-cantina,Carne Asada Fajitas,0,2,beef
+C19-01,juanita-cantina,Carne and Camaron,0,1,carne asada with shrimp
+C19-01,juanita-cantina,Cheeseburger,0,2,ground beef patty
+C19-01,juanita-cantina,Hawaiian Cheeseburger,0,2,ground beef patty
+C19-01,juanita-cantina,Jalapeño Cheeseburger,0,2,ground beef patty
+C19-01,juanita-cantina,Steak Tapiqueño,0,2,skirt steak
+C19-01,plaza-garcia,Asada y Mas,0,2,carne asada
+C19-01,plaza-garcia,Burrito Asada,0,2,carne asada
+C19-01,plaza-garcia,"Combo 7: One Enchilada, One Beef Burrito or Chalupa",0,1,includes a beef burrito
+C19-01,plaza-garcia,Combo 8: Two Beef Burritos,0,2,beef burritos
+C19-01,plaza-garcia,Fajitas Steak,0,2,steak
+C19-01,plaza-garcia,Kids Cheeseburger,0,2,beef burger
+C19-01,plaza-garcia,Kids Hamburger,0,2,beef burger
+C19-01,plaza-garcia,Steak Tampiqueno,0,2,carne asada
+C19-01,plaza-garcia,Tacos De Asada,0,2,beef skirt tacos
+C19-02,juanita-cantina,Tacos Al Carbon,0,1,skirt steak option
+C19-02,plaza-garcia,Tacos De Asada,0,2,beef skirt
+C19-02,staple-and-fancy,SRF Skirt Wagyu,0,2,skirt steak
+C19-04,due-cucina,Bolognese Ragu',0,1,ground-meat sauce
+C19-04,due-cucina,Polpette,0,1,meatballs
+C19-04,juanita-cantina,Hawaiian Cheeseburger,0,2,ground beef patty
+C19-04,juanita-cantina,Jalapeño Cheeseburger,0,2,ground beef patty
+C19-04,plaza-garcia,Bean Dip,0,2,seasoned ground beef
+C19-04,plaza-garcia,Kids Cheeseburger,0,1,beef burger (Kids Hamburger is 1)
+C20-01,due-cucina,Bolognese Ragu',0,1,contains pork
+C20-01,great-china-restaurant,Dinner Combination G,0,1,sweet & sour chicken or pork
+C20-01,plaza-garcia,Enchiladas Verdes,0,2,pork enchiladas
+C20-02,plaza-garcia,Carnitas de Pollo,0,1,named carnitas but chicken (Carnitas De Res is 1)
+C20-05,plaza-garcia,Enchiladas Verdes,0,2,pork with tomatillo sauce
+C21-01,anthonys-homeport,Crab Stuffed Mushrooms,0,1,contains shrimp
+C21-01,anthonys-homeport,Northwest Salmon Duet,0,1,salmon and shrimp
+C21-01,great-china-restaurant,Combination Platter,0,1,includes fried prawn
+C21-01,juanita-cantina,Camarones Zarandeados,0,2,shrimp
+C21-01,juanita-cantina,Carne and Camaron,0,1,steak with shrimp
+C21-01,juanita-cantina,Seafood Burrito,0,1,contains shrimp
+C21-01,plaza-garcia,Cielo Mar Y Tierra,0,1,steak and chicken with shrimp
+C21-01,plaza-garcia,Deluxe Camaron Enchilada,0,2,shrimp
+C21-01,plaza-garcia,Fajitas Garcia,0,1,includes shrimp
+C21-01,plaza-garcia,Fajitas Shrimp,0,2,shrimp
+C21-01,plaza-garcia,Mar y Tierra,0,1,steak with shrimp
+C21-01,plaza-garcia,Molcajete,0,1,includes bacon-wrapped shrimp
+C21-01,plaza-garcia,Quesadilla Camarones,0,2,shrimp
+C21-01,plaza-garcia,Seafood Burrito,0,1,contains prawns
+C21-01,plaza-garcia,Seafood Chimichangas,0,1,contains shrimp
+C21-01,plaza-garcia,Sopa Del Mar,0,1,fish and shrimp soup
+C21-03,juanita-cantina,Camarones con Bacon,0,1,shrimp entree; rice likely
+C21-03,juanita-cantina,Camarones à la Crema,0,2,shrimp served with rice
+C21-03,juanita-cantina,Tacos De Camarones,0,1,shrimp tacos served with rice
+C21-07,juanita-cantina,Tacos De Pescado,2,0,old spelling; label moved to 'Tacos de Pescado'
+C21-07,juanita-cantina,Tacos de Pescado,0,2,renamed 'Tacos De Pescado' -> 'Tacos de Pescado' (menu spelling)
+C21-08,juanita-cantina,Tacos De Pescado,1,0,old spelling; label moved to 'Tacos de Pescado'
+C21-08,juanita-cantina,Tacos de Pescado,0,1,renamed 'Tacos De Pescado' -> 'Tacos de Pescado' (menu spelling)
+C21-08,plaza-garcia,Tacos De Pescado,0,2,grilled tilapia tacos
+C21-09,juanita-cantina,Tacos De Pescado,2,0,old spelling; label moved to 'Tacos de Pescado'
+C21-09,juanita-cantina,Tacos de Pescado,0,2,renamed 'Tacos De Pescado' -> 'Tacos de Pescado' (menu spelling)
+C22-01,juanita-cantina,Avocado Tostada,0,1,black beans in description (Nacho Supreme is 1)
+C22-01,juanita-cantina,Veggie Tostadas,0,1,black beans in description
+C22-02,anthonys-homeport,Hectors Authentic Chips & Salsa,0,1,avocado in description
+C22-02,juanita-cantina,Burrito Al Pastor,0,1,avocado in description
+C22-02,juanita-cantina,Camarones Mojo de Ajo,0,1,avocado in description
+C22-02,juanita-cantina,Camarones con Bacon,0,1,avocado in description
+C22-02,juanita-cantina,Camarones à la Crema,0,1,avocado in description
+C22-02,juanita-cantina,Camarones à la Diabla,0,1,avocado in description
+C22-02,juanita-cantina,Cantina Salad,0,1,avocado in description
+C22-02,juanita-cantina,Juanita Chicken Burger,0,1,avocado in description
+C22-02,juanita-cantina,Pollo Chipotle,0,1,avocado in description
+C22-02,juanita-cantina,Seafood Enchiladas,0,1,avocado in description
+C22-02,juanita-cantina,Tacos Al Carbon,0,1,avocado in description
+C22-02,juanita-cantina,Tacos De Camarones,0,1,avocado in description
+C22-02,juanita-cantina,Tacos de Pescado,0,1,avocado in description
+C22-02,juanita-cantina,Tortilla Soup,0,1,avocado in description
+C22-02,juanita-cantina,Veggie Tostadas,0,1,avocado in description
+C22-02,mendocino-farms,Avocado & Quinoa Superfood Ensalada Wrap,0,2,avocado in item name
+C22-02,mendocino-farms,Baja Green Goddess,0,1,avocado in description
+C22-02,mendocino-farms,Baja Green Goddess Wrap,0,1,avocado in description
+C22-02,mendocino-farms,Golden State Cobb,0,1,avocado in description
+C22-02,mendocino-farms,Golden State Cobb Wrap,0,1,avocado in description
+C22-02,mendocino-farms,Peruvian Steak,0,1,avocado in description
+C22-02,mendocino-farms,The Happy Hippie,0,1,avocado in description
+C22-02,mendocino-farms,The Modern Caesar,0,1,avocado in description
+C22-02,mendocino-farms,The Modern Caesar Wrap,0,1,avocado in description
+C22-02,plaza-garcia,Carnitas De Puerco,0,1,avocado in description
+C22-02,plaza-garcia,Ceviche De Camarones,0,1,avocado in description
+C22-02,plaza-garcia,Coctel de Camaron,0,1,avocado in description
+C22-02,plaza-garcia,Crispy Chicken Salad,0,1,avocado in description
+C22-02,plaza-garcia,Seafood Chimichangas,0,1,avocado in description
+C22-02,plaza-garcia,Steak Tampiqueno,0,1,avocado in description
+C22-02,plaza-garcia,Torta Garcia,0,1,avocado in description
+C22-02,plaza-garcia,Tortilla Soup,0,1,avocado in description
+C22-02,staple-and-fancy,Hamachi Crudo,0,1,avocado in description
+C22-03,mendocino-farms,Avocado & Quinoa Superfood Ensalada,0,1,chipotle in description
+C22-03,mendocino-farms,Avocado & Quinoa Superfood Ensalada Wrap,0,1,chipotle in description
+C22-03,plaza-garcia,Tacos De Camaron,0,2,chipotle sauce
+C22-04,plaza-garcia,Steak Tampiqueno,0,1,comes with a mole enchilada (Juanita's version is 1)
+C22-05,juanita-cantina,Enchiladas Suizas,0,2,topped with green tomatillo salsa
+C22-05,juanita-cantina,Spinach Enchilada,0,2,topped with green tomatillo salsa
+C22-05,plaza-garcia,Burrito Chile Verde,0,2,green tomatillo sauce
+C22-05,plaza-garcia,Enchiladas Verdes,0,2,tomatillo sauce
+C22-05,plaza-garcia,Mulitas,0,1,tomatillo in description
+C22-05,plaza-garcia,Torta Garcia,0,1,tomatillo in description
+C22-06,juanita-cantina,Burrito Al Pastor,0,1,pico de gallo in description
+C22-06,juanita-cantina,Burrito Asada,0,1,pico de gallo in description
+C22-06,juanita-cantina,Burrito Chili Verde,0,1,pico de gallo in description
+C22-06,juanita-cantina,Camarones Mojo de Ajo,0,1,pico de gallo in description
+C22-06,juanita-cantina,Camarones con Bacon,0,1,pico de gallo in description
+C22-06,juanita-cantina,Camarones à la Crema,0,1,pico de gallo in description
+C22-06,juanita-cantina,Camarones à la Diabla,0,1,pico de gallo in description
+C22-06,juanita-cantina,Carne and Camaron,0,1,pico de gallo in description
+C22-06,juanita-cantina,Casa Burrito,0,1,pico de gallo in description
+C22-06,juanita-cantina,Chile Relleno,0,1,pico de gallo in description
+C22-06,juanita-cantina,Chili Verde,0,1,pico de gallo in description
+C22-06,juanita-cantina,Enchiladas Juanita,0,1,pico de gallo in description
+C22-06,juanita-cantina,Enchiladas Suizas,0,1,pico de gallo in description
+C22-06,juanita-cantina,Fajita Burrito,0,1,pico de gallo in description
+C22-06,juanita-cantina,Mexican Steak,0,1,pico de gallo in description
+C22-06,juanita-cantina,Pollo Asado,0,1,pico de gallo in description
+C22-06,juanita-cantina,Pollo Chipotle,0,1,pico de gallo in description
+C22-06,juanita-cantina,Pollo en Mole,0,1,pico de gallo in description
+C22-06,juanita-cantina,Quesadillas,0,1,pico de gallo in description
+C22-06,juanita-cantina,Ribeye Steak,0,1,pico de gallo in description
+C22-06,juanita-cantina,Seafood Burrito,0,1,pico de gallo in description
+C22-06,juanita-cantina,Seafood Enchiladas,0,1,pico de gallo in description
+C22-06,juanita-cantina,Spinach Enchilada,0,1,pico de gallo in description
+C22-06,juanita-cantina,Steak Tapiqueño,0,1,pico de gallo in description
+C22-06,juanita-cantina,Tacos Al Carbon,0,1,pico de gallo in description
+C22-06,juanita-cantina,Tacos De Camarones,0,1,pico de gallo in description
+C22-06,juanita-cantina,Tacos de Pescado,0,1,pico de gallo in description
+C22-06,juanita-cantina,Veggie Enchiladas,0,1,pico de gallo in description
+C22-06,juanita-cantina,Veggie Fajitas,0,1,pico de gallo in description
+C22-06,juanita-cantina,Veggie Tostadas,0,1,pico de gallo in description
+C22-08,staple-and-fancy,Spaghetti,0,2,same cacio e pepe as the sample-menu Bucatini
+C22-09,juanita-cantina,Asada Fries,0,1,guacamole in description
+C22-09,juanita-cantina,Beef Fajitas,0,1,guacamole in description
+C22-09,juanita-cantina,Burrito Asada,0,1,guacamole in description
+C22-09,juanita-cantina,Carne Asada,0,1,guacamole in description
+C22-09,juanita-cantina,Carne Asada Fajitas,0,1,guacamole in description
+C22-09,juanita-cantina,Carne and Camaron,0,1,guacamole in description
+C22-09,juanita-cantina,Chicken Fajitas,0,1,guacamole in description
+C22-09,juanita-cantina,Enchiladas Rojas,0,1,guacamole in description
+C22-09,juanita-cantina,Fajita Burrito,0,1,guacamole in description
+C22-09,juanita-cantina,Mexican Steak,0,1,guacamole in description
+C22-09,juanita-cantina,Michoacan Carnitas,0,1,guacamole in description
+C22-09,juanita-cantina,Quesadillas,0,1,guacamole in description
+C22-09,juanita-cantina,Ribeye Steak,0,1,guacamole in description
+C22-09,juanita-cantina,Seafood Burrito,0,1,guacamole in description
+C22-09,juanita-cantina,Shrimp Fajitas,0,1,guacamole in description
+C22-09,juanita-cantina,Steak Tapiqueño,0,1,guacamole in description
+C22-09,juanita-cantina,Taco Salad,0,1,guacamole in description
+C22-09,juanita-cantina,Veggie Enchiladas,0,1,guacamole in description
+C22-09,juanita-cantina,Veggie Fajitas,0,1,guacamole in description
+C22-09,plaza-garcia,Burrito Asada,0,1,guacamole in description
+C22-09,plaza-garcia,Burrito Vegetariano,0,1,guacamole in description
+C22-09,plaza-garcia,Carne Asada,0,1,guacamole in description
+C22-09,plaza-garcia,Carnitas De Res,0,1,guacamole in description
+C22-09,plaza-garcia,Carnitas de Pollo,0,1,guacamole in description
+C22-09,plaza-garcia,Cheese Crispy Garcia,0,1,guacamole in description
+C22-09,plaza-garcia,Chimichangas,0,1,guacamole in description
+C22-09,plaza-garcia,Combo 10: One Chile Relleno and One Enchilada,0,1,guacamole in description
+C22-09,plaza-garcia,Combo 11: Two Chiles Rellenos,0,1,guacamole in description
+C22-09,plaza-garcia,Combo 15: Chimichanga with Rice and Beans,0,1,guacamole in description
+C22-09,plaza-garcia,Deluxe Tostada,0,1,guacamole in description
+C22-09,plaza-garcia,Enchilada Garcia,0,1,guacamole in description
+C22-09,plaza-garcia,Enchiladas Rancheras,0,1,guacamole in description
+C22-09,plaza-garcia,Enchiladas Vegetarianas,0,1,guacamole in description
+C22-09,plaza-garcia,Esspresso Burrito,0,1,guacamole in description
+C22-09,plaza-garcia,Expresso Burrito,0,1,guacamole in description
+C22-09,plaza-garcia,Fajitas Carne Asada,0,1,guacamole in description
+C22-09,plaza-garcia,Fajitas Chicken,0,1,guacamole in description
+C22-09,plaza-garcia,Fajitas Pork,0,1,guacamole in description
+C22-09,plaza-garcia,Fajitas Shrimp,0,1,guacamole in description
+C22-09,plaza-garcia,Fajitas Steak,0,1,guacamole in description
+C22-09,plaza-garcia,Flautas,0,1,guacamole in description
+C22-09,plaza-garcia,Garcia Burrito,0,1,guacamole in description
+C22-09,plaza-garcia,Grilled Quesadilla,0,1,guacamole in description
+C22-09,plaza-garcia,Mexican Pizza,0,1,guacamole in description
+C22-09,plaza-garcia,Mulitas,0,1,guacamole in description
+C22-09,plaza-garcia,Piernas De Puerco,0,1,guacamole in description
+C22-09,plaza-garcia,Quesadillas,0,1,guacamole in description
+C22-09,plaza-garcia,Shrimp Chimichangas,0,1,guacamole in description
+C22-09,plaza-garcia,Steak Garcia Ranchero,0,1,guacamole in description
+C22-09,plaza-garcia,Steak Matador,0,1,guacamole in description
+C22-09,plaza-garcia,Super Nachos Garcia,0,1,guacamole in description
+C22-09,plaza-garcia,Taco Salad Vegetariano,0,1,guacamole in description
+C22-09,plaza-garcia,Tacos Garcia,0,1,guacamole in description
+C22-09,plaza-garcia,Taquitos Rancheros,0,1,guacamole in description
+C22-09,plaza-garcia,Taquitos Rancheros (Entree),0,1,guacamole in description
+C22-09,plaza-garcia,Tostada Grande,0,1,guacamole in description
+C22-09,plaza-garcia,Vegetarian Fajitas,0,1,guacamole in description
+C22-09,plaza-garcia,Veggie Quesadilla,0,1,guacamole in description
+C22-10,juanita-cantina,Burrito Chili Verde,0,1,green salsa in description
+C22-10,juanita-cantina,Chiliquiles,0,1,green salsa in description
+C22-10,juanita-cantina,Enchiladas Suizas,0,1,green salsa in description
+C22-10,juanita-cantina,Spinach Enchilada,0,1,green salsa in description
+C22-10,mendocino-farms,1/2 Turkey Avo Salsa Verde,1,2,green salsa in item name
+C22-10,staple-and-fancy,Roasted Cauliflower,0,2,salsa verde
+C22-10,staple-and-fancy,SRF Skirt Wagyu,0,2,salsa verde
+C22-11,great-china-restaurant,Mu Shu Beef,0,1,mu shu with egg
+C22-11,great-china-restaurant,Mu Shu Chicken,0,1,mu shu with egg
+C22-11,great-china-restaurant,Mu Shu Vegetable,0,1,mu shu with egg (other mu shu are 1)
+C22-12,mendocino-farms,1/2 Turkey Avo Salsa Verde,0,1,turkey but no bacon
+C22-12,mendocino-farms,Turkey Avo Salsa Verde,0,1,turkey but no bacon
+C23-02,plaza-garcia,Combo 10: One Chile Relleno and One Enchilada,0,1,same intent as C05-04 'enchilladas' (all enchilada variants)
+C23-02,plaza-garcia,Combo 12: Two Enchiladas,0,2,same intent as C05-04 'enchilladas' (all enchilada variants)
+C23-02,plaza-garcia,"Combo 14: Enchilada, Taco or Tostada",0,1,same intent as C05-04 'enchilladas' (all enchilada variants)
+C23-02,plaza-garcia,"Combo 2: One Taco, One Enchilada, One Tamal",0,1,same intent as C05-04 'enchilladas' (all enchilada variants)
+C23-02,plaza-garcia,"Combo 3: Two Enchiladas, One Taco or Bean Tostada",0,1,same intent as C05-04 'enchilladas' (all enchilada variants)
+C23-02,plaza-garcia,"Combo 4: One Enchilada, Bean Tostada, One Taco",0,1,same intent as C05-04 'enchilladas' (all enchilada variants)
+C23-02,plaza-garcia,"Combo 5: One Chile Relleno, One Enchilada and Choice",0,1,same intent as C05-04 'enchilladas' (all enchilada variants)
+C23-02,plaza-garcia,Combo 6: Three Enchiladas,0,2,same intent as C05-04 'enchilladas' (all enchilada variants)
+C23-02,plaza-garcia,"Combo 7: One Enchilada, One Beef Burrito or Chalupa",0,1,same intent as C05-04 'enchilladas' (all enchilada variants)
+C23-02,plaza-garcia,Deluxe Enchilada,0,2,same intent as C05-04 'enchilladas' (all enchilada variants)
+C23-02,plaza-garcia,Deluxe Enchilada Especial,0,2,same intent as C05-04 'enchilladas' (all enchilada variants)
+C23-02,plaza-garcia,Enchiladas Vegetarianas,0,2,same intent as C05-04 'enchilladas' (all enchilada variants)
+C23-02,plaza-garcia,Enchiladas Verdes,0,2,same intent as C05-04 'enchilladas' (all enchilada variants)
+C23-02,plaza-garcia,Kids Enchilada,0,2,same intent as C05-04 'enchilladas' (all enchilada variants)
+C23-02,plaza-garcia,Small Enchilada,0,2,same intent as C05-04 'enchilladas' (all enchilada variants)
+C23-03,plaza-garcia,Burrito Vegetariano,0,2,burrito
+C23-03,plaza-garcia,Chile Colorado Burrito,0,2,burrito
+C23-03,plaza-garcia,"Combo 7: One Enchilada, One Beef Burrito or Chalupa",0,1,combo with a burrito
+C23-03,plaza-garcia,Combo 8: Two Beef Burritos,0,2,burrito
+C23-03,plaza-garcia,Esspresso Burrito,0,2,burrito
+C23-03,plaza-garcia,Expresso Burrito,0,2,burrito
+C23-03,plaza-garcia,Kids Burrito,0,2,burrito
+C23-04,juanita-cantina,Quesadilla,0,2,quesadilla (happy hour)
+C23-04,plaza-garcia,Appetizer Combo Plate,0,1,includes a quesadilla
+C23-04,plaza-garcia,Grilled Quesadillas,0,2,quesadilla (Especialidades)
+C23-04,plaza-garcia,Quesadilla Camarones,0,2,shrimp quesadilla
+C23-05,juanita-cantina,Fajita Burrito,0,1,fajita-filled item
+C23-05,plaza-garcia,Fajita Burrito,0,1,fajita-filled item
+C23-05,plaza-garcia,Fajita Taco Salad,0,1,fajita-filled item
+C23-05,plaza-garcia,Fajitas Steak,0,2,fajita dish
+C23-06,plaza-garcia,Chimichangas,0,2,chimichanga

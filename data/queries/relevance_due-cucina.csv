@@ -3,53 +3,96 @@ due-cucina,C01-02,Bolognese Ragu',2
 due-cucina,C01-02,Polpette,1
 due-cucina,C01-02,Short Ribs Ragu',2
 due-cucina,C01-02,Zozzona,2
+due-cucina,C01-02,Lasagna alla Bolognese,2
 due-cucina,C01-07,Bolognese Ragu',2
 due-cucina,C01-07,Carbonara,2
 due-cucina,C01-07,Lasagna alla Bolognese,2
 due-cucina,C01-07,Ravioli Burro & Salvia,1
-due-cucina,C01-08,Ravioli Burro & Salvia,1
-due-cucina,C01-08,Zozzona,1
+due-cucina,C01-07,Eggplant Parmigiana,2
+due-cucina,C01-07,Mediterranea,1
 due-cucina,C02-03,Mediterranea Salad,2
 due-cucina,C02-03,Side Salad,2
+due-cucina,C02-08,Burrata Salad,2
 due-cucina,C02-09,Bolognese Ragu',1
 due-cucina,C02-09,Carbonara,2
 due-cucina,C02-09,Zozzona,2
 due-cucina,C03-03,Carbonara,2
 due-cucina,C03-03,Ravioli Burro & Salvia,2
 due-cucina,C03-03,Zozzona,1
+due-cucina,C03-04,Burrata Salad,1
+due-cucina,C03-04,Mediterranea Salad,2
 due-cucina,C03-06,Bolognese Ragu',2
 due-cucina,C03-06,Carbonara,2
 due-cucina,C03-06,Lasagna alla Bolognese,2
+due-cucina,C03-06,Short Ribs Ragu',2
+due-cucina,C03-07,Mushroom & White Truffle Oil,2
+due-cucina,C03-08,Zozzona,1
+due-cucina,C03-12,Tiramisu,1
+due-cucina,C03-12,Cannolo Siciliano,1
 due-cucina,C04-07,Bolognese Ragu',1
 due-cucina,C04-07,Short Ribs Ragu',2
 due-cucina,C04-08,Short Ribs Ragu',2
+due-cucina,C04-08,Lasagna alla Bolognese,1
+due-cucina,C04-08,Bolognese Ragu',1
 due-cucina,C05-05,Carbonara,2
 due-cucina,C05-06,Tiramisu,2
 due-cucina,C05-10,Bolognese Ragu',2
 due-cucina,C05-11,Cannolo Siciliano,2
+due-cucina,C05-12,Burrata Salad,2
 due-cucina,C05-14,Caprese,2
 due-cucina,C05-14,Mediterranea,2
 due-cucina,C05-14,Milanese,2
 due-cucina,C05-14,Mortadella,2
 due-cucina,C05-14,Porchetta,2
+due-cucina,C06-05,Mushroom & White Truffle Oil,2
 due-cucina,C06-06,Short Ribs Ragu',2
+due-cucina,C07-08,Zozzona,2
+due-cucina,C07-08,Polpette,2
+due-cucina,C07-08,Mushroom & White Truffle Oil,2
+due-cucina,C07-08,Short Ribs Ragu',2
+due-cucina,C07-08,Bolognese Ragu',2
+due-cucina,C07-08,Pomodoro,2
+due-cucina,C07-08,Carbonara,2
+due-cucina,C07-08,Basil Pesto,2
+due-cucina,C07-08,Lasagna alla Bolognese,2
+due-cucina,C07-08,Ravioli Burro & Salvia,2
+due-cucina,C07-08,Kid Red Sauce Pasta,1
+due-cucina,C07-08,Kid White Sauce Pasta,1
+due-cucina,C07-08,Cook-at-Home Pasta,1
+due-cucina,C07-10,Pomodoro,2
+due-cucina,C07-10,Short Ribs Ragu',2
+due-cucina,C07-10,Mediterranea,1
 due-cucina,C07-11,Bolognese Ragu',1
 due-cucina,C07-11,Carbonara,1
 due-cucina,C07-11,Pomodoro,1
 due-cucina,C07-11,Zozzona,1
+due-cucina,C07-11,Short Ribs Ragu',1
+due-cucina,C07-11,Basil Pesto,1
 due-cucina,C07-12,Pomodoro,1
 due-cucina,C07-12,Zozzona,1
+due-cucina,C07-12,Short Ribs Ragu',1
+due-cucina,C07-12,Bolognese Ragu',1
+due-cucina,C07-12,Carbonara,1
+due-cucina,C07-12,Basil Pesto,1
 due-cucina,C07-14,Cannolo Siciliano,1
 due-cucina,C08-02,Mediterranea,2
 due-cucina,C08-03,Eggplant Parmigiana,2
 due-cucina,C08-03,Pomodoro,1
+due-cucina,C08-03,Zozzona,1
+due-cucina,C08-03,Short Ribs Ragu',1
+due-cucina,C08-03,Bolognese Ragu',1
+due-cucina,C08-03,Carbonara,1
+due-cucina,C08-03,Basil Pesto,1
 due-cucina,C08-04,Mediterranea,2
 due-cucina,C08-04,Pomodoro,1
+due-cucina,C08-05,Burrata Salad,1
 due-cucina,C08-06,Mediterranea,2
 due-cucina,C08-06,Mediterranea Salad,2
 due-cucina,C08-06,Pomodoro,2
 due-cucina,C08-08,Mediterranea,1
 due-cucina,C08-08,Pomodoro,2
+due-cucina,C08-08,Short Ribs Ragu',2
+due-cucina,C08-08,Kid Red Sauce Pasta,1
 due-cucina,C09-08,Suppli Al Telefono,2
 due-cucina,C11-03,Pomodoro,1
 due-cucina,C14-01,Basil Pesto,2
@@ -60,6 +103,11 @@ due-cucina,C14-01,Polpette,2
 due-cucina,C14-01,Pomodoro,2
 due-cucina,C14-01,Short Ribs Ragu',2
 due-cucina,C14-01,Zozzona,2
+due-cucina,C14-01,Ravioli Burro & Salvia,2
+due-cucina,C14-01,Kid Red Sauce Pasta,1
+due-cucina,C14-01,Kid White Sauce Pasta,1
+due-cucina,C14-01,Lasagna alla Bolognese,1
+due-cucina,C14-01,Cook-at-Home Pasta,1
 due-cucina,C14-02,Pomodoro,1
 due-cucina,C14-05,Carbonara,2
 due-cucina,C14-05,Zozzona,2
@@ -69,10 +117,17 @@ due-cucina,C14-06,Carbonara,2
 due-cucina,C14-06,Polpette,2
 due-cucina,C14-06,Pomodoro,2
 due-cucina,C14-06,Zozzona,2
+due-cucina,C14-06,Mushroom & White Truffle Oil,2
+due-cucina,C14-06,Short Ribs Ragu',2
+due-cucina,C14-06,Ravioli Burro & Salvia,2
+due-cucina,C14-06,Cook-at-Home Pasta,2
+due-cucina,C14-06,Lasagna alla Bolognese,1
 due-cucina,C14-07,Bolognese Ragu',2
 due-cucina,C14-07,Polpette,2
 due-cucina,C14-07,Pomodoro,2
 due-cucina,C14-07,Zozzona,1
+due-cucina,C14-07,Kid Red Sauce Pasta,2
+due-cucina,C14-07,Lasagna alla Bolognese,1
 due-cucina,C14-08,Mushroom & White Truffle Oil,2
 due-cucina,C15-01,Caprese,2
 due-cucina,C15-01,Mediterranea,2
@@ -83,6 +138,7 @@ due-cucina,C15-05,Caprese,2
 due-cucina,C15-05,Milanese,2
 due-cucina,C15-05,Mortadella,2
 due-cucina,C15-05,Porchetta,2
+due-cucina,C15-05,Mediterranea,2
 due-cucina,C15-06,Caprese,2
 due-cucina,C15-06,Mediterranea,2
 due-cucina,C15-06,Milanese,2
@@ -90,15 +146,23 @@ due-cucina,C15-06,Mortadella,2
 due-cucina,C15-06,Porchetta,2
 due-cucina,C16-01,Burrata Salad,2
 due-cucina,C16-01,Mediterranea Salad,2
+due-cucina,C16-01,Side Salad,2
 due-cucina,C17-01,Cannolo Siciliano,2
 due-cucina,C17-01,Tiramisu,2
 due-cucina,C17-02,Tiramisu,2
 due-cucina,C17-08,Cannolo Siciliano,2
+due-cucina,C19-01,Bolognese Ragu',2
+due-cucina,C19-01,Short Ribs Ragu',2
+due-cucina,C19-01,Polpette,2
+due-cucina,C19-01,Lasagna alla Bolognese,2
+due-cucina,C19-04,Bolognese Ragu',1
+due-cucina,C19-04,Polpette,1
 due-cucina,C19-06,Short Ribs Ragu',2
 due-cucina,C20-01,Carbonara,2
 due-cucina,C20-01,Mortadella,2
 due-cucina,C20-01,Porchetta,2
 due-cucina,C20-01,Zozzona,2
+due-cucina,C20-01,Bolognese Ragu',1
 due-cucina,C20-03,Carbonara,2
 due-cucina,C20-03,Zozzona,2
 due-cucina,C22-07,Basil Pesto,2

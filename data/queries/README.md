@@ -139,6 +139,20 @@ See `research/search/evaluate.py` for a reference implementation that:
 2. Runs a search function against each query
 3. Computes NDCG@5, Recall@10, and MRR per query and aggregated by category/difficulty
 
+### Label review log
+
+`label_review_2026-10.csv` records every judgment changed in the October 2026
+review, one row per changed (query, restaurant, item) with old and new
+relevance and the reason. The review compared the labels against
+`research/results/llm/qwen2.5-7b-instruct.jsonl`. Every disagreement in Qwen's
+top 10, and every labeled item Qwen missed, was judged against the query
+intent in `menu-search-benchmark-queries.md`. Queries whose intent names a
+whole set ("all enchilada variants", "Mendocino Farms sandwiches", a
+restaurant's happy-hour menu) were completed from the menus rather than from
+Qwen's picks. Result: 1,494 → 2,265 judgments; 7 previously unjudged queries
+now have labels. It also fixed 9 labels that used "Tacos De Pescado" where the
+menu says "Tacos de Pescado", so no engine could ever match them.
+
 ### Adding new relevance judgments
 
 To add judgments for a new restaurant, create `relevance_<restaurant-id>.csv` — e.g. `relevance_new-place.csv` — with the same header and sparse format. The filename stem after `relevance_` must exactly match the restaurant's markdown file stem (e.g. `new-place.md`). Only include rows where relevance ≥ 1.

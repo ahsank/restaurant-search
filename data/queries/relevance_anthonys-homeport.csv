@@ -30,6 +30,7 @@ anthonys-homeport,C03-02,Wild Alaska Silver Salmon with Red Pepper Beurre Blanc,
 anthonys-homeport,C03-03,Dungeness Crab & Shrimp Fettuccine,2
 anthonys-homeport,C03-03,Kids Fettuccine,1
 anthonys-homeport,C03-03,Seafood Fettuccine,2
+anthonys-homeport,C03-03,Butter Noodles,1
 anthonys-homeport,C03-04,Fresh Oyster on the Half Shell*,2
 anthonys-homeport,C03-04,Jumbo Prawn Cocktail,1
 anthonys-homeport,C03-04,Moss Bay Avocado Toast,1
@@ -46,9 +47,14 @@ anthonys-homeport,C03-06,Seafood Fettuccine,1
 anthonys-homeport,C03-07,Chicken Kalbi Bowl,1
 anthonys-homeport,C03-07,Salmon Ponzu Bowl,1
 anthonys-homeport,C03-07,Wild Alaska Black Cod,2
+anthonys-homeport,C03-07,Portabello Mushroom,2
+anthonys-homeport,C03-07,Portobello Mushroom,2
 anthonys-homeport,C03-09,Blackened Oregon Rockfish,1
 anthonys-homeport,C03-09,Fresh Pacific Swordfish,1
 anthonys-homeport,C03-10,Silver Salmon Salad with Cranberry-Lime Relish,1
+anthonys-homeport,C03-10,Caesar Salad,2
+anthonys-homeport,C03-10,Classic Caesar Salad,2
+anthonys-homeport,C03-10,Anthony's House Salad,1
 anthonys-homeport,C03-11,Portabello Mushroom,2
 anthonys-homeport,C03-11,Portobello Mushroom,2
 anthonys-homeport,C03-12,Bailey's Irish Cream Chocolate Mousse,2
@@ -61,7 +67,16 @@ anthonys-homeport,C04-01,Royal Ranch Ribeye*,2
 anthonys-homeport,C04-01,Top Sirloin*,2
 anthonys-homeport,C04-02,Alaska Weathervane Scallops*,1
 anthonys-homeport,C04-02,Wild Seared Salmon Poke*,2
+anthonys-homeport,C04-02,Wild Alaska Silver Salmon Chargrilled,2
+anthonys-homeport,C04-02,Wild Alaska King Salmon with Sun-dried Tomato Basil Butter,2
+anthonys-homeport,C04-02,Wild Alaska Silver Salmon with Red Pepper Beurre Blanc,1
 anthonys-homeport,C04-03,Wild Seared Salmon Poke*,2
+anthonys-homeport,C04-03,Wild Alaska Silver Salmon Chargrilled,1
+anthonys-homeport,C04-03,Salmon Ponzu Bowl,1
+anthonys-homeport,C04-03,Wild Northwest Salmon,1
+anthonys-homeport,C04-03,Pan Fried Petrale Sole,1
+anthonys-homeport,C04-05,Beach Burger*,2
+anthonys-homeport,C04-05,Northwest Salmon Burger,1
 anthonys-homeport,C04-09,Crispy Calamari,2
 anthonys-homeport,C04-09,Crispy Coconut Prawns,2
 anthonys-homeport,C04-09,Tempura Asparagus,2
@@ -74,7 +89,12 @@ anthonys-homeport,C05-13,Fresh Wild Alaska Halibut,2
 anthonys-homeport,C05-13,Wild Alaska Halibut & Chips,2
 anthonys-homeport,C05-13,Wild Alaska Halibut 'n Chips,2
 anthonys-homeport,C06-05,Homeport Omelette,1
+anthonys-homeport,C06-07,Crispy Calamari,2
+anthonys-homeport,C06-07,Calamari Salad,1
+anthonys-homeport,C06-07,Crispy Calamari Salad,1
+anthonys-homeport,C08-05,Anthony's House Salad,1
 anthonys-homeport,C08-06,Portobello Mushroom,1
+anthonys-homeport,C08-06,Portabello Mushroom,1
 anthonys-homeport,C08-09,Alaska Weathervane Scallops*,2
 anthonys-homeport,C08-09,Blackened Oregon Rockfish,2
 anthonys-homeport,C08-09,Dungeness Crab & Shrimp Fettuccine,2
@@ -94,6 +114,9 @@ anthonys-homeport,C08-09,Wild Alaska King Salmon with Sun-dried Tomato Basil But
 anthonys-homeport,C08-09,Wild Alaska Lingcod Dill,2
 anthonys-homeport,C08-09,Wild Alaska Silver Salmon Chargrilled,2
 anthonys-homeport,C08-09,Wild Alaska Silver Salmon with Red Pepper Beurre Blanc,2
+anthonys-homeport,C08-09,Crispy Calamari,2
+anthonys-homeport,C08-09,Crispy Coconut Prawns,2
+anthonys-homeport,C08-09,Dungeness Crab & Shrimp Dip,1
 anthonys-homeport,C09-01,Crispy Coconut Prawns,2
 anthonys-homeport,C09-01,Jumbo Prawn Cocktail,2
 anthonys-homeport,C09-01,Prawns & Chips,2
@@ -104,6 +127,8 @@ anthonys-homeport,C09-02,Fresh Puget Sound Mussels,2
 anthonys-homeport,C09-02,Northwest Manila Clams,2
 anthonys-homeport,C09-02,Northwest Mussels,2
 anthonys-homeport,C09-02,Steamed Manila Clams,2
+anthonys-homeport,C09-02,Anthony's Clam Chowder,1
+anthonys-homeport,C09-02,Anthony's Award-Winning Clam Chowder,1
 anthonys-homeport,C09-03,Moss Bay Avocado Toast,2
 anthonys-homeport,C09-05,Hectors Authentic Chips & Salsa,1
 anthonys-homeport,C09-07,Fresh Oyster on the Half Shell*,2
@@ -186,6 +211,8 @@ anthonys-homeport,C21-01,Seafood Fettuccine,2
 anthonys-homeport,C21-01,Seafood Omelette,2
 anthonys-homeport,C21-01,Shrimp & Blue Cheese Salad,2
 anthonys-homeport,C21-01,Tempura Prawns,2
+anthonys-homeport,C21-01,Crab Stuffed Mushrooms,1
+anthonys-homeport,C21-01,Northwest Salmon Duet,1
 anthonys-homeport,C21-02,Roasted Garlic Prawns,2
 anthonys-homeport,C21-02,Roasted Scampi Prawns,2
 anthonys-homeport,C21-03,Roasted Scampi Prawns,2
@@ -231,6 +258,7 @@ anthonys-homeport,C21-09,Wild Alaska True Cod Burger,2
 anthonys-homeport,C22-02,Anthony's Cobb Salad,2
 anthonys-homeport,C22-02,Moss Bay Avocado Toast,2
 anthonys-homeport,C22-02,San Juan Scramble,2
+anthonys-homeport,C22-02,Hectors Authentic Chips & Salsa,1
 anthonys-homeport,C22-08,Filet Mignon*,2
 anthonys-homeport,C22-11,Bacon & Eggs,2
 anthonys-homeport,C22-11,Dungeness Crab Cake Bowl*,2
