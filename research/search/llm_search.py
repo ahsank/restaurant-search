@@ -153,21 +153,34 @@ def merge(per_restaurant: dict[str, list[dict]]) -> list[dict]:
 # Batch run (vLLM)
 # ---------------------------------------------------------------------------
 
-def run(
+def load_llm(
+    model_name: str = DEFAULT_MODEL,
+    max_model_len: int = 12288,
+    gpu_memory_utilization: float = 0.90,
+):
+    """vLLM engine with prefix caching (each menu is a shared prompt prefix)."""
+    from vllm import LLM
+    return LLM(
+        model=model_name,
+        max_model_len=max_model_len,
+        gpu_memory_utilization=gpu_memory_utilization,
+        enable_prefix_caching=True,
+    )
+
+
+def rank_queries(
+    llm,
     queries: list[dict],
     restaurants: dict,
     menus: dict,
-    model_name: str,
-    out_path: Path,
-    max_model_len: int = 12288,
     max_tokens: int = 768,
-    gpu_memory_utilization: float = 0.90,
 ) -> list[dict]:
     """
-    Score every query against every restaurant in one vLLM batch and write one
-    JSONL row per query: {query_id, query_text, results: [...], raw: {rid: text}}.
+    Score every query against every restaurant in one vLLM batch. queries are
+    dicts with "query_id" and "query_text" (evaluate.load_queries() rows).
+    Returns one row per query: {query_id, query_text, results: [...], raw: {rid: text}}.
     """
-    from vllm import LLM, SamplingParams
+    from vllm import SamplingParams
 
     entries = {rid: menu_entries(items) for rid, items in menus.items()}
     blocks = {rid: menu_block(restaurants[rid], entries[rid]) for rid in menus}
@@ -178,19 +191,8 @@ def run(
             jobs.append((q, rid))
             conversations.append(build_messages(q["query_text"], blocks[rid]))
 
-    llm = LLM(
-        model=model_name,
-        max_model_len=max_model_len,
-        gpu_memory_utilization=gpu_memory_utilization,
-        enable_prefix_caching=True,
-    )
     params = SamplingParams(temperature=0.0, max_tokens=max_tokens)
-
-    print(f"{len(queries)} queries x {len(menus)} restaurants = {len(conversations)} prompts", flush=True)
-    t0 = time.time()
-    outputs = llm.chat(conversations, params, use_tqdm=True)
-    elapsed = time.time() - t0
-    print(f"Generated in {elapsed:.1f}s ({elapsed / max(len(queries), 1):.2f}s per query)", flush=True)
+    outputs = llm.chat(conversations, params, use_tqdm=len(conversations) > 50)
 
     rows: dict[str, dict] = {}
     for (q, rid), out in zip(jobs, outputs):
@@ -203,18 +205,48 @@ def run(
             {"name": entries[rid][idx - 1]["name"], "grade": grade}
             for idx, grade in parse_response(text, len(entries[rid]))
         ]
+    for row in rows.values():
+        row["results"] = merge(row.pop("per_restaurant"))
+    return list(rows.values())
+
+
+def search(query: str, llm, restaurants: dict, menus: dict) -> list[dict]:
+    """Ad-hoc single query (e.g. from a notebook); same ranking as the benchmark run."""
+    return rank_queries(llm, [{"query_id": "adhoc", "query_text": query}], restaurants, menus)[0]["results"]
+
+
+def run(
+    queries: list[dict],
+    restaurants: dict,
+    menus: dict,
+    model_name: str,
+    out_path: Path,
+    max_model_len: int = 12288,
+    max_tokens: int = 768,
+    gpu_memory_utilization: float = 0.90,
+    llm=None,
+) -> list[dict]:
+    """rank_queries() over the benchmark, written as a rankings JSONL (meta line first)."""
+    if llm is None:
+        llm = load_llm(model_name, max_model_len, gpu_memory_utilization)
+
+    n_prompts = len(queries) * len(menus)
+    print(f"{len(queries)} queries x {len(menus)} restaurants = {n_prompts} prompts", flush=True)
+    t0 = time.time()
+    rows = rank_queries(llm, queries, restaurants, menus, max_tokens=max_tokens)
+    elapsed = time.time() - t0
+    print(f"Generated in {elapsed:.1f}s ({elapsed / max(len(queries), 1):.2f}s per query)", flush=True)
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
     with open(out_path, "w", encoding="utf-8") as f:
         f.write(json.dumps({"meta": {
-            "model": model_name, "n_queries": len(queries), "n_prompts": len(conversations),
+            "model": model_name, "n_queries": len(queries), "n_prompts": n_prompts,
             "seconds": round(elapsed, 1), "system_prompt": SYSTEM_PROMPT,
         }}) + "\n")
-        for row in rows.values():
-            row["results"] = merge(row.pop("per_restaurant"))
+        for row in rows:
             f.write(json.dumps(row, ensure_ascii=False) + "\n")
     print(f"Wrote {out_path}", flush=True)
-    return list(rows.values())
+    return rows
 
 
 def load_rankings(path: Path) -> dict[str, list[dict]]:
