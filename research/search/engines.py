@@ -28,12 +28,13 @@ from typing import Callable
 
 sys.path.insert(0, str(Path(__file__).parent))
 
-ENGINE_CHOICES = ["text", "enhanced", "filtered", "soft_bm25", "sbert", "colbert", "crossencoder"]
+ENGINE_CHOICES = ["text", "enhanced", "filtered", "soft_bm25", "sbert", "colbert", "crossencoder", "llm"]
 
 # Engines whose module contributes extra CLI flags via its own cli_args().
 _ENGINE_FLAG_MODULES = {
     "soft_bm25": "soft_bm25_search",
     "colbert": "colbert_search",
+    "llm": "llm_search",
 }
 
 
@@ -42,7 +43,7 @@ def cli_args() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(add_help=False)
     parser.add_argument(
         "--engine", choices=ENGINE_CHOICES, default="text",
-        help="Search engine: text (baseline), enhanced, filtered, soft_bm25, sbert, colbert, crossencoder (default: text)",
+        help="Search engine: text (baseline), enhanced, filtered, soft_bm25, sbert, colbert, crossencoder, llm (replays --rankings; default: text)",
     )
     parser.add_argument(
         "--model", default="all-MiniLM-L6-v2",
@@ -82,6 +83,15 @@ def build_search_fn(args: argparse.Namespace, restaurants: dict, menus: dict) ->
     soft_bm25 + fmm). Only the selected engine's module is imported.
     """
     name_to_id = {v.get("name", k): k for k, v in restaurants.items()}
+
+    if args.engine == "llm":
+        # Approach 7 runs on a GPU (Colab) and writes a rankings file; replay it here.
+        if not args.rankings:
+            raise SystemExit("--rankings FILE is required for --engine llm "
+                             "(produce one with research/colab/run_llm_eval.sh)")
+        from llm_search import replay_search_fn
+        print(f"Replaying LLM rankings from {args.rankings}")
+        return replay_search_fn(args.rankings)
 
     if args.engine in ("enhanced", "filtered"):
         from enhanced_text_search import search as _enhanced_search

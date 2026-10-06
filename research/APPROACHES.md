@@ -832,7 +832,48 @@ ollama run phi3.5
 ./llama-cli -m models/phi-3.5-mini.Q4_K_M.gguf -p "..."
 ```
 
-**Files:** `research/search/llm_search.py` (to be created)
+**Files:**
+- `search/llm_search.py` — one vLLM prompt per (query, restaurant) with the whole numbered menu; the model answers with graded `[item_number, grade]` pairs (2 = highly, 1 = partially relevant, the benchmark's own scale), merged across restaurants by grade, then position
+- `colab/run_llm_eval.sh` — runs the benchmark on a Colab GPU VM through the Colab CLI and downloads `results/llm/<model>.{jsonl,metrics.json,log}`
+- `colab/search_playground.ipynb` — notebook for running Approaches 6 and 7 side by side on a Colab GPU, with an ad-hoc query playground
+- `evaluate.py --engine llm --rankings results/llm/<model>.jsonl` replays a run locally without a GPU
+
+### Implemented — Qwen2.5-7B-Instruct, listwise per restaurant, no training
+
+Run on a Colab L4 (24 GB) with vLLM and prefix caching (menu first, query last,
+so each menu's KV cache is reused across the 209 queries): 1,672 prompts in
+**115 s, 0.55 s per query**, plus ~5 min one-time vLLM install and model load.
+
+| Engine | NDCG@5 | Recall@10 | MRR |
+|---|---|---|---|
+| `crossencoder` ms-marco-MiniLM-L6-v2 (exhaustive) | **0.6261** | 0.6185 | **0.7714** |
+| `colbert` colbertv2.0 | 0.6067 | 0.5895 | 0.7255 |
+| **`llm` Qwen2.5-7B-Instruct** | 0.6120 | **0.7480** | 0.6758 |
+
+By difficulty: Easy 0.706, Medium 0.576, Hard 0.247 NDCG@5.
+
+Runs are not bit-for-bit reproducible even at temperature 0, because vLLM's
+batching changes floating-point reduction order. A second run in the notebook
+scored 0.6157 / 0.7489 / 0.6807, so treat differences under ~0.005 NDCG@5 as noise.
+
+**Recall is the standout:** +0.13 Recall@10 over the best engine. The LLM finds
+relevant items that every embedding approach misses. **Ordering is the
+weakness:** NDCG@5 lands between ColBERT and the cross-encoder, and MRR is
+below both. Two causes, both visible in the rankings file:
+
+- **Coarse grades don't rank.** Only 33% of grade-2 picks and 12% of grade-1
+  picks are judged relevant. Within a grade, results are ordered by position in
+  each restaurant's list, so the top 5 depends on how restaurants interleave
+  rather than on a real score.
+- **Over-strict on vague attribute queries.** 13 queries get no results at all
+  (`something smoky`, `charred vegetables`, `smoked meat sandwich`, `stone fruit dessert`).
+  C03 (attribute / implied meaning, 0.288) and C18 (chicken dishes, 0.273) are the weakest categories.
+
+**Next steps:**
+1. **Hybrid:** use the LLM's high-recall set as the candidate pool and order it with the cross-encoder score (or add an LLM-grade boost to cross-encoder scores). This fixes ordering without losing recall.
+2. Fall back to the cross-encoder when the LLM returns nothing.
+3. Larger models on an A100 (`GPU=A100 MODEL=Qwen/Qwen2.5-14B-Instruct`).
+4. Pointwise scoring with yes/no log-probabilities instead of listwise grades, to get a continuous score.
 
 ---
 
@@ -848,7 +889,7 @@ ollama run phi3.5
 | ColBERT (late interaction) | None (pretrained) | None | **Very good (best measured)** | ~20–50 ms | Medium |
 | Finetuned bi-encoder | Yes | Real (1,143 judgments) + mined hard negatives | Good (beats stock SBERT, below ColBERT — measured) | <10 ms | Medium–High |
 | Cross-encoder | Optional (stock beats finetuned so far) | None for stock; triples or judgments to finetune | **Best measured** (0.6261 NDCG@5, exhaustive) | ~100 ms rerank top-20; ~4 s scoring all 795 items on CPU | Medium |
-| Local LLM reader | None | None | Very good | 0.5–5 s | Low (Ollama) |
+| Local LLM reader | None | None | Good (0.6120 NDCG@5, **best Recall@10 0.7480**; Qwen2.5-7B) | 0.55 s/query batched on an L4 GPU | Low–Medium (vLLM on Colab) |
 
 ---
 

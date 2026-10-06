@@ -198,6 +198,51 @@ python research/search/evaluate.py --engine crossencoder --model models/crossenc
 python research/search/crossencoder_search.py --benchmark-only seafood italian
 ```
 
+## Approach 7 — local LLM as reader (runs on a Colab GPU)
+
+One prompt per (query, restaurant): the whole menu as a numbered list, and
+the LLM answers with graded `[item_number, grade]` pairs. It runs with vLLM
+on a Colab GPU VM via the Colab CLI (`colab --auth adc`). The driver uploads
+the code and data, runs the job detached, polls it, downloads the results to
+`research/results/llm/<model>.{jsonl,metrics.json,log}` and always stops the
+VM. Ungated models need no tokens. For gated models (e.g. Llama), set `HF_TOKEN`.
+
+```bash
+# Full benchmark, Qwen2.5-7B-Instruct on an L4 (defaults)
+research/colab/run_llm_eval.sh
+
+# Smoke test: first 5 queries only
+LIMIT=5 research/colab/run_llm_eval.sh
+
+# Other models / GPUs
+MODEL=microsoft/Phi-3.5-mini-instruct research/colab/run_llm_eval.sh
+GPU=A100 MODEL=Qwen/Qwen2.5-14B-Instruct research/colab/run_llm_eval.sh
+
+# Replay a downloaded rankings file locally (no GPU) — e.g. to slice by category
+python research/search/evaluate.py --engine llm --rankings research/results/llm/qwen2.5-7b-instruct.jsonl
+python research/search/evaluate.py --engine llm --rankings research/results/llm/qwen2.5-7b-instruct.jsonl --difficulty Hard -v
+
+# On any machine with a GPU and vLLM, without Colab
+python research/search/llm_search.py --model Qwen/Qwen2.5-7B-Instruct --out runs/llm.jsonl
+```
+
+Interactive queries against a long-running server. `start` installs vLLM and
+loads the model once on a Colab GPU VM (~5–8 min). Each `query` after that
+takes seconds. The VM bills until you run `stop`.
+
+```bash
+research/colab/llm_server.sh start                     # MODEL=… GPU=… to override
+research/colab/llm_server.sh query seafood italian
+research/colab/llm_server.sh query --all-restaurants vegan tacos
+research/colab/llm_server.sh sync                      # push local code/menu edits to the VM
+research/colab/llm_server.sh stop
+
+# The same client works with any OpenAI-compatible server, e.g. a local Ollama.
+# Raise Ollama's context first or long menus get silently truncated.
+OLLAMA_CONTEXT_LENGTH=16384 ollama serve &
+python research/search/llm_search.py --server http://localhost:11434 --model qwen2.5:7b seafood italian
+```
+
 ## `evaluate.py` — benchmark scoring (NDCG@5, Recall@10, MRR)
 
 Engine modules load lazily: only the selected `--engine`'s code and libraries
