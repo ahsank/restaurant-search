@@ -1,0 +1,59 @@
+Score cache research/results/crossencoder/crossencoder-synthetic-plus-gapfill.scores.tsv not found; it will be created.
+Loading cross-encoder 'models/crossencoder-synthetic-plus-gapfill'... 
+done
+Scoring 209 queries x 795 items into research/results/crossencoder/crossencoder-synthetic-plus-gapfill.scores.tsv...
+  scored 20/209 queries (7s)
+  scored 40/209 queries (13s)
+  scored 60/209 queries (19s)
+  scored 80/209 queries (25s)
+  scored 100/209 queries (31s)
+  scored 120/209 queries (36s)
+  scored 140/209 queries (42s)
+  scored 160/209 queries (48s)
+  scored 180/209 queries (54s)
+  scored 200/209 queries (60s)
+  scored 209/209 queries (63s)
+Replaying cross-encoder scores from research/results/crossencoder/crossencoder-synthetic-plus-gapfill.scores.tsv (209 queries)
+Running crossencoder engine against benchmark...
+============================================================
+  Overall  (206/209 queries have judgments)
+============================================================
+  NDCG@5     0.6484
+  Recall@10  0.6013
+  MRR        0.7770
+────────────────────────────────────────────────────────────
+  By category
+────────────────────────────────────────────────────────────
+  C01  NDCG@5=0.545  Recall@10=0.339  MRR=0.917  n=8  Cuisine type inference
+  C02  NDCG@5=0.416  Recall@10=0.372  MRR=0.572  n=10  Ingredient generalization
+  C03  NDCG@5=0.319  Recall@10=0.316  MRR=0.561  n=12  Attribute / implied meaning
+  C04  NDCG@5=0.341  Recall@10=0.330  MRR=0.651  n=10  Cooking method synonyms
+  C05  NDCG@5=0.718  Recall@10=0.760  MRR=0.797  n=15  Spelling variations
+  C06  NDCG@5=0.780  Recall@10=0.768  MRR=0.900  n=10  Stemming & lemmatization
+  C07  NDCG@5=0.489  Recall@10=0.514  MRR=0.557  n=14  Hyphenation / spacing / stop words
+  C08  NDCG@5=0.277  Recall@10=0.218  MRR=0.526  n=10  Dietary constraint / negation
+  C09  NDCG@5=0.494  Recall@10=0.403  MRR=0.610  n=10  Synonym / paraphrase
+  C10  NDCG@5=0.000  Recall@10=0.151  MRR=0.106  n=2  Multi-constraint compositional
+  C11  NDCG@5=0.646  Recall@10=0.521  MRR=0.857  n=7  Soup varieties
+  C12  NDCG@5=0.883  Recall@10=0.952  MRR=0.917  n=6  Burger varieties
+  C13  NDCG@5=0.736  Recall@10=0.798  MRR=0.854  n=8  Taco varieties
+  C14  NDCG@5=0.872  Recall@10=0.599  MRR=0.938  n=8  Pasta varieties
+  C15  NDCG@5=0.822  Recall@10=0.714  MRR=0.929  n=7  Sandwich varieties
+  C16  NDCG@5=0.866  Recall@10=0.798  MRR=0.857  n=7  Salad varieties
+  C17  NDCG@5=0.967  Recall@10=0.859  MRR=1.000  n=8  Dessert varieties
+  C18  NDCG@5=0.615  Recall@10=0.522  MRR=0.875  n=6  Chicken dishes
+  C19  NDCG@5=0.802  Recall@10=0.623  MRR=0.917  n=6  Beef dishes
+  C20  NDCG@5=0.811  Recall@10=0.781  MRR=0.917  n=6  Pork dishes
+  C21  NDCG@5=0.791  Recall@10=0.718  MRR=0.889  n=9  Seafood dishes
+  C22  NDCG@5=0.828  Recall@10=0.739  MRR=0.923  n=13  Ingredient focus
+  C23  NDCG@5=0.831  Recall@10=0.835  MRR=0.840  n=12  Typical dish names
+  C24  NDCG@5=0.622  Recall@10=0.889  MRR=0.704  n=3  Pizza varieties
+  C25  NDCG@5=0.158  Recall@10=0.073  MRR=0.250  n=2  Occasion / meal-time
+────────────────────────────────────────────────────────────
+  By difficulty
+────────────────────────────────────────────────────────────
+  Easy      NDCG@5=0.748  Recall@10=0.684  MRR=0.851  n=125
+  Medium    NDCG@5=0.549  Recall@10=0.508  MRR=0.701  n=55
+  Hard      NDCG@5=0.381  Recall@10=0.401  MRR=0.583  n=29
+Saved metrics to research/results/crossencoder/crossencoder-synthetic-plus-gapfill.metrics.json
+RUN_EXIT=0
