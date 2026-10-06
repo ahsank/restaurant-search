@@ -271,7 +271,7 @@ python research/search/evaluate.py --engine colbert
 python research/search/evaluate.py --engine crossencoder
 
 # Save the full report (overall, by category/difficulty, per query) as JSON.
-# research/results/baselines/ holds the engines that finish in under a minute on CPU
+# research/results/baselines/ holds the engines that finish in under 5 minutes on CPU
 python research/search/evaluate.py --engine sbert --save-metrics research/results/baselines/sbert-all-MiniLM-L6-v2.metrics.json
 python research/search/evaluate.py --engine llm --rankings research/results/llm/qwen2.5-7b-instruct.jsonl \
     --save-metrics research/results/llm/qwen2.5-7b-instruct.metrics.json
