@@ -2,3 +2,5 @@ build/
 **/__pycache__/
 *.pyc
 models/
+# LLM smoke-test outputs (LIMIT=N runs)
+research/results/llm/*-limit*
