@@ -85,12 +85,19 @@ query)
   shift
   [ $# -gt 0 ] || { echo "usage: $0 query [--all-restaurants] <query words>"; exit 2; }
   ARGS_JSON="$(python3 -c 'import json,sys; print(json.dumps(sys.argv[1:]))' "$@")"
-  remote_py 300 "
+  CODE="
 import json, subprocess
 args = json.loads('''$ARGS_JSON''')
 r = subprocess.run(['python', 'research/search/llm_search.py', '--server', 'http://localhost:$PORT', *args],
                    cwd='$REMOTE', capture_output=True, text=True)
 print(r.stdout if r.returncode == 0 else r.stdout + r.stderr[-3000:])"
+  # The first exec after an idle spell sometimes hangs on a dead connection;
+  # queries are read-only, so cap each try and retry.
+  for attempt in 1 2 3; do
+    OUT="$(remote_py 60 "$CODE" 2>&1)" && grep -q "Query:" <<<"$OUT" && { echo "$OUT"; exit 0; }
+    echo "(attempt $attempt failed: $(grep -m1 -oE 'RuntimeError: .*|Error: .*' <<<"$OUT" || echo 'timed out'); retrying)" >&2
+  done
+  echo "$OUT"; exit 1
   ;;
 
 sync)
