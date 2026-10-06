@@ -2,6 +2,10 @@
 # SessionStart hook for Claude Code cloud sessions: sets up the Colab CLI
 # (google-colab-cli) authenticated via Application Default Credentials taken
 # from the COLAB_ADC_JSON environment secret.
+#
+# Cloud only. Locally, `gcloud auth application-default login` has already
+# saved credentials to ~/.config/gcloud/application_default_credentials.json
+# and the Colab CLI picks them up from there, so nothing needs to be done.
 set -euo pipefail
 
 if [ "${CLAUDE_CODE_REMOTE:-}" != "true" ]; then
