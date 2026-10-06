@@ -35,7 +35,7 @@ import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parents[1]))
-from lib.data import load_data, judged_restaurant_ids
+from lib.data import benchmark_fingerprint, load_data, judged_restaurant_ids
 
 DEFAULT_MODEL = "Qwen/Qwen2.5-7B-Instruct"
 
@@ -290,6 +290,7 @@ def run(
         f.write(json.dumps({"meta": {
             "model": model_name, "n_queries": len(queries), "n_prompts": n_prompts,
             "seconds": round(elapsed, 1), "system_prompt": SYSTEM_PROMPT,
+            "fingerprint": benchmark_fingerprint(set(menus)),
         }}) + "\n")
         for row in rows:
             f.write(json.dumps(row, ensure_ascii=False) + "\n")
@@ -309,7 +310,25 @@ def load_rankings(path: Path) -> dict[str, list[dict]]:
 
 
 def replay_search_fn(path: Path):
-    """search_fn(query) for evaluate.py; unknown queries return no results."""
+    """
+    search_fn(query) for evaluate.py; unknown queries return no results.
+
+    The rankings file is the LLM's score cache: re-scoring after a relevance
+    label change only replays it. If the menus or queries.csv changed since it
+    was generated (fingerprint mismatch), the rankings no longer describe the
+    current benchmark, so this refuses to replay instead of reporting
+    misleading numbers.
+    """
+    with open(path, encoding="utf-8") as f:
+        meta = json.loads(f.readline()).get("meta", {})
+    expected = benchmark_fingerprint(judged_restaurant_ids())
+    if "fingerprint" not in meta:
+        print(f"Warning: {path} has no fingerprint; cannot confirm it matches the current menus and queries.")
+    elif meta["fingerprint"] != expected:
+        raise SystemExit(
+            f"{path} was generated for different menus or queries.csv "
+            f"(fingerprint {meta['fingerprint']} != {expected}). Re-run the LLM (research/colab/run_llm_eval.sh)."
+        )
     rankings = load_rankings(path)
     def search(query: str) -> list[dict]:
         return rankings.get(query, [])

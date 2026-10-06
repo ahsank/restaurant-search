@@ -194,6 +194,14 @@ python -c "import json; print('\n'.join(sorted({json.loads(l)['gap_query_id'] fo
 python research/search/evaluate.py --engine crossencoder --model models/crossencoder-synthetic-plus-gapfill \
     --exclude-query-ids-file /tmp/gap_ids.txt
 
+# Score cache: the first run scores all 209 queries x 795 items (~13.5 min on CPU) and writes
+# a text TSV (commit it); later runs replay it in seconds. It is keyed on a fingerprint of
+# data/menus/ + queries.csv only, so editing relevance_*.csv never forces a re-run. If menus or
+# queries change, the file is rebuilt from scratch automatically.
+python research/search/evaluate.py --engine crossencoder \
+    --scores research/results/crossencoder/ms-marco-MiniLM-L6-v2.scores.tsv \
+    --save-metrics research/results/crossencoder/ms-marco-MiniLM-L6-v2.metrics.json
+
 # Search directly
 python research/search/crossencoder_search.py --benchmark-only seafood italian
 ```
@@ -218,7 +226,9 @@ LIMIT=5 research/colab/run_llm_eval.sh
 MODEL=microsoft/Phi-3.5-mini-instruct research/colab/run_llm_eval.sh
 GPU=A100 MODEL=Qwen/Qwen2.5-14B-Instruct research/colab/run_llm_eval.sh
 
-# Replay a downloaded rankings file locally (no GPU) — e.g. to slice by category
+# Replay a downloaded rankings file locally (no GPU) — e.g. to slice by category, or to
+# re-score after relevance_*.csv changes. The file's meta line records a fingerprint of
+# data/menus/ + queries.csv; replay refuses if they changed since the LLM run.
 python research/search/evaluate.py --engine llm --rankings research/results/llm/qwen2.5-7b-instruct.jsonl
 python research/search/evaluate.py --engine llm --rankings research/results/llm/qwen2.5-7b-instruct.jsonl --difficulty Hard -v
 
