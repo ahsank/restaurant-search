@@ -150,7 +150,7 @@ def merge(per_restaurant: dict[str, list[dict]]) -> list[dict]:
 
 
 # ---------------------------------------------------------------------------
-# Batch run (vLLM)
+# Generation: in-process vLLM (batch runs) or a running server (interactive)
 # ---------------------------------------------------------------------------
 
 def load_llm(
@@ -168,6 +168,57 @@ def load_llm(
     )
 
 
+class ServerLLM:
+    """
+    Client for an OpenAI-compatible chat server that already has the model
+    loaded: `vllm serve` (see research/colab/llm_server.sh) or `ollama serve`
+    (base URL http://localhost:11434). Requests go out in parallel; the server
+    batches them and reuses each menu's cached prefix. Stdlib only.
+
+    Ollama ignores context-size options sent over this API, so start it with
+    OLLAMA_CONTEXT_LENGTH=16384 or the longest menus get silently truncated.
+    """
+
+    def __init__(self, base_url: str = "http://localhost:8000", model: str | None = None,
+                 workers: int = 16, timeout: float = 300):
+        self.base_url = base_url.rstrip("/")
+        self.workers, self.timeout = workers, timeout
+        self.model = model or self._request("/v1/models")["data"][0]["id"]
+
+    def _request(self, path: str, body: dict | None = None) -> dict:
+        import urllib.request
+        req = urllib.request.Request(
+            self.base_url + path,
+            data=json.dumps(body).encode() if body is not None else None,
+            headers={"Content-Type": "application/json"},
+        )
+        with urllib.request.urlopen(req, timeout=self.timeout) as resp:
+            return json.loads(resp.read())
+
+    def complete(self, conversations: list[list[dict]], max_tokens: int) -> list[str]:
+        from concurrent.futures import ThreadPoolExecutor
+
+        def one(messages):
+            out = self._request("/v1/chat/completions", {
+                "model": self.model, "messages": messages,
+                "temperature": 0.0, "max_tokens": max_tokens,
+            })
+            return out["choices"][0]["message"]["content"]
+
+        with ThreadPoolExecutor(self.workers) as pool:
+            return list(pool.map(one, conversations))
+
+
+def _complete(llm, conversations: list[list[dict]], max_tokens: int) -> list[str]:
+    """Generated text per conversation, from a ServerLLM or an in-process vLLM engine."""
+    if isinstance(llm, ServerLLM):
+        return llm.complete(conversations, max_tokens)
+    from vllm import SamplingParams
+    params = SamplingParams(temperature=0.0, max_tokens=max_tokens)
+    outputs = llm.chat(conversations, params, use_tqdm=len(conversations) > 50)
+    return [o.outputs[0].text for o in outputs]
+
+
 def rank_queries(
     llm,
     queries: list[dict],
@@ -176,12 +227,11 @@ def rank_queries(
     max_tokens: int = 768,
 ) -> list[dict]:
     """
-    Score every query against every restaurant in one vLLM batch. queries are
-    dicts with "query_id" and "query_text" (evaluate.load_queries() rows).
+    Score every query against every restaurant in one batch. llm is an
+    in-process vLLM engine (load_llm) or a ServerLLM. queries are dicts with
+    "query_id" and "query_text" (evaluate.load_queries() rows).
     Returns one row per query: {query_id, query_text, results: [...], raw: {rid: text}}.
     """
-    from vllm import SamplingParams
-
     entries = {rid: menu_entries(items) for rid, items in menus.items()}
     blocks = {rid: menu_block(restaurants[rid], entries[rid]) for rid in menus}
 
@@ -191,12 +241,10 @@ def rank_queries(
             jobs.append((q, rid))
             conversations.append(build_messages(q["query_text"], blocks[rid]))
 
-    params = SamplingParams(temperature=0.0, max_tokens=max_tokens)
-    outputs = llm.chat(conversations, params, use_tqdm=len(conversations) > 50)
+    texts = _complete(llm, conversations, max_tokens)
 
     rows: dict[str, dict] = {}
-    for (q, rid), out in zip(jobs, outputs):
-        text = out.outputs[0].text
+    for (q, rid), text in zip(jobs, texts):
         row = rows.setdefault(q["query_id"], {
             "query_id": q["query_id"], "query_text": q["query_text"], "per_restaurant": {}, "raw": {},
         })
@@ -268,24 +316,53 @@ def replay_search_fn(path: Path):
     return search
 
 
+def print_results(results: list[dict], restaurants: dict, k: int = 15) -> None:
+    for i, r in enumerate(results[:k], 1):
+        print(f"  {i:>2}. [{r['grade']}] {r['name']}  ·  {restaurants[r['restaurant_id']].get('name', r['restaurant_id'])}")
+    if not results:
+        print("  (no matches)")
+
+
 if __name__ == "__main__":
     sys.path.insert(0, str(Path(__file__).parent))
     from evaluate import evaluate, load_queries, print_report
 
-    parser = argparse.ArgumentParser(description="Local LLM reader (Approach 7) over the benchmark")
-    parser.add_argument("--model", default=DEFAULT_MODEL, help=f"HF model id or path (default: {DEFAULT_MODEL})")
-    parser.add_argument("--out", type=Path, required=True, help="Rankings JSONL to write")
+    parser = argparse.ArgumentParser(
+        description="Local LLM reader (Approach 7): ad-hoc query, or the full benchmark with --out")
+    parser.add_argument("terms", nargs="*", help="Query words for an ad-hoc search (omit to run the benchmark)")
+    parser.add_argument("--model", help=f"HF model id or path (default: {DEFAULT_MODEL}; "
+                                        "with --server: whatever the server has loaded)")
+    parser.add_argument("--server", metavar="URL",
+                        help="Use a running OpenAI-compatible server instead of loading the model "
+                             "(vllm serve: http://localhost:8000, ollama: http://localhost:11434)")
+    parser.add_argument("--out", type=Path, help="Rankings JSONL to write (benchmark mode)")
     parser.add_argument("--limit", type=int, help="Only the first N benchmark queries (smoke test)")
     parser.add_argument("--max-model-len", type=int, default=12288)
     parser.add_argument("--max-tokens", type=int, default=768, help="Max generated tokens per prompt")
     parser.add_argument("--gpu-memory-utilization", type=float, default=0.90)
+    parser.add_argument("--all-restaurants", action="store_true",
+                        help="Ad-hoc search over every restaurant in data/menus/, not just the benchmark set")
     args = parser.parse_args()
+    if not args.terms and not args.out:
+        parser.error("give query words for an ad-hoc search, or --out FILE to run the benchmark")
+
+    restaurants, menus = load_data(None if args.terms and args.all_restaurants else judged_restaurant_ids())
+    if args.server:
+        llm = ServerLLM(args.server, model=args.model)
+    else:
+        llm = load_llm(args.model or DEFAULT_MODEL, args.max_model_len, args.gpu_memory_utilization)
+    model_name = getattr(llm, "model", None) or args.model or DEFAULT_MODEL
+
+    if args.terms:
+        query = " ".join(args.terms)
+        t0 = time.time()
+        results = search(query, llm, restaurants, menus)
+        print(f"\nQuery: '{query}'  ({model_name}, {time.time() - t0:.1f}s)\n")
+        print_results(results, restaurants)
+        sys.exit(0)
 
     queries = load_queries()[: args.limit] if args.limit else load_queries()
-    restaurants, menus = load_data(judged_restaurant_ids())
-    run(queries, restaurants, menus, args.model, args.out,
-        max_model_len=args.max_model_len, max_tokens=args.max_tokens,
-        gpu_memory_utilization=args.gpu_memory_utilization)
+    run(queries, restaurants, menus, model_name, args.out, max_tokens=args.max_tokens, llm=llm)
 
     results = evaluate(replay_search_fn(args.out),
                        query_ids={q["query_id"] for q in queries})

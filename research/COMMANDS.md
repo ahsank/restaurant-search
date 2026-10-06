@@ -226,6 +226,23 @@ python research/search/evaluate.py --engine llm --rankings research/results/llm/
 python research/search/llm_search.py --model Qwen/Qwen2.5-7B-Instruct --out runs/llm.jsonl
 ```
 
+Interactive queries against a long-running server. `start` installs vLLM and
+loads the model once on a Colab GPU VM (~5–8 min). Each `query` after that
+takes seconds. The VM bills until you run `stop`.
+
+```bash
+research/colab/llm_server.sh start                     # MODEL=… GPU=… to override
+research/colab/llm_server.sh query seafood italian
+research/colab/llm_server.sh query --all-restaurants vegan tacos
+research/colab/llm_server.sh sync                      # push local code/menu edits to the VM
+research/colab/llm_server.sh stop
+
+# The same client works with any OpenAI-compatible server, e.g. a local Ollama.
+# Raise Ollama's context first or long menus get silently truncated.
+OLLAMA_CONTEXT_LENGTH=16384 ollama serve &
+python research/search/llm_search.py --server http://localhost:11434 --model qwen2.5:7b seafood italian
+```
+
 ## `evaluate.py` — benchmark scoring (NDCG@5, Recall@10, MRR)
 
 Engine modules load lazily: only the selected `--engine`'s code and libraries
