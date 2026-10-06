@@ -1,0 +1,51 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:01<00:03,  1.02s/it]
+Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:02<00:02,  1.06s/it]
+Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:03<00:01,  1.08s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:04<00:00,  1.05s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:04<00:00,  1.05s/it]
+[rank0]:W1006 00:39:47.341000 7903 torch/_inductor/utils.py:1953] Not enough SMs to use max_autotune_gemm mode
+209 queries x 8 restaurants = 1672 prompts
+Generated in 115.0s (0.55s per query)
+Wrote /content/restaurant-search/research/results/llm/qwen2.5-7b-instruct.jsonl
+============================================================
+  Overall  (199/209 queries have judgments)
+============================================================
+  NDCG@5     0.6120
+  Recall@10  0.7480
+  MRR        0.6758
+────────────────────────────────────────────────────────────
+  By category
+────────────────────────────────────────────────────────────
+  C01  NDCG@5=0.635  Recall@10=0.841  MRR=0.875  n=8  Cuisine type inference
+  C02  NDCG@5=0.480  Recall@10=0.600  MRR=0.517  n=10  Ingredient generalization
+  C03  NDCG@5=0.288  Recall@10=0.516  MRR=0.306  n=12  Attribute / implied meaning
+  C04  NDCG@5=0.501  Recall@10=0.583  MRR=0.562  n=10  Cooking method synonyms
+  C05  NDCG@5=0.739  Recall@10=0.911  MRR=0.756  n=15  Spelling variations
+  C06  NDCG@5=0.667  Recall@10=0.833  MRR=0.741  n=10  Stemming & lemmatization
+  C07  NDCG@5=0.544  Recall@10=0.811  MRR=0.640  n=14  Hyphenation / spacing / stop words
+  C08  NDCG@5=0.371  Recall@10=0.732  MRR=0.481  n=10  Dietary constraint / negation
+  C09  NDCG@5=0.544  Recall@10=0.533  MRR=0.600  n=10  Synonym / paraphrase
+  C10  NDCG@5=0.197  Recall@10=0.400  MRR=0.500  n=2  Multi-constraint compositional
+  C11  NDCG@5=0.749  Recall@10=1.000  MRR=0.667  n=7  Soup varieties
+  C12  NDCG@5=0.722  Recall@10=1.000  MRR=0.778  n=6  Burger varieties
+  C13  NDCG@5=0.684  Recall@10=0.854  MRR=0.708  n=8  Taco varieties
+  C14  NDCG@5=0.783  Recall@10=0.946  MRR=0.812  n=8  Pasta varieties
+  C15  NDCG@5=0.916  Recall@10=0.922  MRR=0.929  n=7  Sandwich varieties
+  C16  NDCG@5=0.736  Recall@10=0.774  MRR=0.743  n=7  Salad varieties
+  C17  NDCG@5=0.807  Recall@10=0.846  MRR=0.812  n=8  Dessert varieties
+  C18  NDCG@5=0.273  Recall@10=0.219  MRR=0.358  n=6  Chicken dishes
+  C19  NDCG@5=0.443  Recall@10=0.741  MRR=0.607  n=6  Beef dishes
+  C20  NDCG@5=0.643  Recall@10=0.741  MRR=0.750  n=6  Pork dishes
+  C21  NDCG@5=0.660  Recall@10=0.688  MRR=0.796  n=9  Seafood dishes
+  C22  NDCG@5=0.682  Recall@10=0.806  MRR=0.785  n=13  Ingredient focus
+  C23  NDCG@5=0.661  Recall@10=0.771  MRR=0.708  n=12  Typical dish names
+  C24  NDCG@5=0.667  Recall@10=0.667  MRR=0.667  n=3  Pizza varieties
+  C25  NDCG@5=0.680  Recall@10=0.207  MRR=0.750  n=2  Occasion / meal-time
+────────────────────────────────────────────────────────────
+  By difficulty
+────────────────────────────────────────────────────────────
+  Easy      NDCG@5=0.706  Recall@10=0.809  MRR=0.770  n=125
+  Medium    NDCG@5=0.576  Recall@10=0.733  MRR=0.629  n=55
+  Hard      NDCG@5=0.247  Recall@10=0.490  MRR=0.328  n=29
+Wrote /content/restaurant-search/research/results/llm/qwen2.5-7b-instruct.metrics.json

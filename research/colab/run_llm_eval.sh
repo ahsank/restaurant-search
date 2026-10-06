@@ -41,8 +41,9 @@ cleanup() {
 }
 
 remote_py() {  # remote_py TIMEOUT CODE — run Python in the VM's kernel
+  # `exec --timeout` bounds the code, not a stuck connection, so also cap the client.
   local timeout="$1"; shift
-  printf '%s\n' "$1" | "${COLAB[@]}" exec -s "$SESSION" --timeout "$timeout"
+  printf '%s\n' "$1" | timeout "$((timeout + 60))" "${COLAB[@]}" exec -s "$SESSION" --timeout "$timeout"
 }
 
 echo "=== packaging code + benchmark data ==="
