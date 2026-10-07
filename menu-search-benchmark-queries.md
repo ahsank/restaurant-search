@@ -1,5 +1,5 @@
 # Menu Search Benchmark Queries
-**7 restaurants**: Juanita Cantina, Plaza Garcia, Staple & Fancy, Due' Cucina, Mendocino Farms, Great China Restaurant, Anthony's HomePort  
+**8 restaurants**: Juanita Cantina, Plaza Garcia, Staple & Fancy, Due' Cucina, Mendocino Farms, Great China Restaurant, Anthony's HomePort, Rimini Restaurant  
 **Restaurants cover**: Mexican/Latin, Italian/Pasta/Pizza, Modern American, Farm-to-table sandwiches/salads, Chinese  
 **Total queries**: 209 across 25 categories
 
@@ -399,8 +399,8 @@ Each query includes:
 
 | ID | Query | Expected Match | Challenge Type | Difficulty |
 |---|-------|----------------|----------------|------------|
-| C24-01 | pizza | Mexican Pizza (Plaza Garcia); Mexican Flatbread (Juanita, partial) | Broad food type | Easy |
-| C24-02 | cheese pizza | Margherita Pizza (mozzarella + tomato sauce, no other topping) | Ingredient inference (mozzarella = cheese) | Easy |
+| C24-01 | pizza | Sicilian Pizza Pie (Rimini), Mexican Pizza (Plaza Garcia); Mexican Flatbread (Juanita, partial) | Broad food type | Easy |
+| C24-02 | cheese pizza | Sicilian Pizza Pie (Rimini; cheese, toppings optional) | Ingredient inference (mozzarella = cheese) | Easy |
 | C24-03 | mexican pizza | Mexican Pizza (Plaza Garcia) | Direct name match | Easy |
 
 ---
