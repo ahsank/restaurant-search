@@ -1,199 +1,199 @@
-restaurant,query_id,menu_item,relevance
-mendocino-farms,C01-05,1/2 Not So Fried Chicken,2
-mendocino-farms,C01-05,1/2 The Farm Club,2
-mendocino-farms,C01-05,Heirloom BLT,2
-mendocino-farms,C01-05,Not So Fried Chicken,2
-mendocino-farms,C01-05,Peruvian Steak,2
-mendocino-farms,C01-05,Prosciutto & Chicken,2
-mendocino-farms,C01-05,The Farm Club,2
-mendocino-farms,C01-05,Chicken Parm Dip,2
-mendocino-farms,C01-05,Chicken Pesto Caprese,2
-mendocino-farms,C01-05,Chimichurri Steak & Bacon,2
-mendocino-farms,C01-05,The Happy Hippie,2
-mendocino-farms,C01-05,Turkey Avo Salsa Verde,2
-mendocino-farms,C01-05,Vegan Banh Mi,2
-mendocino-farms,C01-05,Vegetarian Pesto Caprese,2
-mendocino-farms,C02-03,Baja Green Goddess,1
-mendocino-farms,C02-03,Golden State Cobb,2
-mendocino-farms,C02-03,The Modern Caesar,2
-mendocino-farms,C02-03,The Seasonal GOAT with Summer Peaches,2
-mendocino-farms,C02-03,Not So Fried Chicken - Salad Style!,1
-mendocino-farms,C02-03,Tuscan Pesto Salad,1
-mendocino-farms,C02-05,1/2 The Farm Club,2
-mendocino-farms,C02-05,Chimichurri Steak & Bacon,2
-mendocino-farms,C02-05,Heirloom BLT,2
-mendocino-farms,C02-05,The Farm Club,2
-mendocino-farms,C02-07,Chimichurri Steak & Bacon,1
-mendocino-farms,C02-08,The Seasonal GOAT with Summer Peaches,2
-mendocino-farms,C03-04,Kale & Apple Rainbow Salad,2
-mendocino-farms,C03-04,Tomato Basil Soup,1
-mendocino-farms,C03-10,Avocado & Quinoa Superfood Ensalada,1
-mendocino-farms,C03-10,Golden State Cobb,2
-mendocino-farms,C03-10,The Modern Caesar,2
-mendocino-farms,C03-10,The Seasonal GOAT with Summer Peaches,1
-mendocino-farms,C03-10,Tuscan Pesto Salad,1
-mendocino-farms,C03-11,Spicy Curried Couscous,1
-mendocino-farms,C04-10,1/2 Not So Fried Chicken,2
-mendocino-farms,C04-10,Crispy Chicken Tenders,2
-mendocino-farms,C04-10,Not So Fried Chicken,2
-mendocino-farms,C05-01,The Modern Caesar,2
-mendocino-farms,C05-07,Prosciutto & Chicken,2
-mendocino-farms,C05-09,Prosciutto & Chicken,1
-mendocino-farms,C06-01,Spicy Curried Couscous,1
-mendocino-farms,C06-04,Chimichurri Steak & Bacon,2
-mendocino-farms,C06-04,Peruvian Steak,2
-mendocino-farms,C06-10,1/2 Turkey Avo Salsa Verde,1
-mendocino-farms,C06-10,1/2 Vegan Banh Mi,2
-mendocino-farms,C06-10,Turkey Avo Salsa Verde,1
-mendocino-farms,C06-10,Vegan Banh Mi,2
-mendocino-farms,C06-10,1/2 Not So Fried Chicken,1
-mendocino-farms,C06-10,1/2 The Farm Club,1
-mendocino-farms,C06-10,Golden State Cobb Wrap,1
-mendocino-farms,C06-10,Not So Fried Chicken,1
-mendocino-farms,C06-10,The Seasonal GOAT with Summer Peaches,1
-mendocino-farms,C07-13,1/2 Not So Fried Chicken,1
-mendocino-farms,C07-13,1/2 The Farm Club,2
-mendocino-farms,C07-13,Heirloom BLT,2
-mendocino-farms,C07-13,Not So Fried Chicken,1
-mendocino-farms,C07-13,The Farm Club,2
-mendocino-farms,C07-13,1/2 Chicken Pesto Caprese,2
-mendocino-farms,C07-13,1/2 Turkey Avo Salsa Verde,2
-mendocino-farms,C07-13,1/2 Vegan Banh Mi,2
-mendocino-farms,C07-13,1/2 Vegetarian Pesto Caprese,2
-mendocino-farms,C07-13,Chicken Parm Dip,2
-mendocino-farms,C07-13,Chicken Pesto Caprese,2
-mendocino-farms,C07-13,Chimichurri Steak & Bacon,2
-mendocino-farms,C07-13,Peruvian Steak,2
-mendocino-farms,C07-13,Prosciutto & Chicken,2
-mendocino-farms,C07-13,The Happy Hippie,2
-mendocino-farms,C07-13,Turkey Avo Salsa Verde,2
-mendocino-farms,C07-13,Vegan Banh Mi,2
-mendocino-farms,C07-13,Vegetarian Pesto Caprese,2
-mendocino-farms,C08-02,1/2 Vegan Banh Mi,2
-mendocino-farms,C08-02,Vegan Banh Mi,2
-mendocino-farms,C08-04,1/2 Vegan Banh Mi,2
-mendocino-farms,C08-04,The Happy Hippie,1
-mendocino-farms,C08-04,Vegan Banh Mi,2
-mendocino-farms,C08-04,Heirloom BLT,1
-mendocino-farms,C08-05,Avocado & Quinoa Superfood Ensalada,2
-mendocino-farms,C08-05,Baja Green Goddess,1
-mendocino-farms,C08-05,Golden State Cobb,2
-mendocino-farms,C08-05,The Modern Caesar,2
-mendocino-farms,C08-05,Not So Fried Chicken - Salad Style!,2
-mendocino-farms,C08-06,1/2 Vegan Banh Mi,2
-mendocino-farms,C08-06,Plant-Based Oat Hemp Date Cookie,2
-mendocino-farms,C08-06,The Happy Hippie,1
-mendocino-farms,C08-06,Vegan Banh Mi,2
-mendocino-farms,C09-03,Heirloom BLT,1
-mendocino-farms,C11-01,Lemon Chicken & Farro Soup,2
-mendocino-farms,C11-01,Tomato Basil Soup,2
-mendocino-farms,C11-02,Lemon Chicken & Farro Soup,2
-mendocino-farms,C11-03,Tomato Basil Soup,2
-mendocino-farms,C11-06,Lemon Chicken & Farro Soup,2
-mendocino-farms,C11-07,Tomato Basil Soup,1
-mendocino-farms,C15-01,1/2 Chicken Pesto Caprese,2
-mendocino-farms,C15-01,1/2 Not So Fried Chicken,2
-mendocino-farms,C15-01,1/2 The Farm Club,2
-mendocino-farms,C15-01,1/2 Turkey Avo Salsa Verde,2
-mendocino-farms,C15-01,1/2 Vegan Banh Mi,2
-mendocino-farms,C15-01,1/2 Vegetarian Pesto Caprese,2
-mendocino-farms,C15-01,Chicken Parm Dip,2
-mendocino-farms,C15-01,Chicken Pesto Caprese,2
-mendocino-farms,C15-01,Chimichurri Steak & Bacon,2
-mendocino-farms,C15-01,Heirloom BLT,2
-mendocino-farms,C15-01,Not So Fried Chicken,2
-mendocino-farms,C15-01,Peruvian Steak,2
-mendocino-farms,C15-01,Prosciutto & Chicken,2
-mendocino-farms,C15-01,The Farm Club,2
-mendocino-farms,C15-01,The Happy Hippie,2
-mendocino-farms,C15-01,Turkey Avo Salsa Verde,2
-mendocino-farms,C15-01,Vegan Banh Mi,2
-mendocino-farms,C15-01,Vegetarian Pesto Caprese,2
-mendocino-farms,C15-02,1/2 The Farm Club,2
-mendocino-farms,C15-02,1/2 Turkey Avo Salsa Verde,2
-mendocino-farms,C15-02,The Farm Club,2
-mendocino-farms,C15-02,Turkey Avo Salsa Verde,2
-mendocino-farms,C15-03,1/2 Chicken Pesto Caprese,2
-mendocino-farms,C15-03,1/2 Not So Fried Chicken,2
-mendocino-farms,C15-03,Chicken Parm Dip,2
-mendocino-farms,C15-03,Chicken Pesto Caprese,2
-mendocino-farms,C15-03,Not So Fried Chicken,2
-mendocino-farms,C15-03,Prosciutto & Chicken,2
-mendocino-farms,C15-04,1/2 The Farm Club,1
-mendocino-farms,C15-04,Heirloom BLT,2
-mendocino-farms,C15-04,The Farm Club,1
-mendocino-farms,C15-05,Chicken Parm Dip,1
-mendocino-farms,C15-05,Chicken Pesto Caprese,1
-mendocino-farms,C15-05,Prosciutto & Chicken,1
-mendocino-farms,C15-05,Vegetarian Pesto Caprese,1
-mendocino-farms,C15-07,1/2 The Farm Club,2
-mendocino-farms,C15-07,The Farm Club,2
-mendocino-farms,C16-01,Avocado & Quinoa Superfood Ensalada,2
-mendocino-farms,C16-01,Baja Green Goddess,2
-mendocino-farms,C16-01,Chen's Crispy Rice Salad,2
-mendocino-farms,C16-01,Golden State Cobb,2
-mendocino-farms,C16-01,Not So Fried Chicken - Salad Style!,2
-mendocino-farms,C16-01,Thai Mango Salad,2
-mendocino-farms,C16-01,The Modern Caesar,2
-mendocino-farms,C16-01,The Seasonal GOAT with Summer Peaches,2
-mendocino-farms,C16-01,Tuscan Pesto Salad,2
-mendocino-farms,C16-01,Kale & Apple Rainbow Salad,2
-mendocino-farms,C16-01,Southern Potato Salad,1
-mendocino-farms,C16-02,The Modern Caesar,2
-mendocino-farms,C16-02,The Modern Caesar Wrap,1
-mendocino-farms,C16-03,Baja Green Goddess,2
-mendocino-farms,C16-03,Chen's Crispy Rice Salad,2
-mendocino-farms,C16-03,The Modern Caesar,2
-mendocino-farms,C16-03,The Seasonal GOAT with Summer Peaches,2
-mendocino-farms,C16-03,Tuscan Pesto Salad,2
-mendocino-farms,C16-03,Not So Fried Chicken - Salad Style!,2
-mendocino-farms,C16-05,Avocado & Quinoa Superfood Ensalada,2
-mendocino-farms,C16-05,Baja Green Goddess,1
-mendocino-farms,C16-06,Avocado & Quinoa Superfood Ensalada,2
-mendocino-farms,C16-07,Kale & Apple Rainbow Salad,2
-mendocino-farms,C17-01,Chocolate Chunk Cookie,2
-mendocino-farms,C17-01,Ginger Molasses Cookie,2
-mendocino-farms,C17-01,Lemon Cheesecake Cookie,2
-mendocino-farms,C17-01,Plant-Based Oat Hemp Date Cookie,2
-mendocino-farms,C17-07,Chocolate Chunk Cookie,2
-mendocino-farms,C17-07,Ginger Molasses Cookie,2
-mendocino-farms,C17-07,Lemon Cheesecake Cookie,2
-mendocino-farms,C17-07,Plant-Based Oat Hemp Date Cookie,2
-mendocino-farms,C18-01,1/2 Chicken Pesto Caprese,2
-mendocino-farms,C18-01,1/2 Not So Fried Chicken,2
-mendocino-farms,C18-01,Chicken Parm Dip,2
-mendocino-farms,C18-01,Chicken Pesto Caprese,2
-mendocino-farms,C18-01,Not So Fried Chicken,2
-mendocino-farms,C18-01,Prosciutto & Chicken,2
-mendocino-farms,C18-01,Tuscan Pesto Salad,1
-mendocino-farms,C18-02,Peruvian Steak,1
-mendocino-farms,C18-02,Tuscan Pesto Salad,1
-mendocino-farms,C18-06,1/2 Chicken Pesto Caprese,1
-mendocino-farms,C18-06,1/2 The Farm Club,2
-mendocino-farms,C18-06,Chicken Pesto Caprese,1
-mendocino-farms,C18-06,The Farm Club,2
-mendocino-farms,C18-06,1/2 Turkey Avo Salsa Verde,1
-mendocino-farms,C18-06,Turkey Avo Salsa Verde,1
-mendocino-farms,C19-01,Chimichurri Steak & Bacon,2
-mendocino-farms,C19-01,Peruvian Steak,2
-mendocino-farms,C22-02,1/2 The Farm Club,2
-mendocino-farms,C22-02,1/2 Turkey Avo Salsa Verde,2
-mendocino-farms,C22-02,Avocado & Quinoa Superfood Ensalada,2
-mendocino-farms,C22-02,The Farm Club,2
-mendocino-farms,C22-02,Turkey Avo Salsa Verde,2
-mendocino-farms,C22-02,Golden State Cobb Wrap,1
-mendocino-farms,C22-07,1/2 Chicken Pesto Caprese,2
-mendocino-farms,C22-07,1/2 Vegetarian Pesto Caprese,2
-mendocino-farms,C22-07,Basil Pesto Shells,2
-mendocino-farms,C22-07,Chicken Pesto Caprese,2
-mendocino-farms,C22-07,Tuscan Pesto Salad,2
-mendocino-farms,C22-07,Vegetarian Pesto Caprese,2
-mendocino-farms,C22-10,1/2 Turkey Avo Salsa Verde,1
-mendocino-farms,C22-10,Turkey Avo Salsa Verde,2
-mendocino-farms,C22-11,Golden State Cobb,1
-mendocino-farms,C22-11,Golden State Cobb Wrap,1
-mendocino-farms,C22-12,1/2 The Farm Club,2
-mendocino-farms,C22-12,The Farm Club,2
-mendocino-farms,C22-12,Turkey Avo Salsa Verde,1
-mendocino-farms,C23-11,1/2 Vegan Banh Mi,2
-mendocino-farms,C23-11,Vegan Banh Mi,2
+restaurant,query_id,menu_item,relevance,comment
+mendocino-farms,C01-05,1/2 Not So Fried Chicken,2,
+mendocino-farms,C01-05,1/2 The Farm Club,2,
+mendocino-farms,C01-05,Heirloom BLT,2,
+mendocino-farms,C01-05,Not So Fried Chicken,2,
+mendocino-farms,C01-05,Peruvian Steak,2,
+mendocino-farms,C01-05,Prosciutto & Chicken,2,
+mendocino-farms,C01-05,The Farm Club,2,
+mendocino-farms,C01-05,Chicken Parm Dip,2,
+mendocino-farms,C01-05,Chicken Pesto Caprese,2,
+mendocino-farms,C01-05,Chimichurri Steak & Bacon,2,
+mendocino-farms,C01-05,The Happy Hippie,2,
+mendocino-farms,C01-05,Turkey Avo Salsa Verde,2,
+mendocino-farms,C01-05,Vegan Banh Mi,2,
+mendocino-farms,C01-05,Vegetarian Pesto Caprese,2,
+mendocino-farms,C02-03,Baja Green Goddess,1,
+mendocino-farms,C02-03,Golden State Cobb,2,
+mendocino-farms,C02-03,The Modern Caesar,2,
+mendocino-farms,C02-03,The Seasonal GOAT with Summer Peaches,2,
+mendocino-farms,C02-03,Not So Fried Chicken - Salad Style!,1,
+mendocino-farms,C02-03,Tuscan Pesto Salad,1,
+mendocino-farms,C02-05,1/2 The Farm Club,2,
+mendocino-farms,C02-05,Chimichurri Steak & Bacon,2,
+mendocino-farms,C02-05,Heirloom BLT,2,
+mendocino-farms,C02-05,The Farm Club,2,
+mendocino-farms,C02-07,Chimichurri Steak & Bacon,1,
+mendocino-farms,C02-08,The Seasonal GOAT with Summer Peaches,2,
+mendocino-farms,C03-04,Kale & Apple Rainbow Salad,2,
+mendocino-farms,C03-04,Tomato Basil Soup,1,
+mendocino-farms,C03-10,Avocado & Quinoa Superfood Ensalada,1,
+mendocino-farms,C03-10,Golden State Cobb,2,
+mendocino-farms,C03-10,The Modern Caesar,2,
+mendocino-farms,C03-10,The Seasonal GOAT with Summer Peaches,1,
+mendocino-farms,C03-10,Tuscan Pesto Salad,1,
+mendocino-farms,C03-11,Spicy Curried Couscous,1,
+mendocino-farms,C04-10,1/2 Not So Fried Chicken,2,
+mendocino-farms,C04-10,Crispy Chicken Tenders,2,
+mendocino-farms,C04-10,Not So Fried Chicken,2,
+mendocino-farms,C05-01,The Modern Caesar,2,
+mendocino-farms,C05-07,Prosciutto & Chicken,2,
+mendocino-farms,C05-09,Prosciutto & Chicken,1,
+mendocino-farms,C06-01,Spicy Curried Couscous,1,
+mendocino-farms,C06-04,Chimichurri Steak & Bacon,2,
+mendocino-farms,C06-04,Peruvian Steak,2,
+mendocino-farms,C06-10,1/2 Turkey Avo Salsa Verde,1,
+mendocino-farms,C06-10,1/2 Vegan Banh Mi,2,
+mendocino-farms,C06-10,Turkey Avo Salsa Verde,1,
+mendocino-farms,C06-10,Vegan Banh Mi,2,
+mendocino-farms,C06-10,1/2 Not So Fried Chicken,1,
+mendocino-farms,C06-10,1/2 The Farm Club,1,
+mendocino-farms,C06-10,Golden State Cobb Wrap,1,
+mendocino-farms,C06-10,Not So Fried Chicken,1,
+mendocino-farms,C06-10,The Seasonal GOAT with Summer Peaches,1,
+mendocino-farms,C07-13,1/2 Not So Fried Chicken,1,
+mendocino-farms,C07-13,1/2 The Farm Club,2,
+mendocino-farms,C07-13,Heirloom BLT,2,
+mendocino-farms,C07-13,Not So Fried Chicken,1,
+mendocino-farms,C07-13,The Farm Club,2,
+mendocino-farms,C07-13,1/2 Chicken Pesto Caprese,2,
+mendocino-farms,C07-13,1/2 Turkey Avo Salsa Verde,2,
+mendocino-farms,C07-13,1/2 Vegan Banh Mi,2,
+mendocino-farms,C07-13,1/2 Vegetarian Pesto Caprese,2,
+mendocino-farms,C07-13,Chicken Parm Dip,2,
+mendocino-farms,C07-13,Chicken Pesto Caprese,2,
+mendocino-farms,C07-13,Chimichurri Steak & Bacon,2,
+mendocino-farms,C07-13,Peruvian Steak,2,
+mendocino-farms,C07-13,Prosciutto & Chicken,2,
+mendocino-farms,C07-13,The Happy Hippie,2,
+mendocino-farms,C07-13,Turkey Avo Salsa Verde,2,
+mendocino-farms,C07-13,Vegan Banh Mi,2,
+mendocino-farms,C07-13,Vegetarian Pesto Caprese,2,
+mendocino-farms,C08-02,1/2 Vegan Banh Mi,2,
+mendocino-farms,C08-02,Vegan Banh Mi,2,
+mendocino-farms,C08-04,1/2 Vegan Banh Mi,2,
+mendocino-farms,C08-04,The Happy Hippie,1,
+mendocino-farms,C08-04,Vegan Banh Mi,2,
+mendocino-farms,C08-04,Heirloom BLT,1,
+mendocino-farms,C08-05,Avocado & Quinoa Superfood Ensalada,2,
+mendocino-farms,C08-05,Baja Green Goddess,1,
+mendocino-farms,C08-05,Golden State Cobb,2,
+mendocino-farms,C08-05,The Modern Caesar,2,
+mendocino-farms,C08-05,Not So Fried Chicken - Salad Style!,2,
+mendocino-farms,C08-06,1/2 Vegan Banh Mi,2,
+mendocino-farms,C08-06,Plant-Based Oat Hemp Date Cookie,2,
+mendocino-farms,C08-06,The Happy Hippie,1,
+mendocino-farms,C08-06,Vegan Banh Mi,2,
+mendocino-farms,C09-03,Heirloom BLT,1,
+mendocino-farms,C11-01,Lemon Chicken & Farro Soup,2,
+mendocino-farms,C11-01,Tomato Basil Soup,2,
+mendocino-farms,C11-02,Lemon Chicken & Farro Soup,2,
+mendocino-farms,C11-03,Tomato Basil Soup,2,
+mendocino-farms,C11-06,Lemon Chicken & Farro Soup,2,
+mendocino-farms,C11-07,Tomato Basil Soup,1,
+mendocino-farms,C15-01,1/2 Chicken Pesto Caprese,2,
+mendocino-farms,C15-01,1/2 Not So Fried Chicken,2,
+mendocino-farms,C15-01,1/2 The Farm Club,2,
+mendocino-farms,C15-01,1/2 Turkey Avo Salsa Verde,2,
+mendocino-farms,C15-01,1/2 Vegan Banh Mi,2,
+mendocino-farms,C15-01,1/2 Vegetarian Pesto Caprese,2,
+mendocino-farms,C15-01,Chicken Parm Dip,2,
+mendocino-farms,C15-01,Chicken Pesto Caprese,2,
+mendocino-farms,C15-01,Chimichurri Steak & Bacon,2,
+mendocino-farms,C15-01,Heirloom BLT,2,
+mendocino-farms,C15-01,Not So Fried Chicken,2,
+mendocino-farms,C15-01,Peruvian Steak,2,
+mendocino-farms,C15-01,Prosciutto & Chicken,2,
+mendocino-farms,C15-01,The Farm Club,2,
+mendocino-farms,C15-01,The Happy Hippie,2,
+mendocino-farms,C15-01,Turkey Avo Salsa Verde,2,
+mendocino-farms,C15-01,Vegan Banh Mi,2,
+mendocino-farms,C15-01,Vegetarian Pesto Caprese,2,
+mendocino-farms,C15-02,1/2 The Farm Club,2,
+mendocino-farms,C15-02,1/2 Turkey Avo Salsa Verde,2,
+mendocino-farms,C15-02,The Farm Club,2,
+mendocino-farms,C15-02,Turkey Avo Salsa Verde,2,
+mendocino-farms,C15-03,1/2 Chicken Pesto Caprese,2,
+mendocino-farms,C15-03,1/2 Not So Fried Chicken,2,
+mendocino-farms,C15-03,Chicken Parm Dip,2,
+mendocino-farms,C15-03,Chicken Pesto Caprese,2,
+mendocino-farms,C15-03,Not So Fried Chicken,2,
+mendocino-farms,C15-03,Prosciutto & Chicken,2,
+mendocino-farms,C15-04,1/2 The Farm Club,1,
+mendocino-farms,C15-04,Heirloom BLT,2,
+mendocino-farms,C15-04,The Farm Club,1,
+mendocino-farms,C15-05,Chicken Parm Dip,1,
+mendocino-farms,C15-05,Chicken Pesto Caprese,1,
+mendocino-farms,C15-05,Prosciutto & Chicken,1,
+mendocino-farms,C15-05,Vegetarian Pesto Caprese,1,
+mendocino-farms,C15-07,1/2 The Farm Club,2,
+mendocino-farms,C15-07,The Farm Club,2,
+mendocino-farms,C16-01,Avocado & Quinoa Superfood Ensalada,2,
+mendocino-farms,C16-01,Baja Green Goddess,2,
+mendocino-farms,C16-01,Chen's Crispy Rice Salad,2,
+mendocino-farms,C16-01,Golden State Cobb,2,
+mendocino-farms,C16-01,Not So Fried Chicken - Salad Style!,2,
+mendocino-farms,C16-01,Thai Mango Salad,2,
+mendocino-farms,C16-01,The Modern Caesar,2,
+mendocino-farms,C16-01,The Seasonal GOAT with Summer Peaches,2,
+mendocino-farms,C16-01,Tuscan Pesto Salad,2,
+mendocino-farms,C16-01,Kale & Apple Rainbow Salad,2,
+mendocino-farms,C16-01,Southern Potato Salad,1,
+mendocino-farms,C16-02,The Modern Caesar,2,
+mendocino-farms,C16-02,The Modern Caesar Wrap,1,
+mendocino-farms,C16-03,Baja Green Goddess,2,
+mendocino-farms,C16-03,Chen's Crispy Rice Salad,2,
+mendocino-farms,C16-03,The Modern Caesar,2,
+mendocino-farms,C16-03,The Seasonal GOAT with Summer Peaches,2,
+mendocino-farms,C16-03,Tuscan Pesto Salad,2,
+mendocino-farms,C16-03,Not So Fried Chicken - Salad Style!,2,
+mendocino-farms,C16-05,Avocado & Quinoa Superfood Ensalada,2,
+mendocino-farms,C16-05,Baja Green Goddess,1,
+mendocino-farms,C16-06,Avocado & Quinoa Superfood Ensalada,2,
+mendocino-farms,C16-07,Kale & Apple Rainbow Salad,2,
+mendocino-farms,C17-01,Chocolate Chunk Cookie,2,
+mendocino-farms,C17-01,Ginger Molasses Cookie,2,
+mendocino-farms,C17-01,Lemon Cheesecake Cookie,2,
+mendocino-farms,C17-01,Plant-Based Oat Hemp Date Cookie,2,
+mendocino-farms,C17-07,Chocolate Chunk Cookie,2,
+mendocino-farms,C17-07,Ginger Molasses Cookie,2,
+mendocino-farms,C17-07,Lemon Cheesecake Cookie,2,
+mendocino-farms,C17-07,Plant-Based Oat Hemp Date Cookie,2,
+mendocino-farms,C18-01,1/2 Chicken Pesto Caprese,2,
+mendocino-farms,C18-01,1/2 Not So Fried Chicken,2,
+mendocino-farms,C18-01,Chicken Parm Dip,2,
+mendocino-farms,C18-01,Chicken Pesto Caprese,2,
+mendocino-farms,C18-01,Not So Fried Chicken,2,
+mendocino-farms,C18-01,Prosciutto & Chicken,2,
+mendocino-farms,C18-01,Tuscan Pesto Salad,1,
+mendocino-farms,C18-02,Peruvian Steak,1,
+mendocino-farms,C18-02,Tuscan Pesto Salad,1,
+mendocino-farms,C18-06,1/2 Chicken Pesto Caprese,1,
+mendocino-farms,C18-06,1/2 The Farm Club,2,
+mendocino-farms,C18-06,Chicken Pesto Caprese,1,
+mendocino-farms,C18-06,The Farm Club,2,
+mendocino-farms,C18-06,1/2 Turkey Avo Salsa Verde,1,
+mendocino-farms,C18-06,Turkey Avo Salsa Verde,1,
+mendocino-farms,C19-01,Chimichurri Steak & Bacon,2,
+mendocino-farms,C19-01,Peruvian Steak,2,
+mendocino-farms,C22-02,1/2 The Farm Club,2,
+mendocino-farms,C22-02,1/2 Turkey Avo Salsa Verde,2,
+mendocino-farms,C22-02,Avocado & Quinoa Superfood Ensalada,2,
+mendocino-farms,C22-02,The Farm Club,2,
+mendocino-farms,C22-02,Turkey Avo Salsa Verde,2,
+mendocino-farms,C22-02,Golden State Cobb Wrap,1,
+mendocino-farms,C22-07,1/2 Chicken Pesto Caprese,2,
+mendocino-farms,C22-07,1/2 Vegetarian Pesto Caprese,2,
+mendocino-farms,C22-07,Basil Pesto Shells,2,
+mendocino-farms,C22-07,Chicken Pesto Caprese,2,
+mendocino-farms,C22-07,Tuscan Pesto Salad,2,
+mendocino-farms,C22-07,Vegetarian Pesto Caprese,2,
+mendocino-farms,C22-10,1/2 Turkey Avo Salsa Verde,1,
+mendocino-farms,C22-10,Turkey Avo Salsa Verde,2,
+mendocino-farms,C22-11,Golden State Cobb,1,
+mendocino-farms,C22-11,Golden State Cobb Wrap,1,
+mendocino-farms,C22-12,1/2 The Farm Club,2,
+mendocino-farms,C22-12,The Farm Club,2,
+mendocino-farms,C22-12,Turkey Avo Salsa Verde,1,
+mendocino-farms,C23-11,1/2 Vegan Banh Mi,2,
+mendocino-farms,C23-11,Vegan Banh Mi,2,

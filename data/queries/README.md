@@ -84,9 +84,11 @@ Queries represent what users actually type. A query may name only part of what t
 ## `relevance_<restaurant-id>.csv` — format
 
 ```
-restaurant,query_id,menu_item,relevance
-juanita-cantina,C01-01,Camarones à la Diabla,2
-juanita-cantina,C01-01,Seafood Enchiladas,1
+restaurant,query_id,menu_item,relevance,comment
+juanita-cantina,C01-01,Camarones à la Diabla,2,
+juanita-cantina,C01-01,Seafood Enchiladas,1,
+plaza-garcia,C01-01,Molcajete,1,bacon-wrapped shrimp is one of about eight meats on the platter
+juanita-cantina,C20-01,Camarones con Bacon,0,"bacon-wrapped shrimp; shrimp is the primary ingredient, not pork"
 ```
 
 | Column | Values |
@@ -95,6 +97,7 @@ juanita-cantina,C01-01,Seafood Enchiladas,1
 | `query_id` | Foreign key into `queries.csv` |
 | `menu_item` | Name of the item **exactly as it appears** in the `.md` file |
 | `relevance` | 0, 1, or 2 (see scale below) |
+| `comment` | Optional note on why the item got this grade; empty by default. Quote it if it contains a comma (spreadsheet tools do this automatically). |
 
 ### Relevance scale
 
@@ -102,9 +105,11 @@ juanita-cantina,C01-01,Seafood Enchiladas,1
 |-------|---------|
 | 2 | Highly relevant — clearly matches the query intent |
 | 1 | Partially relevant — related but incomplete match |
-| 0 | Not relevant (implicit — omit from file) |
+| 0 | Not relevant (implicit — omit from file, or store it with a comment) |
 
-**Sparse format**: only rows with relevance ≥ 1 are stored. Any `(restaurant, query_id, menu_item)` triple not present in the file has implied relevance 0.
+**Sparse format**: rows are stored for relevance ≥ 1. Any `(restaurant, query_id, menu_item)` triple not present in the file has implied relevance 0.
+
+**Rows graded 0** are optional and exist only to carry a `comment` — e.g. to record that an item that looks relevant was judged not to be, so a later reviewer doesn't re-add it. `load_relevance()` in `evaluate.py` drops them, so a 0 row and a missing row score identically everywhere (evaluation, restaurant ranking, training-triple mining). `load_relevance_comments()` returns every commented row, 0 rows included, and `evaluate.py --verbose` prints the comment of any top-5 result that has one.
 
 ### Coverage
 
@@ -159,7 +164,7 @@ them with new_relevance 0.
 
 ### Adding new relevance judgments
 
-To add judgments for a new restaurant, create `relevance_<restaurant-id>.csv` — e.g. `relevance_new-place.csv` — with the same header and sparse format. The filename stem after `relevance_` must exactly match the restaurant's markdown file stem (e.g. `new-place.md`). Only include rows where relevance ≥ 1.
+To add judgments for a new restaurant, create `relevance_<restaurant-id>.csv` — e.g. `relevance_new-place.csv` — with the same header and sparse format. The filename stem after `relevance_` must exactly match the restaurant's markdown file stem (e.g. `new-place.md`). Include rows where relevance ≥ 1, plus 0 rows only when they carry a comment.
 
 To add a new query to an existing category, append it to `queries.csv` with the
 next unused `{category_id}-{seq}` (e.g. the next query after `C14-08` is

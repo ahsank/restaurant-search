@@ -88,7 +88,7 @@ A 209-query benchmark with relevance judgments for 8 restaurants (Due' Cucina, J
 
 Key files:
 - `data/queries/queries.csv` — 209 queries with `category_id`, `difficulty`, and `category_name`. `query_id` is `{category_id}-{seq}` (e.g. `C14-03`), stable per category so adding a query never renumbers others.
-- `data/queries/relevance_<restaurant-id>.csv` — sparse relevance judgments (only relevance ≥ 1 stored; missing = 0)
+- `data/queries/relevance_<restaurant-id>.csv` — sparse relevance judgments (relevance ≥ 1 stored; missing = 0; optional `comment` column, and 0 rows only to carry a comment)
 - `menu-search-benchmark-queries.md` — full documentation of the 25 query categories and challenge design
 - `research/search/evaluate.py` — script to compute NDCG@5, Recall@10, MRR against any search function
 

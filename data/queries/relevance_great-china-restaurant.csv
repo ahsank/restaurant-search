@@ -1,175 +1,175 @@
-restaurant,query_id,menu_item,relevance
-great-china-restaurant,C02-09,Dinner Combination G,1
-great-china-restaurant,C02-09,Mu Shu Pork,2
-great-china-restaurant,C02-09,Onion Pork,2
-great-china-restaurant,C03-01,Kung Pao Shrimp & Chicken,2
-great-china-restaurant,C03-08,Family Dinner A,1
-great-china-restaurant,C03-08,Family Dinner B,1
-great-china-restaurant,C04-09,Fried Chicken Wing (8),2
-great-china-restaurant,C04-10,Almond Fried Chicken,2
-great-china-restaurant,C04-10,Sweet & Sour Chicken,1
-great-china-restaurant,C08-06,Broccoli in Black Bean Sauce,1
-great-china-restaurant,C08-06,Curry Vegetable,1
-great-china-restaurant,C08-06,Jalapeño Vegetable,1
-great-china-restaurant,C08-06,Kung Pao Tofu,2
-great-china-restaurant,C08-06,Kung Pao Vegetable,2
-great-china-restaurant,C08-06,Mu Shu Vegetable,2
-great-china-restaurant,C08-06,Sauteed String Bean,1
-great-china-restaurant,C08-06,Tofu Family Style,2
-great-china-restaurant,C08-06,Vegetable Chow Mein or Fried Rice,1
-great-china-restaurant,C08-06,Vegetable Egg Foo Young,1
-great-china-restaurant,C08-06,Vegetable in Black Bean Sauce,1
-great-china-restaurant,C08-06,Vegetarian Delight,2
-great-china-restaurant,C08-06,Wild Basil Vegetable Thai Style,2
-great-china-restaurant,C08-06,Vegetable Chow Mein,1
-great-china-restaurant,C08-09,Kung Pao Prawns,2
-great-china-restaurant,C08-09,Mu Shu Shrimp,2
-great-china-restaurant,C08-09,Prawn Noodle Soup,1
-great-china-restaurant,C08-09,Salt & Pepper Prawns,2
-great-china-restaurant,C08-09,Shrimp Chow Mein or Fried Rice,1
-great-china-restaurant,C08-09,Shrimp Egg Foo Young,2
-great-china-restaurant,C08-09,Shrimp with Steamed Tofu,2
-great-china-restaurant,C09-01,Golden Prawns (8),2
-great-china-restaurant,C09-01,Kung Pao Prawns,2
-great-china-restaurant,C09-01,Kung Pao Shrimp & Chicken,1
-great-china-restaurant,C09-01,Mu Shu Shrimp,1
-great-china-restaurant,C09-01,Prawn Noodle Soup,2
-great-china-restaurant,C09-01,Prawn with Vegetable,2
-great-china-restaurant,C09-01,Salt & Pepper Prawns,2
-great-china-restaurant,C09-01,Shrimp Chow Mein or Fried Rice,1
-great-china-restaurant,C09-01,Shrimp Egg Foo Young,1
-great-china-restaurant,C09-01,Shrimp with Steamed Tofu,1
-great-china-restaurant,C09-01,Sweet & Sour Prawns,2
-great-china-restaurant,C09-01,Szechuan Prawns,2
-great-china-restaurant,C11-01,B.B.Q. Pork Noodle Soup,2
-great-china-restaurant,C11-01,Bean Curd Noodle Soup,2
-great-china-restaurant,C11-01,Bean Curd Vegetable Soup,2
-great-china-restaurant,C11-01,Chicken Noodle Soup,2
-great-china-restaurant,C11-01,Chicken and Vegetable Soup,2
-great-china-restaurant,C11-01,Egg Flower Soup,2
-great-china-restaurant,C11-01,Hot & Sour Soup (Pork),2
-great-china-restaurant,C11-01,Pork & Spicy Cabbage Noodle Soup,2
-great-china-restaurant,C11-01,Prawn Noodle Soup,2
-great-china-restaurant,C11-01,"Spicy Cabbage, Pork Soup",2
-great-china-restaurant,C11-01,Wonton Soup (Pork),2
-great-china-restaurant,C11-02,Chicken Noodle Soup,2
-great-china-restaurant,C11-02,Chicken and Vegetable Soup,2
-great-china-restaurant,C11-04,Prawn Noodle Soup,2
-great-china-restaurant,C11-05,Hot & Sour Soup (Pork),2
-great-china-restaurant,C11-05,Pork & Spicy Cabbage Noodle Soup,2
-great-china-restaurant,C11-05,"Spicy Cabbage, Pork Soup",2
-great-china-restaurant,C11-06,Egg Flower Soup,2
-great-china-restaurant,C11-06,Hot & Sour Soup (Pork),2
-great-china-restaurant,C11-06,Wonton Soup (Pork),2
-great-china-restaurant,C11-07,Bean Curd Vegetable Soup,2
-great-china-restaurant,C11-07,Chicken and Vegetable Soup,1
-great-china-restaurant,C18-01,Almond Fried Chicken,2
-great-china-restaurant,C18-01,Black Bean Sauce Chicken,2
-great-china-restaurant,C18-01,Broccoli Chicken,2
-great-china-restaurant,C18-01,Cashew Nut Chicken,2
-great-china-restaurant,C18-01,Chicken Chow Mein,2
-great-china-restaurant,C18-01,Chicken Chow Mein or Fried Rice,2
-great-china-restaurant,C18-01,Chicken Egg Foo Young,2
-great-china-restaurant,C18-01,Chicken Lettuce Wraps,2
-great-china-restaurant,C18-01,Chicken Noodle Soup,2
-great-china-restaurant,C18-01,Chicken and Vegetable,2
-great-china-restaurant,C18-01,Chicken and Vegetable Soup,2
-great-china-restaurant,C18-01,Chicken in Garlic Sauce,2
-great-china-restaurant,C18-01,Curry Chicken,2
-great-china-restaurant,C18-01,Fried Chicken Wing (8),1
-great-china-restaurant,C18-01,Garlic Chicken,2
-great-china-restaurant,C18-01,General Tso's Chicken,2
-great-china-restaurant,C18-01,Jalapeño Chicken,2
-great-china-restaurant,C18-01,Kung Pao Chicken,2
-great-china-restaurant,C18-01,Lemon Chicken,2
-great-china-restaurant,C18-01,Mongolian Chicken,2
-great-china-restaurant,C18-01,Mu Shu Chicken,2
-great-china-restaurant,C18-01,Onion Chicken,2
-great-china-restaurant,C18-01,Orange Flavor Chicken,2
-great-china-restaurant,C18-01,Pot Stickers Chicken (8),1
-great-china-restaurant,C18-01,Salt and Pepper Chicken,2
-great-china-restaurant,C18-01,Steamed Pot Stickers Chicken (8),1
-great-china-restaurant,C18-01,String Beans Chicken,2
-great-china-restaurant,C18-01,Sweet & Sour Chicken,2
-great-china-restaurant,C18-01,Wild Basil Chicken,2
-great-china-restaurant,C18-01,Wild Basil Chicken Thai Style,2
-great-china-restaurant,C18-03,Kung Pao Shrimp & Chicken,1
-great-china-restaurant,C18-05,Jalapeño Chicken,2
-great-china-restaurant,C19-01,Beef Chow Mein or Fried Rice,2
-great-china-restaurant,C19-01,Beef Egg Foo Young,2
-great-china-restaurant,C19-01,Beef and Vegetable,2
-great-china-restaurant,C19-01,Beef in Black Bean Sauce,2
-great-china-restaurant,C19-01,Beef in Oyster Sauce,2
-great-china-restaurant,C19-01,Broccoli Beef,2
-great-china-restaurant,C19-01,Curry Beef,2
-great-china-restaurant,C19-01,Honey Beef,2
-great-china-restaurant,C19-01,Hunan Beef,2
-great-china-restaurant,C19-01,Jalapeño Beef,2
-great-china-restaurant,C19-01,Kung Pao Beef,2
-great-china-restaurant,C19-01,Mongolian Beef,2
-great-china-restaurant,C19-01,Mu Shu Beef,2
-great-china-restaurant,C19-01,Onion Beef,2
-great-china-restaurant,C19-01,Orange Flavor Beef,2
-great-china-restaurant,C19-01,Sesame Beef,2
-great-china-restaurant,C19-01,String Beans Beef,2
-great-china-restaurant,C19-01,Szechuan Beef,2
-great-china-restaurant,C19-01,Vegetable Beef,2
-great-china-restaurant,C19-01,Wild Basil Beef Thai Style,2
-great-china-restaurant,C20-01,B.B.Q. Pork,2
-great-china-restaurant,C20-01,B.B.Q. Pork Noodle Soup,2
-great-china-restaurant,C20-01,Hot & Sour Soup (Pork),1
-great-china-restaurant,C20-01,Jalapeño Pork,2
-great-china-restaurant,C20-01,Mu Shu Pork,2
-great-china-restaurant,C20-01,Onion Pork,2
-great-china-restaurant,C20-01,Pork & Spicy Cabbage Noodle Soup,2
-great-china-restaurant,C20-01,Pork Egg Foo Young,2
-great-china-restaurant,C20-01,Pork in Garlic Sauce,2
-great-china-restaurant,C20-01,Pork/B.B.Q. Pork Chow Mein or B.B.Q. Pork Fried Rice,2
-great-china-restaurant,C20-01,"Spicy Cabbage, Pork Soup",1
-great-china-restaurant,C20-01,String Beans Pork,2
-great-china-restaurant,C20-01,Sweet & Sour Pork,2
-great-china-restaurant,C20-01,Szechuan Tofu with Pork,1
-great-china-restaurant,C20-01,Wild Basil Pork Thai Style,2
-great-china-restaurant,C20-01,Wonton Soup (Pork),1
-great-china-restaurant,C20-01,Dinner Combination G,1
-great-china-restaurant,C21-01,"Golden Crispy Noodle with Chicken, Beef and Shrimp",1
-great-china-restaurant,C21-01,Golden Prawns (8),1
-great-china-restaurant,C21-01,Kung Pao Prawns,1
-great-china-restaurant,C21-01,Kung Pao Shrimp & Chicken,2
-great-china-restaurant,C21-01,Mu Shu Shrimp,2
-great-china-restaurant,C21-01,Prawn Noodle Soup,1
-great-china-restaurant,C21-01,Prawn with Vegetable,1
-great-china-restaurant,C21-01,Salt & Pepper Prawns,1
-great-china-restaurant,C21-01,Shrimp Chow Mein or Fried Rice,2
-great-china-restaurant,C21-01,Shrimp Egg Foo Young,2
-great-china-restaurant,C21-01,Shrimp with Steamed Tofu,2
-great-china-restaurant,C21-01,Sweet & Sour Prawns,1
-great-china-restaurant,C21-01,Szechuan Prawns,1
-great-china-restaurant,C21-03,Shrimp Chow Mein or Fried Rice,2
-great-china-restaurant,C21-07,Fish Delight,2
-great-china-restaurant,C21-07,Jalapeño Fish,2
-great-china-restaurant,C21-07,Kung Pao Fish,2
-great-china-restaurant,C22-01,Beef in Black Bean Sauce,2
-great-china-restaurant,C22-01,Black Bean Sauce Chicken,2
-great-china-restaurant,C22-01,Black Bean Tofu,2
-great-china-restaurant,C22-01,Broccoli in Black Bean Sauce,2
-great-china-restaurant,C22-01,Vegetable in Black Bean Sauce,2
-great-china-restaurant,C22-11,Beef Egg Foo Young,2
-great-china-restaurant,C22-11,Chicken Egg Foo Young,2
-great-china-restaurant,C22-11,Egg Flower Soup,2
-great-china-restaurant,C22-11,Mu Shu Pork,1
-great-china-restaurant,C22-11,Mu Shu Shrimp,1
-great-china-restaurant,C22-11,Pork Egg Foo Young,2
-great-china-restaurant,C22-11,Shrimp Egg Foo Young,2
-great-china-restaurant,C22-11,Vegetable Egg Foo Young,2
-great-china-restaurant,C22-11,Mu Shu Vegetable,1
-great-china-restaurant,C23-01,B.B.Q. Pork Noodle Soup,2
-great-china-restaurant,C23-01,Bean Curd Noodle Soup,2
-great-china-restaurant,C23-01,Chicken Noodle Soup,2
-great-china-restaurant,C23-01,Pork & Spicy Cabbage Noodle Soup,2
-great-china-restaurant,C23-01,Prawn Noodle Soup,2
-great-china-restaurant,C23-10,Mu Shu Beef,1
-great-china-restaurant,C23-10,Mu Shu Chicken,1
-great-china-restaurant,C23-10,Mu Shu Pork,1
-great-china-restaurant,C23-10,Mu Shu Shrimp,1
-great-china-restaurant,C23-10,Mu Shu Vegetable,1
+restaurant,query_id,menu_item,relevance,comment
+great-china-restaurant,C02-09,Dinner Combination G,1,
+great-china-restaurant,C02-09,Mu Shu Pork,2,
+great-china-restaurant,C02-09,Onion Pork,2,
+great-china-restaurant,C03-01,Kung Pao Shrimp & Chicken,2,
+great-china-restaurant,C03-08,Family Dinner A,1,
+great-china-restaurant,C03-08,Family Dinner B,1,
+great-china-restaurant,C04-09,Fried Chicken Wing (8),2,
+great-china-restaurant,C04-10,Almond Fried Chicken,2,
+great-china-restaurant,C04-10,Sweet & Sour Chicken,1,
+great-china-restaurant,C08-06,Broccoli in Black Bean Sauce,1,
+great-china-restaurant,C08-06,Curry Vegetable,1,
+great-china-restaurant,C08-06,Jalapeño Vegetable,1,
+great-china-restaurant,C08-06,Kung Pao Tofu,2,
+great-china-restaurant,C08-06,Kung Pao Vegetable,2,
+great-china-restaurant,C08-06,Mu Shu Vegetable,2,
+great-china-restaurant,C08-06,Sauteed String Bean,1,
+great-china-restaurant,C08-06,Tofu Family Style,2,
+great-china-restaurant,C08-06,Vegetable Chow Mein or Fried Rice,1,
+great-china-restaurant,C08-06,Vegetable Egg Foo Young,1,
+great-china-restaurant,C08-06,Vegetable in Black Bean Sauce,1,
+great-china-restaurant,C08-06,Vegetarian Delight,2,
+great-china-restaurant,C08-06,Wild Basil Vegetable Thai Style,2,
+great-china-restaurant,C08-06,Vegetable Chow Mein,1,
+great-china-restaurant,C08-09,Kung Pao Prawns,2,
+great-china-restaurant,C08-09,Mu Shu Shrimp,2,
+great-china-restaurant,C08-09,Prawn Noodle Soup,1,
+great-china-restaurant,C08-09,Salt & Pepper Prawns,2,
+great-china-restaurant,C08-09,Shrimp Chow Mein or Fried Rice,1,
+great-china-restaurant,C08-09,Shrimp Egg Foo Young,2,
+great-china-restaurant,C08-09,Shrimp with Steamed Tofu,2,
+great-china-restaurant,C09-01,Golden Prawns (8),2,
+great-china-restaurant,C09-01,Kung Pao Prawns,2,
+great-china-restaurant,C09-01,Kung Pao Shrimp & Chicken,1,
+great-china-restaurant,C09-01,Mu Shu Shrimp,1,
+great-china-restaurant,C09-01,Prawn Noodle Soup,2,
+great-china-restaurant,C09-01,Prawn with Vegetable,2,
+great-china-restaurant,C09-01,Salt & Pepper Prawns,2,
+great-china-restaurant,C09-01,Shrimp Chow Mein or Fried Rice,1,
+great-china-restaurant,C09-01,Shrimp Egg Foo Young,1,
+great-china-restaurant,C09-01,Shrimp with Steamed Tofu,1,
+great-china-restaurant,C09-01,Sweet & Sour Prawns,2,
+great-china-restaurant,C09-01,Szechuan Prawns,2,
+great-china-restaurant,C11-01,B.B.Q. Pork Noodle Soup,2,
+great-china-restaurant,C11-01,Bean Curd Noodle Soup,2,
+great-china-restaurant,C11-01,Bean Curd Vegetable Soup,2,
+great-china-restaurant,C11-01,Chicken Noodle Soup,2,
+great-china-restaurant,C11-01,Chicken and Vegetable Soup,2,
+great-china-restaurant,C11-01,Egg Flower Soup,2,
+great-china-restaurant,C11-01,Hot & Sour Soup (Pork),2,
+great-china-restaurant,C11-01,Pork & Spicy Cabbage Noodle Soup,2,
+great-china-restaurant,C11-01,Prawn Noodle Soup,2,
+great-china-restaurant,C11-01,"Spicy Cabbage, Pork Soup",2,
+great-china-restaurant,C11-01,Wonton Soup (Pork),2,
+great-china-restaurant,C11-02,Chicken Noodle Soup,2,
+great-china-restaurant,C11-02,Chicken and Vegetable Soup,2,
+great-china-restaurant,C11-04,Prawn Noodle Soup,2,
+great-china-restaurant,C11-05,Hot & Sour Soup (Pork),2,
+great-china-restaurant,C11-05,Pork & Spicy Cabbage Noodle Soup,2,
+great-china-restaurant,C11-05,"Spicy Cabbage, Pork Soup",2,
+great-china-restaurant,C11-06,Egg Flower Soup,2,
+great-china-restaurant,C11-06,Hot & Sour Soup (Pork),2,
+great-china-restaurant,C11-06,Wonton Soup (Pork),2,
+great-china-restaurant,C11-07,Bean Curd Vegetable Soup,2,
+great-china-restaurant,C11-07,Chicken and Vegetable Soup,1,
+great-china-restaurant,C18-01,Almond Fried Chicken,2,
+great-china-restaurant,C18-01,Black Bean Sauce Chicken,2,
+great-china-restaurant,C18-01,Broccoli Chicken,2,
+great-china-restaurant,C18-01,Cashew Nut Chicken,2,
+great-china-restaurant,C18-01,Chicken Chow Mein,2,
+great-china-restaurant,C18-01,Chicken Chow Mein or Fried Rice,2,
+great-china-restaurant,C18-01,Chicken Egg Foo Young,2,
+great-china-restaurant,C18-01,Chicken Lettuce Wraps,2,
+great-china-restaurant,C18-01,Chicken Noodle Soup,2,
+great-china-restaurant,C18-01,Chicken and Vegetable,2,
+great-china-restaurant,C18-01,Chicken and Vegetable Soup,2,
+great-china-restaurant,C18-01,Chicken in Garlic Sauce,2,
+great-china-restaurant,C18-01,Curry Chicken,2,
+great-china-restaurant,C18-01,Fried Chicken Wing (8),1,
+great-china-restaurant,C18-01,Garlic Chicken,2,
+great-china-restaurant,C18-01,General Tso's Chicken,2,
+great-china-restaurant,C18-01,Jalapeño Chicken,2,
+great-china-restaurant,C18-01,Kung Pao Chicken,2,
+great-china-restaurant,C18-01,Lemon Chicken,2,
+great-china-restaurant,C18-01,Mongolian Chicken,2,
+great-china-restaurant,C18-01,Mu Shu Chicken,2,
+great-china-restaurant,C18-01,Onion Chicken,2,
+great-china-restaurant,C18-01,Orange Flavor Chicken,2,
+great-china-restaurant,C18-01,Pot Stickers Chicken (8),1,
+great-china-restaurant,C18-01,Salt and Pepper Chicken,2,
+great-china-restaurant,C18-01,Steamed Pot Stickers Chicken (8),1,
+great-china-restaurant,C18-01,String Beans Chicken,2,
+great-china-restaurant,C18-01,Sweet & Sour Chicken,2,
+great-china-restaurant,C18-01,Wild Basil Chicken,2,
+great-china-restaurant,C18-01,Wild Basil Chicken Thai Style,2,
+great-china-restaurant,C18-03,Kung Pao Shrimp & Chicken,1,
+great-china-restaurant,C18-05,Jalapeño Chicken,2,
+great-china-restaurant,C19-01,Beef Chow Mein or Fried Rice,2,
+great-china-restaurant,C19-01,Beef Egg Foo Young,2,
+great-china-restaurant,C19-01,Beef and Vegetable,2,
+great-china-restaurant,C19-01,Beef in Black Bean Sauce,2,
+great-china-restaurant,C19-01,Beef in Oyster Sauce,2,
+great-china-restaurant,C19-01,Broccoli Beef,2,
+great-china-restaurant,C19-01,Curry Beef,2,
+great-china-restaurant,C19-01,Honey Beef,2,
+great-china-restaurant,C19-01,Hunan Beef,2,
+great-china-restaurant,C19-01,Jalapeño Beef,2,
+great-china-restaurant,C19-01,Kung Pao Beef,2,
+great-china-restaurant,C19-01,Mongolian Beef,2,
+great-china-restaurant,C19-01,Mu Shu Beef,2,
+great-china-restaurant,C19-01,Onion Beef,2,
+great-china-restaurant,C19-01,Orange Flavor Beef,2,
+great-china-restaurant,C19-01,Sesame Beef,2,
+great-china-restaurant,C19-01,String Beans Beef,2,
+great-china-restaurant,C19-01,Szechuan Beef,2,
+great-china-restaurant,C19-01,Vegetable Beef,2,
+great-china-restaurant,C19-01,Wild Basil Beef Thai Style,2,
+great-china-restaurant,C20-01,B.B.Q. Pork,2,
+great-china-restaurant,C20-01,B.B.Q. Pork Noodle Soup,2,
+great-china-restaurant,C20-01,Hot & Sour Soup (Pork),1,
+great-china-restaurant,C20-01,Jalapeño Pork,2,
+great-china-restaurant,C20-01,Mu Shu Pork,2,
+great-china-restaurant,C20-01,Onion Pork,2,
+great-china-restaurant,C20-01,Pork & Spicy Cabbage Noodle Soup,2,
+great-china-restaurant,C20-01,Pork Egg Foo Young,2,
+great-china-restaurant,C20-01,Pork in Garlic Sauce,2,
+great-china-restaurant,C20-01,Pork/B.B.Q. Pork Chow Mein or B.B.Q. Pork Fried Rice,2,
+great-china-restaurant,C20-01,"Spicy Cabbage, Pork Soup",1,
+great-china-restaurant,C20-01,String Beans Pork,2,
+great-china-restaurant,C20-01,Sweet & Sour Pork,2,
+great-china-restaurant,C20-01,Szechuan Tofu with Pork,1,
+great-china-restaurant,C20-01,Wild Basil Pork Thai Style,2,
+great-china-restaurant,C20-01,Wonton Soup (Pork),1,
+great-china-restaurant,C20-01,Dinner Combination G,1,
+great-china-restaurant,C21-01,"Golden Crispy Noodle with Chicken, Beef and Shrimp",1,
+great-china-restaurant,C21-01,Golden Prawns (8),1,
+great-china-restaurant,C21-01,Kung Pao Prawns,1,
+great-china-restaurant,C21-01,Kung Pao Shrimp & Chicken,2,
+great-china-restaurant,C21-01,Mu Shu Shrimp,2,
+great-china-restaurant,C21-01,Prawn Noodle Soup,1,
+great-china-restaurant,C21-01,Prawn with Vegetable,1,
+great-china-restaurant,C21-01,Salt & Pepper Prawns,1,
+great-china-restaurant,C21-01,Shrimp Chow Mein or Fried Rice,2,
+great-china-restaurant,C21-01,Shrimp Egg Foo Young,2,
+great-china-restaurant,C21-01,Shrimp with Steamed Tofu,2,
+great-china-restaurant,C21-01,Sweet & Sour Prawns,1,
+great-china-restaurant,C21-01,Szechuan Prawns,1,
+great-china-restaurant,C21-03,Shrimp Chow Mein or Fried Rice,2,
+great-china-restaurant,C21-07,Fish Delight,2,
+great-china-restaurant,C21-07,Jalapeño Fish,2,
+great-china-restaurant,C21-07,Kung Pao Fish,2,
+great-china-restaurant,C22-01,Beef in Black Bean Sauce,2,
+great-china-restaurant,C22-01,Black Bean Sauce Chicken,2,
+great-china-restaurant,C22-01,Black Bean Tofu,2,
+great-china-restaurant,C22-01,Broccoli in Black Bean Sauce,2,
+great-china-restaurant,C22-01,Vegetable in Black Bean Sauce,2,
+great-china-restaurant,C22-11,Beef Egg Foo Young,2,
+great-china-restaurant,C22-11,Chicken Egg Foo Young,2,
+great-china-restaurant,C22-11,Egg Flower Soup,2,
+great-china-restaurant,C22-11,Mu Shu Pork,1,
+great-china-restaurant,C22-11,Mu Shu Shrimp,1,
+great-china-restaurant,C22-11,Pork Egg Foo Young,2,
+great-china-restaurant,C22-11,Shrimp Egg Foo Young,2,
+great-china-restaurant,C22-11,Vegetable Egg Foo Young,2,
+great-china-restaurant,C22-11,Mu Shu Vegetable,1,
+great-china-restaurant,C23-01,B.B.Q. Pork Noodle Soup,2,
+great-china-restaurant,C23-01,Bean Curd Noodle Soup,2,
+great-china-restaurant,C23-01,Chicken Noodle Soup,2,
+great-china-restaurant,C23-01,Pork & Spicy Cabbage Noodle Soup,2,
+great-china-restaurant,C23-01,Prawn Noodle Soup,2,
+great-china-restaurant,C23-10,Mu Shu Beef,1,
+great-china-restaurant,C23-10,Mu Shu Chicken,1,
+great-china-restaurant,C23-10,Mu Shu Pork,1,
+great-china-restaurant,C23-10,Mu Shu Shrimp,1,
+great-china-restaurant,C23-10,Mu Shu Vegetable,1,

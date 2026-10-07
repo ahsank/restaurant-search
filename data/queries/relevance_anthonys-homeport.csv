@@ -1,322 +1,323 @@
-restaurant,query_id,menu_item,relevance
-anthonys-homeport,C01-08,Dungeness Crab & Shrimp Fettuccine,1
-anthonys-homeport,C01-08,Seafood Fettuccine,1
-anthonys-homeport,C02-01,Rockfish Tacos,2
-anthonys-homeport,C02-01,Wild Salmon Tacos,2
-anthonys-homeport,C02-02,Dungeness Crab & Shrimp Fettuccine,2
-anthonys-homeport,C02-02,Seafood Fettuccine,2
-anthonys-homeport,C02-03,Anthony's Cobb Salad,2
-anthonys-homeport,C02-03,Anthony's House Salad,2
-anthonys-homeport,C02-03,Caesar Salad,2
-anthonys-homeport,C02-03,Calamari Salad,2
-anthonys-homeport,C02-03,Classic Caesar Salad,2
-anthonys-homeport,C02-03,Crispy Calamari Salad,2
-anthonys-homeport,C02-03,Seasonal Salad,2
-anthonys-homeport,C02-03,Shrimp & Blue Cheese Salad,2
-anthonys-homeport,C02-03,Silver Salmon Salad with Cranberry-Lime Relish,2
-anthonys-homeport,C02-04,Crepes with Peaches,2
-anthonys-homeport,C02-07,Double R Ranch Top Sirloin*,2
-anthonys-homeport,C02-07,Filet Mignon*,2
-anthonys-homeport,C02-07,Northwest Top Sirloin,1
-anthonys-homeport,C02-07,Royal Ranch Ribeye*,2
-anthonys-homeport,C02-07,Top Sirloin*,2
-anthonys-homeport,C02-09,Eggs Benedict,1
-anthonys-homeport,C02-09,Homeport Omelette,1
-anthonys-homeport,C02-10,Fresh Pacific Swordfish,2
-anthonys-homeport,C02-10,Northwest Salmon Duet,2
-anthonys-homeport,C02-10,Silver Salmon Salad with Cranberry-Lime Relish,2
-anthonys-homeport,C03-02,Northwest Salmon Duet,1
-anthonys-homeport,C03-02,Wild Alaska Silver Salmon with Red Pepper Beurre Blanc,1
-anthonys-homeport,C03-03,Dungeness Crab & Shrimp Fettuccine,2
-anthonys-homeport,C03-03,Kids Fettuccine,1
-anthonys-homeport,C03-03,Seafood Fettuccine,2
-anthonys-homeport,C03-03,Butter Noodles,1
-anthonys-homeport,C03-04,Fresh Oyster on the Half Shell*,2
-anthonys-homeport,C03-04,Jumbo Prawn Cocktail,1
-anthonys-homeport,C03-04,Moss Bay Avocado Toast,1
-anthonys-homeport,C03-04,Spicy Ahi Poke,2
-anthonys-homeport,C03-05,Chicken Kalbi Bowl,2
-anthonys-homeport,C03-05,Double R Ranch Top Sirloin*,2
-anthonys-homeport,C03-05,Royal Ranch Ribeye*,2
-anthonys-homeport,C03-05,Top Sirloin*,2
-anthonys-homeport,C03-06,Butter Noodles,2
-anthonys-homeport,C03-06,Dungeness Crab & Shrimp Fettuccine,1
-anthonys-homeport,C03-06,Kids Fettuccine,1
-anthonys-homeport,C03-06,Mac 'n Cheese,1
-anthonys-homeport,C03-06,Seafood Fettuccine,1
-anthonys-homeport,C03-07,Chicken Kalbi Bowl,1
-anthonys-homeport,C03-07,Salmon Ponzu Bowl,1
-anthonys-homeport,C03-07,Wild Alaska Black Cod,2
-anthonys-homeport,C03-07,Portabello Mushroom,2
-anthonys-homeport,C03-09,Blackened Oregon Rockfish,1
-anthonys-homeport,C03-09,Fresh Pacific Swordfish,1
-anthonys-homeport,C03-10,Silver Salmon Salad with Cranberry-Lime Relish,1
-anthonys-homeport,C03-10,Anthony's House Salad,1
-anthonys-homeport,C03-11,Portabello Mushroom,2
-anthonys-homeport,C03-11,Portobello Mushroom,2
-anthonys-homeport,C03-12,Bailey's Irish Cream Chocolate Mousse,2
-anthonys-homeport,C03-12,Best of Season Crepes,1
-anthonys-homeport,C03-12,Burnt Cream,1
-anthonys-homeport,C03-12,Caramel & Apple French Cake,2
-anthonys-homeport,C04-01,Double R Ranch Top Sirloin*,2
-anthonys-homeport,C04-01,Filet Mignon*,1
-anthonys-homeport,C04-01,Royal Ranch Ribeye*,2
-anthonys-homeport,C04-01,Top Sirloin*,2
-anthonys-homeport,C04-02,Alaska Weathervane Scallops*,1
-anthonys-homeport,C04-02,Wild Seared Salmon Poke*,2
-anthonys-homeport,C04-02,Wild Alaska King Salmon with Sun-dried Tomato Basil Butter,2
-anthonys-homeport,C04-02,Wild Alaska Silver Salmon Chargrilled,2
-anthonys-homeport,C04-02,Wild Alaska Silver Salmon with Red Pepper Beurre Blanc,1
-anthonys-homeport,C04-03,Wild Seared Salmon Poke*,2
-anthonys-homeport,C04-03,Pan Fried Petrale Sole,1
-anthonys-homeport,C04-03,Salmon Ponzu Bowl,1
-anthonys-homeport,C04-03,Wild Alaska Silver Salmon Chargrilled,1
-anthonys-homeport,C04-03,Wild Northwest Salmon,1
-anthonys-homeport,C04-05,Beach Burger*,2
-anthonys-homeport,C04-05,Northwest Salmon Burger,1
-anthonys-homeport,C04-09,Crispy Calamari,2
-anthonys-homeport,C04-09,Crispy Coconut Prawns,2
-anthonys-homeport,C04-09,Tempura Asparagus,2
-anthonys-homeport,C04-09,Tempura Prawns,2
-anthonys-homeport,C04-10,Bang Bang Chicken,2
-anthonys-homeport,C05-01,Caesar Salad,2
-anthonys-homeport,C05-01,Classic Caesar Salad,2
-anthonys-homeport,C05-12,Burrata & Tomatoes,2
-anthonys-homeport,C05-13,Fresh Wild Alaska Halibut,2
-anthonys-homeport,C05-13,Wild Alaska Halibut & Chips,2
-anthonys-homeport,C05-13,Wild Alaska Halibut 'n Chips,2
-anthonys-homeport,C06-05,Homeport Omelette,1
-anthonys-homeport,C06-07,Crispy Calamari,2
-anthonys-homeport,C08-05,Anthony's House Salad,1
-anthonys-homeport,C08-06,Portobello Mushroom,1
-anthonys-homeport,C08-09,Alaska Weathervane Scallops*,2
-anthonys-homeport,C08-09,Blackened Oregon Rockfish,2
-anthonys-homeport,C08-09,Dungeness Crab & Shrimp Fettuccine,2
-anthonys-homeport,C08-09,Dungeness Crab Dinner,2
-anthonys-homeport,C08-09,Fish & Chips,2
-anthonys-homeport,C08-09,Fresh Ahi Tempura*,2
-anthonys-homeport,C08-09,Fresh Pacific Swordfish,2
-anthonys-homeport,C08-09,Fresh Wild Alaska Halibut,2
-anthonys-homeport,C08-09,Lobster Dinner,2
-anthonys-homeport,C08-09,Pan Fried Oysters*,2
-anthonys-homeport,C08-09,Petrale Sole Almondine,2
-anthonys-homeport,C08-09,Roasted Scampi Prawns,2
-anthonys-homeport,C08-09,Seafood Fettuccine,2
-anthonys-homeport,C08-09,Tempura Prawns,2
-anthonys-homeport,C08-09,Wild Alaska Black Cod,2
-anthonys-homeport,C08-09,Wild Alaska King Salmon with Sun-dried Tomato Basil Butter,2
-anthonys-homeport,C08-09,Wild Alaska Lingcod Dill,2
-anthonys-homeport,C08-09,Wild Alaska Silver Salmon Chargrilled,2
-anthonys-homeport,C08-09,Wild Alaska Silver Salmon with Red Pepper Beurre Blanc,2
-anthonys-homeport,C08-09,Crispy Calamari,2
-anthonys-homeport,C08-09,Crispy Coconut Prawns,2
-anthonys-homeport,C08-09,Dungeness Crab & Shrimp Dip,1
-anthonys-homeport,C09-01,Crispy Coconut Prawns,2
-anthonys-homeport,C09-01,Jumbo Prawn Cocktail,2
-anthonys-homeport,C09-01,Prawns & Chips,2
-anthonys-homeport,C09-01,Roasted Garlic Prawns,2
-anthonys-homeport,C09-01,Roasted Scampi Prawns,2
-anthonys-homeport,C09-01,Tempura Prawns,2
-anthonys-homeport,C09-02,Fresh Puget Sound Mussels,2
-anthonys-homeport,C09-02,Northwest Manila Clams,2
-anthonys-homeport,C09-02,Northwest Mussels,2
-anthonys-homeport,C09-02,Steamed Manila Clams,2
-anthonys-homeport,C09-02,Anthony's Clam Chowder,1
-anthonys-homeport,C09-03,Moss Bay Avocado Toast,2
-anthonys-homeport,C09-05,Hectors Authentic Chips & Salsa,1
-anthonys-homeport,C09-07,Fresh Oyster on the Half Shell*,2
-anthonys-homeport,C09-07,Hawaiian Ahi Nachos*,1
-anthonys-homeport,C09-07,Oyster Shooter*,2
-anthonys-homeport,C09-07,Spicy Ahi Poke,2
-anthonys-homeport,C10-02,Blackened Oregon Rockfish,2
-anthonys-homeport,C10-02,Jumbo Prawn Cocktail,2
-anthonys-homeport,C10-02,Northwest Mussels,2
-anthonys-homeport,C10-02,Steamed Manila Clams,2
-anthonys-homeport,C11-01,Anthony's Award-Winning Clam Chowder,2
-anthonys-homeport,C11-01,Anthony's Clam Chowder,2
-anthonys-homeport,C11-04,Anthony's Award-Winning Clam Chowder,2
-anthonys-homeport,C11-04,Anthony's Clam Chowder,2
-anthonys-homeport,C12-01,Beach Burger*,2
-anthonys-homeport,C12-01,House-Ground Burger*,2
-anthonys-homeport,C12-01,Northwest Salmon Burger,2
-anthonys-homeport,C12-01,Wild Alaska True Cod Burger,2
-anthonys-homeport,C12-04,Beach Burger*,1
-anthonys-homeport,C12-04,House-Ground Burger*,1
-anthonys-homeport,C13-01,Rockfish Tacos,2
-anthonys-homeport,C13-01,Wild Salmon Tacos,2
-anthonys-homeport,C13-02,Rockfish Tacos,2
-anthonys-homeport,C13-02,Wild Salmon Tacos,2
-anthonys-homeport,C13-08,Rockfish Tacos,2
-anthonys-homeport,C13-08,Wild Salmon Tacos,2
-anthonys-homeport,C14-01,Butter Noodles,1
-anthonys-homeport,C14-01,Dungeness Crab & Shrimp Fettuccine,2
-anthonys-homeport,C14-01,Kids Fettuccine,2
-anthonys-homeport,C14-01,Mac 'n Cheese,1
-anthonys-homeport,C14-01,Seafood Fettuccine,2
-anthonys-homeport,C16-01,Anthony's Cobb Salad,2
-anthonys-homeport,C16-01,Anthony's House Salad,2
-anthonys-homeport,C16-01,Caesar Salad,2
-anthonys-homeport,C16-01,Calamari Salad,2
-anthonys-homeport,C16-01,Classic Caesar Salad,2
-anthonys-homeport,C16-01,Crispy Calamari Salad,2
-anthonys-homeport,C16-01,Seasonal Salad,2
-anthonys-homeport,C16-01,Shrimp & Blue Cheese Salad,2
-anthonys-homeport,C16-01,Silver Salmon Salad with Cranberry-Lime Relish,2
-anthonys-homeport,C16-02,Caesar Salad,2
-anthonys-homeport,C16-02,Classic Caesar Salad,2
-anthonys-homeport,C16-05,Anthony's Cobb Salad,1
-anthonys-homeport,C17-01,Bailey's Irish Cream Chocolate Mousse,2
-anthonys-homeport,C17-01,Best of Season Crepes,2
-anthonys-homeport,C17-01,Burnt Cream,2
-anthonys-homeport,C17-01,Caramel & Apple French Cake,2
-anthonys-homeport,C17-01,Crepes with Berry,2
-anthonys-homeport,C17-01,Crepes with Peaches,2
-anthonys-homeport,C17-01,Seasonal Ice Cream,2
-anthonys-homeport,C18-01,Bang Bang Chicken,2
-anthonys-homeport,C18-01,Chicken Kalbi Bowl,2
-anthonys-homeport,C18-02,Chicken Kalbi Bowl,2
-anthonys-homeport,C19-01,Beach Burger*,1
-anthonys-homeport,C19-01,Double R Ranch Top Sirloin*,2
-anthonys-homeport,C19-01,Filet Mignon*,2
-anthonys-homeport,C19-01,House-Ground Burger*,1
-anthonys-homeport,C19-01,Northwest Top Sirloin,1
-anthonys-homeport,C19-01,Royal Ranch Ribeye*,2
-anthonys-homeport,C19-01,Top Sirloin*,2
-anthonys-homeport,C19-03,Royal Ranch Ribeye*,2
-anthonys-homeport,C19-04,Beach Burger*,1
-anthonys-homeport,C19-04,House-Ground Burger*,2
-anthonys-homeport,C20-01,Bacon & Eggs,1
-anthonys-homeport,C20-01,Eggs Benedict,1
-anthonys-homeport,C20-01,Homeport Omelette,1
-anthonys-homeport,C20-01,HomePort Breakfast Bowl*,1
-anthonys-homeport,C21-01,Anthony's Cobb Salad,2
-anthonys-homeport,C21-01,Anthony's House Salad,2
-anthonys-homeport,C21-01,Crispy Coconut Prawns,2
-anthonys-homeport,C21-01,Dungeness Crab & Shrimp Dip,2
-anthonys-homeport,C21-01,Dungeness Crab & Shrimp Fettuccine,2
-anthonys-homeport,C21-01,Dungeness Crab & Shrimp Toast,2
-anthonys-homeport,C21-01,Jumbo Cocktail Shrimp,2
-anthonys-homeport,C21-01,Jumbo Prawn Cocktail,2
-anthonys-homeport,C21-01,Prawns & Chips,2
-anthonys-homeport,C21-01,Roasted Garlic Prawns,2
-anthonys-homeport,C21-01,Roasted Scampi Prawns,2
-anthonys-homeport,C21-01,Seafood Fettuccine,2
-anthonys-homeport,C21-01,Seafood Omelette,2
-anthonys-homeport,C21-01,Shrimp & Blue Cheese Salad,2
-anthonys-homeport,C21-01,Tempura Prawns,2
-anthonys-homeport,C21-02,Roasted Garlic Prawns,2
-anthonys-homeport,C21-02,Roasted Scampi Prawns,2
-anthonys-homeport,C21-03,Roasted Scampi Prawns,2
-anthonys-homeport,C21-04,Crab Stuffed Mushrooms,2
-anthonys-homeport,C21-04,Dungeness Crab & Shrimp Dip,2
-anthonys-homeport,C21-04,Dungeness Crab & Shrimp Fettuccine,2
-anthonys-homeport,C21-04,Dungeness Crab & Shrimp Toast,2
-anthonys-homeport,C21-04,Dungeness Crab Cake Bowl*,2
-anthonys-homeport,C21-04,Dungeness Crab Dinner,2
-anthonys-homeport,C21-04,Seafood Omelette,2
-anthonys-homeport,C21-05,Alaska Weathervane Scallops*,2
-anthonys-homeport,C21-05,Seafood Fettuccine,2
-anthonys-homeport,C21-07,Blackened Oregon Rockfish,2
-anthonys-homeport,C21-07,Fish & Chips,2
-anthonys-homeport,C21-07,Fresh Ahi Tempura*,2
-anthonys-homeport,C21-07,Fresh Pacific Swordfish,2
-anthonys-homeport,C21-07,Fresh Wild Alaska Halibut,2
-anthonys-homeport,C21-07,Hawaiian Ahi Nachos*,2
-anthonys-homeport,C21-07,Northwest Salmon Burger,2
-anthonys-homeport,C21-07,Northwest Wild Salmon & Chips,2
-anthonys-homeport,C21-07,Pan Fried Petrale Sole,2
-anthonys-homeport,C21-07,Petrale Sole Almondine,2
-anthonys-homeport,C21-07,Rockfish Tacos,2
-anthonys-homeport,C21-07,Salmon Ponzu Bowl,2
-anthonys-homeport,C21-07,Spicy Ahi Nachos*,2
-anthonys-homeport,C21-07,Spicy Ahi Poke,2
-anthonys-homeport,C21-07,True Cod & Chips,2
-anthonys-homeport,C21-07,Wild Alaska Halibut & Chips,2
-anthonys-homeport,C21-07,Wild Alaska Halibut 'n Chips,2
-anthonys-homeport,C21-07,Wild Alaska King Salmon with Sun-dried Tomato Basil Butter,2
-anthonys-homeport,C21-07,Wild Alaska Lingcod Dill,2
-anthonys-homeport,C21-07,Wild Alaska Silver Salmon Chargrilled,2
-anthonys-homeport,C21-07,Wild Alaska Silver Salmon with Red Pepper Beurre Blanc,2
-anthonys-homeport,C21-07,Wild Alaska True Cod Burger,2
-anthonys-homeport,C21-07,Wild Grilled Salmon,2
-anthonys-homeport,C21-07,Wild Northwest Salmon,2
-anthonys-homeport,C21-07,Wild Salmon Tacos,2
-anthonys-homeport,C21-07,Wild Seared Salmon Poke*,2
-anthonys-homeport,C21-09,Fish & Chips,2
-anthonys-homeport,C21-09,True Cod & Chips,2
-anthonys-homeport,C21-09,Wild Alaska Black Cod,1
-anthonys-homeport,C21-09,Wild Alaska True Cod Burger,2
-anthonys-homeport,C22-02,Anthony's Cobb Salad,2
-anthonys-homeport,C22-02,Moss Bay Avocado Toast,2
-anthonys-homeport,C22-02,San Juan Scramble,2
-anthonys-homeport,C22-08,Filet Mignon*,2
-anthonys-homeport,C22-11,Bacon & Eggs,2
-anthonys-homeport,C22-11,Dungeness Crab Cake Bowl*,2
-anthonys-homeport,C22-11,Eggs Benedict,2
-anthonys-homeport,C22-11,HomePort Breakfast Bowl*,2
-anthonys-homeport,C22-11,Homeport Omelette,2
-anthonys-homeport,C22-11,San Juan Scramble,2
-anthonys-homeport,C22-11,Seafood Omelette,2
-anthonys-homeport,C22-13,Fresh Oyster on the Half Shell*,2
-anthonys-homeport,C22-13,Oyster Shooter*,2
-anthonys-homeport,C22-13,Pan Fried Oysters*,2
-anthonys-homeport,C25-01,Anthony's Award-Winning Clam Chowder,2
-anthonys-homeport,C25-01,Anthony's Chardonnay,2
-anthonys-homeport,C25-01,Anthony's Chardonnay by Hedges,2
-anthonys-homeport,C25-01,Aperol Spritz,2
-anthonys-homeport,C25-01,Athletic Brewing Run Wild IPA,2
-anthonys-homeport,C25-01,Bang Bang Chicken,2
-anthonys-homeport,C25-01,Blood Orange Ginger Mule (Non-Alcoholic),2
-anthonys-homeport,C25-01,Blueberry Lavender Lemondrop (Non-Alcoholic),2
-anthonys-homeport,C25-01,Bud Light,2
-anthonys-homeport,C25-01,Budweiser,2
-anthonys-homeport,C25-01,Cabernet Sauvignon - Anthony's by Sparkman Cellars,2
-anthonys-homeport,C25-01,Classic Caesar Salad,2
-anthonys-homeport,C25-01,Crab Stuffed Mushrooms,2
-anthonys-homeport,C25-01,Crispy Calamari with Lemon Aioli,2
-anthonys-homeport,C25-01,Deschutes Black Butte Porter,2
-anthonys-homeport,C25-01,Farmstrong Brewing Cold Pilsner,2
-anthonys-homeport,C25-01,Fresh Oyster on the Half Shell*,2
-anthonys-homeport,C25-01,Fresh Puget Sound Mussels,2
-anthonys-homeport,C25-01,Gin Martini,2
-anthonys-homeport,C25-01,Ginger Citrus Splash (Non-Alcoholic),2
-anthonys-homeport,C25-01,HH Blackberry Hard Seltzer,2
-anthonys-homeport,C25-01,HH Blackberry Lemonade w/Vodka,2
-anthonys-homeport,C25-01,Hectors Authentic Chips & Salsa,2
-anthonys-homeport,C25-01,Heineken Zero (Non-Alcoholic),2
-anthonys-homeport,C25-01,House-Ground Burger*,2
-anthonys-homeport,C25-01,Manhattan,2
-anthonys-homeport,C25-01,Margarita,2
-anthonys-homeport,C25-01,Modelo Especial,2
-anthonys-homeport,C25-01,Moscow Mule,2
-anthonys-homeport,C25-01,Narrows Brewing Anthony's IPA,2
-anthonys-homeport,C25-01,Northwest Manila Clams,2
-anthonys-homeport,C25-01,Oyster Shooter*,2
-anthonys-homeport,C25-01,Pacifico,2
-anthonys-homeport,C25-01,Pinot Gris - A to Z Wineworks,2
-anthonys-homeport,C25-01,Pinot Noir Big Fire by R. Stuart,2
-anthonys-homeport,C25-01,Pom Paloma,2
-anthonys-homeport,C25-01,Red Diamond Merlot,2
-anthonys-homeport,C25-01,Riesling Ste Michelle,2
-anthonys-homeport,C25-01,"Sauvignon Blanc by Sparkman ""Pearl""",2
-anthonys-homeport,C25-01,Scuttlebutt Brewing Anthony's Pale Ale,2
-anthonys-homeport,C25-01,Silver City Ridgetop Red Ale,2
-anthonys-homeport,C25-01,Spicy Ahi Nachos*,2
-anthonys-homeport,C25-01,Spring Run Rose,2
-anthonys-homeport,C25-01,Syrah Boomtown by Dusted Valley,2
-anthonys-homeport,C25-01,Tempura Prawns,2
-anthonys-homeport,C25-01,Vodka Martini,2
-anthonys-homeport,C25-01,Widmer Hefeweizen,2
-anthonys-homeport,C25-02,Anthony's Award-Winning Clam Chowder,2
-anthonys-homeport,C25-02,Bang Bang Chicken,2
-anthonys-homeport,C25-02,Classic Caesar Salad,2
-anthonys-homeport,C25-02,Crab Stuffed Mushrooms,2
-anthonys-homeport,C25-02,Crispy Calamari with Lemon Aioli,2
-anthonys-homeport,C25-02,Fresh Oyster on the Half Shell*,2
-anthonys-homeport,C25-02,Fresh Puget Sound Mussels,2
-anthonys-homeport,C25-02,Hectors Authentic Chips & Salsa,2
-anthonys-homeport,C25-02,House-Ground Burger*,1
-anthonys-homeport,C25-02,Northwest Manila Clams,2
-anthonys-homeport,C25-02,Oyster Shooter*,2
-anthonys-homeport,C25-02,Spicy Ahi Nachos*,2
-anthonys-homeport,C25-02,Tempura Prawns,2
+restaurant,query_id,menu_item,relevance,comment
+anthonys-homeport,C01-08,Dungeness Crab & Shrimp Fettuccine,1,
+anthonys-homeport,C01-08,Seafood Fettuccine,1,
+anthonys-homeport,C02-01,Rockfish Tacos,2,
+anthonys-homeport,C02-01,Wild Salmon Tacos,2,
+anthonys-homeport,C02-02,Dungeness Crab & Shrimp Fettuccine,2,
+anthonys-homeport,C02-02,Seafood Fettuccine,2,
+anthonys-homeport,C02-03,Anthony's Cobb Salad,2,
+anthonys-homeport,C02-03,Anthony's House Salad,2,
+anthonys-homeport,C02-03,Caesar Salad,2,
+anthonys-homeport,C02-03,Calamari Salad,2,
+anthonys-homeport,C02-03,Classic Caesar Salad,2,
+anthonys-homeport,C02-03,Crispy Calamari Salad,2,
+anthonys-homeport,C02-03,Seasonal Salad,2,
+anthonys-homeport,C02-03,Shrimp & Blue Cheese Salad,2,
+anthonys-homeport,C02-03,Silver Salmon Salad with Cranberry-Lime Relish,2,
+anthonys-homeport,C02-04,Crepes with Peaches,2,
+anthonys-homeport,C02-07,Double R Ranch Top Sirloin*,2,
+anthonys-homeport,C02-07,Filet Mignon*,2,
+anthonys-homeport,C02-07,Northwest Top Sirloin,1,
+anthonys-homeport,C02-07,Royal Ranch Ribeye*,2,
+anthonys-homeport,C02-07,Top Sirloin*,2,
+anthonys-homeport,C02-09,Eggs Benedict,1,
+anthonys-homeport,C02-09,Homeport Omelette,1,
+anthonys-homeport,C02-10,Fresh Pacific Swordfish,2,
+anthonys-homeport,C02-10,Northwest Salmon Duet,2,
+anthonys-homeport,C02-10,Silver Salmon Salad with Cranberry-Lime Relish,2,
+anthonys-homeport,C03-02,Northwest Salmon Duet,1,
+anthonys-homeport,C03-02,Wild Alaska Silver Salmon with Red Pepper Beurre Blanc,1,
+anthonys-homeport,C03-03,Dungeness Crab & Shrimp Fettuccine,2,
+anthonys-homeport,C03-03,Kids Fettuccine,1,
+anthonys-homeport,C03-03,Seafood Fettuccine,2,
+anthonys-homeport,C03-03,Butter Noodles,1,
+anthonys-homeport,C03-04,Fresh Oyster on the Half Shell*,2,
+anthonys-homeport,C03-04,Jumbo Prawn Cocktail,1,
+anthonys-homeport,C03-04,Moss Bay Avocado Toast,1,
+anthonys-homeport,C03-04,Spicy Ahi Poke,2,
+anthonys-homeport,C03-05,Chicken Kalbi Bowl,2,
+anthonys-homeport,C03-05,Double R Ranch Top Sirloin*,2,
+anthonys-homeport,C03-05,Royal Ranch Ribeye*,2,
+anthonys-homeport,C03-05,Top Sirloin*,2,
+anthonys-homeport,C03-06,Butter Noodles,2,
+anthonys-homeport,C03-06,Dungeness Crab & Shrimp Fettuccine,1,
+anthonys-homeport,C03-06,Kids Fettuccine,1,
+anthonys-homeport,C03-06,Mac 'n Cheese,1,
+anthonys-homeport,C03-06,Seafood Fettuccine,1,
+anthonys-homeport,C03-07,Chicken Kalbi Bowl,1,
+anthonys-homeport,C03-07,Salmon Ponzu Bowl,1,
+anthonys-homeport,C03-07,Wild Alaska Black Cod,2,
+anthonys-homeport,C03-07,Portabello Mushroom,2,
+anthonys-homeport,C03-09,Blackened Oregon Rockfish,1,
+anthonys-homeport,C03-09,Fresh Pacific Swordfish,1,
+anthonys-homeport,C03-10,Silver Salmon Salad with Cranberry-Lime Relish,1,
+anthonys-homeport,C03-10,Anthony's House Salad,1,
+anthonys-homeport,C03-11,Portabello Mushroom,2,
+anthonys-homeport,C03-11,Portobello Mushroom,2,
+anthonys-homeport,C03-12,Bailey's Irish Cream Chocolate Mousse,2,
+anthonys-homeport,C03-12,Best of Season Crepes,1,
+anthonys-homeport,C03-12,Burnt Cream,1,
+anthonys-homeport,C03-12,Caramel & Apple French Cake,2,
+anthonys-homeport,C04-01,Double R Ranch Top Sirloin*,2,
+anthonys-homeport,C04-01,Filet Mignon*,1,
+anthonys-homeport,C04-01,Royal Ranch Ribeye*,2,
+anthonys-homeport,C04-01,Top Sirloin*,2,
+anthonys-homeport,C04-02,Alaska Weathervane Scallops*,1,
+anthonys-homeport,C04-02,Wild Seared Salmon Poke*,2,
+anthonys-homeport,C04-02,Wild Alaska King Salmon with Sun-dried Tomato Basil Butter,2,
+anthonys-homeport,C04-02,Wild Alaska Silver Salmon Chargrilled,2,
+anthonys-homeport,C04-02,Wild Alaska Silver Salmon with Red Pepper Beurre Blanc,1,
+anthonys-homeport,C04-03,Wild Seared Salmon Poke*,2,
+anthonys-homeport,C04-03,Pan Fried Petrale Sole,1,
+anthonys-homeport,C04-03,Salmon Ponzu Bowl,1,
+anthonys-homeport,C04-03,Wild Alaska Silver Salmon Chargrilled,1,
+anthonys-homeport,C04-03,Wild Northwest Salmon,1,
+anthonys-homeport,C04-05,Beach Burger*,2,
+anthonys-homeport,C04-05,Northwest Salmon Burger,1,
+anthonys-homeport,C04-09,Crispy Calamari,2,
+anthonys-homeport,C04-09,Crispy Coconut Prawns,2,
+anthonys-homeport,C04-09,Tempura Asparagus,2,
+anthonys-homeport,C04-09,Tempura Prawns,2,
+anthonys-homeport,C04-10,Bang Bang Chicken,2,
+anthonys-homeport,C05-01,Caesar Salad,2,
+anthonys-homeport,C05-01,Classic Caesar Salad,2,
+anthonys-homeport,C05-12,Burrata & Tomatoes,2,
+anthonys-homeport,C05-13,Fresh Wild Alaska Halibut,2,
+anthonys-homeport,C05-13,Wild Alaska Halibut & Chips,2,
+anthonys-homeport,C05-13,Wild Alaska Halibut 'n Chips,2,
+anthonys-homeport,C06-05,Homeport Omelette,1,
+anthonys-homeport,C06-07,Crispy Calamari,2,
+anthonys-homeport,C08-05,Anthony's House Salad,1,
+anthonys-homeport,C08-06,Portobello Mushroom,1,
+anthonys-homeport,C08-09,Alaska Weathervane Scallops*,2,
+anthonys-homeport,C08-09,Blackened Oregon Rockfish,2,
+anthonys-homeport,C08-09,Dungeness Crab & Shrimp Fettuccine,2,
+anthonys-homeport,C08-09,Dungeness Crab Dinner,2,
+anthonys-homeport,C08-09,Fish & Chips,2,
+anthonys-homeport,C08-09,Fresh Ahi Tempura*,2,
+anthonys-homeport,C08-09,Fresh Pacific Swordfish,2,
+anthonys-homeport,C08-09,Fresh Wild Alaska Halibut,2,
+anthonys-homeport,C08-09,Lobster Dinner,2,
+anthonys-homeport,C08-09,Pan Fried Oysters*,2,
+anthonys-homeport,C08-09,Petrale Sole Almondine,2,
+anthonys-homeport,C08-09,Roasted Scampi Prawns,2,
+anthonys-homeport,C08-09,Seafood Fettuccine,2,
+anthonys-homeport,C08-09,Tempura Prawns,2,
+anthonys-homeport,C08-09,Wild Alaska Black Cod,2,
+anthonys-homeport,C08-09,Wild Alaska King Salmon with Sun-dried Tomato Basil Butter,2,
+anthonys-homeport,C08-09,Wild Alaska Lingcod Dill,2,
+anthonys-homeport,C08-09,Wild Alaska Silver Salmon Chargrilled,2,
+anthonys-homeport,C08-09,Wild Alaska Silver Salmon with Red Pepper Beurre Blanc,2,
+anthonys-homeport,C08-09,Crispy Calamari,2,
+anthonys-homeport,C08-09,Crispy Coconut Prawns,2,
+anthonys-homeport,C08-09,Dungeness Crab & Shrimp Dip,1,
+anthonys-homeport,C09-01,Crispy Coconut Prawns,2,
+anthonys-homeport,C09-01,Jumbo Prawn Cocktail,2,
+anthonys-homeport,C09-01,Prawns & Chips,2,
+anthonys-homeport,C09-01,Roasted Garlic Prawns,2,
+anthonys-homeport,C09-01,Roasted Scampi Prawns,2,
+anthonys-homeport,C09-01,Tempura Prawns,2,
+anthonys-homeport,C09-02,Fresh Puget Sound Mussels,2,
+anthonys-homeport,C09-02,Northwest Manila Clams,2,
+anthonys-homeport,C09-02,Northwest Mussels,2,
+anthonys-homeport,C09-02,Steamed Manila Clams,2,
+anthonys-homeport,C09-02,Anthony's Clam Chowder,1,
+anthonys-homeport,C09-03,Moss Bay Avocado Toast,2,
+anthonys-homeport,C09-05,Hectors Authentic Chips & Salsa,1,
+anthonys-homeport,C09-07,Fresh Oyster on the Half Shell*,2,
+anthonys-homeport,C09-07,Hawaiian Ahi Nachos*,1,
+anthonys-homeport,C09-07,Oyster Shooter*,2,
+anthonys-homeport,C09-07,Spicy Ahi Poke,2,
+anthonys-homeport,C10-02,Blackened Oregon Rockfish,2,
+anthonys-homeport,C10-02,Jumbo Prawn Cocktail,2,
+anthonys-homeport,C10-02,Northwest Mussels,2,
+anthonys-homeport,C10-02,Steamed Manila Clams,2,
+anthonys-homeport,C11-01,Anthony's Award-Winning Clam Chowder,2,
+anthonys-homeport,C11-01,Anthony's Clam Chowder,2,
+anthonys-homeport,C11-04,Anthony's Award-Winning Clam Chowder,2,
+anthonys-homeport,C11-04,Anthony's Clam Chowder,2,
+anthonys-homeport,C12-01,Beach Burger*,2,
+anthonys-homeport,C12-01,House-Ground Burger*,2,
+anthonys-homeport,C12-01,Northwest Salmon Burger,2,
+anthonys-homeport,C12-01,Wild Alaska True Cod Burger,2,
+anthonys-homeport,C12-04,Beach Burger*,1,
+anthonys-homeport,C12-04,House-Ground Burger*,1,
+anthonys-homeport,C13-01,Rockfish Tacos,2,
+anthonys-homeport,C13-01,Wild Salmon Tacos,2,
+anthonys-homeport,C13-02,Rockfish Tacos,2,
+anthonys-homeport,C13-02,Wild Salmon Tacos,2,
+anthonys-homeport,C13-08,Rockfish Tacos,2,
+anthonys-homeport,C13-08,Wild Salmon Tacos,2,
+anthonys-homeport,C14-01,Butter Noodles,1,
+anthonys-homeport,C14-01,Dungeness Crab & Shrimp Fettuccine,2,
+anthonys-homeport,C14-01,Kids Fettuccine,2,
+anthonys-homeport,C14-01,Mac 'n Cheese,1,
+anthonys-homeport,C14-01,Seafood Fettuccine,2,
+anthonys-homeport,C16-01,Anthony's Cobb Salad,2,
+anthonys-homeport,C16-01,Anthony's House Salad,2,
+anthonys-homeport,C16-01,Caesar Salad,2,
+anthonys-homeport,C16-01,Calamari Salad,2,
+anthonys-homeport,C16-01,Classic Caesar Salad,2,
+anthonys-homeport,C16-01,Crispy Calamari Salad,2,
+anthonys-homeport,C16-01,Seasonal Salad,2,
+anthonys-homeport,C16-01,Shrimp & Blue Cheese Salad,2,
+anthonys-homeport,C16-01,Silver Salmon Salad with Cranberry-Lime Relish,2,
+anthonys-homeport,C16-02,Caesar Salad,2,
+anthonys-homeport,C16-02,Classic Caesar Salad,2,
+anthonys-homeport,C16-05,Anthony's Cobb Salad,1,
+anthonys-homeport,C17-01,Bailey's Irish Cream Chocolate Mousse,2,
+anthonys-homeport,C17-01,Best of Season Crepes,2,
+anthonys-homeport,C17-01,Burnt Cream,2,
+anthonys-homeport,C17-01,Caramel & Apple French Cake,2,
+anthonys-homeport,C17-01,Crepes with Berry,2,
+anthonys-homeport,C17-01,Crepes with Peaches,2,
+anthonys-homeport,C17-01,Seasonal Ice Cream,2,
+anthonys-homeport,C18-01,Bang Bang Chicken,2,
+anthonys-homeport,C18-01,Chicken Kalbi Bowl,2,
+anthonys-homeport,C18-02,Chicken Kalbi Bowl,2,
+anthonys-homeport,C19-01,Beach Burger*,1,
+anthonys-homeport,C19-01,Double R Ranch Top Sirloin*,2,
+anthonys-homeport,C19-01,Filet Mignon*,2,
+anthonys-homeport,C19-01,House-Ground Burger*,1,
+anthonys-homeport,C19-01,Northwest Top Sirloin,1,
+anthonys-homeport,C19-01,Royal Ranch Ribeye*,2,
+anthonys-homeport,C19-01,Top Sirloin*,2,
+anthonys-homeport,C19-03,Royal Ranch Ribeye*,2,
+anthonys-homeport,C19-04,Beach Burger*,1,
+anthonys-homeport,C19-04,House-Ground Burger*,2,
+anthonys-homeport,C20-01,Bacon & Eggs,1,
+anthonys-homeport,C20-01,Eggs Benedict,1,
+anthonys-homeport,C20-01,Homeport Omelette,1,
+anthonys-homeport,C20-01,HomePort Breakfast Bowl*,1,
+anthonys-homeport,C20-01,San Juan Scramble,0,"pork only as a bacon side, not the primary ingredient"
+anthonys-homeport,C21-01,Anthony's Cobb Salad,2,
+anthonys-homeport,C21-01,Anthony's House Salad,2,
+anthonys-homeport,C21-01,Crispy Coconut Prawns,2,
+anthonys-homeport,C21-01,Dungeness Crab & Shrimp Dip,2,
+anthonys-homeport,C21-01,Dungeness Crab & Shrimp Fettuccine,2,
+anthonys-homeport,C21-01,Dungeness Crab & Shrimp Toast,2,
+anthonys-homeport,C21-01,Jumbo Cocktail Shrimp,2,
+anthonys-homeport,C21-01,Jumbo Prawn Cocktail,2,
+anthonys-homeport,C21-01,Prawns & Chips,2,
+anthonys-homeport,C21-01,Roasted Garlic Prawns,2,
+anthonys-homeport,C21-01,Roasted Scampi Prawns,2,
+anthonys-homeport,C21-01,Seafood Fettuccine,2,
+anthonys-homeport,C21-01,Seafood Omelette,2,
+anthonys-homeport,C21-01,Shrimp & Blue Cheese Salad,2,
+anthonys-homeport,C21-01,Tempura Prawns,2,
+anthonys-homeport,C21-02,Roasted Garlic Prawns,2,
+anthonys-homeport,C21-02,Roasted Scampi Prawns,2,
+anthonys-homeport,C21-03,Roasted Scampi Prawns,2,
+anthonys-homeport,C21-04,Crab Stuffed Mushrooms,2,
+anthonys-homeport,C21-04,Dungeness Crab & Shrimp Dip,2,
+anthonys-homeport,C21-04,Dungeness Crab & Shrimp Fettuccine,2,
+anthonys-homeport,C21-04,Dungeness Crab & Shrimp Toast,2,
+anthonys-homeport,C21-04,Dungeness Crab Cake Bowl*,2,
+anthonys-homeport,C21-04,Dungeness Crab Dinner,2,
+anthonys-homeport,C21-04,Seafood Omelette,2,
+anthonys-homeport,C21-05,Alaska Weathervane Scallops*,2,
+anthonys-homeport,C21-05,Seafood Fettuccine,2,
+anthonys-homeport,C21-07,Blackened Oregon Rockfish,2,
+anthonys-homeport,C21-07,Fish & Chips,2,
+anthonys-homeport,C21-07,Fresh Ahi Tempura*,2,
+anthonys-homeport,C21-07,Fresh Pacific Swordfish,2,
+anthonys-homeport,C21-07,Fresh Wild Alaska Halibut,2,
+anthonys-homeport,C21-07,Hawaiian Ahi Nachos*,2,
+anthonys-homeport,C21-07,Northwest Salmon Burger,2,
+anthonys-homeport,C21-07,Northwest Wild Salmon & Chips,2,
+anthonys-homeport,C21-07,Pan Fried Petrale Sole,2,
+anthonys-homeport,C21-07,Petrale Sole Almondine,2,
+anthonys-homeport,C21-07,Rockfish Tacos,2,
+anthonys-homeport,C21-07,Salmon Ponzu Bowl,2,
+anthonys-homeport,C21-07,Spicy Ahi Nachos*,2,
+anthonys-homeport,C21-07,Spicy Ahi Poke,2,
+anthonys-homeport,C21-07,True Cod & Chips,2,
+anthonys-homeport,C21-07,Wild Alaska Halibut & Chips,2,
+anthonys-homeport,C21-07,Wild Alaska Halibut 'n Chips,2,
+anthonys-homeport,C21-07,Wild Alaska King Salmon with Sun-dried Tomato Basil Butter,2,
+anthonys-homeport,C21-07,Wild Alaska Lingcod Dill,2,
+anthonys-homeport,C21-07,Wild Alaska Silver Salmon Chargrilled,2,
+anthonys-homeport,C21-07,Wild Alaska Silver Salmon with Red Pepper Beurre Blanc,2,
+anthonys-homeport,C21-07,Wild Alaska True Cod Burger,2,
+anthonys-homeport,C21-07,Wild Grilled Salmon,2,
+anthonys-homeport,C21-07,Wild Northwest Salmon,2,
+anthonys-homeport,C21-07,Wild Salmon Tacos,2,
+anthonys-homeport,C21-07,Wild Seared Salmon Poke*,2,
+anthonys-homeport,C21-09,Fish & Chips,2,
+anthonys-homeport,C21-09,True Cod & Chips,2,
+anthonys-homeport,C21-09,Wild Alaska Black Cod,1,
+anthonys-homeport,C21-09,Wild Alaska True Cod Burger,2,
+anthonys-homeport,C22-02,Anthony's Cobb Salad,2,
+anthonys-homeport,C22-02,Moss Bay Avocado Toast,2,
+anthonys-homeport,C22-02,San Juan Scramble,2,
+anthonys-homeport,C22-08,Filet Mignon*,2,
+anthonys-homeport,C22-11,Bacon & Eggs,2,
+anthonys-homeport,C22-11,Dungeness Crab Cake Bowl*,2,
+anthonys-homeport,C22-11,Eggs Benedict,2,
+anthonys-homeport,C22-11,HomePort Breakfast Bowl*,2,
+anthonys-homeport,C22-11,Homeport Omelette,2,
+anthonys-homeport,C22-11,San Juan Scramble,2,
+anthonys-homeport,C22-11,Seafood Omelette,2,
+anthonys-homeport,C22-13,Fresh Oyster on the Half Shell*,2,
+anthonys-homeport,C22-13,Oyster Shooter*,2,
+anthonys-homeport,C22-13,Pan Fried Oysters*,2,
+anthonys-homeport,C25-01,Anthony's Award-Winning Clam Chowder,2,
+anthonys-homeport,C25-01,Anthony's Chardonnay,2,
+anthonys-homeport,C25-01,Anthony's Chardonnay by Hedges,2,
+anthonys-homeport,C25-01,Aperol Spritz,2,
+anthonys-homeport,C25-01,Athletic Brewing Run Wild IPA,2,
+anthonys-homeport,C25-01,Bang Bang Chicken,2,
+anthonys-homeport,C25-01,Blood Orange Ginger Mule (Non-Alcoholic),2,
+anthonys-homeport,C25-01,Blueberry Lavender Lemondrop (Non-Alcoholic),2,
+anthonys-homeport,C25-01,Bud Light,2,
+anthonys-homeport,C25-01,Budweiser,2,
+anthonys-homeport,C25-01,Cabernet Sauvignon - Anthony's by Sparkman Cellars,2,
+anthonys-homeport,C25-01,Classic Caesar Salad,2,
+anthonys-homeport,C25-01,Crab Stuffed Mushrooms,2,
+anthonys-homeport,C25-01,Crispy Calamari with Lemon Aioli,2,
+anthonys-homeport,C25-01,Deschutes Black Butte Porter,2,
+anthonys-homeport,C25-01,Farmstrong Brewing Cold Pilsner,2,
+anthonys-homeport,C25-01,Fresh Oyster on the Half Shell*,2,
+anthonys-homeport,C25-01,Fresh Puget Sound Mussels,2,
+anthonys-homeport,C25-01,Gin Martini,2,
+anthonys-homeport,C25-01,Ginger Citrus Splash (Non-Alcoholic),2,
+anthonys-homeport,C25-01,HH Blackberry Hard Seltzer,2,
+anthonys-homeport,C25-01,HH Blackberry Lemonade w/Vodka,2,
+anthonys-homeport,C25-01,Hectors Authentic Chips & Salsa,2,
+anthonys-homeport,C25-01,Heineken Zero (Non-Alcoholic),2,
+anthonys-homeport,C25-01,House-Ground Burger*,2,
+anthonys-homeport,C25-01,Manhattan,2,
+anthonys-homeport,C25-01,Margarita,2,
+anthonys-homeport,C25-01,Modelo Especial,2,
+anthonys-homeport,C25-01,Moscow Mule,2,
+anthonys-homeport,C25-01,Narrows Brewing Anthony's IPA,2,
+anthonys-homeport,C25-01,Northwest Manila Clams,2,
+anthonys-homeport,C25-01,Oyster Shooter*,2,
+anthonys-homeport,C25-01,Pacifico,2,
+anthonys-homeport,C25-01,Pinot Gris - A to Z Wineworks,2,
+anthonys-homeport,C25-01,Pinot Noir Big Fire by R. Stuart,2,
+anthonys-homeport,C25-01,Pom Paloma,2,
+anthonys-homeport,C25-01,Red Diamond Merlot,2,
+anthonys-homeport,C25-01,Riesling Ste Michelle,2,
+anthonys-homeport,C25-01,"Sauvignon Blanc by Sparkman ""Pearl""",2,
+anthonys-homeport,C25-01,Scuttlebutt Brewing Anthony's Pale Ale,2,
+anthonys-homeport,C25-01,Silver City Ridgetop Red Ale,2,
+anthonys-homeport,C25-01,Spicy Ahi Nachos*,2,
+anthonys-homeport,C25-01,Spring Run Rose,2,
+anthonys-homeport,C25-01,Syrah Boomtown by Dusted Valley,2,
+anthonys-homeport,C25-01,Tempura Prawns,2,
+anthonys-homeport,C25-01,Vodka Martini,2,
+anthonys-homeport,C25-01,Widmer Hefeweizen,2,
+anthonys-homeport,C25-02,Anthony's Award-Winning Clam Chowder,2,
+anthonys-homeport,C25-02,Bang Bang Chicken,2,
+anthonys-homeport,C25-02,Classic Caesar Salad,2,
+anthonys-homeport,C25-02,Crab Stuffed Mushrooms,2,
+anthonys-homeport,C25-02,Crispy Calamari with Lemon Aioli,2,
+anthonys-homeport,C25-02,Fresh Oyster on the Half Shell*,2,
+anthonys-homeport,C25-02,Fresh Puget Sound Mussels,2,
+anthonys-homeport,C25-02,Hectors Authentic Chips & Salsa,2,
+anthonys-homeport,C25-02,House-Ground Burger*,1,
+anthonys-homeport,C25-02,Northwest Manila Clams,2,
+anthonys-homeport,C25-02,Oyster Shooter*,2,
+anthonys-homeport,C25-02,Spicy Ahi Nachos*,2,
+anthonys-homeport,C25-02,Tempura Prawns,2,

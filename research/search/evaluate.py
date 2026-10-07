@@ -63,15 +63,35 @@ def load_queries(
     return rows
 
 
-def load_relevance() -> dict[tuple[str, str], dict[str, int]]:
-    """Return {(restaurant_id, query_id): {item_name: relevance}}."""
-    judgments: dict[tuple[str, str], dict[str, int]] = defaultdict(dict)
+def _relevance_rows():
     for path in sorted(_QUERIES_DIR.glob("relevance_*.csv")):
         with open(path, newline="", encoding="utf-8") as f:
-            for row in csv.DictReader(f):
-                key = (row["restaurant"], row["query_id"])
-                judgments[key][row["menu_item"]] = int(row["relevance"])
+            yield from csv.DictReader(f)
+
+
+def load_relevance() -> dict[tuple[str, str], dict[str, int]]:
+    """
+    Return {(restaurant_id, query_id): {item_name: relevance}} for relevance >= 1.
+
+    Rows graded 0 exist only to carry a comment explaining why an item is not
+    relevant; they are dropped here so every consumer sees the same sparse
+    judgments as before (a 0 row and a missing row mean the same thing).
+    """
+    judgments: dict[tuple[str, str], dict[str, int]] = defaultdict(dict)
+    for row in _relevance_rows():
+        rel = int(row["relevance"])
+        if rel > 0:
+            judgments[(row["restaurant"], row["query_id"])][row["menu_item"]] = rel
     return dict(judgments)
+
+
+def load_relevance_comments() -> dict[tuple[str, str, str], tuple[int, str]]:
+    """Return {(restaurant_id, query_id, item_name): (relevance, comment)} for rows with a comment, 0 rows included."""
+    return {
+        (row["restaurant"], row["query_id"], row["menu_item"]): (int(row["relevance"]), row["comment"])
+        for row in _relevance_rows()
+        if (row.get("comment") or "").strip()
+    }
 
 
 # ---------------------------------------------------------------------------
@@ -172,6 +192,7 @@ def evaluate(
     """
     queries = load_queries(category=category, difficulty=difficulty, query_ids=query_ids)
     judgments = load_relevance()
+    comments = load_relevance_comments() if verbose else {}
 
     per_query: list[dict] = []
 
@@ -215,6 +236,10 @@ def evaluate(
                 f" MRR={score['mrr']:.3f}"
                 f"  «{q['query_text']}»"
             )
+            for rank, item in enumerate(results[:k_ndcg], 1):
+                note = comments.get((item["restaurant_id"], qid, item["name"]))
+                if note:
+                    print(f"        #{rank} {item['name']} [rel {note[0]}]: {note[1]}")
 
     ndcg_key = f"ndcg@{k_ndcg}"
     recall_key = f"recall@{k_recall}"
