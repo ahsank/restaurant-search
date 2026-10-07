@@ -8,7 +8,7 @@ import argparse
 import re
 from pathlib import Path
 
-_DATA_DIR = Path(__file__).parents[2] / "data"
+_DATA_DIR = Path(__file__).resolve().parents[2] / "data"
 
 
 def _parse_price(raw: str) -> float | None:
@@ -130,6 +130,23 @@ def load_data(restaurant_ids: set[str] | None = None) -> tuple[dict, dict]:
         restaurants[rid] = restaurant
         menus[rid] = items
     return restaurants, menus
+
+
+def benchmark_fingerprint(restaurant_ids: set[str] | None = None) -> str:
+    """
+    Short hash of everything a model's scores depend on: the menu files
+    (data/menus/<id>.md for the given restaurants, or all) and
+    data/queries/queries.csv. Relevance judgments are deliberately excluded,
+    so cached scores (crossencoder .scores.tsv, LLM rankings .jsonl) stay valid
+    when only the relevance_*.csv labels change.
+    """
+    import hashlib
+    h = hashlib.sha256()
+    for path in sorted((_DATA_DIR / "menus").glob("*.md")):
+        if restaurant_ids is None or path.stem in restaurant_ids:
+            h.update(path.name.encode() + b"\0" + path.read_bytes() + b"\0")
+    h.update((_DATA_DIR / "queries" / "queries.csv").read_bytes())
+    return h.hexdigest()[:16]
 
 
 def judged_restaurant_ids() -> set[str]:

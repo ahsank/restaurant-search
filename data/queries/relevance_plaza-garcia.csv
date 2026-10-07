@@ -5,20 +5,40 @@ plaza-garcia,C01-01,Camarones al Mojo de Ajo,2
 plaza-garcia,C01-01,Garlic Shrimp,2
 plaza-garcia,C01-01,Seafood Enchiladas,1
 plaza-garcia,C01-01,Tacos De Camaron,2
+plaza-garcia,C01-01,Arroz Con Mariscos,2
+plaza-garcia,C01-01,Camarones a la Crema,2
+plaza-garcia,C01-01,Ceviche De Camarones,2
+plaza-garcia,C01-01,Mariscos Rancheros,2
+plaza-garcia,C01-01,Shrimp Chimichangas,2
 plaza-garcia,C01-03,Ceviche De Camarones,2
 plaza-garcia,C01-03,Coctel de Camaron,2
 plaza-garcia,C01-03,Seafood Burrito,2
 plaza-garcia,C01-03,Seafood Chimichangas,2
 plaza-garcia,C01-03,Seafood Enchiladas,2
 plaza-garcia,C01-03,Sopa Del Mar,2
+plaza-garcia,C01-03,Mariscos Rancheros,2
+plaza-garcia,C01-03,Pescado a la Parrilla,2
+plaza-garcia,C01-03,Quesadilla Camarones,2
+plaza-garcia,C01-03,Shrimp Chimichangas,2
 plaza-garcia,C01-04,Appetizer Combo Plate,1
 plaza-garcia,C01-04,Combo 1: Three Tacos,2
 plaza-garcia,C01-04,"Combo 2: One Taco, One Enchilada, One Tamal",2
 plaza-garcia,C01-04,Combo 6: Three Enchiladas,2
+plaza-garcia,C01-04,"Combo 3: Two Enchiladas, One Taco or Bean Tostada",2
+plaza-garcia,C01-04,"Combo 4: One Enchilada, Bean Tostada, One Taco",2
+plaza-garcia,C01-04,"Combo 5: One Chile Relleno, One Enchilada and Choice",2
+plaza-garcia,C01-04,"Combo 7: One Enchilada, One Beef Burrito or Chalupa",2
+plaza-garcia,C01-04,Combo 8: Two Beef Burritos,2
+plaza-garcia,C01-04,Combo 9: Two Chalupas,2
 plaza-garcia,C01-06,Street Tacos,2
 plaza-garcia,C01-06,Tacos De Camaron,1
+plaza-garcia,C01-06,Tacos Al Carbon,2
+plaza-garcia,C01-06,Tacos Al Pastor,2
+plaza-garcia,C01-06,Tacos De Pescado,1
+plaza-garcia,C01-06,Taquitos Rancheros (Entree),1
 plaza-garcia,C02-01,Seafood Burrito,1
 plaza-garcia,C02-01,Tacos De Camaron,2
+plaza-garcia,C02-01,Tacos De Pescado,2
 plaza-garcia,C02-07,Asada y Mas,2
 plaza-garcia,C02-07,Carne Asada,2
 plaza-garcia,C02-07,Chef Special,1
@@ -33,14 +53,24 @@ plaza-garcia,C02-09,Burrito Chile Verde,1
 plaza-garcia,C02-09,Carnitas De Puerco,2
 plaza-garcia,C02-09,Chile Verde,2
 plaza-garcia,C02-09,Piernas De Puerco,2
+plaza-garcia,C02-09,Enchiladas Verdes,2
 plaza-garcia,C03-01,Camarones Bravos,2
 plaza-garcia,C03-01,Camarones a la Diabla,2
 plaza-garcia,C03-01,Garlic Shrimp,1
+plaza-garcia,C03-05,Fajitas Carne Asada,1
+plaza-garcia,C03-05,Steak Garcia Ranchero,1
+plaza-garcia,C03-05,Steak Matador,2
 plaza-garcia,C03-09,Camarones Bravos,1
 plaza-garcia,C03-09,Camarones a la Diabla,2
+plaza-garcia,C03-12,Churros,1
+plaza-garcia,C03-12,Flan,1
+plaza-garcia,C03-12,Fried Ice Cream,1
+plaza-garcia,C03-12,Pastel Tres Leches,1
 plaza-garcia,C04-01,Carne Asada,2
 plaza-garcia,C04-01,Chef Special,1
 plaza-garcia,C04-01,Steak Matador,2
+plaza-garcia,C04-01,Carnitas De Res,1
+plaza-garcia,C04-01,Steak Garcia Ranchero,1
 plaza-garcia,C04-05,Kids Cheeseburger,1
 plaza-garcia,C04-05,Kids Hamburger,1
 plaza-garcia,C04-07,Carnitas De Puerco,2
@@ -48,12 +78,15 @@ plaza-garcia,C04-07,Chile Verde,2
 plaza-garcia,C04-08,Chile Colorado,2
 plaza-garcia,C04-09,Nachos,1
 plaza-garcia,C04-09,Taquitos Rancheros,2
+plaza-garcia,C04-09,Appetizer Combo Plate,1
+plaza-garcia,C04-09,Cheese Crispy Garcia,1
 plaza-garcia,C04-10,Chicken Wings,2
 plaza-garcia,C04-10,Crispy Chicken Salad,1
 plaza-garcia,C05-01,Cesar Salad,2
 plaza-garcia,C05-02,Grilled Quesadilla,2
 plaza-garcia,C05-02,Quesadillas,2
 plaza-garcia,C05-02,Veggie Quesadilla,2
+plaza-garcia,C05-02,Appetizer Combo Plate,1
 plaza-garcia,C05-03,Fiesta Avocado,2
 plaza-garcia,C05-04,Deluxe Camaron Enchilada,2
 plaza-garcia,C05-04,Deluxe Mole Enchilada,2
@@ -61,32 +94,52 @@ plaza-garcia,C05-04,Enchilada Garcia,2
 plaza-garcia,C05-04,Enchiladas Suizas,2
 plaza-garcia,C05-04,Seafood Enchiladas,2
 plaza-garcia,C05-04,Spinach Enchiladas,2
+plaza-garcia,C05-04,Small Enchilada,2
 plaza-garcia,C05-08,Ceviche De Camarones,2
 plaza-garcia,C05-15,Camarones a la Crema,1
 plaza-garcia,C05-15,Camarones a la Diabla,2
+plaza-garcia,C06-04,Fajitas Carne Asada,2
+plaza-garcia,C06-04,Steak Matador,2
 plaza-garcia,C06-05,Arroz Con Pollo,1
 plaza-garcia,C06-05,Camarones al Mojo de Ajo,2
+plaza-garcia,C06-05,Camarones a la Diabla,2
+plaza-garcia,C06-05,Garlic Shrimp,2
 plaza-garcia,C06-09,Pollo Asado,2
 plaza-garcia,C06-09,Pollo Chipotle,1
 plaza-garcia,C07-03,Burrito Al Pastor,2
 plaza-garcia,C07-03,Street Tacos,2
+plaza-garcia,C07-03,Tacos Al Pastor,2
+plaza-garcia,C07-04,Tacos Al Pastor,2
+plaza-garcia,C07-05,Camarones al Mojo de Ajo,2
 plaza-garcia,C07-06,Arroz Con Pollo,2
+plaza-garcia,C07-07,Arroz Con Pollo,2
+plaza-garcia,C07-14,Sopapillas,1
 plaza-garcia,C08-01,Arroz Con Verduras,1
 plaza-garcia,C08-01,Burrito Vegetariano,2
 plaza-garcia,C08-01,Enchiladas Vegetarianas,2
 plaza-garcia,C08-01,Vegetarian Fajitas,2
 plaza-garcia,C08-01,Veggie Quesadilla,2
+plaza-garcia,C08-01,Esspresso Burrito,2
+plaza-garcia,C08-01,Spinach Enchiladas,2
+plaza-garcia,C08-04,Fiesta Avocado,2
+plaza-garcia,C08-05,Taco Salad,2
+plaza-garcia,C08-06,Fiesta Avocado,2
 plaza-garcia,C08-07,Burrito Vegetariano,2
 plaza-garcia,C08-07,Esspresso Burrito,1
+plaza-garcia,C08-07,Enchiladas Vegetarianas,1
 plaza-garcia,C08-09,Camarones a la Diabla,2
 plaza-garcia,C08-09,Ceviche De Camarones,2
 plaza-garcia,C08-09,Seafood Burrito,2
 plaza-garcia,C08-09,Seafood Enchiladas,2
 plaza-garcia,C08-09,Sopa Del Mar,1
+plaza-garcia,C08-09,Coctel de Camaron,2
+plaza-garcia,C08-09,Pescado a la Parrilla,2
 plaza-garcia,C09-01,Camarones Garcia,2
 plaza-garcia,C09-01,Camarones a la Diabla,2
 plaza-garcia,C09-01,Camarones al Mojo de Ajo,2
 plaza-garcia,C09-01,Seafood Enchiladas,1
+plaza-garcia,C09-01,Coctel de Camaron,2
+plaza-garcia,C09-01,Seafood Chimichangas,1
 plaza-garcia,C09-02,Seafood Enchiladas,1
 plaza-garcia,C09-05,Bean Dip,1
 plaza-garcia,C09-05,Nachos,2
@@ -102,6 +155,7 @@ plaza-garcia,C10-02,Seafood Enchiladas,1
 plaza-garcia,C11-01,Sopa Del Mar,2
 plaza-garcia,C11-01,Tortilla Soup,2
 plaza-garcia,C11-02,Tortilla Soup,2
+plaza-garcia,C11-03,Tortilla Soup,1
 plaza-garcia,C11-04,Sopa Del Mar,2
 plaza-garcia,C11-05,Sopa Del Mar,1
 plaza-garcia,C11-06,Sopa Del Mar,2
@@ -110,6 +164,7 @@ plaza-garcia,C12-01,Kids Cheeseburger,1
 plaza-garcia,C12-01,Kids Hamburger,1
 plaza-garcia,C12-02,Kids Cheeseburger,1
 plaza-garcia,C12-04,Kids Hamburger,1
+plaza-garcia,C12-04,Kids Cheeseburger,1
 plaza-garcia,C13-01,"Combo 14: Enchilada, Taco or Tostada",1
 plaza-garcia,C13-01,Combo 1: Three Tacos,2
 plaza-garcia,C13-01,"Combo 2: One Taco, One Enchilada, One Tamal",1
@@ -120,12 +175,21 @@ plaza-garcia,C13-01,Tacos Al Carbon,2
 plaza-garcia,C13-01,Tacos De Asada,2
 plaza-garcia,C13-01,Tacos De Camaron,2
 plaza-garcia,C13-01,Tacos Garcia,1
+plaza-garcia,C13-01,Tacos Al Pastor,2
+plaza-garcia,C13-01,Tacos De Pescado,2
+plaza-garcia,C13-01,Taquitos Rancheros (Entree),1
 plaza-garcia,C13-02,Tacos De Pescado,2
 plaza-garcia,C13-03,Street Tacos,1
 plaza-garcia,C13-03,Tacos De Asada,2
+plaza-garcia,C13-03,Tacos Al Carbon,2
 plaza-garcia,C13-04,Street Tacos,1
+plaza-garcia,C13-04,Tacos Al Carbon,2
 plaza-garcia,C13-05,Tacos De Camaron,2
 plaza-garcia,C13-06,Street Tacos,2
+plaza-garcia,C13-06,Tacos Al Carbon,1
+plaza-garcia,C13-08,Tacos Al Carbon,2
+plaza-garcia,C13-08,Tacos Al Pastor,2
+plaza-garcia,C15-03,Torta Garcia,1
 plaza-garcia,C16-01,Carlos Salad,2
 plaza-garcia,C16-01,Cesar Salad,2
 plaza-garcia,C16-01,Crispy Chicken Salad,2
@@ -135,8 +199,11 @@ plaza-garcia,C16-01,Taco Salad,2
 plaza-garcia,C16-02,Cesar Salad,2
 plaza-garcia,C16-03,Carlos Salad,2
 plaza-garcia,C16-03,Crispy Chicken Salad,2
+plaza-garcia,C16-03,Taco Salad,1
 plaza-garcia,C16-04,Fajita Taco Salad,1
 plaza-garcia,C16-04,Taco Salad,2
+plaza-garcia,C16-05,Avocado Tostada,2
+plaza-garcia,C16-05,Deluxe Tostada,1
 plaza-garcia,C17-01,Churros,2
 plaza-garcia,C17-01,Flan,2
 plaza-garcia,C17-01,Fried Ice Cream,2
@@ -156,6 +223,7 @@ plaza-garcia,C18-01,Pollo Ranchero,2
 plaza-garcia,C18-01,Pollo a la Crema,2
 plaza-garcia,C18-02,Carlos Salad,1
 plaza-garcia,C18-02,Pollo Asado,2
+plaza-garcia,C18-02,Tacos Al Carbon,2
 plaza-garcia,C18-03,Arroz Con Pollo,1
 plaza-garcia,C18-03,Pollo Ranchero,2
 plaza-garcia,C18-04,Pollo a la Crema,2
@@ -169,6 +237,7 @@ plaza-garcia,C19-01,Chile Colorado,2
 plaza-garcia,C19-01,Fajitas Carne Asada,2
 plaza-garcia,C19-01,Steak Garcia Ranchero,2
 plaza-garcia,C19-01,Steak Matador,2
+plaza-garcia,C19-01,Burrito Asada,2
 plaza-garcia,C19-02,Carne Asada,2
 plaza-garcia,C19-02,Fajitas Carne Asada,1
 plaza-garcia,C19-03,Chef Special,2
@@ -178,11 +247,13 @@ plaza-garcia,C20-01,Burrito Al Pastor,2
 plaza-garcia,C20-01,Carnitas De Puerco,2
 plaza-garcia,C20-01,Chile Verde,2
 plaza-garcia,C20-01,Piernas De Puerco,2
+plaza-garcia,C20-01,Enchiladas Verdes,2
 plaza-garcia,C20-02,Carnitas De Puerco,2
 plaza-garcia,C20-02,Carnitas De Res,1
 plaza-garcia,C20-04,Carnitas De Puerco,2
 plaza-garcia,C20-05,Burrito Chile Verde,2
 plaza-garcia,C20-05,Chile Verde,2
+plaza-garcia,C20-05,Enchiladas Verdes,2
 plaza-garcia,C20-06,Camarones Garcia,2
 plaza-garcia,C21-01,Arroz Con Mariscos,2
 plaza-garcia,C21-01,Camarones Bravos,2
@@ -197,6 +268,9 @@ plaza-garcia,C21-01,Mariscos Rancheros,2
 plaza-garcia,C21-01,Seafood Enchiladas,1
 plaza-garcia,C21-01,Shrimp Chimichangas,2
 plaza-garcia,C21-01,Tacos De Camaron,2
+plaza-garcia,C21-01,Quesadilla Camarones,2
+plaza-garcia,C21-01,Seafood Burrito,1
+plaza-garcia,C21-01,Seafood Chimichangas,1
 plaza-garcia,C21-02,Camarones al Mojo de Ajo,2
 plaza-garcia,C21-02,Garlic Shrimp,2
 plaza-garcia,C21-03,Arroz Con Mariscos,2
@@ -222,6 +296,12 @@ plaza-garcia,C22-05,Chile Verde,2
 plaza-garcia,C22-05,Enchiladas Suizas,1
 plaza-garcia,C22-06,Fajitas Carne Asada,1
 plaza-garcia,C22-09,Fiesta Avocado,2
+plaza-garcia,C22-09,Cheese Crispy Garcia,1
+plaza-garcia,C22-09,Deluxe Tostada,1
+plaza-garcia,C22-09,Flautas,1
+plaza-garcia,C22-09,Shrimp Chimichangas,1
+plaza-garcia,C22-09,Super Nachos Garcia,1
+plaza-garcia,C22-09,Taquitos Rancheros (Entree),1
 plaza-garcia,C22-10,Chile Verde,1
 plaza-garcia,C22-10,Enchiladas Suizas,1
 plaza-garcia,C22-11,Huevos Con Chorizo,2
@@ -234,15 +314,20 @@ plaza-garcia,C23-02,Enchiladas Rancheras,2
 plaza-garcia,C23-02,Enchiladas Suizas,2
 plaza-garcia,C23-02,Seafood Enchiladas,2
 plaza-garcia,C23-02,Spinach Enchiladas,2
+plaza-garcia,C23-02,Small Enchilada,2
 plaza-garcia,C23-03,Burrito Al Pastor,2
 plaza-garcia,C23-03,Burrito Asada,2
 plaza-garcia,C23-03,Burrito Chile Verde,2
 plaza-garcia,C23-03,Fajita Burrito,2
 plaza-garcia,C23-03,Garcia Burrito,2
 plaza-garcia,C23-03,Seafood Burrito,2
+plaza-garcia,C23-03,Chile Colorado Burrito,2
+plaza-garcia,C23-03,Expresso Burrito,2
 plaza-garcia,C23-04,Grilled Quesadilla,2
 plaza-garcia,C23-04,Quesadillas,2
 plaza-garcia,C23-04,Veggie Quesadilla,2
+plaza-garcia,C23-04,Appetizer Combo Plate,1
+plaza-garcia,C23-04,Quesadilla Camarones,2
 plaza-garcia,C23-05,Fajitas Carne Asada,2
 plaza-garcia,C23-05,Fajitas Chicken,2
 plaza-garcia,C23-05,Fajitas Garcia,2
@@ -250,6 +335,7 @@ plaza-garcia,C23-05,Fajitas Mixto,2
 plaza-garcia,C23-05,Fajitas Pork,2
 plaza-garcia,C23-05,Fajitas Shrimp,2
 plaza-garcia,C23-05,Vegetarian Fajitas,2
+plaza-garcia,C23-05,Fajitas Steak,2
 plaza-garcia,C23-06,Combo 15: Chimichanga with Rice and Beans,2
 plaza-garcia,C23-06,Seafood Chimichangas,2
 plaza-garcia,C23-06,Shrimp Chimichangas,2

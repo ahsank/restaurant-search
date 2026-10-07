@@ -139,6 +139,15 @@ See `research/search/evaluate.py` for a reference implementation that:
 2. Runs a search function against each query
 3. Computes NDCG@5, Recall@10, and MRR per query and aggregated by category/difficulty
 
+### Label review log
+
+`label_review_2026-10.csv` lists judgments added in the October 2026 review,
+with the reason for each. The review covered items that the Qwen2.5-7B run
+(`research/results/llm/qwen2.5-7b-instruct.jsonl`) returned for a query but
+that had no judgment here. Each one was checked against the query intent in
+`menu-search-benchmark-queries.md`, and those found relevant were added
+(1,494 → 1,864 judgments). Existing judgments were not changed or removed.
+
 ### Adding new relevance judgments
 
 To add judgments for a new restaurant, create `relevance_<restaurant-id>.csv` — e.g. `relevance_new-place.csv` — with the same header and sparse format. The filename stem after `relevance_` must exactly match the restaurant's markdown file stem (e.g. `new-place.md`). Only include rows where relevance ≥ 1.

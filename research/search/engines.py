@@ -35,6 +35,7 @@ _ENGINE_FLAG_MODULES = {
     "soft_bm25": "soft_bm25_search",
     "colbert": "colbert_search",
     "llm": "llm_search",
+    "crossencoder": "crossencoder_search",
 }
 
 
@@ -172,17 +173,30 @@ def build_search_fn(args: argparse.Namespace, restaurants: dict, menus: dict) ->
             return _cb_search(query, _restaurants, _cb_index, _cb_model)
 
     elif args.engine == "crossencoder":
-        from crossencoder_search import STOCK_MODEL, build_index as _ce_build_index, search as _ce_search
-        from sentence_transformers.cross_encoder import CrossEncoder
+        from crossencoder_search import (
+            STOCK_MODEL, build_index as _ce_build_index, cached_search_fn, search as _ce_search,
+        )
         _ce_model_name = args.model if args.model != "all-MiniLM-L6-v2" else STOCK_MODEL
-        print(f"Loading cross-encoder '{_ce_model_name}'...", end=" ", flush=True)
-        _ce_model = CrossEncoder(_ce_model_name)
-        print("done")
-        _ce_index = _ce_build_index(menus, restaurants)
-        print(f"{len(_ce_index)} items to score per query (exhaustive, no first-stage retriever)")
 
-        def _raw_search(query, _restaurants, _menus):
-            return _ce_search(query, _restaurants, _ce_index, _ce_model)
+        def _load_ce():
+            from sentence_transformers.cross_encoder import CrossEncoder
+            print(f"Loading cross-encoder '{_ce_model_name}'...", end=" ", flush=True)
+            m = CrossEncoder(_ce_model_name)
+            print("done")
+            return m
+
+        if args.scores:
+            _ce_cached = cached_search_fn(args.scores, _ce_model_name, restaurants, menus, _load_ce)
+
+            def _raw_search(query, _restaurants, _menus):
+                return _ce_cached(query)
+        else:
+            _ce_model = _load_ce()
+            _ce_index = _ce_build_index(menus, restaurants)
+            print(f"{len(_ce_index)} items to score per query (exhaustive, no first-stage retriever)")
+
+            def _raw_search(query, _restaurants, _menus):
+                return _ce_search(query, _restaurants, _ce_index, _ce_model)
 
     else:
         from text_search import search as _raw_search

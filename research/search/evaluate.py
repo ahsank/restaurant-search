@@ -21,6 +21,7 @@ Interface for custom search functions:
 """
 
 import csv
+import json
 import math
 import sys
 from collections import defaultdict
@@ -276,6 +277,9 @@ if __name__ == "__main__":
                         help="Score only query_ids listed in this file (one per line) — e.g. "
                              "research/data_gen/held_out_query_ids.txt, to evaluate a finetuned "
                              "model (Approach 5) exclusively on queries it never trained on")
+    parser.add_argument("--save-metrics", type=Path,
+                        help="Also write the aggregated metrics (overall, by category, by difficulty, "
+                             "per query) as JSON — same layout as llm_search.py's .metrics.json")
     parser.add_argument("--exclude-query-ids-file", type=Path,
                         help="Skip query_ids listed in this file (one per line) — e.g. the gap_query_id "
                              "values in gap_fill_triples.jsonl, to score only the queries a model was "
@@ -309,3 +313,7 @@ if __name__ == "__main__":
         verbose=args.verbose,
     )
     print_report(results)
+    if args.save_metrics:
+        args.save_metrics.parent.mkdir(parents=True, exist_ok=True)
+        args.save_metrics.write_text(json.dumps(results, indent=2) + "\n", encoding="utf-8")
+        print(f"Saved metrics to {args.save_metrics}")
