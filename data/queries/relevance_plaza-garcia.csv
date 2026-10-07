@@ -10,6 +10,7 @@ plaza-garcia,C01-01,Camarones a la Crema,2
 plaza-garcia,C01-01,Ceviche De Camarones,2
 plaza-garcia,C01-01,Mariscos Rancheros,2
 plaza-garcia,C01-01,Shrimp Chimichangas,2
+plaza-garcia,C01-01,Molcajete,1
 plaza-garcia,C01-03,Ceviche De Camarones,2
 plaza-garcia,C01-03,Coctel de Camaron,2
 plaza-garcia,C01-03,Seafood Burrito,2
@@ -253,13 +254,21 @@ plaza-garcia,C20-01,Carnitas De Puerco,2
 plaza-garcia,C20-01,Chile Verde,2
 plaza-garcia,C20-01,Piernas De Puerco,2
 plaza-garcia,C20-01,Enchiladas Verdes,2
+plaza-garcia,C20-01,Tacos Al Pastor,2
+plaza-garcia,C20-01,Burrito Chile Verde,2
+plaza-garcia,C20-01,Fajitas Pork,2
+plaza-garcia,C20-01,Huevos Con Chorizo,2
+plaza-garcia,C20-01,Molcajete,1
+plaza-garcia,C20-01,Camarones Garcia,1
 plaza-garcia,C20-02,Carnitas De Puerco,2
 plaza-garcia,C20-02,Carnitas De Res,1
+plaza-garcia,C20-02,Carnitas de Pollo,1
 plaza-garcia,C20-04,Carnitas De Puerco,2
 plaza-garcia,C20-05,Burrito Chile Verde,2
 plaza-garcia,C20-05,Chile Verde,2
 plaza-garcia,C20-05,Enchiladas Verdes,2
 plaza-garcia,C20-06,Camarones Garcia,2
+plaza-garcia,C20-06,Molcajete,1
 plaza-garcia,C21-01,Arroz Con Mariscos,2
 plaza-garcia,C21-01,Camarones Bravos,2
 plaza-garcia,C21-01,Camarones Garcia,2

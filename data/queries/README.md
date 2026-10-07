@@ -150,6 +150,9 @@ that had no judgment here. Each one was checked against the query intent in
 A follow-up check of three C01 queries added 6 missed judgments (2,107) and
 fixed nine Juanita Cantina rows spelled `Tacos De Pescado`, which never matched
 the menu's `Tacos de Pescado` and so counted as 0; both are in the log too.
+A pork pass then added 67 judgments (2,174), mostly to C20 Pork dishes: items
+with pork as the main protein got 2; items with pork as a component, side, or
+one of several meat choices got 1. Molcajete was also added to C01-01.
 
 ### Adding new relevance judgments
 
