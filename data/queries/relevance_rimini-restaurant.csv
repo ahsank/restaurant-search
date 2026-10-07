@@ -1,0 +1,286 @@
+restaurant,query_id,menu_item,relevance
+rimini-restaurant,C01-02,Baked Kobe Ziti,2
+rimini-restaurant,C01-02,Panna Bolognese,2
+rimini-restaurant,C01-02,The Sunday Sauce Pasta,2
+rimini-restaurant,C01-02,Wild Boar Rose Bolognese,2
+rimini-restaurant,C01-02,Bucatini Meatballs,1
+rimini-restaurant,C01-02,Pasta Cone,1
+rimini-restaurant,C01-02,Sausage & Peppers Rigatoni,1
+rimini-restaurant,C01-02,Short Rib Ravioli,1
+rimini-restaurant,C01-07,Baked Kobe Ziti,2
+rimini-restaurant,C01-07,Bucatini Meatballs,2
+rimini-restaurant,C01-07,Cacio e Pepe Pasta,2
+rimini-restaurant,C01-07,Chicken Parm alla Vodka,2
+rimini-restaurant,C01-07,Meatball Plate,2
+rimini-restaurant,C01-07,Panna Bolognese,2
+rimini-restaurant,C01-07,Pasta Carbonara,2
+rimini-restaurant,C01-07,Sausage & Peppers Rigatoni,2
+rimini-restaurant,C01-07,The Sunday Sauce Pasta,2
+rimini-restaurant,C01-07,Wild Boar Rose Bolognese,2
+rimini-restaurant,C01-07,Gnocchi Pesto or Panna Prosciutto,1
+rimini-restaurant,C01-07,Three Cheese Mushroom Risotto,1
+rimini-restaurant,C01-07,Tortellini Fredo,1
+rimini-restaurant,C01-07,Veal Chop Cutlet Parmigiano,1
+rimini-restaurant,C01-08,Cacio e Pepe Pasta,2
+rimini-restaurant,C01-08,Pasta Lobster Grande,2
+rimini-restaurant,C01-08,Steak and Lobster Ravioli,2
+rimini-restaurant,C01-08,Paccheri di Mare,1
+rimini-restaurant,C01-08,Ravioli Lobster Rose Butter,1
+rimini-restaurant,C01-08,Short Rib Ravioli,1
+rimini-restaurant,C01-08,The Sunday Sauce Pasta,1
+rimini-restaurant,C02-02,Paccheri di Mare,2
+rimini-restaurant,C02-02,Pasta Lobster Grande,2
+rimini-restaurant,C02-02,Pasta Scampi Rose,2
+rimini-restaurant,C02-02,Ravioli Lobster Rose Butter,2
+rimini-restaurant,C02-02,Steak and Lobster Ravioli,2
+rimini-restaurant,C02-02,Cacio e Pepe Pasta,1
+rimini-restaurant,C02-03,"Arugula, Fig & Gorgonzola Salad",2
+rimini-restaurant,C02-03,Caesar Salad,2
+rimini-restaurant,C02-06,Salumi & Mozzarella,2
+rimini-restaurant,C02-06,Sicilian Pizza Pie,1
+rimini-restaurant,C02-07,Filetto Mignon Gorgonzola,2
+rimini-restaurant,C02-07,Filetto Mignon alla Marsala,2
+rimini-restaurant,C02-07,Steak and Lobster Ravioli,1
+rimini-restaurant,C02-08,Caprese Salad,2
+rimini-restaurant,C02-08,"Arugula, Fig & Gorgonzola Salad",1
+rimini-restaurant,C02-09,Pasta Carbonara,2
+rimini-restaurant,C02-09,Sausage & Peppers Rigatoni,2
+rimini-restaurant,C02-09,The Sunday Sauce Pasta,2
+rimini-restaurant,C02-09,Bucatini Meatballs,1
+rimini-restaurant,C02-09,Gnocchi Pesto or Panna Prosciutto,1
+rimini-restaurant,C02-09,Salumi & Mozzarella,1
+rimini-restaurant,C03-01,Calamari & Prawns Fritti,2
+rimini-restaurant,C03-01,Scampi Sinatra,1
+rimini-restaurant,C03-03,Cacio e Pepe Pasta,2
+rimini-restaurant,C03-03,Panna Bolognese,2
+rimini-restaurant,C03-03,Pasta Carbonara,2
+rimini-restaurant,C03-03,Pollo Marsala con Sacchetti,2
+rimini-restaurant,C03-03,Short Rib Ravioli,2
+rimini-restaurant,C03-03,Tortellini Fredo,2
+rimini-restaurant,C03-03,Chicken Francese,1
+rimini-restaurant,C03-03,Chicken Parm alla Vodka,1
+rimini-restaurant,C03-03,Filetto Mignon Gorgonzola,1
+rimini-restaurant,C03-03,Gnocchi Pesto or Panna Prosciutto,1
+rimini-restaurant,C03-03,Pasta Lobster Grande,1
+rimini-restaurant,C03-03,Pasta Scampi Rose,1
+rimini-restaurant,C03-03,Ravioli Lobster Rose Butter,1
+rimini-restaurant,C03-03,Spicy Breaded Chicken Pasta,1
+rimini-restaurant,C03-03,Steak and Lobster Ravioli,1
+rimini-restaurant,C03-03,Wild Boar Rose Bolognese,1
+rimini-restaurant,C03-04,Caprese Salad,2
+rimini-restaurant,C03-04,"Arugula, Fig & Gorgonzola Salad",1
+rimini-restaurant,C03-04,Bruschetta,1
+rimini-restaurant,C03-06,Baked Kobe Ziti,2
+rimini-restaurant,C03-06,Bucatini Meatballs,2
+rimini-restaurant,C03-06,Cacio e Pepe Pasta,2
+rimini-restaurant,C03-06,Panna Bolognese,2
+rimini-restaurant,C03-06,Pasta Carbonara,2
+rimini-restaurant,C03-06,The Sunday Sauce Pasta,2
+rimini-restaurant,C03-06,Tortellini Fredo,2
+rimini-restaurant,C03-06,Wild Boar Rose Bolognese,2
+rimini-restaurant,C03-06,Chicken Parm alla Vodka,1
+rimini-restaurant,C03-06,Pasta Cone,1
+rimini-restaurant,C03-06,Sausage & Peppers Rigatoni,1
+rimini-restaurant,C03-06,Spicy Breaded Chicken Pasta,1
+rimini-restaurant,C03-07,Cacio e Pepe Pasta,2
+rimini-restaurant,C03-07,Three Cheese Mushroom Risotto,2
+rimini-restaurant,C03-07,Filetto Mignon alla Marsala,1
+rimini-restaurant,C03-07,Pollo Marsala con Sacchetti,1
+rimini-restaurant,C03-07,Short Rib Ravioli,1
+rimini-restaurant,C03-08,Baked Kobe Ziti,1
+rimini-restaurant,C03-08,The Sunday Sauce Pasta,1
+rimini-restaurant,C03-10,Caesar Salad,2
+rimini-restaurant,C03-12,Flaming Italian Bomba Cocolata,2
+rimini-restaurant,C03-12,It's My Birthday Italian Sundae,2
+rimini-restaurant,C03-12,Nutella Cheesecake,2
+rimini-restaurant,C03-12,Affogato,1
+rimini-restaurant,C03-12,Cannoli Corleone,1
+rimini-restaurant,C03-12,Gelato Limoncello,1
+rimini-restaurant,C03-12,White Chocolate Tiramisu,1
+rimini-restaurant,C04-07,The Sunday Sauce Pasta,2
+rimini-restaurant,C04-08,Short Rib Ravioli,2
+rimini-restaurant,C04-08,Baked Kobe Ziti,1
+rimini-restaurant,C04-08,The Sunday Sauce Pasta,1
+rimini-restaurant,C04-09,Calamari & Prawns Fritti,2
+rimini-restaurant,C04-10,Chicken Parm alla Vodka,1
+rimini-restaurant,C04-10,Spicy Breaded Chicken Pasta,1
+rimini-restaurant,C05-01,Caesar Salad,2
+rimini-restaurant,C05-05,Pasta Carbonara,2
+rimini-restaurant,C05-06,White Chocolate Tiramisu,2
+rimini-restaurant,C05-07,Gnocchi Pesto or Panna Prosciutto,2
+rimini-restaurant,C05-07,Sicilian Pizza Pie,1
+rimini-restaurant,C05-10,The Sunday Sauce Pasta,2
+rimini-restaurant,C05-10,Panna Bolognese,1
+rimini-restaurant,C05-10,Sausage & Peppers Rigatoni,1
+rimini-restaurant,C05-10,Wild Boar Rose Bolognese,1
+rimini-restaurant,C05-11,Cannoli Corleone,2
+rimini-restaurant,C06-05,Filetto Mignon alla Marsala,1
+rimini-restaurant,C06-05,Pollo Marsala con Sacchetti,1
+rimini-restaurant,C06-05,Short Rib Ravioli,1
+rimini-restaurant,C06-05,Three Cheese Mushroom Risotto,1
+rimini-restaurant,C06-06,Short Rib Ravioli,2
+rimini-restaurant,C06-06,The Sunday Sauce Pasta,1
+rimini-restaurant,C06-10,Salumi & Mozzarella,2
+rimini-restaurant,C07-01,Cacio e Pepe Pasta,2
+rimini-restaurant,C07-02,Cacio e Pepe Pasta,2
+rimini-restaurant,C07-14,Affogato,1
+rimini-restaurant,C07-14,Gelato Limoncello,1
+rimini-restaurant,C08-05,Caesar Salad,1
+rimini-restaurant,C08-05,Caprese Salad,1
+rimini-restaurant,C08-09,Cioppino al Rimini,2
+rimini-restaurant,C08-09,Fresh Fish del Giorno,2
+rimini-restaurant,C08-09,Paccheri di Mare,2
+rimini-restaurant,C08-09,Pasta Lobster Grande,2
+rimini-restaurant,C08-09,Pasta Scampi Rose,2
+rimini-restaurant,C08-09,Ravioli Lobster Rose Butter,2
+rimini-restaurant,C08-09,Cacio e Pepe Pasta,1
+rimini-restaurant,C08-09,Calamari & Prawns Fritti,1
+rimini-restaurant,C08-09,Lemon Garlic Clams,1
+rimini-restaurant,C08-09,Malfaldine Pistachio Pesto,1
+rimini-restaurant,C08-09,Scampi Sinatra,1
+rimini-restaurant,C08-09,Three Cheese Mushroom Risotto,1
+rimini-restaurant,C08-09,Tortellini Fredo,1
+rimini-restaurant,C09-01,Calamari & Prawns Fritti,2
+rimini-restaurant,C09-01,Pasta Scampi Rose,2
+rimini-restaurant,C09-01,Scampi Sinatra,2
+rimini-restaurant,C09-01,Cacio e Pepe Pasta,1
+rimini-restaurant,C09-01,Paccheri di Mare,1
+rimini-restaurant,C09-02,Lemon Garlic Clams,2
+rimini-restaurant,C09-03,Bruschetta,1
+rimini-restaurant,C09-04,Bruschetta,1
+rimini-restaurant,C09-04,Sicilian Pizza Pie,1
+rimini-restaurant,C11-01,Cioppino al Rimini,1
+rimini-restaurant,C11-03,Cioppino al Rimini,1
+rimini-restaurant,C11-04,Cioppino al Rimini,2
+rimini-restaurant,C11-06,Cioppino al Rimini,1
+rimini-restaurant,C14-01,Baked Kobe Ziti,2
+rimini-restaurant,C14-01,Bucatini Meatballs,2
+rimini-restaurant,C14-01,Cacio e Pepe Pasta,2
+rimini-restaurant,C14-01,Chicken Francese,2
+rimini-restaurant,C14-01,Chicken Parm alla Vodka,2
+rimini-restaurant,C14-01,Malfaldine Pistachio Pesto,2
+rimini-restaurant,C14-01,Paccheri di Mare,2
+rimini-restaurant,C14-01,Panna Bolognese,2
+rimini-restaurant,C14-01,Pasta Carbonara,2
+rimini-restaurant,C14-01,Pasta Cone,2
+rimini-restaurant,C14-01,Pasta Lobster Grande,2
+rimini-restaurant,C14-01,Pasta Scampi Rose,2
+rimini-restaurant,C14-01,Pollo Marsala con Sacchetti,2
+rimini-restaurant,C14-01,Ravioli Lobster Rose Butter,2
+rimini-restaurant,C14-01,Sausage & Peppers Rigatoni,2
+rimini-restaurant,C14-01,Short Rib Ravioli,2
+rimini-restaurant,C14-01,Spicy Breaded Chicken Pasta,2
+rimini-restaurant,C14-01,Steak and Lobster Ravioli,2
+rimini-restaurant,C14-01,The Sunday Sauce Pasta,2
+rimini-restaurant,C14-01,Tortellini Fredo,2
+rimini-restaurant,C14-01,Wild Boar Rose Bolognese,2
+rimini-restaurant,C14-01,Filetto Mignon Gorgonzola,1
+rimini-restaurant,C14-01,Filetto Mignon alla Marsala,1
+rimini-restaurant,C14-01,Gnocchi Pesto or Panna Prosciutto,1
+rimini-restaurant,C14-02,Bucatini Meatballs,1
+rimini-restaurant,C14-03,Chicken Francese,2
+rimini-restaurant,C14-03,Sausage & Peppers Rigatoni,2
+rimini-restaurant,C14-03,The Sunday Sauce Pasta,2
+rimini-restaurant,C14-04,Bucatini Meatballs,2
+rimini-restaurant,C14-05,Pasta Carbonara,2
+rimini-restaurant,C14-06,Baked Kobe Ziti,2
+rimini-restaurant,C14-06,Bucatini Meatballs,2
+rimini-restaurant,C14-06,Malfaldine Pistachio Pesto,2
+rimini-restaurant,C14-06,Pasta Lobster Grande,2
+rimini-restaurant,C14-06,Pasta Scampi Rose,2
+rimini-restaurant,C14-06,Ravioli Lobster Rose Butter,2
+rimini-restaurant,C14-06,The Sunday Sauce Pasta,2
+rimini-restaurant,C14-06,Tortellini Fredo,2
+rimini-restaurant,C14-06,Wild Boar Rose Bolognese,2
+rimini-restaurant,C14-06,Cacio e Pepe Pasta,1
+rimini-restaurant,C14-06,Chicken Francese,1
+rimini-restaurant,C14-06,Chicken Parm alla Vodka,1
+rimini-restaurant,C14-06,Gnocchi Pesto or Panna Prosciutto,1
+rimini-restaurant,C14-06,Paccheri di Mare,1
+rimini-restaurant,C14-06,Panna Bolognese,1
+rimini-restaurant,C14-06,Pasta Carbonara,1
+rimini-restaurant,C14-06,Pasta Cone,1
+rimini-restaurant,C14-06,Pollo Marsala con Sacchetti,1
+rimini-restaurant,C14-06,Sausage & Peppers Rigatoni,1
+rimini-restaurant,C14-06,Short Rib Ravioli,1
+rimini-restaurant,C14-06,Spicy Breaded Chicken Pasta,1
+rimini-restaurant,C14-06,Steak and Lobster Ravioli,1
+rimini-restaurant,C14-07,Bucatini Meatballs,2
+rimini-restaurant,C14-07,Pasta Scampi Rose,2
+rimini-restaurant,C14-07,The Sunday Sauce Pasta,2
+rimini-restaurant,C14-07,Baked Kobe Ziti,1
+rimini-restaurant,C14-07,Chicken Parm alla Vodka,1
+rimini-restaurant,C14-07,Paccheri di Mare,1
+rimini-restaurant,C14-07,Pasta Cone,1
+rimini-restaurant,C14-07,Pasta Lobster Grande,1
+rimini-restaurant,C14-07,Sausage & Peppers Rigatoni,1
+rimini-restaurant,C14-07,Spicy Breaded Chicken Pasta,1
+rimini-restaurant,C14-07,Wild Boar Rose Bolognese,1
+rimini-restaurant,C16-01,"Arugula, Fig & Gorgonzola Salad",2
+rimini-restaurant,C16-01,Caesar Salad,2
+rimini-restaurant,C16-01,Caprese Salad,2
+rimini-restaurant,C16-02,Caesar Salad,2
+rimini-restaurant,C17-01,Affogato,2
+rimini-restaurant,C17-01,Cannoli Corleone,2
+rimini-restaurant,C17-01,Flaming Italian Bomba Cocolata,2
+rimini-restaurant,C17-01,Gelato Limoncello,2
+rimini-restaurant,C17-01,It's My Birthday Italian Sundae,2
+rimini-restaurant,C17-01,Nutella Cheesecake,2
+rimini-restaurant,C17-01,White Chocolate Tiramisu,2
+rimini-restaurant,C17-02,White Chocolate Tiramisu,2
+rimini-restaurant,C17-03,Gelato Limoncello,2
+rimini-restaurant,C17-03,Affogato,1
+rimini-restaurant,C17-03,It's My Birthday Italian Sundae,1
+rimini-restaurant,C17-06,Nutella Cheesecake,2
+rimini-restaurant,C17-08,Cannoli Corleone,2
+rimini-restaurant,C18-01,Chicken Francese,2
+rimini-restaurant,C18-01,Chicken Parm alla Vodka,2
+rimini-restaurant,C18-01,Pollo Marsala con Sacchetti,2
+rimini-restaurant,C18-01,Spicy Breaded Chicken Pasta,2
+rimini-restaurant,C18-01,Cacio e Pepe Pasta,1
+rimini-restaurant,C18-01,Tortellini Fredo,1
+rimini-restaurant,C18-03,Pollo Marsala con Sacchetti,2
+rimini-restaurant,C18-04,Chicken Francese,2
+rimini-restaurant,C18-04,Pollo Marsala con Sacchetti,2
+rimini-restaurant,C18-04,Chicken Parm alla Vodka,1
+rimini-restaurant,C18-04,Spicy Breaded Chicken Pasta,1
+rimini-restaurant,C18-05,Spicy Breaded Chicken Pasta,2
+rimini-restaurant,C19-01,Baked Kobe Ziti,2
+rimini-restaurant,C19-01,Filetto Mignon Gorgonzola,2
+rimini-restaurant,C19-01,Filetto Mignon alla Marsala,2
+rimini-restaurant,C19-01,Short Rib Ravioli,2
+rimini-restaurant,C19-01,Steak and Lobster Ravioli,2
+rimini-restaurant,C19-01,The Sunday Sauce Pasta,2
+rimini-restaurant,C19-01,Bucatini Meatballs,1
+rimini-restaurant,C19-01,Panna Bolognese,1
+rimini-restaurant,C19-04,Baked Kobe Ziti,1
+rimini-restaurant,C19-04,Bucatini Meatballs,1
+rimini-restaurant,C19-04,Panna Bolognese,1
+rimini-restaurant,C19-06,Short Rib Ravioli,2
+rimini-restaurant,C19-06,The Sunday Sauce Pasta,1
+rimini-restaurant,C20-01,Pasta Carbonara,2
+rimini-restaurant,C20-01,Salumi & Mozzarella,2
+rimini-restaurant,C20-01,Sausage & Peppers Rigatoni,2
+rimini-restaurant,C20-01,The Sunday Sauce Pasta,2
+rimini-restaurant,C20-01,Bucatini Meatballs,1
+rimini-restaurant,C20-01,Gnocchi Pesto or Panna Prosciutto,1
+rimini-restaurant,C20-01,Sicilian Pizza Pie,1
+rimini-restaurant,C20-03,Pasta Carbonara,2
+rimini-restaurant,C20-04,The Sunday Sauce Pasta,2
+rimini-restaurant,C21-01,Calamari & Prawns Fritti,2
+rimini-restaurant,C21-01,Pasta Scampi Rose,2
+rimini-restaurant,C21-01,Scampi Sinatra,2
+rimini-restaurant,C21-01,Cacio e Pepe Pasta,1
+rimini-restaurant,C21-01,Paccheri di Mare,1
+rimini-restaurant,C21-02,Scampi Sinatra,2
+rimini-restaurant,C21-07,Cioppino al Rimini,2
+rimini-restaurant,C21-07,Fresh Fish del Giorno,2
+rimini-restaurant,C22-07,Gnocchi Pesto or Panna Prosciutto,2
+rimini-restaurant,C22-07,Malfaldine Pistachio Pesto,2
+rimini-restaurant,C22-11,Pasta Carbonara,2
+rimini-restaurant,C23-07,Bucatini Meatballs,2
+rimini-restaurant,C23-07,Meatball Plate,2
+rimini-restaurant,C23-08,Baked Kobe Ziti,1
+rimini-restaurant,C23-09,Three Cheese Mushroom Risotto,2
+rimini-restaurant,C24-01,Sicilian Pizza Pie,2
+rimini-restaurant,C24-02,Sicilian Pizza Pie,2

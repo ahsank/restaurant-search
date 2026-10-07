@@ -1,18 +1,18 @@
 {
   "overall": {
-    "ndcg@5": 0.6932757753912061,
-    "recall@10": 0.7906199113723386,
-    "mrr": 0.7502427184466018,
+    "ndcg@5": 0.6957368686453601,
+    "recall@10": 0.7889733167111586,
+    "mrr": 0.7559349593495935,
     "n_queries": 209,
-    "n_with_judgments": 206
+    "n_with_judgments": 205
   },
   "by_category": {
     "C01": {
       "name": "Cuisine type inference",
       "n_queries": 8,
-      "ndcg@5": 0.7958855472882823,
-      "recall@10": 0.8559523809523809,
-      "mrr": 0.875
+      "ndcg@5": 0.8468593497771391,
+      "recall@10": 0.863095238095238,
+      "mrr": 1.0
     },
     "C02": {
       "name": "Ingredient generalization",
@@ -24,8 +24,8 @@
     "C03": {
       "name": "Attribute / implied meaning",
       "n_queries": 12,
-      "ndcg@5": 0.4308418857905762,
-      "recall@10": 0.7044312169312169,
+      "ndcg@5": 0.42678419218756963,
+      "recall@10": 0.7255952380952381,
       "mrr": 0.5291666666666667
     },
     "C04": {
@@ -38,7 +38,7 @@
     "C05": {
       "name": "Spelling variations",
       "n_queries": 15,
-      "ndcg@5": 0.7804935635656705,
+      "ndcg@5": 0.776067675588313,
       "recall@10": 0.9111111111111111,
       "mrr": 0.8
     },
@@ -52,16 +52,16 @@
     "C07": {
       "name": "Hyphenation / spacing / stop words",
       "n_queries": 14,
-      "ndcg@5": 0.6048631976079426,
-      "recall@10": 0.7993403421974851,
-      "mrr": 0.636904761904762
+      "ndcg@5": 0.6551575653211499,
+      "recall@10": 0.8152133580705009,
+      "mrr": 0.6845238095238095
     },
     "C08": {
       "name": "Dietary constraint / negation",
       "n_queries": 10,
-      "ndcg@5": 0.6459397869361643,
-      "recall@10": 0.7928571428571428,
-      "mrr": 0.75
+      "ndcg@5": 0.6826560423226492,
+      "recall@10": 0.7820987654320988,
+      "mrr": 0.7777777777777778
     },
     "C09": {
       "name": "Synonym / paraphrase",
@@ -101,9 +101,9 @@
     "C14": {
       "name": "Pasta varieties",
       "n_queries": 8,
-      "ndcg@5": 0.8325659739854181,
-      "recall@10": 0.8571428571428571,
-      "mrr": 0.875
+      "ndcg@5": 0.8842990970739698,
+      "recall@10": 0.8772759103641457,
+      "mrr": 0.9375
     },
     "C15": {
       "name": "Sandwich varieties",
@@ -123,7 +123,7 @@
       "name": "Dessert varieties",
       "n_queries": 8,
       "ndcg@5": 0.806553747173306,
-      "recall@10": 0.8461538461538461,
+      "recall@10": 0.8541666666666667,
       "mrr": 0.8125
     },
     "C18": {
@@ -143,22 +143,22 @@
     "C20": {
       "name": "Pork dishes",
       "n_queries": 6,
-      "ndcg@5": 0.7112204853853665,
+      "ndcg@5": 0.7166424881371717,
       "recall@10": 0.763888888888889,
       "mrr": 0.75
     },
     "C21": {
       "name": "Seafood dishes",
       "n_queries": 9,
-      "ndcg@5": 0.690781371719998,
-      "recall@10": 0.7031265031265032,
+      "ndcg@5": 0.6975686905875101,
+      "recall@10": 0.7314151365875504,
       "mrr": 0.7962962962962963
     },
     "C22": {
       "name": "Ingredient focus",
       "n_queries": 13,
-      "ndcg@5": 0.67986647984461,
-      "recall@10": 0.7908119658119658,
+      "ndcg@5": 0.678057883475833,
+      "recall@10": 0.7873931623931624,
       "mrr": 0.7846153846153846
     },
     "C23": {
@@ -171,9 +171,9 @@
     "C24": {
       "name": "Pizza varieties",
       "n_queries": 3,
-      "ndcg@5": 0.6666666666666666,
-      "recall@10": 0.6666666666666666,
-      "mrr": 0.6666666666666666
+      "ndcg@5": 0.0,
+      "recall@10": 0.0,
+      "mrr": 0.0
     },
     "C25": {
       "name": "Occasion / meal-time",
@@ -186,21 +186,21 @@
   "by_difficulty": {
     "Easy": {
       "n_queries": 125,
-      "ndcg@5": 0.7572648226664974,
-      "recall@10": 0.8131496725496724,
-      "mrr": 0.8055999999999998
+      "ndcg@5": 0.7555243387692849,
+      "recall@10": 0.8084345091301349,
+      "mrr": 0.8067204301075267
     },
     "Medium": {
       "n_queries": 55,
-      "ndcg@5": 0.7017245498820049,
-      "recall@10": 0.8436396936396936,
-      "mrr": 0.7621212121212122
+      "ndcg@5": 0.712345644873966,
+      "recall@10": 0.8452092352092353,
+      "mrr": 0.7712121212121213
     },
     "Hard": {
       "n_queries": 29,
-      "ndcg@5": 0.36776371745253755,
-      "recall@10": 0.5701465201465201,
-      "mrr": 0.458974358974359
+      "ndcg@5": 0.37546267680151507,
+      "recall@10": 0.5771978021978021,
+      "mrr": 0.4814102564102564
     }
   },
   "per_query": [
@@ -222,11 +222,11 @@
       "category_id": "C01",
       "category_name": "Cuisine type inference",
       "difficulty": "Medium",
-      "n_results": 13,
-      "n_relevant": 8,
-      "ndcg@5": 0.6290745043576739,
+      "n_results": 11,
+      "n_relevant": 7,
+      "ndcg@5": 0.9218382134470557,
       "recall@10": 1.0,
-      "mrr": 0.5
+      "mrr": 1.0
     },
     {
       "query_id": "C01-03",
@@ -282,10 +282,10 @@
       "category_id": "C01",
       "category_name": "Cuisine type inference",
       "difficulty": "Hard",
-      "n_results": 105,
-      "n_relevant": 15,
-      "ndcg@5": 0.849607409925425,
-      "recall@10": 0.8,
+      "n_results": 102,
+      "n_relevant": 11,
+      "ndcg@5": 0.8421757737602428,
+      "recall@10": 0.7142857142857143,
       "mrr": 1.0
     },
     {
@@ -294,11 +294,11 @@
       "category_id": "C01",
       "category_name": "Cuisine type inference",
       "difficulty": "Hard",
-      "n_results": 95,
+      "n_results": 92,
       "n_relevant": 10,
-      "ndcg@5": 0.36619938297430016,
-      "recall@10": 0.7142857142857143,
-      "mrr": 0.5
+      "ndcg@5": 0.48865772996095486,
+      "recall@10": 0.8571428571428571,
+      "mrr": 1.0
     },
     {
       "query_id": "C02-01",
@@ -318,8 +318,8 @@
       "category_id": "C02",
       "category_name": "Ingredient generalization",
       "difficulty": "Medium",
-      "n_results": 9,
-      "n_relevant": 5,
+      "n_results": 7,
+      "n_relevant": 4,
       "ndcg@5": 1.0,
       "recall@10": 1.0,
       "mrr": 1.0
@@ -403,7 +403,7 @@
       "category_name": "Ingredient generalization",
       "difficulty": "Easy",
       "n_results": 36,
-      "n_relevant": 19,
+      "n_relevant": 18,
       "ndcg@5": 0.8930068676327362,
       "recall@10": 0.7,
       "mrr": 1.0
@@ -450,10 +450,10 @@
       "category_id": "C03",
       "category_name": "Attribute / implied meaning",
       "difficulty": "Medium",
-      "n_results": 22,
-      "n_relevant": 12,
-      "ndcg@5": 0.7543701539552121,
-      "recall@10": 0.8888888888888888,
+      "n_results": 20,
+      "n_relevant": 9,
+      "ndcg@5": 0.7198175284296092,
+      "recall@10": 1.0,
       "mrr": 1.0
     },
     {
@@ -486,10 +486,10 @@
       "category_id": "C03",
       "category_name": "Attribute / implied meaning",
       "difficulty": "Hard",
-      "n_results": 18,
-      "n_relevant": 16,
-      "ndcg@5": 0.38356636737133565,
-      "recall@10": 0.8571428571428571,
+      "n_results": 16,
+      "n_relevant": 12,
+      "ndcg@5": 0.369426669660859,
+      "recall@10": 1.0,
       "mrr": 0.5
     },
     {
@@ -499,7 +499,7 @@
       "category_name": "Attribute / implied meaning",
       "difficulty": "Hard",
       "n_results": 65,
-      "n_relevant": 8,
+      "n_relevant": 7,
       "ndcg@5": 0.0,
       "recall@10": 0.25,
       "mrr": 0.1
@@ -510,7 +510,7 @@
       "category_id": "C03",
       "category_name": "Attribute / implied meaning",
       "difficulty": "Hard",
-      "n_results": 98,
+      "n_results": 95,
       "n_relevant": 4,
       "ndcg@5": 0.5593776221713148,
       "recall@10": 1.0,
@@ -522,8 +522,8 @@
       "category_id": "C03",
       "category_name": "Attribute / implied meaning",
       "difficulty": "Hard",
-      "n_results": 3,
-      "n_relevant": 7,
+      "n_results": 2,
+      "n_relevant": 6,
       "ndcg@5": 1.0,
       "recall@10": 1.0,
       "mrr": 1.0
@@ -559,7 +559,7 @@
       "category_name": "Attribute / implied meaning",
       "difficulty": "Hard",
       "n_results": 12,
-      "n_relevant": 15,
+      "n_relevant": 14,
       "ndcg@5": 0.8447122853992027,
       "recall@10": 1.0,
       "mrr": 1.0
@@ -738,9 +738,9 @@
       "category_id": "C05",
       "category_name": "Spelling variations",
       "difficulty": "Medium",
-      "n_results": 4,
-      "n_relevant": 3,
-      "ndcg@5": 0.6973180732318199,
+      "n_results": 2,
+      "n_relevant": 1,
+      "ndcg@5": 0.6309297535714575,
       "recall@10": 1.0,
       "mrr": 0.5
     },
@@ -750,8 +750,8 @@
       "category_id": "C05",
       "category_name": "Spelling variations",
       "difficulty": "Easy",
-      "n_results": 2,
-      "n_relevant": 2,
+      "n_results": 1,
+      "n_relevant": 1,
       "ndcg@5": 1.0,
       "recall@10": 1.0,
       "mrr": 1.0
@@ -990,9 +990,9 @@
       "category_id": "C07",
       "category_name": "Hyphenation / spacing / stop words",
       "difficulty": "Easy",
-      "n_results": 9,
+      "n_results": 8,
       "n_relevant": 2,
-      "ndcg@5": 0.6509209298071326,
+      "ndcg@5": 0.6934264036172708,
       "recall@10": 1.0,
       "mrr": 0.5
     },
@@ -1002,9 +1002,9 @@
       "category_id": "C07",
       "category_name": "Hyphenation / spacing / stop words",
       "difficulty": "Easy",
-      "n_results": 8,
+      "n_results": 6,
       "n_relevant": 2,
-      "ndcg@5": 0.6509209298071326,
+      "ndcg@5": 0.6934264036172708,
       "recall@10": 1.0,
       "mrr": 0.5
     },
@@ -1074,11 +1074,11 @@
       "category_id": "C07",
       "category_name": "Hyphenation / spacing / stop words",
       "difficulty": "Easy",
-      "n_results": 126,
+      "n_results": 122,
       "n_relevant": 9,
-      "ndcg@5": 0.34519134224686937,
-      "recall@10": 0.5555555555555556,
-      "mrr": 0.5
+      "ndcg@5": 0.639945385422766,
+      "recall@10": 0.7777777777777778,
+      "mrr": 1.0
     },
     {
       "query_id": "C07-09",
@@ -1098,11 +1098,11 @@
       "category_id": "C07",
       "category_name": "Hyphenation / spacing / stop words",
       "difficulty": "Medium",
-      "n_results": 72,
-      "n_relevant": 4,
-      "ndcg@5": 0.3065735963827292,
+      "n_results": 70,
+      "n_relevant": 3,
+      "ndcg@5": 0.6309297535714575,
       "recall@10": 1.0,
-      "mrr": 0.3333333333333333
+      "mrr": 0.5
     },
     {
       "query_id": "C07-11",
@@ -1182,11 +1182,11 @@
       "category_id": "C08",
       "category_name": "Dietary constraint / negation",
       "difficulty": "Medium",
-      "n_results": 12,
+      "n_results": 11,
       "n_relevant": 8,
-      "ndcg@5": 0.6608397947263839,
+      "ndcg@5": 1.0,
       "recall@10": 1.0,
-      "mrr": 0.5
+      "mrr": 1.0
     },
     {
       "query_id": "C08-04",
@@ -1194,11 +1194,11 @@
       "category_id": "C08",
       "category_name": "Dietary constraint / negation",
       "difficulty": "Medium",
-      "n_results": 328,
-      "n_relevant": 12,
-      "ndcg@5": 0.4256571533334049,
-      "recall@10": 0.6,
-      "mrr": 0.5
+      "n_results": 326,
+      "n_relevant": 11,
+      "ndcg@5": 0.37381935507050307,
+      "recall@10": 0.5555555555555556,
+      "mrr": 0.3333333333333333
     },
     {
       "query_id": "C08-05",
@@ -1218,11 +1218,11 @@
       "category_id": "C08",
       "category_name": "Dietary constraint / negation",
       "difficulty": "Easy",
-      "n_results": 245,
-      "n_relevant": 26,
-      "ndcg@5": 0.41822551716822265,
-      "recall@10": 0.2857142857142857,
-      "mrr": 0.5
+      "n_results": 242,
+      "n_relevant": 25,
+      "ndcg@5": 0.3620634786734523,
+      "recall@10": 0.25,
+      "mrr": 0.3333333333333333
     },
     {
       "query_id": "C08-07",
@@ -1242,11 +1242,11 @@
       "category_id": "C08",
       "category_name": "Dietary constraint / negation",
       "difficulty": "Hard",
-      "n_results": 10,
-      "n_relevant": 4,
-      "ndcg@5": 0.2289700384906115,
+      "n_results": 8,
+      "n_relevant": 3,
+      "ndcg@5": 0.38009376671593426,
       "recall@10": 1.0,
-      "mrr": 0.25
+      "mrr": 0.3333333333333333
     },
     {
       "query_id": "C08-09",
@@ -1254,10 +1254,10 @@
       "category_id": "C08",
       "category_name": "Dietary constraint / negation",
       "difficulty": "Hard",
-      "n_results": 136,
-      "n_relevant": 51,
-      "ndcg@5": 0.764817358607021,
-      "recall@10": 0.25,
+      "n_results": 133,
+      "n_relevant": 47,
+      "ndcg@5": 0.7129795603441191,
+      "recall@10": 0.23333333333333334,
       "mrr": 1.0
     },
     {
@@ -1291,7 +1291,7 @@
       "category_name": "Synonym / paraphrase",
       "difficulty": "Medium",
       "n_results": 9,
-      "n_relevant": 8,
+      "n_relevant": 7,
       "ndcg@5": 0.9119629671334931,
       "recall@10": 1.0,
       "mrr": 1.0
@@ -1315,7 +1315,7 @@
       "category_name": "Synonym / paraphrase",
       "difficulty": "Medium",
       "n_results": 1,
-      "n_relevant": 2,
+      "n_relevant": 1,
       "ndcg@5": 1.0,
       "recall@10": 1.0,
       "mrr": 1.0
@@ -1350,7 +1350,7 @@
       "category_id": "C09",
       "category_name": "Synonym / paraphrase",
       "difficulty": "Medium",
-      "n_results": 25,
+      "n_results": 24,
       "n_relevant": 8,
       "ndcg@5": 0.6655702971450115,
       "recall@10": 1.0,
@@ -1410,7 +1410,7 @@
       "category_id": "C10",
       "category_name": "Multi-constraint compositional",
       "difficulty": "Hard",
-      "n_results": 55,
+      "n_results": 54,
       "n_relevant": 16,
       "ndcg@5": 0.49218519447472975,
       "recall@10": 0.8571428571428571,
@@ -1674,10 +1674,10 @@
       "category_id": "C14",
       "category_name": "Pasta varieties",
       "difficulty": "Easy",
-      "n_results": 104,
-      "n_relevant": 28,
+      "n_results": 100,
+      "n_relevant": 24,
       "ndcg@5": 1.0,
-      "recall@10": 0.5,
+      "recall@10": 0.47058823529411764,
       "mrr": 1.0
     },
     {
@@ -1686,11 +1686,11 @@
       "category_id": "C14",
       "category_name": "Pasta varieties",
       "difficulty": "Medium",
-      "n_results": 68,
-      "n_relevant": 4,
-      "ndcg@5": 0.7984848580994974,
+      "n_results": 67,
+      "n_relevant": 3,
+      "ndcg@5": 0.38685280723454163,
       "recall@10": 1.0,
-      "mrr": 1.0
+      "mrr": 0.5
     },
     {
       "query_id": "C14-03",
@@ -1699,7 +1699,7 @@
       "category_name": "Pasta varieties",
       "difficulty": "Easy",
       "n_results": 4,
-      "n_relevant": 2,
+      "n_relevant": 1,
       "ndcg@5": 1.0,
       "recall@10": 1.0,
       "mrr": 1.0
@@ -1711,7 +1711,7 @@
       "category_name": "Pasta varieties",
       "difficulty": "Easy",
       "n_results": 3,
-      "n_relevant": 4,
+      "n_relevant": 3,
       "ndcg@5": 1.0,
       "recall@10": 1.0,
       "mrr": 1.0
@@ -1722,8 +1722,8 @@
       "category_id": "C14",
       "category_name": "Pasta varieties",
       "difficulty": "Easy",
-      "n_results": 10,
-      "n_relevant": 5,
+      "n_results": 8,
+      "n_relevant": 4,
       "ndcg@5": 1.0,
       "recall@10": 1.0,
       "mrr": 1.0
@@ -1734,11 +1734,11 @@
       "category_id": "C14",
       "category_name": "Pasta varieties",
       "difficulty": "Easy",
-      "n_results": 39,
+      "n_results": 35,
       "n_relevant": 16,
-      "ndcg@5": 0.36005461457723403,
-      "recall@10": 0.5,
-      "mrr": 0.5
+      "ndcg@5": 1.0,
+      "recall@10": 0.7142857142857143,
+      "mrr": 1.0
     },
     {
       "query_id": "C14-07",
@@ -1746,11 +1746,11 @@
       "category_id": "C14",
       "category_name": "Pasta varieties",
       "difficulty": "Easy",
-      "n_results": 98,
-      "n_relevant": 9,
-      "ndcg@5": 0.5019883192066129,
-      "recall@10": 0.8571428571428571,
-      "mrr": 0.5
+      "n_results": 96,
+      "n_relevant": 8,
+      "ndcg@5": 0.6875399693572165,
+      "recall@10": 0.8333333333333334,
+      "mrr": 1.0
     },
     {
       "query_id": "C14-08",
@@ -1938,10 +1938,10 @@
       "category_id": "C17",
       "category_name": "Dessert varieties",
       "difficulty": "Medium",
-      "n_results": 23,
-      "n_relevant": 25,
+      "n_results": 22,
+      "n_relevant": 24,
       "ndcg@5": 1.0,
-      "recall@10": 0.7692307692307693,
+      "recall@10": 0.8333333333333334,
       "mrr": 1.0
     },
     {
@@ -1950,8 +1950,8 @@
       "category_id": "C17",
       "category_name": "Dessert varieties",
       "difficulty": "Easy",
-      "n_results": 6,
-      "n_relevant": 3,
+      "n_results": 5,
+      "n_relevant": 2,
       "ndcg@5": 1.0,
       "recall@10": 1.0,
       "mrr": 1.0
@@ -2179,7 +2179,7 @@
       "category_name": "Pork dishes",
       "difficulty": "Easy",
       "n_results": 27,
-      "n_relevant": 37,
+      "n_relevant": 36,
       "ndcg@5": 0.8274043288765652,
       "recall@10": 0.5833333333333334,
       "mrr": 1.0
@@ -2202,9 +2202,9 @@
       "category_id": "C20",
       "category_name": "Pork dishes",
       "difficulty": "Easy",
-      "n_results": 4,
-      "n_relevant": 3,
-      "ndcg@5": 0.9674679834891693,
+      "n_results": 2,
+      "n_relevant": 2,
+      "ndcg@5": 1.0,
       "recall@10": 1.0,
       "mrr": 1.0
     },
@@ -2250,7 +2250,7 @@
       "category_id": "C21",
       "category_name": "Seafood dishes",
       "difficulty": "Easy",
-      "n_results": 26,
+      "n_results": 25,
       "n_relevant": 56,
       "ndcg@5": 1.0,
       "recall@10": 0.4090909090909091,
@@ -2262,7 +2262,7 @@
       "category_id": "C21",
       "category_name": "Seafood dishes",
       "difficulty": "Easy",
-      "n_results": 11,
+      "n_results": 9,
       "n_relevant": 6,
       "ndcg@5": 0.4367467095119258,
       "recall@10": 1.0,
@@ -2286,7 +2286,7 @@
       "category_id": "C21",
       "category_name": "Seafood dishes",
       "difficulty": "Easy",
-      "n_results": 56,
+      "n_results": 55,
       "n_relevant": 12,
       "ndcg@5": 0.48522855511632257,
       "recall@10": 0.2857142857142857,
@@ -2298,10 +2298,10 @@
       "category_id": "C21",
       "category_name": "Seafood dishes",
       "difficulty": "Easy",
-      "n_results": 18,
+      "n_results": 17,
       "n_relevant": 7,
       "ndcg@5": 0.6951165556982364,
-      "recall@10": 0.75,
+      "recall@10": 1.0,
       "mrr": 1.0
     },
     {
@@ -2322,10 +2322,10 @@
       "category_id": "C21",
       "category_name": "Seafood dishes",
       "difficulty": "Easy",
-      "n_results": 126,
-      "n_relevant": 39,
-      "ndcg@5": 0.5147714448836774,
-      "recall@10": 0.13333333333333333,
+      "n_results": 125,
+      "n_relevant": 38,
+      "ndcg@5": 0.36005461457723403,
+      "recall@10": 0.13793103448275862,
       "mrr": 0.5
     },
     {
@@ -2346,9 +2346,9 @@
       "category_id": "C21",
       "category_name": "Seafood dishes",
       "difficulty": "Medium",
-      "n_results": 13,
-      "n_relevant": 6,
-      "ndcg@5": 0.7039180890341347,
+      "n_results": 10,
+      "n_relevant": 5,
+      "ndcg@5": 0.9197207891481876,
       "recall@10": 1.0,
       "mrr": 1.0
     },
@@ -2478,10 +2478,10 @@
       "category_id": "C22",
       "category_name": "Ingredient focus",
       "difficulty": "Medium",
-      "n_results": 32,
-      "n_relevant": 26,
-      "ndcg@5": 0.8539316501572937,
-      "recall@10": 0.6,
+      "n_results": 30,
+      "n_relevant": 25,
+      "ndcg@5": 0.830419897363192,
+      "recall@10": 0.5555555555555556,
       "mrr": 1.0
     },
     {
@@ -2658,11 +2658,11 @@
       "category_id": "C24",
       "category_name": "Pizza varieties",
       "difficulty": "Easy",
-      "n_results": 1,
-      "n_relevant": 3,
-      "ndcg@5": 1.0,
-      "recall@10": 1.0,
-      "mrr": 1.0
+      "n_results": 0,
+      "n_relevant": 2,
+      "ndcg@5": 0.0,
+      "recall@10": 0.0,
+      "mrr": 0.0
     },
     {
       "query_id": "C24-02",
@@ -2670,11 +2670,11 @@
       "category_id": "C24",
       "category_name": "Pizza varieties",
       "difficulty": "Easy",
-      "n_results": 1,
-      "n_relevant": 1,
-      "ndcg@5": 1.0,
-      "recall@10": 1.0,
-      "mrr": 1.0
+      "n_results": 0,
+      "n_relevant": 0,
+      "ndcg@5": 0.0,
+      "recall@10": 0.0,
+      "mrr": 0.0
     },
     {
       "query_id": "C24-03",

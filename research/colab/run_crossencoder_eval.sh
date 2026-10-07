@@ -1,14 +1,13 @@
 #!/bin/bash
 # Run the Approach 6 cross-encoder benchmark on a Colab GPU VM and download the
-# score cache, so later evaluations (e.g. after relevance label changes) replay
-# it locally in seconds without a GPU.
+# metrics. Scoring all 209 queries x every menu item takes about a minute on a
+# T4 (vs. ~15 min on a laptop CPU).
 #
 # Same mechanics as run_llm_eval.sh: ships code + benchmark data with
 # `colab upload`, starts the run detached, polls the log through the file API,
 # downloads the results into research/results/crossencoder/, and always stops
 # the VM on exit. A local model directory (e.g. a finetuned model under
-# models/) is uploaded too, at the same relative path, so the downloaded
-# .scores.tsv records the same model string and replays locally with no rebuild.
+# models/) is uploaded too, at the same relative path.
 #
 # Usage:
 #   research/colab/run_crossencoder_eval.sh                                   # stock ms-marco-MiniLM-L6-v2 on a T4
@@ -29,7 +28,6 @@ ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 TAG="$(basename "$MODEL")"
 OUT_DIR="$ROOT/research/results/crossencoder"
 REMOTE=/content/restaurant-search
-REL_SCORES="research/results/crossencoder/$TAG.scores.tsv"
 REL_METRICS="research/results/crossencoder/$TAG.metrics.json"
 COLAB=(colab --auth adc)
 
@@ -88,7 +86,7 @@ assert r.returncode == 0
 
 echo "=== starting run: $MODEL ==="
 LOCAL_LOG="$OUT_DIR/$TAG.log"
-ARGS="--engine crossencoder --model $MODEL --scores $REL_SCORES --save-metrics $REL_METRICS"
+ARGS="--engine crossencoder --model $MODEL --save-metrics $REL_METRICS"
 for attempt in 1 2 3; do
   remote_py 60 "
 import os, subprocess
@@ -119,8 +117,6 @@ grep -q '^RUN_EXIT=0$' "$LOCAL_LOG" || { echo "ERROR: run failed"; tail -40 "$LO
 
 echo "=== downloading results ==="
 tr '\r' '\n' < "$LOCAL_LOG" | grep -vE 'it/s\]|^\s*$' > "$LOCAL_LOG.tmp" && mv "$LOCAL_LOG.tmp" "$LOCAL_LOG"
-grep -E 'NDCG@5  |Recall@10  |MRR  |scored' "$LOCAL_LOG" | tail -6
-"${COLAB[@]}" download -s "$SESSION" "$REMOTE/$REL_SCORES" "$ROOT/$REL_SCORES"
+grep -E 'NDCG@5  |Recall@10  |MRR  ' "$LOCAL_LOG" | tail -3
 "${COLAB[@]}" download -s "$SESSION" "$REMOTE/$REL_METRICS" "$ROOT/$REL_METRICS"
-echo "Results in $OUT_DIR/$TAG.{scores.tsv,metrics.json,log}"
-echo "Replay locally: python research/search/evaluate.py --engine crossencoder --model $MODEL --scores $REL_SCORES"
+echo "Results in $OUT_DIR/$TAG.{metrics.json,log}"

@@ -84,7 +84,7 @@ All search work is done in Python under `research/`. Experiments read the markdo
 
 ### Benchmark (`data/queries/`)
 
-A 209-query benchmark with relevance judgments for 8 restaurants (Due' Cucina, Juanita Cantina, Mendocino Farms, Plaza Garcia, Staple & Fancy, Bella Italia, Great China Restaurant, Anthony's HomePort). See [`data/queries/README.md`](data/queries/README.md) for format details.
+A 209-query benchmark with relevance judgments for 8 restaurants (Due' Cucina, Juanita Cantina, Mendocino Farms, Plaza Garcia, Staple & Fancy, Great China Restaurant, Anthony's HomePort, Rimini Restaurant). See [`data/queries/README.md`](data/queries/README.md) for format details.
 
 Key files:
 - `data/queries/queries.csv` — 209 queries with `category_id`, `difficulty`, and `category_name`. `query_id` is `{category_id}-{seq}` (e.g. `C14-03`), stable per category so adding a query never renumbers others.

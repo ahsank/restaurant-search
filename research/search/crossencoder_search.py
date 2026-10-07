@@ -23,39 +23,19 @@ Usage:
 
 Equivalent via the shared --engine dispatcher (used by evaluate.py):
     python research/search/evaluate.py --engine crossencoder --model models/crossencoder-synthetic-plus-gapfill
-
-Score cache (--scores FILE): scoring every item for every benchmark query
-takes ~13.5 min on CPU, so evaluate.py can store the full query x item score
-matrix as a text file and replay it. The file records a fingerprint of the
-menus and queries.csv (not the relevance labels); if either changed, the file
-is rebuilt from scratch, otherwise evaluation is a lookup:
-    python research/search/evaluate.py --engine crossencoder \
-        --scores research/results/crossencoder/ms-marco-MiniLM-L6-v2.scores.tsv
 """
 
-import argparse
 import sys
 from pathlib import Path
 
+from sentence_transformers.cross_encoder import CrossEncoder
+
 sys.path.insert(0, str(Path(__file__).parents[1]))
-from lib.data import benchmark_fingerprint, item_text, load_data, judged_restaurant_ids, restaurant_scope_cli_args
+from lib.data import item_text, load_data, judged_restaurant_ids, restaurant_scope_cli_args
 
 _ROOT = Path(__file__).parents[2]
 _DEFAULT_MODEL = _ROOT / "models" / "crossencoder-synthetic-plus-gapfill"
 STOCK_MODEL = "cross-encoder/ms-marco-MiniLM-L6-v2"
-SCORES_FORMAT = 1
-
-
-def cli_args() -> argparse.ArgumentParser:
-    """--scores flag fragment; engines.build_arg_parser() adds it for --engine crossencoder."""
-    parser = argparse.ArgumentParser(add_help=False)
-    parser.add_argument(
-        "--scores", type=Path,
-        help="Score cache (text TSV, safe to commit): replay scores from this file, or "
-             "compute every benchmark query x item and write it if missing or stale "
-             "(menus or queries.csv changed). Relabeling never invalidates it.",
-    )
-    return parser
 
 
 def build_index(menus: dict, restaurants: dict) -> list[tuple[str, dict, str]]:
@@ -71,7 +51,7 @@ def search(
     query: str,
     restaurants: dict,
     index: list[tuple[str, dict, str]],
-    model,
+    model: CrossEncoder,
     batch_size: int = 128,
 ) -> list[dict]:
     """Score (query, item_text) for every indexed item and sort best-first."""
@@ -80,13 +60,10 @@ def search(
         batch_size=batch_size,
         show_progress_bar=False,
     )
-    return rank(restaurants, index, [float(s) for s in scores])
 
-
-def rank(restaurants: dict, index: list[tuple[str, dict, str]], scores: list[float]) -> list[dict]:
-    """Result dicts for index entries with the given scores, best-first (stable on ties)."""
     scored: list[tuple[float, dict]] = []
     for (rid, item, _), score in zip(index, scores):
+        score = float(score)
         scored.append((score, {
             "restaurant":  restaurants[rid].get("name", rid),
             "item":        item["name"],
@@ -100,103 +77,6 @@ def rank(restaurants: dict, index: list[tuple[str, dict, str]], scores: list[flo
 
     scored.sort(key=lambda t: t[0], reverse=True)
     return [r for _, r in scored]
-
-
-# ---------------------------------------------------------------------------
-# Score cache: one text file with every benchmark query x item score
-# ---------------------------------------------------------------------------
-#
-#   # crossencoder-scores format=1
-#   # model: cross-encoder/ms-marco-MiniLM-L6-v2
-#   # fingerprint: 3f2a...           (lib.data.benchmark_fingerprint)
-#   query_id <TAB> query_text <TAB> <restaurant_id>|<item name> <TAB> ...
-#   C01-01   <TAB> Mexican food... <TAB> -3.12345 <TAB> ...
-#
-# Columns follow build_index() order, so replaying sorts exactly like search().
-
-def _column(entry: tuple[str, dict, str]) -> str:
-    rid, item, _ = entry
-    return f"{rid}|{item['name']}"
-
-
-def write_scores(path: Path, model_name: str, fingerprint: str, index, queries: list[dict], model) -> None:
-    """Score every query against every index entry and write the TSV cache."""
-    import time
-    path.parent.mkdir(parents=True, exist_ok=True)
-    texts = [text for _, _, text in index]
-    t0 = time.time()
-    with open(path, "w", encoding="utf-8", newline="\n") as f:
-        f.write(f"# crossencoder-scores format={SCORES_FORMAT}\n")
-        f.write(f"# model: {model_name}\n")
-        f.write(f"# fingerprint: {fingerprint}\n")
-        f.write("\t".join(["query_id", "query_text"] + [_column(e) for e in index]) + "\n")
-        for i, q in enumerate(queries, 1):
-            scores = model.predict([(q["query_text"], t) for t in texts], batch_size=128, show_progress_bar=False)
-            f.write("\t".join([q["query_id"], q["query_text"]] + [f"{float(s):.5f}" for s in scores]) + "\n")
-            if i % 20 == 0 or i == len(queries):
-                print(f"  scored {i}/{len(queries)} queries ({time.time() - t0:.0f}s)", flush=True)
-
-
-def read_scores(path: Path, model_name: str, fingerprint: str, index) -> dict[str, list[float]] | None:
-    """{query_text: scores in index order}, or None if the file is missing or stale."""
-    if not path.exists():
-        print(f"Score cache {path} not found; it will be created.")
-        return None
-    with open(path, encoding="utf-8") as f:
-        meta = {}
-        line = f.readline()
-        while line.startswith("#"):
-            if ":" in line:
-                k, _, v = line[1:].partition(":")
-                meta[k.strip()] = v.strip()
-            line = f.readline()
-        columns = line.rstrip("\n").split("\t")[2:]
-        problems = []
-        if meta.get("model") != model_name:
-            problems.append(f"model {meta.get('model')!r} != {model_name!r}")
-        if meta.get("fingerprint") != fingerprint:
-            problems.append("menus or queries.csv changed since it was written")
-        if columns != [_column(e) for e in index]:
-            problems.append("menu item columns differ")
-        if problems:
-            print(f"Score cache {path} is stale ({'; '.join(problems)}); rebuilding from scratch.")
-            return None
-        rows = {}
-        for line in f:
-            parts = line.rstrip("\n").split("\t")
-            rows[parts[1]] = [float(x) for x in parts[2:]]
-    return rows
-
-
-def cached_search_fn(path: Path, model_name: str, restaurants: dict, menus: dict, load_model):
-    """
-    search_fn(query) backed by the score cache at path. Builds (or rebuilds) the
-    cache over every benchmark query when needed; queries not in the cache
-    (ad-hoc searches) fall back to live scoring with load_model().
-    """
-    sys.path.insert(0, str(Path(__file__).parent))
-    from evaluate import load_queries
-
-    index = build_index(menus, restaurants)
-    fingerprint = benchmark_fingerprint(set(menus))
-    rows = read_scores(path, model_name, fingerprint, index)
-    model = None
-    if rows is None:
-        queries = load_queries()
-        model = load_model()
-        print(f"Scoring {len(queries)} queries x {len(index)} items into {path}...")
-        write_scores(path, model_name, fingerprint, index, queries, model)
-        rows = read_scores(path, model_name, fingerprint, index)
-    print(f"Replaying cross-encoder scores from {path} ({len(rows)} queries)")
-
-    def _search(query: str) -> list[dict]:
-        nonlocal model
-        if query in rows:
-            return rank(restaurants, index, rows[query])
-        if model is None:
-            model = load_model()
-        return search(query, restaurants, index, model)
-    return _search
 
 
 if __name__ == "__main__":
@@ -221,7 +101,6 @@ if __name__ == "__main__":
             f"or pass --model {STOCK_MODEL} for the stock checkpoint."
         )
 
-    from sentence_transformers.cross_encoder import CrossEncoder
     print(f"Loading model '{args.model}'...", end=" ", flush=True)
     model = CrossEncoder(args.model)
     print("done")
