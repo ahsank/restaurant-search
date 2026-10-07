@@ -108,7 +108,7 @@ juanita-cantina,C01-01,Seafood Enchiladas,1
 
 ### Coverage
 
-Restaurants covered: `bella-italia`, `due-cucina`, `great-china-restaurant`, `juanita-cantina`, `mendocino-farms`, `plaza-garcia`, `staple-and-fancy`.
+Restaurants covered: `anthonys-homeport`, `due-cucina`, `great-china-restaurant`, `juanita-cantina`, `mendocino-farms`, `plaza-garcia`, `staple-and-fancy`. (`bella-italia`, a fictional demo restaurant, was removed in October 2026.)
 
 Not every query has entries for every restaurant — most queries are only relevant to a subset of restaurants. Queries with no entries in any file represent hard cases where no restaurant has a clear match (e.g., `C08-10` "keto friendly", `C04-06` "wood fired pizza").
 
@@ -146,7 +146,7 @@ with the reason for each. The review covered items that the Qwen2.5-7B run
 (`research/results/llm/qwen2.5-7b-instruct.jsonl`) returned for a query but
 that had no judgment here. Each one was checked against the query intent in
 `menu-search-benchmark-queries.md`, and those found relevant were added
-(1,494 → 1,864 judgments). Existing judgments were not changed or removed.
+(1,494 → 1,864 judgments; 1,816 after Bella Italia was removed). Existing judgments were not changed or removed.
 
 ### Adding new relevance judgments
 
