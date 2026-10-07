@@ -147,6 +147,9 @@ with the reason for each. The review covered items that the Qwen2.5-7B run
 that had no judgment here. Each one was checked against the query intent in
 `menu-search-benchmark-queries.md`, and those found relevant were added
 (1,494 → 1,864 judgments; 1,816 after Bella Italia was removed, 2,101 after Rimini Restaurant was added). Existing judgments were not changed or removed.
+A follow-up check of three C01 queries added 6 missed judgments (2,107) and
+fixed nine Juanita Cantina rows spelled `Tacos De Pescado`, which never matched
+the menu's `Tacos de Pescado` and so counted as 0; both are in the log too.
 
 ### Adding new relevance judgments
 

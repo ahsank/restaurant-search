@@ -368,3 +368,18 @@ C23-04,juanita-cantina,Quesadilla,0,2,quesadilla (happy hour)
 C23-04,plaza-garcia,Appetizer Combo Plate,0,1,includes a quesadilla
 C23-04,plaza-garcia,Quesadilla Camarones,0,2,shrimp quesadilla
 C23-05,plaza-garcia,Fajitas Steak,0,2,fajita dish
+C01-03,plaza-garcia,Camarones a la Diabla,0,2,shrimp in spicy diabla sauce; Latin seafood entree
+C01-03,plaza-garcia,Camarones al Mojo de Ajo,0,2,garlic shrimp entree; Latin seafood dish
+C01-03,plaza-garcia,Camarones a la Crema,0,2,shrimp in cream salsa; Latin seafood entree
+C01-03,plaza-garcia,Camarones Garcia,0,2,bacon-wrapped shrimp entree; Latin seafood dish
+C01-06,plaza-garcia,Tacos De Asada,0,2,soft carne asada tacos with cilantro and onion; classic taqueria taco
+C01-03,juanita-cantina,Tacos de Pescado,0,2,"name fix: row said 'Tacos De Pescado', which never matched the menu's 'Tacos de Pescado'"
+C01-06,juanita-cantina,Tacos de Pescado,0,1,"name fix: row said 'Tacos De Pescado', which never matched the menu's 'Tacos de Pescado'"
+C02-01,juanita-cantina,Tacos de Pescado,0,2,"name fix: row said 'Tacos De Pescado', which never matched the menu's 'Tacos de Pescado'"
+C08-09,juanita-cantina,Tacos de Pescado,0,2,"name fix: row said 'Tacos De Pescado', which never matched the menu's 'Tacos de Pescado'"
+C13-01,juanita-cantina,Tacos de Pescado,0,2,"name fix: row said 'Tacos De Pescado', which never matched the menu's 'Tacos de Pescado'"
+C13-02,juanita-cantina,Tacos de Pescado,0,2,"name fix: row said 'Tacos De Pescado', which never matched the menu's 'Tacos de Pescado'"
+C21-07,juanita-cantina,Tacos de Pescado,0,2,"name fix: row said 'Tacos De Pescado', which never matched the menu's 'Tacos de Pescado'"
+C21-08,juanita-cantina,Tacos de Pescado,0,1,"name fix: row said 'Tacos De Pescado', which never matched the menu's 'Tacos de Pescado'"
+C21-09,juanita-cantina,Tacos de Pescado,0,2,"name fix: row said 'Tacos De Pescado', which never matched the menu's 'Tacos de Pescado'"
+C01-01,juanita-cantina,Carne and Camaron,0,2,carne asada plus a full shrimp preparation; Mexican shrimp dish
