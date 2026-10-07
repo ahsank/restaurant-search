@@ -153,6 +153,9 @@ the menu's `Tacos de Pescado` and so counted as 0; both are in the log too.
 A pork pass then added 10 judgments (2,117). For C20 Pork dishes only items
 whose primary ingredient is pork were added; bacon garnishes, sides, bacon-wrapped
 shrimp and choice-of-meat items were not. Molcajete was also added to C01-01.
+Two older C20-01 grades that broke that rule (San Juan Scramble, Sicilian
+Pizza Pie) were removed (2,115). These are the only removals; the log records
+them with new_relevance 0.
 
 ### Adding new relevance judgments
 
