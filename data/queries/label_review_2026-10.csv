@@ -389,64 +389,7 @@ C20-01,plaza-garcia,Tacos Al Pastor,0,2,marinated pork tacos
 C20-01,plaza-garcia,Burrito Chile Verde,0,2,pork in green tomatillo sauce
 C20-01,plaza-garcia,Fajitas Pork,0,2,pork fajitas
 C20-01,plaza-garcia,Huevos Con Chorizo,0,2,eggs with pork chorizo sausage
-C20-01,plaza-garcia,Molcajete,0,1,"platter includes chorizo, sausage and bacon"
-C20-01,plaza-garcia,Camarones Garcia,0,1,shrimp wrapped in bacon
-C20-02,plaza-garcia,Carnitas de Pollo,0,1,named carnitas but chicken (same grade as Carnitas De Res)
 C20-06,juanita-cantina,Carne and Camaron,0,1,bacon-wrapped shrimp (con tocino) is one of the shrimp options
-C20-01,juanita-cantina,Camarones con Bacon,0,1,shrimp wrapped in bacon
-C20-01,juanita-cantina,Carne and Camaron,0,1,bacon-wrapped shrimp option
-C20-01,juanita-cantina,Jalapeño with Bacon,0,1,jalapeños with bacon
-C20-01,juanita-cantina,Jalapeño Cheeseburger,0,1,bacon inside the patty
-C20-01,juanita-cantina,Queso Dip with Chorizo,0,1,queso with chorizo
-C20-01,juanita-cantina,Clams with Chorizo,0,1,clams with chorizo
-C20-01,juanita-cantina,3 Street Tacos,0,1,pork option (al pastor/carnitas) among choice of meats
-C20-01,juanita-cantina,Three Cantina Tacos,0,1,pork option (al pastor/carnitas) among choice of meats
-C20-01,juanita-cantina,Nacho Supreme,0,1,pork option (al pastor/carnitas) among choice of meats
-C20-01,juanita-cantina,Tijuana Nachos,0,1,pork option (al pastor/carnitas) among choice of meats
-C20-01,juanita-cantina,Quesadillas,0,1,pork option (al pastor/carnitas) among choice of meats
-C20-01,juanita-cantina,Asada Fries,0,1,al pastor is one of the meat choices
-C20-01,juanita-cantina,Mexican Flatbread,0,1,pork option (al pastor/carnitas) among choice of meats
-C20-01,juanita-cantina,Sopitos,0,1,pork option (al pastor/carnitas) among choice of meats
-C20-01,juanita-cantina,Taco Salad,0,1,pork option (al pastor/carnitas) among choice of meats
-C20-01,juanita-cantina,Avocado Tostada,0,1,pork option (al pastor/carnitas) among choice of meats
-C20-01,juanita-cantina,Enchiladas Suizas,0,1,pork option (al pastor/carnitas) among choice of meats
-C20-01,juanita-cantina,Enchiladas Juanita,0,1,pork option (al pastor/carnitas) among choice of meats
-C20-01,juanita-cantina,Enchiladas en Mole,0,1,pork option (al pastor/carnitas) among choice of meats
-C20-01,juanita-cantina,Enchiladas Rojas,0,1,pork option (al pastor/carnitas) among choice of meats
-C20-05,juanita-cantina,Enchiladas Suizas,0,1,green tomatillo salsa; carnitas/al pastor are meat options
-C20-02,juanita-cantina,Three Cantina Tacos,0,1,carnitas is one of the meat choices
-C20-02,juanita-cantina,Nacho Supreme,0,1,carnitas is one of the meat choices
-C20-02,juanita-cantina,Tijuana Nachos,0,1,carnitas is one of the meat choices
-C20-02,juanita-cantina,Quesadillas,0,1,carnitas is one of the meat choices
-C20-02,juanita-cantina,Mexican Flatbread,0,1,carnitas is one of the meat choices
-C20-02,juanita-cantina,Sopitos,0,1,carnitas is one of the meat choices
-C20-02,juanita-cantina,Taco Salad,0,1,carnitas is one of the meat choices
-C20-02,juanita-cantina,Avocado Tostada,0,1,carnitas is one of the meat choices
-C20-02,juanita-cantina,Enchiladas Suizas,0,1,carnitas is one of the meat choices
-C20-02,juanita-cantina,Enchiladas Juanita,0,1,carnitas is one of the meat choices
-C20-02,juanita-cantina,Enchiladas en Mole,0,1,carnitas is one of the meat choices
-C20-02,juanita-cantina,Enchiladas Rojas,0,1,carnitas is one of the meat choices
 C20-01,staple-and-fancy,Prosciutto,0,2,prosciutto is the dish
 C20-01,due-cucina,Lasagna alla Bolognese,0,1,Bolognese contains pork (same grade as Bolognese Ragu')
-C20-01,great-china-restaurant,Family Dinner A,0,1,includes B.B.Q. pork and sweet & sour pork
-C20-01,great-china-restaurant,Family Dinner B,0,1,includes B.B.Q. pork fried rice option
-C20-01,great-china-restaurant,Family Dinner C,0,1,includes B.B.Q. pork (appetizer platter, fried rice option)
-C20-01,great-china-restaurant,Combination Platter,0,1,includes B.B.Q. pork
-C20-01,mendocino-farms,Heirloom BLT,0,1,bacon sandwich
-C20-01,mendocino-farms,The Farm Club,0,1,turkey and bacon
-C20-01,mendocino-farms,1/2 The Farm Club,0,1,turkey and bacon
-C20-01,mendocino-farms,Chimichurri Steak & Bacon,0,1,steak and bacon
-C20-01,mendocino-farms,Prosciutto & Chicken,0,1,chicken and prosciutto
-C20-01,mendocino-farms,Golden State Cobb,0,1,bacon in salad
-C20-01,mendocino-farms,Golden State Cobb Wrap,0,1,bacon in wrap
-C20-01,anthonys-homeport,Seasonal Salad,0,1,bacon in salad
-C20-01,anthonys-homeport,Anthony's Cobb Salad,0,1,bacon in salad
-C20-01,anthonys-homeport,Crispy Calamari Salad,0,1,salami in salad
-C20-01,anthonys-homeport,Calamari Salad,0,1,salami in salad
-C20-01,anthonys-homeport,Anthony's Clam Chowder,0,1,chowder with bacon
-C20-01,anthonys-homeport,Anthony's Award-Winning Clam Chowder,0,1,chowder with bacon
 C20-01,anthonys-homeport,HomePort Breakfast Bowl*,0,1,house sausage bowl
-C20-01,anthonys-homeport,Seafood Omelette,0,1,served with bacon (same grade as San Juan Scramble)
-C20-01,anthonys-homeport,French Toast,0,1,served with bacon
-C20-01,anthonys-homeport,Crepes with Peaches,0,1,served with bacon
-C20-01,anthonys-homeport,Best of Season Crepes,0,1,served with bacon
