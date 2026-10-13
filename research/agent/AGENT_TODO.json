@@ -1,18 +1,6 @@
 {
-  "iteration": 8,
-  "pending_tasks": [
-    {
-      "action": "change_code",
-      "details": "Implement a hybrid search engine in research/search/hybrid_search.py and register --engine hybrid in research/search/engines.py. The hybrid engine takes LLM candidate rankings (--rankings) and rescores them with a CrossEncoder (--model), using the cross-encoder score (optionally with an LLM grade boost) to produce fine-grained ordering, and falls back to full cross-encoder search when the LLM returns no matches. Verify with evaluate.py --engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L6-v2.",
-      "evidence": [
-        "research/APPROACHES.md",
-        "research/search/engines.py",
-        "research/search/llm_search.py",
-        "research/search/crossencoder_search.py"
-      ],
-      "reasoning": "While Qwen2.5-7B achieved the highest Recall@10 (0.7739) and NDCG@5 (0.6993), its coarse discrete grading and failure on empty queries held back MRR compared to ms-marco-MiniLM-L6-v2 (0.7989). First, we evaluate the deeper 12-layer cross-encoder checkpoint (ms-marco-MiniLM-L12-v2) to test if increased model capacity improves dense cross-attention ranking. Second, we implement a hybrid reranker combining LLM candidate recall with cross-encoder scoring and fallback, addressing the coarse ranking and empty-result failure modes documented in APPROACHES.md."
-    }
-  ],
+  "iteration": 9,
+  "pending_tasks": [],
   "completed_tasks": [
     {
       "action": "run_experiment",
@@ -69,6 +57,17 @@
       "eval_args": "--engine crossencoder --model cross-encoder/ms-marco-MiniLM-L12-v2",
       "setup": "",
       "description": "test deeper 12-layer cross-encoder on all items",
+      "reasoning": "While Qwen2.5-7B achieved the highest Recall@10 (0.7739) and NDCG@5 (0.6993), its coarse discrete grading and failure on empty queries held back MRR compared to ms-marco-MiniLM-L6-v2 (0.7989). First, we evaluate the deeper 12-layer cross-encoder checkpoint (ms-marco-MiniLM-L12-v2) to test if increased model capacity improves dense cross-attention ranking. Second, we implement a hybrid reranker combining LLM candidate recall with cross-encoder scoring and fallback, addressing the coarse ranking and empty-result failure modes documented in APPROACHES.md."
+    },
+    {
+      "action": "change_code",
+      "details": "Implement a hybrid search engine in research/search/hybrid_search.py and register --engine hybrid in research/search/engines.py. The hybrid engine takes LLM candidate rankings (--rankings) and rescores them with a CrossEncoder (--model), using the cross-encoder score (optionally with an LLM grade boost) to produce fine-grained ordering, and falls back to full cross-encoder search when the LLM returns no matches. Verify with evaluate.py --engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L6-v2.",
+      "evidence": [
+        "research/APPROACHES.md",
+        "research/search/engines.py",
+        "research/search/llm_search.py",
+        "research/search/crossencoder_search.py"
+      ],
       "reasoning": "While Qwen2.5-7B achieved the highest Recall@10 (0.7739) and NDCG@5 (0.6993), its coarse discrete grading and failure on empty queries held back MRR compared to ms-marco-MiniLM-L6-v2 (0.7989). First, we evaluate the deeper 12-layer cross-encoder checkpoint (ms-marco-MiniLM-L12-v2) to test if increased model capacity improves dense cross-attention ranking. Second, we implement a hybrid reranker combining LLM candidate recall with cross-encoder scoring and fallback, addressing the coarse ranking and empty-result failure modes documented in APPROACHES.md."
     }
   ]

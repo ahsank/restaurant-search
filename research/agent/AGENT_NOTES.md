@@ -57,3 +57,27 @@ current labels, so the agent starts from comparable baselines.
 - Eval args: `--engine crossencoder --model cross-encoder/ms-marco-MiniLM-L12-v2`
 - ndcg@5 0.6462 | recall@10 0.5811 | mrr 0.7869 | 206/209 queries judged
 - Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.0, C25 Occasion / meal-time 0.2574, C03 Attribute / implied meaning 0.2613, C08 Dietary constraint / negation 0.304, C02 Ingredient generalization 0.3814
+
+### Iteration 8: hybrid-qwen2.5-7b-ms-marco-MiniLM-L6-v2 (SUCCESS)
+- Result: `research/agent/results/hybrid-qwen2.5-7b-ms-marco-MiniLM-L6-v2.json` | commit `71d7fcd` | 8.4s
+- Eval args: `--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L6-v2`
+- ndcg@5 0.784 | recall@10 0.8104 | mrr 0.8577 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.0984, C08 Dietary constraint / negation 0.3233, C09 Synonym / paraphrase 0.5957, C03 Attribute / implied meaning 0.6124, C25 Occasion / meal-time 0.6262
+
+### Iteration 8: hybrid-qwen2.5-7b-minilm-l6-boost2 (SUCCESS)
+- Result: `research/agent/results/hybrid-qwen2.5-7b-minilm-l6-boost2.json` | commit `71d7fcd` | 8.5s
+- Eval args: `--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L6-v2 --grade-boost 2.0`
+- ndcg@5 0.8006 | recall@10 0.8265 | mrr 0.8707 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.1666, C08 Dietary constraint / negation 0.4846, C03 Attribute / implied meaning 0.6042, C09 Synonym / paraphrase 0.6588, C24 Pizza varieties 0.6667
+
+### Iteration 8: code change
+**Goal**: Implement a hybrid search engine in research/search/hybrid_search.py and register --engine hybrid in research/search/engines.py. The hybrid engine takes LLM candidate rankings (--rankings) and rescores them with a CrossEncoder (--model), using the cross-encoder score (optionally with an LLM grade boost) to produce fine-grained ordering, and falls back to full cross-encoder search when the LLM returns no matches. Verify with evaluate.py --engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L6-v2.
+
+**Summary**: Implemented the hybrid search engine in research/search/hybrid_search.py and registered `--engine hybrid` in research/search/engines.py, documented usage in research/COMMANDS.md. The hybrid search engine takes LLM candidate rankings (--rankings), rescores candidates using CrossEncoder (--model, default ms-marco-MiniLM-L6-v2) with an optional grade boost (--grade-boost), and falls back to exhaustive cross-encoder search when the LLM returns no candidate matches. Benchmark results for `hybrid-qwen2.5-7b-ms-marco-MiniLM-L6-v2`: NDCG@5=0.7840, Recall@10=0.8104, MRR=0.8577 (outperforming both Qwen2.5-7B's 0.6993 NDCG@5 and stock CrossEncoder's 0.6510 NDCG@5). With `--grade-boost 2.0`, performance reached NDCG@5=0.8006, Recall@10=0.8265, MRR=0.8707.
+
+**Files changed**:
+```
+ M research/COMMANDS.md
+ M research/search/engines.py
+?? research/search/hybrid_search.py
+```
