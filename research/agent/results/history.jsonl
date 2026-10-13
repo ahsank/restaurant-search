@@ -1,0 +1,1 @@
+{"timestamp": "2026-10-13T19:39:27", "iteration": 0, "git_commit": "2646904", "name": "baseline-text", "status": "SUCCESS", "setup": null, "eval_args": ["--engine", "text"], "seconds": 0.1, "metrics": {"ndcg@5": 0.4456, "recall@10": 0.4708, "mrr": 0.4692}}

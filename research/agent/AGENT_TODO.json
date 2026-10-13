@@ -1,13 +1,6 @@
 {
-  "iteration": 0,
+  "iteration": 1,
   "pending_tasks": [
-    {
-      "action": "run_experiment",
-      "name": "baseline-text",
-      "eval_args": "--engine text",
-      "setup": "",
-      "description": "keyword baseline on the current labels"
-    },
     {
       "action": "run_experiment",
       "name": "baseline-enhanced",
@@ -51,5 +44,13 @@
       "description": "LLM reader (Approach 7) with vLLM"
     }
   ],
-  "completed_tasks": []
+  "completed_tasks": [
+    {
+      "action": "run_experiment",
+      "name": "baseline-text",
+      "eval_args": "--engine text",
+      "setup": "",
+      "description": "keyword baseline on the current labels"
+    }
+  ]
 }

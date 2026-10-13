@@ -1,0 +1,2 @@
+name,status,ndcg@5,recall@10,mrr,n_queries,seconds,git_commit,timestamp,eval_args
+baseline-text,SUCCESS,0.4456,0.4708,0.4692,209,0.1,2646904,2026-10-13T19:39:27,--engine text
