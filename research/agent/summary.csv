@@ -1,3 +1,4 @@
 name,status,ndcg@5,recall@10,mrr,n_queries,seconds,git_commit,timestamp,eval_args
+sbert-all-MiniLM-L6-v2,SUCCESS,0.5592,0.4883,0.7093,209,20.7,7d057b3,2026-10-13T19:39:33,--engine sbert --model all-MiniLM-L6-v2
 baseline-enhanced,SUCCESS,0.5484,0.5498,0.5925,209,2.2,7e6ec25,2026-10-13T19:39:29,--engine enhanced
 baseline-text,SUCCESS,0.4456,0.4708,0.4692,209,0.1,2646904,2026-10-13T19:39:27,--engine text

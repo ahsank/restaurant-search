@@ -15,3 +15,9 @@ current labels, so the agent starts from comparable baselines.
 - Eval args: `--engine enhanced`
 - ndcg@5 0.5484 | recall@10 0.5498 | mrr 0.5925 | 206/209 queries judged
 - Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.0, C02 Ingredient generalization 0.0553, C05 Spelling variations 0.0667, C03 Attribute / implied meaning 0.1224, C08 Dietary constraint / negation 0.1987
+
+### Iteration 2: sbert-all-MiniLM-L6-v2 (SUCCESS)
+- Result: `research/agent/results/sbert-all-MiniLM-L6-v2.json` | commit `7d057b3` | 20.7s
+- Eval args: `--engine sbert --model all-MiniLM-L6-v2`
+- ndcg@5 0.5592 | recall@10 0.4883 | mrr 0.7093 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.0, C18 Chicken dishes 0.1969, C03 Attribute / implied meaning 0.2386, C04 Cooking method synonyms 0.3205, C02 Ingredient generalization 0.3335
