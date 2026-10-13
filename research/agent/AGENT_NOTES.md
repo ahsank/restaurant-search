@@ -81,3 +81,14 @@ current labels, so the agent starts from comparable baselines.
  M research/search/engines.py
 ?? research/search/hybrid_search.py
 ```
+
+### Plan (iteration 9)
+- Hypothesis: Hybrid Qwen2.5-7B with ms-marco-MiniLM-L6-v2 and grade-boost 2.0 set a new benchmark high (NDCG@5=0.8006, Recall@10=0.8265, MRR=0.8707), but category analysis shows C08 (Dietary constraint) dropped from 0.6651 under Qwen to 0.4846 under hybrid. This regression is caused by two factors: `hybrid_search.py` omits dietary metadata from the passage text passed to CrossEncoder, and raw CrossEncoder logit swings occasionally override high-confidence LLM grade 2 judgments. We first evaluate the deeper 12-layer CrossEncoder (MiniLM-L12-v2) on the existing hybrid setup, then update `hybrid_search.py` to include dietary annotations in candidate passage text and support strict-grade tiering.
+- Queued: run_experiment hybrid-qwen2.5-7b-minilm-l12-boost2
+- Queued: change_code Update research/search/hybrid_search.py to include item['dietary'] in the candidate text passed to CrossEncoder, and add a --strict-grade flag (rankin
+
+### Iteration 9: hybrid-qwen2.5-7b-minilm-l12-boost2 (SUCCESS)
+- Result: `research/agent/results/hybrid-qwen2.5-7b-minilm-l12-boost2.json` | commit `55fe4aa` | 9.4s
+- Eval args: `--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L12-v2 --grade-boost 2.0`
+- ndcg@5 0.7999 | recall@10 0.8246 | mrr 0.8611 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.1365, C08 Dietary constraint / negation 0.4595, C03 Attribute / implied meaning 0.5384, C09 Synonym / paraphrase 0.6583, C24 Pizza varieties 0.6667

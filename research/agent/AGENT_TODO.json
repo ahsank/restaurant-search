@@ -1,6 +1,17 @@
 {
-  "iteration": 9,
-  "pending_tasks": [],
+  "iteration": 10,
+  "pending_tasks": [
+    {
+      "action": "change_code",
+      "details": "Update research/search/hybrid_search.py to include item['dietary'] in the candidate text passed to CrossEncoder, and add a --strict-grade flag (ranking items by grade first, and breaking intra-grade ties by CrossEncoder score). Verify by evaluating on evaluate.py --engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L6-v2 --strict-grade.",
+      "evidence": [
+        "research/search/hybrid_search.py",
+        "research/agent/results/hybrid-qwen2.5-7b-minilm-l6-boost2.json",
+        "research/agent/runs/qwen2.5-7b-instruct.metrics.json"
+      ],
+      "reasoning": "Hybrid Qwen2.5-7B with ms-marco-MiniLM-L6-v2 and grade-boost 2.0 set a new benchmark high (NDCG@5=0.8006, Recall@10=0.8265, MRR=0.8707), but category analysis shows C08 (Dietary constraint) dropped from 0.6651 under Qwen to 0.4846 under hybrid. This regression is caused by two factors: `hybrid_search.py` omits dietary metadata from the passage text passed to CrossEncoder, and raw CrossEncoder logit swings occasionally override high-confidence LLM grade 2 judgments. We first evaluate the deeper 12-layer CrossEncoder (MiniLM-L12-v2) on the existing hybrid setup, then update `hybrid_search.py` to include dietary annotations in candidate passage text and support strict-grade tiering."
+    }
+  ],
   "completed_tasks": [
     {
       "action": "run_experiment",
@@ -69,6 +80,14 @@
         "research/search/crossencoder_search.py"
       ],
       "reasoning": "While Qwen2.5-7B achieved the highest Recall@10 (0.7739) and NDCG@5 (0.6993), its coarse discrete grading and failure on empty queries held back MRR compared to ms-marco-MiniLM-L6-v2 (0.7989). First, we evaluate the deeper 12-layer cross-encoder checkpoint (ms-marco-MiniLM-L12-v2) to test if increased model capacity improves dense cross-attention ranking. Second, we implement a hybrid reranker combining LLM candidate recall with cross-encoder scoring and fallback, addressing the coarse ranking and empty-result failure modes documented in APPROACHES.md."
+    },
+    {
+      "action": "run_experiment",
+      "name": "hybrid-qwen2.5-7b-minilm-l12-boost2",
+      "eval_args": "--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L12-v2 --grade-boost 2.0",
+      "setup": "",
+      "description": "Evaluate hybrid search using ms-marco-MiniLM-L12-v2 reranker with grade-boost 2.0 on Qwen2.5-7B candidates to test capacity scaling.",
+      "reasoning": "Hybrid Qwen2.5-7B with ms-marco-MiniLM-L6-v2 and grade-boost 2.0 set a new benchmark high (NDCG@5=0.8006, Recall@10=0.8265, MRR=0.8707), but category analysis shows C08 (Dietary constraint) dropped from 0.6651 under Qwen to 0.4846 under hybrid. This regression is caused by two factors: `hybrid_search.py` omits dietary metadata from the passage text passed to CrossEncoder, and raw CrossEncoder logit swings occasionally override high-confidence LLM grade 2 judgments. We first evaluate the deeper 12-layer CrossEncoder (MiniLM-L12-v2) on the existing hybrid setup, then update `hybrid_search.py` to include dietary annotations in candidate passage text and support strict-grade tiering."
     }
   ]
 }
