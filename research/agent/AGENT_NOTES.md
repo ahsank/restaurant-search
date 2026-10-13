@@ -92,3 +92,21 @@ current labels, so the agent starts from comparable baselines.
 - Eval args: `--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L12-v2 --grade-boost 2.0`
 - ndcg@5 0.7999 | recall@10 0.8246 | mrr 0.8611 | 206/209 queries judged
 - Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.1365, C08 Dietary constraint / negation 0.4595, C03 Attribute / implied meaning 0.5384, C09 Synonym / paraphrase 0.6583, C24 Pizza varieties 0.6667
+
+### Iteration 10: hybrid-qwen2.5-7b-minilm-l6-strict-grade (SUCCESS)
+- Result: `research/agent/results/hybrid-qwen2.5-7b-minilm-l6-strict-grade.json` | commit `b478545` | 8.5s
+- Eval args: `--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L6-v2 --strict-grade`
+- ndcg@5 0.7858 | recall@10 0.821 | mrr 0.8665 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.2461, C03 Attribute / implied meaning 0.5606, C18 Chicken dishes 0.6401, C09 Synonym / paraphrase 0.6662, C24 Pizza varieties 0.6667
+
+### Iteration 10: code change
+**Goal**: Update research/search/hybrid_search.py to include item['dietary'] in the candidate text passed to CrossEncoder, and add a --strict-grade flag (ranking items by grade first, and breaking intra-grade ties by CrossEncoder score). Verify by evaluating on evaluate.py --engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L6-v2 --strict-grade.
+
+**Summary**: Updated research/search/hybrid_search.py to include item['dietary'] in candidate text passed to CrossEncoder and added candidate_item_text helper to index dietary annotations across candidate items and fallback search. Added --strict-grade flag to rank items strictly by LLM grade first (2 before 1) and break intra-grade ties by CrossEncoder score. Updated research/search/engines.py to forward --strict-grade to hybrid search and documented the flag in research/COMMANDS.md. Evaluated hybrid search with ms-marco-MiniLM-L6-v2 and --strict-grade: overall NDCG@5=0.7858, Recall@10=0.8210, MRR=0.8665, with C08 (Dietary constraint / negation) improving significantly from 0.4846 to 0.7193 NDCG@5 and MRR from 0.7012 to 0.8148.
+
+**Files changed**:
+```
+ M research/COMMANDS.md
+ M research/search/engines.py
+ M research/search/hybrid_search.py
+```

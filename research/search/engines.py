@@ -101,12 +101,14 @@ def build_search_fn(args: argparse.Namespace, restaurants: dict, menus: dict) ->
         from hybrid_search import STOCK_MODEL, build_search_fn as _hybrid_build_search_fn
         _ce_model_name = args.model if args.model != "all-MiniLM-L6-v2" else STOCK_MODEL
         grade_boost = getattr(args, "grade_boost", 0.0)
+        strict_grade = getattr(args, "strict_grade", False)
         return _hybrid_build_search_fn(
             rankings_path=args.rankings,
             model_name=_ce_model_name,
             restaurants=restaurants,
             menus=menus,
             grade_boost=grade_boost,
+            strict_grade=strict_grade,
         )
 
     if args.engine in ("enhanced", "filtered"):

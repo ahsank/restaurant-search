@@ -264,6 +264,12 @@ python research/search/evaluate.py --engine hybrid \
     --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl \
     --model cross-encoder/ms-marco-MiniLM-L6-v2 \
     --grade-boost 2.0
+
+# With strict grade ranking (grade 2 before grade 1, intra-grade ties broken by CrossEncoder)
+python research/search/evaluate.py --engine hybrid \
+    --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl \
+    --model cross-encoder/ms-marco-MiniLM-L6-v2 \
+    --strict-grade
 ```
 
 ## `evaluate.py` — benchmark scoring (NDCG@5, Recall@10, MRR)

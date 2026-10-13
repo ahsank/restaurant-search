@@ -9,22 +9,25 @@ Architecture:
    The LLM reader acts as a high-recall filter (~25 items/query on average).
 2. Cross-encoder rescoring: Each candidate item is rescored using a
    CrossEncoder (--model, default: cross-encoder/ms-marco-MiniLM-L6-v2) on
-   (query, item_text).
-3. LLM grade boost: Optionally adds a boost to the cross-encoder logit based on
-   the LLM grade (2 = clearly relevant, 1 = partially relevant):
-   score = cross_encoder_score + grade_boost * grade
-   (default grade_boost = 0.0, using pure cross-encoder scoring).
+   (query, candidate_text). Candidate text includes item name, description,
+   category, and dietary metadata.
+3. LLM grade boost & strict grade:
+   - By default, score = cross_encoder_score + grade_boost * grade
+     (default grade_boost = 0.0, using pure cross-encoder scoring).
+   - If --strict-grade is set, items are ranked strictly by LLM grade first
+     (grade 2 before grade 1), breaking intra-grade ties by CrossEncoder score.
 4. Fallback: If the LLM returned no matches for a query (or the query is missing
    from the rankings), falls back to full cross-encoder search over all menu items.
 
 Usage:
     python research/search/hybrid_search.py --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl seafood italian
     python research/search/hybrid_search.py --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --grade-boost 1.0 spicy noodles
+    python research/search/hybrid_search.py --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --strict-grade vegan noodles
 
 Via evaluate.py:
     python research/search/evaluate.py --engine hybrid \\
         --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl \\
-        --model cross-encoder/ms-marco-MiniLM-L6-v2
+        --model cross-encoder/ms-marco-MiniLM-L6-v2 --strict-grade
 """
 
 import argparse
@@ -36,10 +39,25 @@ from typing import Callable
 from sentence_transformers.cross_encoder import CrossEncoder
 
 sys.path.insert(0, str(Path(__file__).parents[1]))
-from lib.data import item_text, load_data, judged_restaurant_ids, restaurant_scope_cli_args
+from lib.data import load_data, judged_restaurant_ids, restaurant_scope_cli_args
 import search.crossencoder_search as ce_search
 
 STOCK_MODEL = "cross-encoder/ms-marco-MiniLM-L6-v2"
+
+
+def candidate_item_text(item: dict) -> str:
+    """
+    Build candidate text for CrossEncoder rescoring:
+    item name, description, category, and dietary annotations.
+    """
+    parts = [item.get("name", "")]
+    if item.get("description"):
+        parts.append(item["description"])
+    if item.get("category"):
+        parts.append(item["category"])
+    if item.get("dietary"):
+        parts.append(item["dietary"])
+    return ". ".join(p for p in parts if p)
 
 
 def cli_args() -> argparse.ArgumentParser:
@@ -52,6 +70,10 @@ def cli_args() -> argparse.ArgumentParser:
     parser.add_argument(
         "--grade-boost", type=float, default=0.0,
         help="Boost added to cross-encoder score per LLM grade (default: 0.0)",
+    )
+    parser.add_argument(
+        "--strict-grade", action="store_true",
+        help="Rank items strictly by LLM grade first (2 before 1), breaking intra-grade ties by CrossEncoder score",
     )
     return parser
 
@@ -72,7 +94,7 @@ def load_rankings(path: Path | str) -> dict[str, list[dict]]:
 
 def build_item_map(menus: dict) -> dict[tuple[str, str], tuple[dict, str]]:
     """
-    Map (restaurant_id, item_name) -> (item_dict, item_text).
+    Map (restaurant_id, item_name) -> (item_dict, candidate_text).
     If an item name appears multiple times under a restaurant (e.g. lunch and dinner),
     keeps the first entry.
     """
@@ -81,7 +103,7 @@ def build_item_map(menus: dict) -> dict[tuple[str, str], tuple[dict, str]]:
         for item in items:
             key = (rid, item["name"])
             if key not in item_map:
-                item_map[key] = (item, item_text(item))
+                item_map[key] = (item, candidate_item_text(item))
     return item_map
 
 
@@ -91,7 +113,7 @@ def _find_item_fallback(rid: str, name: str, menus: dict) -> tuple[dict, str]:
     name_lower = name.lower().strip()
     for item in items:
         if item["name"].lower().strip() == name_lower:
-            return item, item_text(item)
+            return item, candidate_item_text(item)
     # Synthetic item dict if completely unindexed
     synthetic = {
         "name": name,
@@ -115,6 +137,7 @@ def search(
     item_map: dict[tuple[str, str], tuple[dict, str]],
     ce_index: list[tuple[str, dict, str]],
     grade_boost: float = 0.0,
+    strict_grade: bool = False,
     batch_size: int = 128,
 ) -> list[dict]:
     """
@@ -146,7 +169,8 @@ def search(
     for c in candidates:
         rid = c.get("restaurant_id")
         name = c.get("name")
-        grade = c.get("grade", 1)
+        grade_val = c.get("grade")
+        grade = int(grade_val) if grade_val is not None else 1
         if (rid, name) in item_map:
             item, text = item_map[(rid, name)]
         else:
@@ -156,16 +180,18 @@ def search(
 
     scores = model.predict(pairs, batch_size=batch_size, show_progress_bar=False)
 
-    scored: list[tuple[float, dict]] = []
+    scored: list[tuple[float, float, dict]] = []
     for (rid, item, grade), score in zip(c_list, scores):
-        final_score = float(score) + grade_boost * grade
+        raw_ce_score = float(score)
+        final_score = raw_ce_score + grade_boost * grade
         r_display = restaurants.get(rid, {}).get("name", rid) if isinstance(restaurants.get(rid), dict) else rid
-        scored.append((final_score, {
+        scored.append((final_score, raw_ce_score, {
             "restaurant_id": rid,
             "restaurant": r_display,
             "name": item["name"],
             "item": item["name"],
             "description": item.get("description", ""),
+            "dietary": item.get("dietary", ""),
             "price": item.get("price"),
             "price_raw": item.get("price_raw", ""),
             "category": item.get("category", ""),
@@ -174,8 +200,11 @@ def search(
             "grade": grade,
         }))
 
-    scored.sort(key=lambda t: t[0], reverse=True)
-    return [r for _, r in scored]
+    if strict_grade:
+        scored.sort(key=lambda t: (t[2]["grade"], t[1]), reverse=True)
+    else:
+        scored.sort(key=lambda t: t[0], reverse=True)
+    return [r for _, _, r in scored]
 
 
 def build_search_fn(
@@ -184,6 +213,7 @@ def build_search_fn(
     restaurants: dict,
     menus: dict,
     grade_boost: float = 0.0,
+    strict_grade: bool = False,
     batch_size: int = 128,
 ) -> Callable[[str], list[dict]]:
     """Build a search_fn(query) -> list[dict] suitable for evaluate.py / engines.py."""
@@ -196,7 +226,11 @@ def build_search_fn(
     print("done")
 
     item_map = build_item_map(menus)
-    ce_index = ce_search.build_index(menus, restaurants)
+    ce_index = [
+        (rid, item, candidate_item_text(item))
+        for rid, items in menus.items()
+        for item in items
+    ]
 
     def search_fn(query: str) -> list[dict]:
         return search(
@@ -208,6 +242,7 @@ def build_search_fn(
             item_map=item_map,
             ce_index=ce_index,
             grade_boost=grade_boost,
+            strict_grade=strict_grade,
             batch_size=batch_size,
         )
 
@@ -236,6 +271,7 @@ if __name__ == "__main__":
         restaurants=restaurants,
         menus=menus,
         grade_boost=args.grade_boost,
+        strict_grade=args.strict_grade,
     )
 
     query = " ".join(args.terms)
@@ -251,9 +287,10 @@ if __name__ == "__main__":
             else r["price_raw"] or "N/A"
         )
         grade_str = f" [grade {r['grade']}]" if "grade" in r else ""
+        dietary_str = f" ({r['dietary']})" if r.get("dietary") else ""
         print(
             f"  [{r['score']:.4f}]{grade_str} {r['restaurant']} | {r['item']}  {price_str}"
-            f"  [{r['category']} · {r['menu_type']}]"
+            f"  [{r['category']} · {r['menu_type']}]{dietary_str}"
         )
         if r["description"]:
             print(f"           {r['description']}")
