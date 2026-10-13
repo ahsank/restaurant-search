@@ -1,13 +1,6 @@
 {
-  "iteration": 4,
+  "iteration": 5,
   "pending_tasks": [
-    {
-      "action": "run_experiment",
-      "name": "colbert-colbertv2.0",
-      "eval_args": "--engine colbert",
-      "setup": "",
-      "description": "ColBERT late interaction"
-    },
     {
       "action": "run_experiment",
       "name": "crossencoder-ms-marco-MiniLM-L6-v2",
@@ -51,6 +44,13 @@
       "eval_args": "--engine sbert --model all-mpnet-base-v2",
       "setup": "",
       "description": "larger bi-encoder"
+    },
+    {
+      "action": "run_experiment",
+      "name": "colbert-colbertv2.0",
+      "eval_args": "--engine colbert",
+      "setup": "",
+      "description": "ColBERT late interaction"
     }
   ]
 }

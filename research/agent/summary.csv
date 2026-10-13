@@ -1,4 +1,5 @@
 name,status,ndcg@5,recall@10,mrr,n_queries,seconds,git_commit,timestamp,eval_args
+colbert-colbertv2.0,SUCCESS,0.6422,0.5616,0.7851,209,11.8,ef1f595,2026-10-13T19:40:08,--engine colbert
 sbert-all-MiniLM-L6-v2,SUCCESS,0.5592,0.4883,0.7093,209,20.7,7d057b3,2026-10-13T19:39:33,--engine sbert --model all-MiniLM-L6-v2
 sbert-all-mpnet-base-v2,SUCCESS,0.5577,0.4803,0.7158,209,11.2,f51b5b3,2026-10-13T19:39:55,--engine sbert --model all-mpnet-base-v2
 baseline-enhanced,SUCCESS,0.5484,0.5498,0.5925,209,2.2,7e6ec25,2026-10-13T19:39:29,--engine enhanced

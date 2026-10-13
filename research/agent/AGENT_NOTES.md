@@ -27,3 +27,9 @@ current labels, so the agent starts from comparable baselines.
 - Eval args: `--engine sbert --model all-mpnet-base-v2`
 - ndcg@5 0.5577 | recall@10 0.4803 | mrr 0.7158 | 206/209 queries judged
 - Weakest categories (NDCG@5): C03 Attribute / implied meaning 0.1655, C10 Multi-constraint compositional 0.1689, C08 Dietary constraint / negation 0.2537, C18 Chicken dishes 0.2967, C02 Ingredient generalization 0.3423
+
+### Iteration 4: colbert-colbertv2.0 (SUCCESS)
+- Result: `research/agent/results/colbert-colbertv2.0.json` | commit `ef1f595` | 11.8s
+- Eval args: `--engine colbert`
+- ndcg@5 0.6422 | recall@10 0.5616 | mrr 0.7851 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.0976, C03 Attribute / implied meaning 0.2194, C25 Occasion / meal-time 0.2965, C08 Dietary constraint / negation 0.331, C02 Ingredient generalization 0.386
