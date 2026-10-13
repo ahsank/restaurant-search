@@ -23,6 +23,7 @@ restaurant-search/
 │   └── dump/                # Raw source files (PDFs, copy-pasted text, etc.)
 ├── research/                # Python search experimentation (active)
 │   ├── APPROACHES.md        # Search strategy options and trade-offs
+│   ├── agent/               # Gemini agent campaign: experiment runner, results, notes (branch agent/campaign)
 │   ├── lib/                 # Shared data loading utilities
 │   └── search/              # Search experiment scripts
 ├── src/                     # Future: C++ production search engine
