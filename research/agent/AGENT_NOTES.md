@@ -33,3 +33,9 @@ current labels, so the agent starts from comparable baselines.
 - Eval args: `--engine colbert`
 - ndcg@5 0.6422 | recall@10 0.5616 | mrr 0.7851 | 206/209 queries judged
 - Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.0976, C03 Attribute / implied meaning 0.2194, C25 Occasion / meal-time 0.2965, C08 Dietary constraint / negation 0.331, C02 Ingredient generalization 0.386
+
+### Iteration 5: crossencoder-ms-marco-MiniLM-L6-v2 (SUCCESS)
+- Result: `research/agent/results/crossencoder-ms-marco-MiniLM-L6-v2.json` | commit `ae01ce2` | 20.2s
+- Eval args: `--engine crossencoder --model cross-encoder/ms-marco-MiniLM-L6-v2`
+- ndcg@5 0.651 | recall@10 0.5874 | mrr 0.7989 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.0, C25 Occasion / meal-time 0.2648, C03 Attribute / implied meaning 0.2755, C08 Dietary constraint / negation 0.3316, C02 Ingredient generalization 0.4157
