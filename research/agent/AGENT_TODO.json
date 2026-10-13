@@ -1,13 +1,6 @@
 {
-  "iteration": 3,
+  "iteration": 4,
   "pending_tasks": [
-    {
-      "action": "run_experiment",
-      "name": "sbert-all-mpnet-base-v2",
-      "eval_args": "--engine sbert --model all-mpnet-base-v2",
-      "setup": "",
-      "description": "larger bi-encoder"
-    },
     {
       "action": "run_experiment",
       "name": "colbert-colbertv2.0",
@@ -51,6 +44,13 @@
       "eval_args": "--engine sbert --model all-MiniLM-L6-v2",
       "setup": "",
       "description": "bi-encoder baseline"
+    },
+    {
+      "action": "run_experiment",
+      "name": "sbert-all-mpnet-base-v2",
+      "eval_args": "--engine sbert --model all-mpnet-base-v2",
+      "setup": "",
+      "description": "larger bi-encoder"
     }
   ]
 }
