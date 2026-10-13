@@ -1,1 +1,2 @@
 {"timestamp": "2026-10-13T19:39:27", "iteration": 0, "git_commit": "2646904", "name": "baseline-text", "status": "SUCCESS", "setup": null, "eval_args": ["--engine", "text"], "seconds": 0.1, "metrics": {"ndcg@5": 0.4456, "recall@10": 0.4708, "mrr": 0.4692}}
+{"timestamp": "2026-10-13T19:39:29", "iteration": 1, "git_commit": "7e6ec25", "name": "baseline-enhanced", "status": "SUCCESS", "setup": null, "eval_args": ["--engine", "enhanced"], "seconds": 2.2, "metrics": {"ndcg@5": 0.5484, "recall@10": 0.5498, "mrr": 0.5925}}

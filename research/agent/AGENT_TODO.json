@@ -1,13 +1,6 @@
 {
-  "iteration": 1,
+  "iteration": 2,
   "pending_tasks": [
-    {
-      "action": "run_experiment",
-      "name": "baseline-enhanced",
-      "eval_args": "--engine enhanced",
-      "setup": "",
-      "description": "thesaurus-expanded keyword search"
-    },
     {
       "action": "run_experiment",
       "name": "sbert-all-MiniLM-L6-v2",
@@ -51,6 +44,13 @@
       "eval_args": "--engine text",
       "setup": "",
       "description": "keyword baseline on the current labels"
+    },
+    {
+      "action": "run_experiment",
+      "name": "baseline-enhanced",
+      "eval_args": "--engine enhanced",
+      "setup": "",
+      "description": "thesaurus-expanded keyword search"
     }
   ]
 }
