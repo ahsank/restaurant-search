@@ -19,9 +19,10 @@ reviews and merges it.
 
 The planner and code agent are told: don't modify `data/` or the metric code, don't train on or
 hard-code anything from the benchmark queries, labels or menu items, use `run_shell` only for
-installing packages and downloading models, and add a request to `HUMAN_ACTIONS.md` when the
-evaluation or a label looks wrong. These are prompt rules, not enforced; the review checklist below
-is how to catch a violation.
+installing packages and downloading models, don't commit large artifacts (add setup steps to
+`setup_machine.sh` instead), and add a request to `HUMAN_ACTIONS.md` when the evaluation or a label
+looks wrong. Apart from the 20 MB file limit below, these are prompt rules, not enforced; the review
+checklist below is how to catch a violation.
 
 ## Files
 
@@ -34,8 +35,20 @@ is how to catch a violation.
 | `summary.csv` | `run_experiment.py` | One row per experiment, best NDCG@5 first |
 | `HUMAN_ACTIONS.md` | agents ([`agent_requests.py`](agent_requests.py)) | Requests for you; mark `[x]` done or `[-]` rejected, optionally add `Reply: ...` |
 | `runs/` | experiments | Text outputs worth keeping, e.g. LLM rankings JSONL (replayable with `--engine llm --rankings`) |
+| `setup_machine.sh` | agents | Idempotent pip installs and downloads that experiments need; the notebook runs it at the start of every session |
 
-Model files go to `/content/scratch` or `models/` and are never committed.
+## Large artifacts are reproduced, not committed
+
+Model weights, checkpoints, datasets and vector files go to `/content/scratch` or `models/` and are
+never committed. An experiment that needs them must be reproducible on a fresh machine: packages and
+downloads go in `setup_machine.sh` (with a line here on what each download is for), and a trained
+model comes from its training script via the experiment's `setup` command. As a safety net, the
+notebook leaves any file over 20 MB out of the commit and lists it in `AGENT_NOTES.md` (GitHub rejects
+files over 100 MB, which would block every later push).
+
+Downloads added by the agents:
+
+- (none yet)
 
 ## Running an experiment by hand
 
