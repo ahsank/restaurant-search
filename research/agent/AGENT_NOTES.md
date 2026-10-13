@@ -39,3 +39,10 @@ current labels, so the agent starts from comparable baselines.
 - Eval args: `--engine crossencoder --model cross-encoder/ms-marco-MiniLM-L6-v2`
 - ndcg@5 0.651 | recall@10 0.5874 | mrr 0.7989 | 206/209 queries judged
 - Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.0, C25 Occasion / meal-time 0.2648, C03 Attribute / implied meaning 0.2755, C08 Dietary constraint / negation 0.3316, C02 Ingredient generalization 0.4157
+
+### Iteration 6: llm-qwen2.5-7b-instruct (SUCCESS)
+- Result: `research/agent/results/llm-qwen2.5-7b-instruct.json` | commit `2cb8536` | 232.4s
+- Setup: `python research/search/llm_search.py --model Qwen/Qwen2.5-7B-Instruct --out research/agent/runs/qwen2.5-7b-instruct.jsonl --gpu-memory-utilization 0.85`
+- Eval args: `--engine llm --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl`
+- ndcg@5 0.6993 | recall@10 0.7739 | mrr 0.7687 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.2461, C03 Attribute / implied meaning 0.435, C18 Chicken dishes 0.484, C02 Ingredient generalization 0.5651, C25 Occasion / meal-time 0.5996
