@@ -194,3 +194,23 @@ current labels, so the agent starts from comparable baselines.
 - Eval args: `--engine soft_bm25 --vectors /content/scratch/numberbatch-en-19.08.txt.gz` | family `word-vector`
 - ndcg@5 0.5664 | recall@10 0.5456 | mrr 0.7287 | 0.0165 s/query | efficiency 0.1129 | 206/209 queries judged
 - Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.1173, C08 Dietary constraint / negation 0.2396, C03 Attribute / implied meaning 0.2853, C07 Hyphenation / spacing / stop words 0.2931, C01 Cuisine type inference 0.3589
+
+### Iteration 24: crossencoder-ms-marco-MiniLM-L6-v2 (SUCCESS)
+- Result: `research/agent/results/crossencoder-ms-marco-MiniLM-L6-v2.json` | commit `a474807` | 18.7s
+- Eval args: `--engine crossencoder --model cross-encoder/ms-marco-MiniLM-L6-v2` | family `cross-encoder`
+- ndcg@5 0.6569 | recall@10 0.5869 | mrr 0.8042 | 0.0563 s/query | efficiency 0.1299 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.2024, C25 Occasion / meal-time 0.2648, C03 Attribute / implied meaning 0.2743, C08 Dietary constraint / negation 0.4099, C02 Ingredient generalization 0.4267
+
+### Iteration 24: code change
+**Goal**: Update research/search/crossencoder_search.py and research/search/colbert_search.py to include item.get('dietary') in their item text representations (matching hybrid_search.py), and add the ConceptNet download line to research/agent/setup_machine.sh. Verify by running evaluate.py --engine crossencoder --model cross-encoder/ms-marco-MiniLM-L6-v2.
+
+**Summary**: Updated research/search/crossencoder_search.py and research/search/colbert_search.py to include item.get('dietary') in their item text representation matching hybrid_search.py. Added ConceptNet Numberbatch 19.08 download to research/agent/setup_machine.sh and documented it in research/agent/README.md. Verification benchmark with crossencoder ms-marco-MiniLM-L6-v2 showed NDCG@5 increased from 0.6510 to 0.6569, with dietary constraint category C08 improving significantly from 0.3316 to 0.4101.
+
+**Files changed**:
+```
+ M research/agent/LEADERBOARD.md
+ M research/agent/README.md
+ M research/agent/setup_machine.sh
+ M research/search/colbert_search.py
+ M research/search/crossencoder_search.py
+```

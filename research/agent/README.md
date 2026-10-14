@@ -64,7 +64,7 @@ files over 100 MB, which would block every later push).
 
 Downloads added by the agents:
 
-- (none yet)
+- `numberbatch-en-19.08.txt.gz`: ConceptNet Numberbatch 19.08 English embeddings (~75 MB compressed, ~300 MB uncompressed) for Phrase-Aware Soft-BM25 search (`--engine soft_bm25 --vectors ...`).
 
 ## Running an experiment by hand
 

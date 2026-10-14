@@ -16,4 +16,4 @@ mkdir -p "$SCRATCH_DIR"
 # --- models / data -------------------------------------------------------------------
 # Hugging Face models normally need no step here: they download on first use into the HF cache.
 # Add explicit downloads only for files that aren't fetched automatically, e.g.:
-# [ -f "$SCRATCH_DIR/numberbatch-en.txt.gz" ] || wget -q -O "$SCRATCH_DIR/numberbatch-en.txt.gz" <url>
+[ -f "$SCRATCH_DIR/numberbatch-en-19.08.txt.gz" ] || wget -q -O "$SCRATCH_DIR/numberbatch-en-19.08.txt.gz" https://conceptnet.s3.amazonaws.com/downloads/2019/numberbatch/numberbatch-en-19.08.txt.gz
