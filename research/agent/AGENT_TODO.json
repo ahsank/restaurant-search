@@ -1,14 +1,6 @@
 {
-  "iteration": 45,
-  "pending_tasks": [
-    {
-      "action": "run_experiment",
-      "name": "sbert-all-mpnet-base-v2",
-      "setup": "",
-      "eval_args": "--engine sbert --model all-mpnet-base-v2",
-      "description": "re-run after code change: re-run after code change: re-run after code change: re-run to record seconds per query (and refresh results made stale by later code changes)"
-    }
-  ],
+  "iteration": 46,
+  "pending_tasks": [],
   "completed_tasks": [
     {
       "action": "run_experiment",
@@ -375,6 +367,13 @@
       "setup": "",
       "eval_args": "--engine sbert --model all-MiniLM-L6-v2",
       "description": "re-run after code change: re-run after code change: Re-evaluate sbert all-MiniLM-L6-v2 with dietary annotations included in item text representation"
+    },
+    {
+      "action": "run_experiment",
+      "name": "sbert-all-mpnet-base-v2",
+      "setup": "",
+      "eval_args": "--engine sbert --model all-mpnet-base-v2",
+      "description": "re-run after code change: re-run after code change: re-run after code change: re-run to record seconds per query (and refresh results made stale by later code changes)"
     }
   ]
 }
