@@ -226,3 +226,14 @@ current labels, so the agent starts from comparable baselines.
 - Eval args: `--engine crossencoder --model cross-encoder/ms-marco-MiniLM-L12-v2` | family `cross-encoder`
 - ndcg@5 0.6562 | recall@10 0.5834 | mrr 0.7985 | 0.089 s/query | efficiency 0.1289 | 206/209 queries judged
 - Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.1494, C25 Occasion / meal-time 0.2574, C03 Attribute / implied meaning 0.2657, C08 Dietary constraint / negation 0.3753, C02 Ingredient generalization 0.3814
+
+### Plan (iteration 27)
+- Hypothesis: In iteration 24, dietary metadata was added to colbert_search.py and crossencoder_search.py, yielding a significant boost on dietary constraints (C08 NDCG@5 increased from 0.3316 to 0.4099 on CrossEncoder), but ColBERT has not yet been re-evaluated with this update. Meanwhile, sbert_search.py still uses lib.data.item_text which omits dietary metadata, leaving the bi-encoder family with low scores on C08 (0.3637). We first re-run ColBERT to measure the effect of dietary metadata on late-interaction retrieval, and then update sbert_search.py to include dietary annotations in its text representation.
+- Queued: run_experiment colbert-colbertv2.0
+- Queued: change_code Update research/search/sbert_search.py to include item.get('dietary') in its item text representation using a local _item_text helper (matching colber
+
+### Iteration 27: colbert-colbertv2.0 (SUCCESS)
+- Result: `research/agent/results/colbert-colbertv2.0.json` | commit `b378a32` | 9.4s
+- Eval args: `--engine colbert` | family `late-interaction`
+- ndcg@5 0.6542 | recall@10 0.5654 | mrr 0.7981 | 0.0091 s/query | efficiency 0.1306 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.0, C03 Attribute / implied meaning 0.2252, C25 Occasion / meal-time 0.3187, C02 Ingredient generalization 0.386, C08 Dietary constraint / negation 0.3945

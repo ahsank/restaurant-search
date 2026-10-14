@@ -1,6 +1,17 @@
 {
-  "iteration": 27,
-  "pending_tasks": [],
+  "iteration": 28,
+  "pending_tasks": [
+    {
+      "action": "change_code",
+      "details": "Update research/search/sbert_search.py to include item.get('dietary') in its item text representation using a local _item_text helper (matching colbert_search.py and crossencoder_search.py). Verify by running research/search/evaluate.py --engine sbert --model all-MiniLM-L6-v2.",
+      "evidence": [
+        "research/search/sbert_search.py",
+        "research/search/colbert_search.py",
+        "research/search/crossencoder_search.py"
+      ],
+      "reasoning": "In iteration 24, dietary metadata was added to colbert_search.py and crossencoder_search.py, yielding a significant boost on dietary constraints (C08 NDCG@5 increased from 0.3316 to 0.4099 on CrossEncoder), but ColBERT has not yet been re-evaluated with this update. Meanwhile, sbert_search.py still uses lib.data.item_text which omits dietary metadata, leaving the bi-encoder family with low scores on C08 (0.3637). We first re-run ColBERT to measure the effect of dietary metadata on late-interaction retrieval, and then update sbert_search.py to include dietary annotations in its text representation."
+    }
+  ],
   "completed_tasks": [
     {
       "action": "run_experiment",
@@ -216,6 +227,14 @@
       "setup": "",
       "eval_args": "--engine crossencoder --model cross-encoder/ms-marco-MiniLM-L12-v2",
       "description": "re-run after code change: re-run to record seconds per query (and refresh results made stale by later code changes)"
+    },
+    {
+      "action": "run_experiment",
+      "name": "colbert-colbertv2.0",
+      "eval_args": "--engine colbert",
+      "setup": "",
+      "description": "Re-evaluate ColBERT v2.0 with dietary annotations now included in item text representation from iteration 24",
+      "reasoning": "In iteration 24, dietary metadata was added to colbert_search.py and crossencoder_search.py, yielding a significant boost on dietary constraints (C08 NDCG@5 increased from 0.3316 to 0.4099 on CrossEncoder), but ColBERT has not yet been re-evaluated with this update. Meanwhile, sbert_search.py still uses lib.data.item_text which omits dietary metadata, leaving the bi-encoder family with low scores on C08 (0.3637). We first re-run ColBERT to measure the effect of dietary metadata on late-interaction retrieval, and then update sbert_search.py to include dietary annotations in its text representation."
     }
   ]
 }

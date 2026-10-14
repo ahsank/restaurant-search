@@ -6,7 +6,7 @@ hybrid-qwen2.5-7b-minilm-l6-strict-grade,llm,SUCCESS,0.7858,0.821,0.8665,0.1987,
 llm-qwen2.5-7b-instruct,llm,SUCCESS,0.6993,0.7739,0.7687,0.1914,0.1347,209,0.1,085e267,2026-10-14T22:06:48,--engine llm --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl
 crossencoder-ms-marco-MiniLM-L6-v2,cross-encoder,SUCCESS,0.6569,0.5869,0.8042,0.0562,0.1299,209,18.7,2f65e1f,2026-10-14T22:11:44,--engine crossencoder --model cross-encoder/ms-marco-MiniLM-L6-v2
 crossencoder-ms-marco-MiniLM-L12-v2,cross-encoder,SUCCESS,0.6562,0.5834,0.7985,0.089,0.1289,209,25.6,c84d3c8,2026-10-14T22:12:04,--engine crossencoder --model cross-encoder/ms-marco-MiniLM-L12-v2
-colbert-colbertv2.0,late-interaction,SUCCESS,0.6422,0.5616,0.7851,0.0095,0.1282,209,25.4,cfb208c,2026-10-14T22:04:50,--engine colbert
+colbert-colbertv2.0,late-interaction,SUCCESS,0.6542,0.5654,0.7981,0.0091,0.1306,209,9.4,b378a32,2026-10-14T22:13:17,--engine colbert
 softbm25-conceptnet,word-vector,SUCCESS,0.5664,0.5456,0.7287,0.0165,0.1129,209,23.5,59c587a,2026-10-14T22:09:00,--engine soft_bm25 --vectors /content/scratch/numberbatch-en-19.08.txt.gz
 sbert-all-MiniLM-L6-v2,bi-encoder,SUCCESS,0.5592,0.4883,0.7093,0.0032,0.1118,209,9.7,03cd080,2026-10-14T22:06:50,--engine sbert --model all-MiniLM-L6-v2
 sbert-all-mpnet-base-v2,bi-encoder,SUCCESS,0.5577,0.4803,0.7158,0.0048,0.1114,209,10.9,f4ca7e8,2026-10-14T22:07:01,--engine sbert --model all-mpnet-base-v2
