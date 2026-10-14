@@ -243,6 +243,35 @@ OLLAMA_CONTEXT_LENGTH=16384 ollama serve &
 python research/search/llm_search.py --server http://localhost:11434 --model qwen2.5:7b seafood italian
 ```
 
+## Approach 7b — Hybrid search (LLM candidate retrieval + CrossEncoder reranking)
+
+Combines the high candidate recall of the LLM reader with the fine-grained
+scoring and ordering of a CrossEncoder. Rescores LLM candidate items, optionally
+adding an LLM grade boost, and falls back to full cross-encoder search over all
+menu items when the LLM returns no matches.
+
+```bash
+# Search directly
+python research/search/hybrid_search.py --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl seafood italian
+
+# Benchmark evaluation (pure cross-encoder rescoring of LLM candidates + fallback)
+python research/search/evaluate.py --engine hybrid \
+    --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl \
+    --model cross-encoder/ms-marco-MiniLM-L6-v2
+
+# With LLM grade boost (e.g. +2.0 logit boost per LLM grade)
+python research/search/evaluate.py --engine hybrid \
+    --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl \
+    --model cross-encoder/ms-marco-MiniLM-L6-v2 \
+    --grade-boost 2.0
+
+# With strict grade ranking (grade 2 before grade 1, intra-grade ties broken by CrossEncoder)
+python research/search/evaluate.py --engine hybrid \
+    --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl \
+    --model cross-encoder/ms-marco-MiniLM-L6-v2 \
+    --strict-grade
+```
+
 ## `evaluate.py` — benchmark scoring (NDCG@5, Recall@10, MRR)
 
 Engine modules load lazily: only the selected `--engine`'s code and libraries
@@ -269,6 +298,9 @@ python research/search/evaluate.py --engine colbert
 
 # Cross-encoder (scores every item; stock checkpoint unless --model is given)
 python research/search/evaluate.py --engine crossencoder
+
+# Hybrid (LLM candidates + CrossEncoder reranker)
+python research/search/evaluate.py --engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl
 
 # Save the full report (overall, by category/difficulty, per query) as JSON.
 # research/results/baselines/ holds the engines that finish in under 5 minutes on CPU

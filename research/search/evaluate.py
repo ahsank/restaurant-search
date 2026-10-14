@@ -24,6 +24,7 @@ import csv
 import json
 import math
 import sys
+import time
 from collections import defaultdict
 from pathlib import Path
 
@@ -195,10 +196,13 @@ def evaluate(
     comments = load_relevance_comments() if verbose else {}
 
     per_query: list[dict] = []
+    search_seconds = 0.0
 
     for q in queries:
         qid = q["query_id"]
+        t0 = time.perf_counter()
         results = search_fn(q["query_text"])
+        search_seconds += time.perf_counter() - t0
 
         ranked_rels: list[int] = []
         for item in results:
@@ -243,7 +247,13 @@ def evaluate(
 
     ndcg_key = f"ndcg@{k_ndcg}"
     recall_key = f"recall@{k_recall}"
-    return aggregate_scores(per_query, [ndcg_key, recall_key, "mrr"], gate_key="n_relevant")
+    out = aggregate_scores(per_query, [ndcg_key, recall_key, "mrr"], gate_key="n_relevant")
+    # Wall time of the search_fn calls only: model loading and index building happen before
+    # evaluate() is called. Replay engines (--engine llm/hybrid --rankings) don't include the time
+    # that generated the rankings; see research/agent/run_experiment.py.
+    out["timing"] = {"search_seconds": round(search_seconds, 3),
+                     "seconds_per_query": round(search_seconds / max(len(queries), 1), 4)}
+    return out
 
 
 # ---------------------------------------------------------------------------

@@ -1,0 +1,13 @@
+name,family,status,ndcg@5,recall@10,mrr,sec_per_query,efficiency,n_queries,seconds,git_commit,timestamp,eval_args
+hybrid-qwen2.5-7b-minilm-l6-boost2,llm,SUCCESS,0.8006,0.8265,0.8707,,,209,8.5,71d7fcd,2026-10-13T19:53:59,--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L6-v2 --grade-boost 2.0
+hybrid-qwen2.5-7b-minilm-l12-boost2,llm,SUCCESS,0.7999,0.8246,0.8611,,,209,9.4,55fe4aa,2026-10-13T19:56:14,--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L12-v2 --grade-boost 2.0
+hybrid-qwen2.5-7b-minilm-l6-strict-grade,llm,SUCCESS,0.7858,0.821,0.8665,,,209,8.5,b478545,2026-10-13T20:00:42,--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L6-v2 --strict-grade
+hybrid-qwen2.5-7b-ms-marco-MiniLM-L6-v2,llm,SUCCESS,0.784,0.8104,0.8577,,,209,8.4,71d7fcd,2026-10-13T19:53:47,--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L6-v2
+llm-qwen2.5-7b-instruct,llm,SUCCESS,0.6993,0.7739,0.7687,,,209,232.4,2cb8536,2026-10-13T19:40:44,--engine llm --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl
+crossencoder-ms-marco-MiniLM-L6-v2,cross-encoder,SUCCESS,0.651,0.5874,0.7989,,,209,20.2,ae01ce2,2026-10-13T19:40:22,--engine crossencoder --model cross-encoder/ms-marco-MiniLM-L6-v2
+crossencoder-ms-marco-MiniLM-L12-v2,cross-encoder,SUCCESS,0.6462,0.5811,0.7869,,,209,27.0,843d0da,2026-10-13T19:46:05,--engine crossencoder --model cross-encoder/ms-marco-MiniLM-L12-v2
+colbert-colbertv2.0,late-interaction,SUCCESS,0.6422,0.5616,0.7851,,,209,11.8,ef1f595,2026-10-13T19:40:08,--engine colbert
+sbert-all-MiniLM-L6-v2,bi-encoder,SUCCESS,0.5592,0.4883,0.7093,,,209,20.7,7d057b3,2026-10-13T19:39:33,--engine sbert --model all-MiniLM-L6-v2
+sbert-all-mpnet-base-v2,bi-encoder,SUCCESS,0.5577,0.4803,0.7158,,,209,11.2,f51b5b3,2026-10-13T19:39:55,--engine sbert --model all-mpnet-base-v2
+baseline-enhanced,lexical,SUCCESS,0.5484,0.5498,0.5925,,,209,2.2,7e6ec25,2026-10-13T19:39:29,--engine enhanced
+baseline-text,lexical,SUCCESS,0.4456,0.4708,0.4692,,,209,0.1,2646904,2026-10-13T19:39:27,--engine text

@@ -28,13 +28,14 @@ from typing import Callable
 
 sys.path.insert(0, str(Path(__file__).parent))
 
-ENGINE_CHOICES = ["text", "enhanced", "filtered", "soft_bm25", "sbert", "colbert", "crossencoder", "llm"]
+ENGINE_CHOICES = ["text", "enhanced", "filtered", "soft_bm25", "sbert", "colbert", "crossencoder", "llm", "hybrid"]
 
 # Engines whose module contributes extra CLI flags via its own cli_args().
 _ENGINE_FLAG_MODULES = {
     "soft_bm25": "soft_bm25_search",
     "colbert": "colbert_search",
     "llm": "llm_search",
+    "hybrid": "hybrid_search",
 }
 
 
@@ -43,11 +44,11 @@ def cli_args() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(add_help=False)
     parser.add_argument(
         "--engine", choices=ENGINE_CHOICES, default="text",
-        help="Search engine: text (baseline), enhanced, filtered, soft_bm25, sbert, colbert, crossencoder, llm (replays --rankings; default: text)",
+        help="Search engine: text (baseline), enhanced, filtered, soft_bm25, sbert, colbert, crossencoder, llm (replays --rankings), hybrid (default: text)",
     )
     parser.add_argument(
         "--model", default="all-MiniLM-L6-v2",
-        help="Model name or local directory (default: all-MiniLM-L6-v2 for sbert; colbert and crossencoder substitute their own stock checkpoint when left at this default)",
+        help="Model name or local directory (default: all-MiniLM-L6-v2 for sbert; colbert, crossencoder, and hybrid substitute their own stock checkpoint when left at this default)",
     )
     return parser
 
@@ -92,6 +93,23 @@ def build_search_fn(args: argparse.Namespace, restaurants: dict, menus: dict) ->
         from llm_search import replay_search_fn
         print(f"Replaying LLM rankings from {args.rankings}")
         return replay_search_fn(args.rankings)
+
+    if args.engine == "hybrid":
+        if not args.rankings:
+            raise SystemExit("--rankings FILE is required for --engine hybrid "
+                             "(produce one with research/search/llm_search.py)")
+        from hybrid_search import STOCK_MODEL, build_search_fn as _hybrid_build_search_fn
+        _ce_model_name = args.model if args.model != "all-MiniLM-L6-v2" else STOCK_MODEL
+        grade_boost = getattr(args, "grade_boost", 0.0)
+        strict_grade = getattr(args, "strict_grade", False)
+        return _hybrid_build_search_fn(
+            rankings_path=args.rankings,
+            model_name=_ce_model_name,
+            restaurants=restaurants,
+            menus=menus,
+            grade_boost=grade_boost,
+            strict_grade=strict_grade,
+        )
 
     if args.engine in ("enhanced", "filtered"):
         from enhanced_text_search import search as _enhanced_search
