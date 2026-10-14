@@ -1,11 +1,12 @@
 {
   "name": "hybrid-qwen2.5-7b-minilm-l6-strict-grade",
-  "description": "Hybrid Qwen2.5-7B + ms-marco-MiniLM-L6-v2 with dietary metadata in candidate text and strict-grade tiering",
+  "description": "re-run to record seconds per query (and refresh results made stale by later code changes)",
   "status": "SUCCESS",
-  "iteration": 10,
-  "timestamp": "2026-10-13T20:00:42",
-  "git_commit": "b478545",
+  "iteration": 18,
+  "timestamp": "2026-10-14T22:06:28",
+  "git_commit": "ed60ce2",
   "result_file": "research/agent/results/hybrid-qwen2.5-7b-minilm-l6-strict-grade.json",
+  "family": "llm",
   "setup": null,
   "eval_args": [
     "--engine",
@@ -17,6 +18,11 @@
     "--strict-grade"
   ],
   "seconds": 8.5,
+  "timing": {
+    "seconds_per_query": 0.1987,
+    "search_seconds_per_query": 0.0073,
+    "rankings_generation_seconds_per_query": 0.1914
+  },
   "metrics": {
     "overall": {
       "ndcg@5": 0.785789085303674,
