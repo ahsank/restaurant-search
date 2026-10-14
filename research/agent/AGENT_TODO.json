@@ -1,6 +1,19 @@
 {
-  "iteration": 30,
-  "pending_tasks": [],
+  "iteration": 31,
+  "pending_tasks": [
+    {
+      "action": "change_code",
+      "family": "word-vector",
+      "details": "Update research/search/soft_bm25_search.py and research/search/enhanced_text_search.py to include item.get('dietary') in their text representations and vocabularies (matching the representation used in hybrid, crossencoder, colbert, and sbert search). Verify by benchmarking soft_bm25 on evaluate.py with ConceptNet vectors.",
+      "evidence": [
+        "research/search/soft_bm25_search.py",
+        "research/search/enhanced_text_search.py",
+        "research/agent/results/softbm25-conceptnet.json",
+        "research/agent/results/baseline-enhanced.json"
+      ],
+      "reasoning": "Hybrid search with ms-marco-MiniLM-L12-v2 and grade-boost 2.0 leads the benchmark with NDCG@5=0.8058, but its weakest categories remain C10 (0.2589) and C08 (0.5356) because CrossEncoder logit swings can still override high-confidence LLM candidate grades. We test whether increasing --grade-boost to 3.0 strengthens LLM grade priority while maintaining fine-grained neural ordering within grades. In parallel, while neural retrievers gained significantly on dietary queries after incorporating item['dietary'] metadata, soft_bm25_search.py and enhanced_text_search.py still omit dietary text from their index and matching logic, leaving the word-vector and lexical families severely impaired on C08."
+    }
+  ],
   "completed_tasks": [
     {
       "action": "run_experiment",
@@ -241,6 +254,15 @@
       "setup": "",
       "eval_args": "--engine sbert --model all-mpnet-base-v2",
       "description": "re-run after code change: re-run to record seconds per query (and refresh results made stale by later code changes)"
+    },
+    {
+      "action": "run_experiment",
+      "name": "hybrid-qwen2.5-7b-minilm-l12-boost3",
+      "family": "llm",
+      "eval_args": "--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L12-v2 --grade-boost 3.0",
+      "setup": "",
+      "description": "Evaluate hybrid search with ms-marco-MiniLM-L12-v2 reranker using grade-boost 3.0 to test stronger LLM preference on dietary and multi-constraint queries",
+      "reasoning": "Hybrid search with ms-marco-MiniLM-L12-v2 and grade-boost 2.0 leads the benchmark with NDCG@5=0.8058, but its weakest categories remain C10 (0.2589) and C08 (0.5356) because CrossEncoder logit swings can still override high-confidence LLM candidate grades. We test whether increasing --grade-boost to 3.0 strengthens LLM grade priority while maintaining fine-grained neural ordering within grades. In parallel, while neural retrievers gained significantly on dietary queries after incorporating item['dietary'] metadata, soft_bm25_search.py and enhanced_text_search.py still omit dietary text from their index and matching logic, leaving the word-vector and lexical families severely impaired on C08."
     }
   ]
 }

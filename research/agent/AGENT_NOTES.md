@@ -260,3 +260,14 @@ current labels, so the agent starts from comparable baselines.
 - Eval args: `--engine sbert --model all-mpnet-base-v2` | family `bi-encoder`
 - ndcg@5 0.5447 | recall@10 0.4702 | mrr 0.7098 | 0.0048 s/query | efficiency 0.1088 | 206/209 queries judged
 - Weakest categories (NDCG@5): C03 Attribute / implied meaning 0.1953, C08 Dietary constraint / negation 0.2643, C18 Chicken dishes 0.2964, C10 Multi-constraint compositional 0.3274, C02 Ingredient generalization 0.3393
+
+### Plan (iteration 30)
+- Hypothesis: Hybrid search with ms-marco-MiniLM-L12-v2 and grade-boost 2.0 leads the benchmark with NDCG@5=0.8058, but its weakest categories remain C10 (0.2589) and C08 (0.5356) because CrossEncoder logit swings can still override high-confidence LLM candidate grades. We test whether increasing --grade-boost to 3.0 strengthens LLM grade priority while maintaining fine-grained neural ordering within grades. In parallel, while neural retrievers gained significantly on dietary queries after incorporating item['dietary'] metadata, soft_bm25_search.py and enhanced_text_search.py still omit dietary text from their index and matching logic, leaving the word-vector and lexical families severely impaired on C08.
+- Queued: run_experiment hybrid-qwen2.5-7b-minilm-l12-boost3
+- Queued: change_code Update research/search/soft_bm25_search.py and research/search/enhanced_text_search.py to include item.get('dietary') in their text representations an
+
+### Iteration 30: hybrid-qwen2.5-7b-minilm-l12-boost3 (SUCCESS)
+- Result: `research/agent/results/hybrid-qwen2.5-7b-minilm-l12-boost3.json` | commit `64b357a` | 9.6s
+- Eval args: `--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L12-v2 --grade-boost 3.0` | family `llm`
+- ndcg@5 0.8057 | recall@10 0.8317 | mrr 0.8639 | 0.2025 s/query | efficiency 0.1549 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.259, C03 Attribute / implied meaning 0.5479, C08 Dietary constraint / negation 0.5558, C24 Pizza varieties 0.6667, C09 Synonym / paraphrase 0.6748
