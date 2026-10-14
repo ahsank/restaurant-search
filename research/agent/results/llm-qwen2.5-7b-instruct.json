@@ -1,19 +1,25 @@
 {
   "name": "llm-qwen2.5-7b-instruct",
-  "description": "LLM reader (Approach 7) with vLLM",
+  "description": "re-run to record seconds per query (and refresh results made stale by later code changes)",
   "status": "SUCCESS",
-  "iteration": 6,
-  "timestamp": "2026-10-13T19:40:44",
-  "git_commit": "2cb8536",
+  "iteration": 20,
+  "timestamp": "2026-10-14T22:06:48",
+  "git_commit": "085e267",
   "result_file": "research/agent/results/llm-qwen2.5-7b-instruct.json",
-  "setup": "python research/search/llm_search.py --model Qwen/Qwen2.5-7B-Instruct --out research/agent/runs/qwen2.5-7b-instruct.jsonl --gpu-memory-utilization 0.85",
+  "family": "llm",
+  "setup": null,
   "eval_args": [
     "--engine",
     "llm",
     "--rankings",
     "research/agent/runs/qwen2.5-7b-instruct.jsonl"
   ],
-  "seconds": 232.4,
+  "seconds": 0.1,
+  "timing": {
+    "seconds_per_query": 0.1914,
+    "search_seconds_per_query": 0.0,
+    "rankings_generation_seconds_per_query": 0.1914
+  },
   "metrics": {
     "overall": {
       "ndcg@5": 0.6993239182678037,
@@ -220,6 +226,5 @@
       }
     }
   },
-  "setup_seconds": 232.3,
-  "eval_seconds": 0.1
+  "eval_seconds": 0.0
 }

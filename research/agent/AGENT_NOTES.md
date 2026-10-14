@@ -164,3 +164,9 @@ current labels, so the agent starts from comparable baselines.
 - Eval args: `--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L6-v2` | family `llm`
 - ndcg@5 0.7909 | recall@10 0.8146 | mrr 0.8578 | 0.1987 s/query | efficiency 0.1521 | 206/209 queries judged
 - Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.2461, C08 Dietary constraint / negation 0.4692, C03 Attribute / implied meaning 0.5902, C09 Synonym / paraphrase 0.5957, C02 Ingredient generalization 0.6526
+
+### Iteration 20: llm-qwen2.5-7b-instruct (SUCCESS)
+- Result: `research/agent/results/llm-qwen2.5-7b-instruct.json` | commit `085e267` | 0.1s
+- Eval args: `--engine llm --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl` | family `llm`
+- ndcg@5 0.6993 | recall@10 0.7739 | mrr 0.7687 | 0.1914 s/query | efficiency 0.1347 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.2461, C03 Attribute / implied meaning 0.435, C18 Chicken dishes 0.484, C02 Ingredient generalization 0.5651, C25 Occasion / meal-time 0.5996

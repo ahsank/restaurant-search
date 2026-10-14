@@ -24,11 +24,11 @@ recorded (re-run it).
 | 2 | hybrid-qwen2.5-7b-minilm-l6-boost2 | llm | 0.1541 | 0.8013 | 0.1987 |
 | 3 | hybrid-qwen2.5-7b-ms-marco-MiniLM-L6-v2 | llm | 0.1521 | 0.7909 | 0.1987 |
 | 4 | hybrid-qwen2.5-7b-minilm-l6-strict-grade | llm | 0.1512 | 0.7858 | 0.1987 |
-| 5 | crossencoder-ms-marco-MiniLM-L6-v2 | cross-encoder | 0.1288 | 0.6510 | 0.0549 |
-| 6 | colbert-colbertv2.0 | late-interaction | 0.1282 | 0.6422 | 0.0095 |
-| 7 | crossencoder-ms-marco-MiniLM-L12-v2 | cross-encoder | 0.1270 | 0.6462 | 0.0872 |
-| 8 | baseline-enhanced | lexical | 0.1095 | 0.5484 | 0.0103 |
-| 9 | baseline-text | lexical | 0.0891 | 0.4456 | 0.0003 |
-| 10 | llm-qwen2.5-7b-instruct | llm | – | 0.6993 | – |
+| 5 | llm-qwen2.5-7b-instruct | llm | 0.1347 | 0.6993 | 0.1914 |
+| 6 | crossencoder-ms-marco-MiniLM-L6-v2 | cross-encoder | 0.1288 | 0.6510 | 0.0549 |
+| 7 | colbert-colbertv2.0 | late-interaction | 0.1282 | 0.6422 | 0.0095 |
+| 8 | crossencoder-ms-marco-MiniLM-L12-v2 | cross-encoder | 0.1270 | 0.6462 | 0.0872 |
+| 9 | baseline-enhanced | lexical | 0.1095 | 0.5484 | 0.0103 |
+| 10 | baseline-text | lexical | 0.0891 | 0.4456 | 0.0003 |
 | 11 | sbert-all-MiniLM-L6-v2 | bi-encoder | – | 0.5592 | – |
 | 12 | sbert-all-mpnet-base-v2 | bi-encoder | – | 0.5577 | – |
