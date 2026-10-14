@@ -1,8 +1,8 @@
 name,family,status,ndcg@5,recall@10,mrr,sec_per_query,efficiency,n_queries,seconds,git_commit,timestamp,eval_args
 hybrid-qwen2.5-7b-minilm-l12-boost2,llm,SUCCESS,0.8058,0.8273,0.8637,0.2022,0.1549,209,9.2,4c87ac0,2026-10-14T22:06:07,--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L12-v2 --grade-boost 2.0
 hybrid-qwen2.5-7b-minilm-l6-boost2,llm,SUCCESS,0.8013,0.8299,0.867,0.1987,0.1541,209,8.5,130b6e2,2026-10-14T22:06:18,--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L6-v2 --grade-boost 2.0
+hybrid-qwen2.5-7b-ms-marco-MiniLM-L6-v2,llm,SUCCESS,0.7909,0.8146,0.8578,0.1987,0.1521,209,8.5,0d7f654,2026-10-14T22:06:38,--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L6-v2
 hybrid-qwen2.5-7b-minilm-l6-strict-grade,llm,SUCCESS,0.7858,0.821,0.8665,0.1987,0.1512,209,8.5,ed60ce2,2026-10-14T22:06:28,--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L6-v2 --strict-grade
-hybrid-qwen2.5-7b-ms-marco-MiniLM-L6-v2,llm,SUCCESS,0.784,0.8104,0.8577,,,209,8.4,71d7fcd,2026-10-13T19:53:47,--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L6-v2
 llm-qwen2.5-7b-instruct,llm,SUCCESS,0.6993,0.7739,0.7687,,,209,232.4,2cb8536,2026-10-13T19:40:44,--engine llm --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl
 crossencoder-ms-marco-MiniLM-L6-v2,cross-encoder,SUCCESS,0.651,0.5874,0.7989,0.0549,0.1288,209,20.0,458e855,2026-10-14T22:05:45,--engine crossencoder --model cross-encoder/ms-marco-MiniLM-L6-v2
 crossencoder-ms-marco-MiniLM-L12-v2,cross-encoder,SUCCESS,0.6462,0.5811,0.7869,0.0872,0.127,209,26.8,b90cdb0,2026-10-14T22:05:17,--engine crossencoder --model cross-encoder/ms-marco-MiniLM-L12-v2
