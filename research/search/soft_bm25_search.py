@@ -47,8 +47,9 @@ Three pluggable components — swap any independently:
 Default implementation uses ConceptNet Numberbatch (English), which serves as
 both the phrase vocabulary and the vector source from a single ~75 MB file.
 
-Item text includes name, description, category, menu type, and dietary annotations
-(matching the representation used in hybrid, crossencoder, colbert, and sbert search).
+Item text includes restaurant name, item name, description, category, menu type,
+dietary annotations, and price (matching the representation used in hybrid,
+crossencoder, colbert, and sbert search).
 
 Download:
   https://conceptnet.s3.amazonaws.com/downloads/2019/numberbatch/numberbatch-en-19.08.txt.gz
@@ -474,16 +475,26 @@ def load_conceptnet(path: str | Path) -> tuple[dict[str, np.ndarray], set[str]]:
 # ── Index builder ──────────────────────────────────────────────────────────────
 
 # Fields included in each item's text for indexing:
-# item name, description, category, menu_type, and dietary annotations
+# restaurant name, item name, description, category, menu_type, dietary annotations, and price
 # (matching the representation used in hybrid, crossencoder, colbert, and sbert search).
-def _item_text(item: dict) -> str:
-    return " ".join(filter(None, [
-        item.get("name", ""),
-        item.get("description", ""),
-        item.get("category", ""),
-        item.get("menu_type", ""),
-        item.get("dietary", ""),
-    ]))
+def _item_text(item: dict, restaurant_name: str = "") -> str:
+    r_name = restaurant_name or (item.get("restaurant") if isinstance(item.get("restaurant"), str) else "") or item.get("restaurant_name", "")
+    parts = []
+    if r_name:
+        parts.append(r_name)
+    if item.get("name"):
+        parts.append(item["name"])
+    if item.get("description"):
+        parts.append(item["description"])
+    if item.get("category"):
+        parts.append(item["category"])
+    if item.get("menu_type"):
+        parts.append(item["menu_type"])
+    if item.get("dietary"):
+        parts.append(item["dietary"])
+    if item.get("price_raw"):
+        parts.append(item["price_raw"])
+    return ". ".join(p for p in parts if p)
 
 
 item_text = _item_text
@@ -493,6 +504,7 @@ def build_index(
     menus: dict,
     tokenizer: PhraseTokenizer,
     vector_store: VectorStore,
+    restaurants: dict | None = None,
 ) -> tuple[dict[str, list[dict]], dict[str, float], float]:
     """
     Phrase-tokenise every menu item and pre-compute unit-normalised vectors.
@@ -509,9 +521,12 @@ def build_index(
     total_tokens = 0
 
     for rid, items in menus.items():
+        rest_name = ""
+        if restaurants and rid in restaurants:
+            rest_name = restaurants[rid].get("name", rid) if isinstance(restaurants[rid], dict) else restaurants[rid]
         entries: list[dict] = []
         for item in items:
-            tokens = tokenizer.tokenize(_item_text(item))
+            tokens = tokenizer.tokenize(_item_text(item, rest_name))
             vecs = [vector_store.lookup(t) for t in tokens]
             # keep only tokens that have representable vectors
             pairs = [(t, v) for t, v in zip(tokens, vecs) if v is not None]
@@ -708,7 +723,7 @@ def search(
 
     scored: list[tuple[float, dict]] = []
     for rid, entries in index.items():
-        restaurant_name = restaurants[rid].get("name", rid)
+        restaurant_name = restaurants[rid].get("name", rid) if isinstance(restaurants.get(rid), dict) else rid
         for entry in entries:
             s = _score_item(
                 query_tokens, query_vecs, entry, idf, avgdl,
@@ -738,6 +753,7 @@ def search(
 def build_index_contextual(
     menus: dict,
     encoder,
+    restaurants: dict | None = None,
 ) -> tuple[dict[str, list[dict]], dict[str, float], float]:
     """
     Like build_index but runs a contextual BERT encoder over each item instead
@@ -754,9 +770,12 @@ def build_index_contextual(
     for n, rid in enumerate(all_rids, 1):
         if n % 50 == 0 or n == len(all_rids):
             print(f"\r  {n}/{len(all_rids)} restaurants", end="", flush=True)
+        rest_name = ""
+        if restaurants and rid in restaurants:
+            rest_name = restaurants[rid].get("name", rid) if isinstance(restaurants[rid], dict) else restaurants[rid]
         entries: list[dict] = []
         for item in menus[rid]:
-            segments, vecs_matrix = encoder.encode(_item_text(item))
+            segments, vecs_matrix = encoder.encode(_item_text(item, rest_name))
             for t in set(segments):
                 doc_freq[t] = doc_freq.get(t, 0) + 1
             entries.append({"item": item, "tokens": segments, "vecs": vecs_matrix})
@@ -793,7 +812,7 @@ def search_contextual(
 
     scored: list[tuple[float, dict]] = []
     for rid, entries in index.items():
-        restaurant_name = restaurants[rid].get("name", rid)
+        restaurant_name = restaurants[rid].get("name", rid) if isinstance(restaurants.get(rid), dict) else rid
         for entry in entries:
             s = _score_item(
                 query_tokens, query_vecs, entry, idf, avgdl,
@@ -848,7 +867,7 @@ if __name__ == "__main__":
         tokenizer    = PhraseTokenizer(phrase_vocab, max_phrase_len=args.max_phrase_len)
         vector_store = VectorStore(raw_vectors, composition=args.composition)
         print("Building index…", end=" ", flush=True)
-        index, idf, avgdl = build_index(menus, tokenizer, vector_store)
+        index, idf, avgdl = build_index(menus, tokenizer, vector_store, restaurants=restaurants)
         print(f"{sum(len(v) for v in index.values())} items, avgdl={avgdl:.1f}")
         corrector = SpellCorrector() if args.spell_correct else None
         query_tokens, _, corrections = resolve_query_tokens(
@@ -875,7 +894,7 @@ if __name__ == "__main__":
             else BertSubwordEncoder()
         )
         print("Building index…")
-        index, idf, avgdl = build_index_contextual(menus, encoder)
+        index, idf, avgdl = build_index_contextual(menus, encoder, restaurants=restaurants)
         print(f"  avgdl={avgdl:.1f} tokens")
         query_tokens, query_vecs = encoder.encode(query)
         print(f"\nQuery : '{query}'")

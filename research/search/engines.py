@@ -131,7 +131,7 @@ def build_search_fn(args: argparse.Namespace, restaurants: dict, menus: dict) ->
             _tokenizer = PhraseTokenizer(_phrase_vocab, max_phrase_len=args.max_phrase_len)
             _vstore    = VectorStore(_raw_vecs, composition=args.composition)
             print("Building index...", end=" ", flush=True)
-            _index, _idf, _avgdl = build_index(menus, _tokenizer, _vstore)
+            _index, _idf, _avgdl = build_index(menus, _tokenizer, _vstore, restaurants=restaurants)
             print(f"{sum(len(v) for v in _index.values())} items indexed")
 
             _corrector = None
@@ -154,7 +154,7 @@ def build_search_fn(args: argparse.Namespace, restaurants: dict, menus: dict) ->
                 else BertSubwordEncoder()
             )
             print("Building index...")
-            _index, _idf, _avgdl = build_index_contextual(menus, _encoder)
+            _index, _idf, _avgdl = build_index_contextual(menus, _encoder, restaurants=restaurants)
             print(f"  {sum(len(v) for v in _index.values())} items indexed, avgdl={_avgdl:.1f}")
 
             def _raw_search(query, _restaurants, _menus):

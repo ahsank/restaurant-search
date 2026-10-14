@@ -1,10 +1,10 @@
 {
   "name": "baseline-enhanced",
-  "description": "re-run after code change: re-run to record seconds per query (and refresh results made stale by later code changes)",
+  "description": "Benchmark enhanced text search baseline after adding restaurant name and price_raw to matching tiers",
   "status": "SUCCESS",
-  "iteration": 32,
-  "timestamp": "2026-10-14T22:27:46",
-  "git_commit": "f404bb3",
+  "iteration": 47,
+  "timestamp": "2026-10-14T22:56:03",
+  "git_commit": "bcd8f39",
   "result_file": "research/agent/results/baseline-enhanced.json",
   "family": "lexical",
   "setup": null,
@@ -12,17 +12,17 @@
     "--engine",
     "enhanced"
   ],
-  "seconds": 2.3,
+  "seconds": 2.5,
   "timing": {
-    "seconds_per_query": 0.0106,
-    "search_seconds_per_query": 0.0106,
+    "seconds_per_query": 0.0115,
+    "search_seconds_per_query": 0.0115,
     "rankings_generation_seconds_per_query": 0.0
   },
   "metrics": {
     "overall": {
-      "ndcg@5": 0.557816630310219,
-      "recall@10": 0.5564492521185166,
-      "mrr": 0.6021942728253408,
+      "ndcg@5": 0.5591626178216513,
+      "recall@10": 0.5596854980732092,
+      "mrr": 0.6034078650583505,
       "n_queries": 209,
       "n_with_judgments": 206
     },
@@ -72,9 +72,9 @@
       "C07": {
         "name": "Hyphenation / spacing / stop words",
         "n_queries": 14,
-        "ndcg@5": 0.40769795809416476,
-        "recall@10": 0.37896825396825395,
-        "mrr": 0.42857142857142855
+        "ndcg@5": 0.42750320290523963,
+        "recall@10": 0.42658730158730157,
+        "mrr": 0.44642857142857145
       },
       "C08": {
         "name": "Dietary constraint / negation",
@@ -206,9 +206,9 @@
     "by_difficulty": {
       "Easy": {
         "n_queries": 125,
-        "ndcg@5": 0.7005446396071215,
-        "recall@10": 0.6889959865389345,
-        "mrr": 0.7477494949494949
+        "ndcg@5": 0.702762827025962,
+        "recall@10": 0.6943293198722678,
+        "mrr": 0.7497494949494949
       },
       "Medium": {
         "n_queries": 55,
@@ -224,5 +224,5 @@
       }
     }
   },
-  "eval_seconds": 2.3
+  "eval_seconds": 2.5
 }

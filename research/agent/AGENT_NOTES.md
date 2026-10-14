@@ -423,3 +423,29 @@ current labels, so the agent starts from comparable baselines.
 - Eval args: `--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-electra-base --grade-boost 2.0` | family `llm`
 - ndcg@5 0.7888 | recall@10 0.8266 | mrr 0.8594 | 0.2172 s/query | efficiency 0.1512 | 206/209 queries judged
 - Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.1789, C18 Chicken dishes 0.5613, C08 Dietary constraint / negation 0.6428, C03 Attribute / implied meaning 0.6461, C02 Ingredient generalization 0.6561
+
+### Iteration 47: softbm25-conceptnet (SUCCESS)
+- Result: `research/agent/results/softbm25-conceptnet.json` | commit `bcd8f39` | 19.0s
+- Setup: `mkdir -p /content/scratch && [ -f /content/scratch/numberbatch-en-19.08.txt.gz ] || wget -q -O /content/scratch/numberbatch-en-19.08.txt.gz https://conceptnet.s3.amazonaws.com/downloads/2019/numberbatch/numberbatch-en-19.08.txt.gz`
+- Eval args: `--engine soft_bm25 --vectors /content/scratch/numberbatch-en-19.08.txt.gz` | family `word-vector`
+- ndcg@5 0.5702 | recall@10 0.5443 | mrr 0.7326 | 0.0166 s/query | efficiency 0.1137 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.0841, C08 Dietary constraint / negation 0.1567, C03 Attribute / implied meaning 0.2602, C02 Ingredient generalization 0.3487, C01 Cuisine type inference 0.3797
+
+### Iteration 47: baseline-enhanced (SUCCESS)
+- Result: `research/agent/results/baseline-enhanced.json` | commit `bcd8f39` | 2.5s
+- Eval args: `--engine enhanced` | family `lexical`
+- ndcg@5 0.5592 | recall@10 0.5597 | mrr 0.6034 | 0.0115 s/query | efficiency 0.1116 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.0, C02 Ingredient generalization 0.0553, C05 Spelling variations 0.0667, C03 Attribute / implied meaning 0.1224, C01 Cuisine type inference 0.2382
+
+### Iteration 47: code change
+**Goal**: Update research/search/soft_bm25_search.py, research/search/enhanced_text_search.py, and research/search/engines.py to include restaurant names (from restaurants[rid]['name']) and item price_raw in their indexing and scoring representations, matching the neural engines and resolving blind spots on restaurant-named queries (e.g. C07-08, C07-09) and price constraints. Verify by running evaluate.py --engine soft_bm25 --vectors /content/scratch/numberbatch-en-19.08.txt.gz.
+
+**Summary**: Updated research/search/soft_bm25_search.py, research/search/enhanced_text_search.py, and research/search/engines.py to include restaurant names (restaurants[rid]['name']) and item price_raw in their indexing and scoring representations, matching the neural search engines. In soft_bm25_search.py, _item_text, build_index, and build_index_contextual now accept and index the restaurant name and item price_raw. In enhanced_text_search.py, price_raw was added to build_menu_vocab and the item-context tier, and restaurant name was added to the restaurant-context tier. In engines.py, the soft_bm25 engine dispatch was updated to pass the restaurants mapping into build_index and build_index_contextual. Verified with run_experiment softbm25-conceptnet: NDCG@5 increased from 0.5644 to 0.5702, MRR increased from 0.7250 to 0.7326, with C07 (restaurant-named queries like Due Cucina and Staple & Fancy) jumping from 0.3173 to 0.4289 NDCG@5 and 0.3811 to 0.5433 MRR. Also verified baseline-enhanced: NDCG@5 increased from 0.5578 to 0.5592.
+
+**Files changed**:
+```
+ M research/agent/LEADERBOARD.md
+ M research/search/engines.py
+ M research/search/enhanced_text_search.py
+ M research/search/soft_bm25_search.py
+```
