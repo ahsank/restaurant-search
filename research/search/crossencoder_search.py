@@ -12,8 +12,8 @@ Cost: one forward pass per item per query. Over the 7 benchmark restaurants
 (~640 items) that's a few seconds per query on CPU — fine for the benchmark,
 not for a web request.
 
-Item text is name, description, category, menu type, and dietary annotations
-(matching hybrid_search.py).
+Item text is restaurant name, item name, description, category, menu type,
+dietary annotations, and price (matching hybrid_search.py).
 
 Usage:
     python research/search/crossencoder_search.py seafood italian
@@ -37,12 +37,17 @@ _DEFAULT_MODEL = _ROOT / "models" / "crossencoder-synthetic-plus-gapfill"
 STOCK_MODEL = "cross-encoder/ms-marco-MiniLM-L6-v2"
 
 
-def _item_text(item: dict) -> str:
+def _item_text(item: dict, restaurant_name: str = "") -> str:
     """
     Build text for CrossEncoder scoring:
-    item name, description, category, menu type, and dietary annotations (matches hybrid_search.py).
+    restaurant name, item name, description, category, menu type, dietary annotations, and price (matches hybrid_search.py).
     """
-    parts = [item.get("name", "")]
+    r_name = restaurant_name or (item.get("restaurant") if isinstance(item.get("restaurant"), str) else "") or item.get("restaurant_name", "")
+    parts = []
+    if r_name:
+        parts.append(r_name)
+    if item.get("name"):
+        parts.append(item["name"])
     if item.get("description"):
         parts.append(item["description"])
     if item.get("category"):
@@ -51,6 +56,8 @@ def _item_text(item: dict) -> str:
         parts.append(item["menu_type"])
     if item.get("dietary"):
         parts.append(item["dietary"])
+    if item.get("price_raw"):
+        parts.append(item["price_raw"])
     return ". ".join(p for p in parts if p)
 
 
@@ -60,7 +67,7 @@ item_text = _item_text
 def build_index(menus: dict, restaurants: dict) -> list[tuple[str, dict, str]]:
     """Flatten every item into (restaurant_id, item, item_text). Nothing to encode up front."""
     return [
-        (rid, item, _item_text(item))
+        (rid, item, _item_text(item, restaurants.get(rid, {}).get("name", rid) if isinstance(restaurants.get(rid), dict) else rid))
         for rid, items in menus.items()
         for item in items
     ]

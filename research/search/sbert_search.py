@@ -6,8 +6,8 @@ At query time the query is encoded and items are ranked by cosine similarity.
 The model reads the full item string in one forward pass, so phrase context
 ("not spicy", "oyster sauce") is captured without explicit phrase detection.
 
-Item text includes name, description, category, menu type, and dietary annotations
-(matching colbert_search.py and crossencoder_search.py).
+Item text includes restaurant name, item name, description, category, menu type,
+dietary annotations, and price (matching colbert_search.py and crossencoder_search.py).
 
 Default model: all-MiniLM-L6-v2 (~80 MB, 384 dimensions)
   fast, strong general-purpose retrieval baseline
@@ -36,12 +36,17 @@ sys.path.insert(0, str(Path(__file__).parents[1]))
 from lib.data import load_data, judged_restaurant_ids, restaurant_scope_cli_args
 
 
-def _item_text(item: dict) -> str:
+def _item_text(item: dict, restaurant_name: str = "") -> str:
     """
     Build text for SBERT bi-encoder encoding:
-    item name, description, category, menu type, and dietary annotations (matches colbert_search.py and crossencoder_search.py).
+    restaurant name, item name, description, category, menu type, dietary annotations, and price (matches colbert_search.py and crossencoder_search.py).
     """
-    parts = [item.get("name", "")]
+    r_name = restaurant_name or (item.get("restaurant") if isinstance(item.get("restaurant"), str) else "") or item.get("restaurant_name", "")
+    parts = []
+    if r_name:
+        parts.append(r_name)
+    if item.get("name"):
+        parts.append(item["name"])
     if item.get("description"):
         parts.append(item["description"])
     if item.get("category"):
@@ -50,6 +55,8 @@ def _item_text(item: dict) -> str:
         parts.append(item["menu_type"])
     if item.get("dietary"):
         parts.append(item["dietary"])
+    if item.get("price_raw"):
+        parts.append(item["price_raw"])
     return ". ".join(p for p in parts if p)
 
 
@@ -70,7 +77,8 @@ def build_index(
     """
     index: dict[str, list[dict]] = {}
     for rid, items in menus.items():
-        texts = [_item_text(item) for item in items]
+        rest_name = restaurants.get(rid, {}).get("name", rid) if isinstance(restaurants.get(rid), dict) else rid
+        texts = [_item_text(item, rest_name) for item in items]
         vecs = model.encode(
             texts,
             normalize_embeddings=True,

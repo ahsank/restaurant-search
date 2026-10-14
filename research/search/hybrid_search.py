@@ -9,8 +9,8 @@ Architecture:
    The LLM reader acts as a high-recall filter (~25 items/query on average).
 2. Cross-encoder rescoring: Each candidate item is rescored using a
    CrossEncoder (--model, default: cross-encoder/ms-marco-MiniLM-L6-v2) on
-   (query, candidate_text). Candidate text includes item name, description,
-   category, menu type, and dietary metadata.
+   (query, candidate_text). Candidate text includes restaurant name, item name,
+   description, category, menu type, dietary metadata, and price.
 3. LLM grade boost & strict grade:
    - By default, score = cross_encoder_score + grade_boost * grade
      (default grade_boost = 0.0, using pure cross-encoder scoring).
@@ -45,12 +45,17 @@ import search.crossencoder_search as ce_search
 STOCK_MODEL = "cross-encoder/ms-marco-MiniLM-L6-v2"
 
 
-def candidate_item_text(item: dict) -> str:
+def candidate_item_text(item: dict, restaurant_name: str = "") -> str:
     """
     Build candidate text for CrossEncoder rescoring:
-    item name, description, category, menu type, and dietary annotations.
+    restaurant name, item name, description, category, menu type, dietary annotations, and price.
     """
-    parts = [item.get("name", "")]
+    r_name = restaurant_name or (item.get("restaurant") if isinstance(item.get("restaurant"), str) else "") or item.get("restaurant_name", "")
+    parts = []
+    if r_name:
+        parts.append(r_name)
+    if item.get("name"):
+        parts.append(item["name"])
     if item.get("description"):
         parts.append(item["description"])
     if item.get("category"):
@@ -59,6 +64,8 @@ def candidate_item_text(item: dict) -> str:
         parts.append(item["menu_type"])
     if item.get("dietary"):
         parts.append(item["dietary"])
+    if item.get("price_raw"):
+        parts.append(item["price_raw"])
     return ". ".join(p for p in parts if p)
 
 
@@ -97,7 +104,7 @@ def load_rankings(path: Path | str) -> dict[str, list[dict]]:
     return rankings
 
 
-def build_item_map(menus: dict) -> dict[tuple[str, str], tuple[dict, str]]:
+def build_item_map(menus: dict, restaurants: dict | None = None) -> dict[tuple[str, str], tuple[dict, str]]:
     """
     Map (restaurant_id, item_name) -> (item_dict, candidate_text).
     If an item name appears multiple times under a restaurant (e.g. lunch and dinner),
@@ -105,20 +112,28 @@ def build_item_map(menus: dict) -> dict[tuple[str, str], tuple[dict, str]]:
     """
     item_map = {}
     for rid, items in menus.items():
+        rest_name = ""
+        if restaurants and rid in restaurants:
+            rest_info = restaurants[rid]
+            rest_name = rest_info.get("name", rid) if isinstance(rest_info, dict) else str(rest_info)
         for item in items:
             key = (rid, item["name"])
             if key not in item_map:
-                item_map[key] = (item, candidate_item_text(item))
+                item_map[key] = (item, candidate_item_text(item, rest_name))
     return item_map
 
 
-def _find_item_fallback(rid: str, name: str, menus: dict) -> tuple[dict, str]:
+def _find_item_fallback(rid: str, name: str, menus: dict, restaurants: dict | None = None) -> tuple[dict, str]:
     """Fallback search in menus[rid] if an exact (rid, name) lookup misses."""
+    rest_name = ""
+    if restaurants and rid in restaurants:
+        rest_info = restaurants[rid]
+        rest_name = rest_info.get("name", rid) if isinstance(rest_info, dict) else str(rest_info)
     items = menus.get(rid, [])
     name_lower = name.lower().strip()
     for item in items:
         if item["name"].lower().strip() == name_lower:
-            return item, candidate_item_text(item)
+            return item, candidate_item_text(item, rest_name)
     # Synthetic item dict if completely unindexed
     synthetic = {
         "name": name,
@@ -130,7 +145,7 @@ def _find_item_fallback(rid: str, name: str, menus: dict) -> tuple[dict, str]:
         "menu_type": "",
         "restaurant_id": rid,
     }
-    return synthetic, name
+    return synthetic, candidate_item_text(synthetic, rest_name)
 
 
 def search(
@@ -179,7 +194,7 @@ def search(
         if (rid, name) in item_map:
             item, text = item_map[(rid, name)]
         else:
-            item, text = _find_item_fallback(rid, name, menus)
+            item, text = _find_item_fallback(rid, name, menus, restaurants)
         pairs.append((query, text))
         c_list.append((rid, item, grade))
 
@@ -230,9 +245,9 @@ def build_search_fn(
     model = CrossEncoder(model_name)
     print("done")
 
-    item_map = build_item_map(menus)
+    item_map = build_item_map(menus, restaurants)
     ce_index = [
-        (rid, item, candidate_item_text(item))
+        (rid, item, candidate_item_text(item, restaurants.get(rid, {}).get("name", rid) if isinstance(restaurants.get(rid), dict) else rid))
         for rid, items in menus.items()
         for item in items
     ]

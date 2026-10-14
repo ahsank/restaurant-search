@@ -62,10 +62,15 @@ def cli_args() -> argparse.ArgumentParser:
     return parser
 
 
-# ── text field selection (matches hybrid_search.py — name, description, category, menu type, dietary) ──
+# ── text field selection (matches hybrid_search.py — restaurant name, name, description, category, menu type, dietary, price) ──
 
-def _item_text(item: dict) -> str:
-    parts = [item.get("name", "")]
+def _item_text(item: dict, restaurant_name: str = "") -> str:
+    r_name = restaurant_name or (item.get("restaurant") if isinstance(item.get("restaurant"), str) else "") or item.get("restaurant_name", "")
+    parts = []
+    if r_name:
+        parts.append(r_name)
+    if item.get("name"):
+        parts.append(item["name"])
     if item.get("description"):
         parts.append(item["description"])
     if item.get("category"):
@@ -74,6 +79,8 @@ def _item_text(item: dict) -> str:
         parts.append(item["menu_type"])
     if item.get("dietary"):
         parts.append(item["dietary"])
+    if item.get("price_raw"):
+        parts.append(item["price_raw"])
     return ". ".join(p for p in parts if p)
 
 
@@ -96,8 +103,9 @@ def build_index(
     all_meta:  list[tuple[str, dict]] = []   # (restaurant_id, item_dict)
 
     for rid, items in menus.items():
+        rest_name = restaurants.get(rid, {}).get("name", rid) if isinstance(restaurants.get(rid), dict) else rid
         for item in items:
-            all_texts.append(_item_text(item))
+            all_texts.append(_item_text(item, rest_name))
             all_meta.append((rid, item))
 
     # Encode in batches — returns list[np.ndarray], one matrix per item

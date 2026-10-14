@@ -362,3 +362,23 @@ current labels, so the agent starts from comparable baselines.
 - Eval args: `--engine colbert` | family `late-interaction`
 - ndcg@5 0.665 | recall@10 0.5662 | mrr 0.8049 | 0.0091 s/query | efficiency 0.1328 | 206/209 queries judged
 - Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.0, C03 Attribute / implied meaning 0.2137, C08 Dietary constraint / negation 0.374, C02 Ingredient generalization 0.4264, C04 Cooking method synonyms 0.453
+
+### Iteration 40: hybrid-qwen2.5-7b-minilm-l12-boost2 (SUCCESS)
+- Result: `research/agent/results/hybrid-qwen2.5-7b-minilm-l12-boost2.json` | commit `3783240` | 9.4s
+- Eval args: `--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L12-v2 --grade-boost 2.0` | family `llm`
+- ndcg@5 0.8195 | recall@10 0.8427 | mrr 0.8712 | 0.2033 s/query | efficiency 0.1575 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.1969, C08 Dietary constraint / negation 0.5375, C03 Attribute / implied meaning 0.6383, C24 Pizza varieties 0.6667, C02 Ingredient generalization 0.6947
+
+### Iteration 40: code change
+**Goal**: Update research/search/hybrid_search.py, research/search/crossencoder_search.py, research/search/colbert_search.py, and research/search/sbert_search.py to include restaurant name (from restaurants[rid]['name']) and item.get('price_raw') in _item_text and candidate_item_text representations, resolving missing signal on price constraints (e.g. C10-02) and restaurant-named queries (e.g. C07-08, C07-09). Verify by running evaluate.py --engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L12-v2 --grade-boost 2.0.
+
+**Summary**: Updated research/search/hybrid_search.py, research/search/crossencoder_search.py, research/search/colbert_search.py, and research/search/sbert_search.py so that _item_text and candidate_item_text representations include restaurant name (from restaurants[rid]['name']) and item.get('price_raw'). This provides critical context for restaurant-named queries (e.g. C07-08 'due cucina pasta', C07-09 'staple fancy restaurant') and price constraint queries (e.g. C10-02). Verified with run_experiment hybrid-qwen2.5-7b-minilm-l12-boost2: NDCG@5 increased from 0.8058 to a new benchmark high of 0.8195 (Recall@10 increased from 0.8273 to 0.8427, MRR increased from 0.8637 to 0.8712), with category C07 NDCG@5 jumping significantly from 0.5464 to 0.7875.
+
+**Files changed**:
+```
+ M research/agent/LEADERBOARD.md
+ M research/search/colbert_search.py
+ M research/search/crossencoder_search.py
+ M research/search/hybrid_search.py
+ M research/search/sbert_search.py
+```
