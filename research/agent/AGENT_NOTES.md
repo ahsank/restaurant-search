@@ -170,3 +170,9 @@ current labels, so the agent starts from comparable baselines.
 - Eval args: `--engine llm --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl` | family `llm`
 - ndcg@5 0.6993 | recall@10 0.7739 | mrr 0.7687 | 0.1914 s/query | efficiency 0.1347 | 206/209 queries judged
 - Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.2461, C03 Attribute / implied meaning 0.435, C18 Chicken dishes 0.484, C02 Ingredient generalization 0.5651, C25 Occasion / meal-time 0.5996
+
+### Iteration 21: sbert-all-MiniLM-L6-v2 (SUCCESS)
+- Result: `research/agent/results/sbert-all-MiniLM-L6-v2.json` | commit `03cd080` | 9.7s
+- Eval args: `--engine sbert --model all-MiniLM-L6-v2` | family `bi-encoder`
+- ndcg@5 0.5592 | recall@10 0.4883 | mrr 0.7093 | 0.0032 s/query | efficiency 0.1118 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.0, C18 Chicken dishes 0.1969, C03 Attribute / implied meaning 0.2386, C04 Cooking method synonyms 0.3205, C02 Ingredient generalization 0.3335

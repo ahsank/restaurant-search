@@ -1,11 +1,12 @@
 {
   "name": "sbert-all-MiniLM-L6-v2",
-  "description": "bi-encoder baseline",
+  "description": "re-run to record seconds per query (and refresh results made stale by later code changes)",
   "status": "SUCCESS",
-  "iteration": 2,
-  "timestamp": "2026-10-13T19:39:33",
-  "git_commit": "7d057b3",
+  "iteration": 21,
+  "timestamp": "2026-10-14T22:06:50",
+  "git_commit": "03cd080",
   "result_file": "research/agent/results/sbert-all-MiniLM-L6-v2.json",
+  "family": "bi-encoder",
   "setup": null,
   "eval_args": [
     "--engine",
@@ -13,7 +14,12 @@
     "--model",
     "all-MiniLM-L6-v2"
   ],
-  "seconds": 20.7,
+  "seconds": 9.7,
+  "timing": {
+    "seconds_per_query": 0.0032,
+    "search_seconds_per_query": 0.0032,
+    "rankings_generation_seconds_per_query": 0.0
+  },
   "metrics": {
     "overall": {
       "ndcg@5": 0.5592096351066688,
@@ -220,5 +226,5 @@
       }
     }
   },
-  "eval_seconds": 20.7
+  "eval_seconds": 9.7
 }
