@@ -394,3 +394,9 @@ current labels, so the agent starts from comparable baselines.
 - Eval args: `--engine crossencoder --model cross-encoder/ms-marco-MiniLM-L12-v2` | family `cross-encoder`
 - ndcg@5 0.6747 | recall@10 0.5954 | mrr 0.8156 | 0.0985 s/query | efficiency 0.1323 | 206/209 queries judged
 - Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.1921, C03 Attribute / implied meaning 0.2936, C08 Dietary constraint / negation 0.3823, C02 Ingredient generalization 0.3878, C04 Cooking method synonyms 0.4822
+
+### Iteration 43: crossencoder-ms-marco-electra-base (SUCCESS)
+- Result: `research/agent/results/crossencoder-ms-marco-electra-base.json` | commit `327144d` | 67.1s
+- Eval args: `--engine crossencoder --model cross-encoder/ms-marco-electra-base` | family `cross-encoder`
+- ndcg@5 0.6806 | recall@10 0.5909 | mrr 0.8255 | 0.2876 s/query | efficiency 0.1287 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.1726, C03 Attribute / implied meaning 0.301, C04 Cooking method synonyms 0.4182, C08 Dietary constraint / negation 0.4677, C02 Ingredient generalization 0.4929
