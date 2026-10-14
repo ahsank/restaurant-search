@@ -327,3 +327,9 @@ current labels, so the agent starts from comparable baselines.
  M research/search/hybrid_search.py
  M research/search/sbert_search.py
 ```
+
+### Iteration 35: crossencoder-ms-marco-electra-base (SUCCESS)
+- Result: `research/agent/results/crossencoder-ms-marco-electra-base.json` | commit `cf25cc4` | 61.4s
+- Eval args: `--engine crossencoder --model cross-encoder/ms-marco-electra-base` | family `cross-encoder`
+- ndcg@5 0.6625 | recall@10 0.5837 | mrr 0.8077 | 0.2603 s/query | efficiency 0.1259 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.0, C03 Attribute / implied meaning 0.2758, C08 Dietary constraint / negation 0.3788, C04 Cooking method synonyms 0.3869, C02 Ingredient generalization 0.4697
