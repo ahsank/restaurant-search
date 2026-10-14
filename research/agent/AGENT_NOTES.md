@@ -122,3 +122,9 @@ current labels, so the agent starts from comparable baselines.
 - Eval args: `--engine text` | family `lexical`
 - ndcg@5 0.4456 | recall@10 0.4708 | mrr 0.4692 | 0.0003 s/query | efficiency 0.0891 | 206/209 queries judged
 - Weakest categories (NDCG@5): C01 Cuisine type inference 0.0, C02 Ingredient generalization 0.0, C08 Dietary constraint / negation 0.0, C10 Multi-constraint compositional 0.0, C25 Occasion / meal-time 0.0
+
+### Iteration 13: colbert-colbertv2.0 (SUCCESS)
+- Result: `research/agent/results/colbert-colbertv2.0.json` | commit `cfb208c` | 25.4s
+- Eval args: `--engine colbert` | family `late-interaction`
+- ndcg@5 0.6422 | recall@10 0.5616 | mrr 0.7851 | 0.0095 s/query | efficiency 0.1282 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.0976, C03 Attribute / implied meaning 0.2194, C25 Occasion / meal-time 0.2965, C08 Dietary constraint / negation 0.331, C02 Ingredient generalization 0.386

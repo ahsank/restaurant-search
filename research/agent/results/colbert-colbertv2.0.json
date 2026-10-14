@@ -1,17 +1,23 @@
 {
   "name": "colbert-colbertv2.0",
-  "description": "ColBERT late interaction",
+  "description": "re-run to record seconds per query (and refresh results made stale by later code changes)",
   "status": "SUCCESS",
-  "iteration": 4,
-  "timestamp": "2026-10-13T19:40:08",
-  "git_commit": "ef1f595",
+  "iteration": 13,
+  "timestamp": "2026-10-14T22:04:50",
+  "git_commit": "cfb208c",
   "result_file": "research/agent/results/colbert-colbertv2.0.json",
+  "family": "late-interaction",
   "setup": null,
   "eval_args": [
     "--engine",
     "colbert"
   ],
-  "seconds": 11.8,
+  "seconds": 25.4,
+  "timing": {
+    "seconds_per_query": 0.0095,
+    "search_seconds_per_query": 0.0095,
+    "rankings_generation_seconds_per_query": 0.0
+  },
   "metrics": {
     "overall": {
       "ndcg@5": 0.6422121614775046,
@@ -218,5 +224,5 @@
       }
     }
   },
-  "eval_seconds": 11.8
+  "eval_seconds": 25.3
 }
