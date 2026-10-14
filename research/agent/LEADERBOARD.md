@@ -26,8 +26,8 @@ recorded (re-run it).
 | 4 | hybrid-qwen2.5-7b-minilm-l6-strict-grade | llm | 0.1512 | 0.7858 | 0.1987 |
 | 5 | llm-qwen2.5-7b-instruct | llm | 0.1347 | 0.6993 | 0.1914 |
 | 6 | crossencoder-ms-marco-MiniLM-L6-v2 | cross-encoder | 0.1299 | 0.6569 | 0.0562 |
-| 7 | colbert-colbertv2.0 | late-interaction | 0.1282 | 0.6422 | 0.0095 |
-| 8 | crossencoder-ms-marco-MiniLM-L12-v2 | cross-encoder | 0.1270 | 0.6462 | 0.0872 |
+| 7 | crossencoder-ms-marco-MiniLM-L12-v2 | cross-encoder | 0.1289 | 0.6562 | 0.0890 |
+| 8 | colbert-colbertv2.0 | late-interaction | 0.1282 | 0.6422 | 0.0095 |
 | 9 | softbm25-conceptnet | word-vector | 0.1129 | 0.5664 | 0.0165 |
 | 10 | sbert-all-MiniLM-L6-v2 | bi-encoder | 0.1118 | 0.5592 | 0.0032 |
 | 11 | sbert-all-mpnet-base-v2 | bi-encoder | 0.1114 | 0.5577 | 0.0048 |
