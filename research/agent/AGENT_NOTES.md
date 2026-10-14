@@ -339,3 +339,9 @@ current labels, so the agent starts from comparable baselines.
 - Eval args: `--engine crossencoder --model cross-encoder/ms-marco-MiniLM-L12-v2` | family `cross-encoder`
 - ndcg@5 0.6623 | recall@10 0.5884 | mrr 0.8064 | 0.0922 s/query | efficiency 0.1301 | 206/209 queries judged
 - Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.0328, C03 Attribute / implied meaning 0.2548, C02 Ingredient generalization 0.3558, C08 Dietary constraint / negation 0.368, C04 Cooking method synonyms 0.4583
+
+### Iteration 37: sbert-all-MiniLM-L6-v2 (SUCCESS)
+- Result: `research/agent/results/sbert-all-MiniLM-L6-v2.json` | commit `5e77a11` | 8.2s
+- Eval args: `--engine sbert --model all-MiniLM-L6-v2` | family `bi-encoder`
+- ndcg@5 0.5427 | recall@10 0.476 | mrr 0.6994 | 0.0032 s/query | efficiency 0.1085 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.0848, C03 Attribute / implied meaning 0.1834, C18 Chicken dishes 0.2188, C02 Ingredient generalization 0.3217, C04 Cooking method synonyms 0.3253
