@@ -1,17 +1,23 @@
 {
   "name": "baseline-enhanced",
-  "description": "thesaurus-expanded keyword search",
+  "description": "re-run to record seconds per query (and refresh results made stale by later code changes)",
   "status": "SUCCESS",
-  "iteration": 1,
-  "timestamp": "2026-10-13T19:39:29",
-  "git_commit": "7e6ec25",
+  "iteration": 11,
+  "timestamp": "2026-10-14T22:04:44",
+  "git_commit": "9afa8a0",
   "result_file": "research/agent/results/baseline-enhanced.json",
+  "family": "lexical",
   "setup": null,
   "eval_args": [
     "--engine",
     "enhanced"
   ],
   "seconds": 2.2,
+  "timing": {
+    "seconds_per_query": 0.0103,
+    "search_seconds_per_query": 0.0103,
+    "rankings_generation_seconds_per_query": 0.0
+  },
   "metrics": {
     "overall": {
       "ndcg@5": 0.5484263513721422,
