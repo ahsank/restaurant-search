@@ -1,11 +1,12 @@
 {
   "name": "crossencoder-ms-marco-MiniLM-L12-v2",
-  "description": "test deeper 12-layer cross-encoder on all items",
+  "description": "re-run to record seconds per query (and refresh results made stale by later code changes)",
   "status": "SUCCESS",
-  "iteration": 7,
-  "timestamp": "2026-10-13T19:46:05",
-  "git_commit": "843d0da",
+  "iteration": 14,
+  "timestamp": "2026-10-14T22:05:17",
+  "git_commit": "b90cdb0",
   "result_file": "research/agent/results/crossencoder-ms-marco-MiniLM-L12-v2.json",
+  "family": "cross-encoder",
   "setup": null,
   "eval_args": [
     "--engine",
@@ -13,7 +14,12 @@
     "--model",
     "cross-encoder/ms-marco-MiniLM-L12-v2"
   ],
-  "seconds": 27.0,
+  "seconds": 26.8,
+  "timing": {
+    "seconds_per_query": 0.0872,
+    "search_seconds_per_query": 0.0872,
+    "rankings_generation_seconds_per_query": 0.0
+  },
   "metrics": {
     "overall": {
       "ndcg@5": 0.646230354569549,
@@ -220,5 +226,5 @@
       }
     }
   },
-  "eval_seconds": 27.0
+  "eval_seconds": 26.8
 }

@@ -21,14 +21,14 @@ recorded (re-run it).
 | # | Experiment | Family | Efficiency | NDCG@5 | s/query |
 |---|---|---|---|---|---|
 | 1 | colbert-colbertv2.0 | late-interaction | 0.1282 | 0.6422 | 0.0095 |
-| 2 | baseline-enhanced | lexical | 0.1095 | 0.5484 | 0.0103 |
-| 3 | baseline-text | lexical | 0.0891 | 0.4456 | 0.0003 |
-| 4 | hybrid-qwen2.5-7b-minilm-l6-boost2 | llm | – | 0.8006 | – |
-| 5 | hybrid-qwen2.5-7b-minilm-l12-boost2 | llm | – | 0.7999 | – |
-| 6 | hybrid-qwen2.5-7b-minilm-l6-strict-grade | llm | – | 0.7858 | – |
-| 7 | hybrid-qwen2.5-7b-ms-marco-MiniLM-L6-v2 | llm | – | 0.7840 | – |
-| 8 | llm-qwen2.5-7b-instruct | llm | – | 0.6993 | – |
-| 9 | crossencoder-ms-marco-MiniLM-L6-v2 | cross-encoder | – | 0.6510 | – |
-| 10 | crossencoder-ms-marco-MiniLM-L12-v2 | cross-encoder | – | 0.6462 | – |
+| 2 | crossencoder-ms-marco-MiniLM-L12-v2 | cross-encoder | 0.1270 | 0.6462 | 0.0872 |
+| 3 | baseline-enhanced | lexical | 0.1095 | 0.5484 | 0.0103 |
+| 4 | baseline-text | lexical | 0.0891 | 0.4456 | 0.0003 |
+| 5 | hybrid-qwen2.5-7b-minilm-l6-boost2 | llm | – | 0.8006 | – |
+| 6 | hybrid-qwen2.5-7b-minilm-l12-boost2 | llm | – | 0.7999 | – |
+| 7 | hybrid-qwen2.5-7b-minilm-l6-strict-grade | llm | – | 0.7858 | – |
+| 8 | hybrid-qwen2.5-7b-ms-marco-MiniLM-L6-v2 | llm | – | 0.7840 | – |
+| 9 | llm-qwen2.5-7b-instruct | llm | – | 0.6993 | – |
+| 10 | crossencoder-ms-marco-MiniLM-L6-v2 | cross-encoder | – | 0.6510 | – |
 | 11 | sbert-all-MiniLM-L6-v2 | bi-encoder | – | 0.5592 | – |
 | 12 | sbert-all-mpnet-base-v2 | bi-encoder | – | 0.5577 | – |
