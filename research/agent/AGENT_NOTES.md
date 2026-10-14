@@ -412,3 +412,14 @@ current labels, so the agent starts from comparable baselines.
 - Eval args: `--engine sbert --model all-mpnet-base-v2` | family `bi-encoder`
 - ndcg@5 0.5484 | recall@10 0.4678 | mrr 0.7375 | 0.0048 s/query | efficiency 0.1096 | 206/209 queries judged
 - Weakest categories (NDCG@5): C03 Attribute / implied meaning 0.2149, C10 Multi-constraint compositional 0.2426, C13 Taco varieties 0.2788, C04 Cooking method synonyms 0.2955, C02 Ingredient generalization 0.3188
+
+### Plan (iteration 46)
+- Hypothesis: In iteration 43, crossencoder-ms-marco-electra-base achieved NDCG@5=0.6806 and MRR=0.8255, outperforming MiniLM-L12 (0.6747) and MiniLM-L6 (0.6770) as the strongest cross-encoder backbone in the repository. We hypothesize that reranking Qwen2.5-7B candidates with Electra-base and grade-boost 2.0 will improve upon the current benchmark leader (hybrid MiniLM-L12 at 0.8195). In parallel, while neural retrievers gained significantly from adding restaurant names and price metadata in iteration 40, soft_bm25_search.py and enhanced_text_search.py still omit these fields, leaving word-vector and lexical retrieval impaired on restaurant-named and price-constrained queries.
+- Queued: run_experiment hybrid-qwen2.5-7b-electra-boost2
+- Queued: change_code Update research/search/soft_bm25_search.py, research/search/enhanced_text_search.py, and research/search/engines.py to include restaurant names (from 
+
+### Iteration 46: hybrid-qwen2.5-7b-electra-boost2 (SUCCESS)
+- Result: `research/agent/results/hybrid-qwen2.5-7b-electra-boost2.json` | commit `71c66a4` | 12.3s
+- Eval args: `--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-electra-base --grade-boost 2.0` | family `llm`
+- ndcg@5 0.7888 | recall@10 0.8266 | mrr 0.8594 | 0.2172 s/query | efficiency 0.1512 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.1789, C18 Chicken dishes 0.5613, C08 Dietary constraint / negation 0.6428, C03 Attribute / implied meaning 0.6461, C02 Ingredient generalization 0.6561

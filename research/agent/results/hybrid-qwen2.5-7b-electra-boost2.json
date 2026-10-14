@@ -1,0 +1,234 @@
+{
+  "name": "hybrid-qwen2.5-7b-electra-boost2",
+  "description": "Evaluate hybrid search with ms-marco-electra-base reranker and grade-boost 2.0 on Qwen2.5-7B candidates to test whether Electra's superior cross-encoder ranking beats MiniLM-L12",
+  "status": "SUCCESS",
+  "iteration": 46,
+  "timestamp": "2026-10-14T22:46:32",
+  "git_commit": "71c66a4",
+  "result_file": "research/agent/results/hybrid-qwen2.5-7b-electra-boost2.json",
+  "family": "llm",
+  "setup": null,
+  "eval_args": [
+    "--engine",
+    "hybrid",
+    "--rankings",
+    "research/agent/runs/qwen2.5-7b-instruct.jsonl",
+    "--model",
+    "cross-encoder/ms-marco-electra-base",
+    "--grade-boost",
+    "2.0"
+  ],
+  "seconds": 12.3,
+  "timing": {
+    "seconds_per_query": 0.2172,
+    "search_seconds_per_query": 0.0258,
+    "rankings_generation_seconds_per_query": 0.1914
+  },
+  "metrics": {
+    "overall": {
+      "ndcg@5": 0.7888361774826961,
+      "recall@10": 0.8265517116495905,
+      "mrr": 0.859350439204808,
+      "n_queries": 209,
+      "n_with_judgments": 206
+    },
+    "by_category": {
+      "C01": {
+        "name": "Cuisine type inference",
+        "n_queries": 8,
+        "ndcg@5": 0.7714108749222741,
+        "recall@10": 0.7263888888888889,
+        "mrr": 0.9375
+      },
+      "C02": {
+        "name": "Ingredient generalization",
+        "n_queries": 10,
+        "ndcg@5": 0.6560799036570358,
+        "recall@10": 0.8351398601398602,
+        "mrr": 0.7342857142857142
+      },
+      "C03": {
+        "name": "Attribute / implied meaning",
+        "n_queries": 12,
+        "ndcg@5": 0.6460724064795614,
+        "recall@10": 0.7221560846560847,
+        "mrr": 0.8263888888888888
+      },
+      "C04": {
+        "name": "Cooking method synonyms",
+        "n_queries": 10,
+        "ndcg@5": 0.8544570798055067,
+        "recall@10": 0.95625,
+        "mrr": 0.9375
+      },
+      "C05": {
+        "name": "Spelling variations",
+        "n_queries": 15,
+        "ndcg@5": 0.8665642684121647,
+        "recall@10": 0.8777777777777778,
+        "mrr": 0.9
+      },
+      "C06": {
+        "name": "Stemming & lemmatization",
+        "n_queries": 10,
+        "ndcg@5": 0.7955705419331218,
+        "recall@10": 0.9833333333333334,
+        "mrr": 0.9099999999999999
+      },
+      "C07": {
+        "name": "Hyphenation / spacing / stop words",
+        "n_queries": 14,
+        "ndcg@5": 0.7522591951403633,
+        "recall@10": 0.7747371675943105,
+        "mrr": 0.8511904761904762
+      },
+      "C08": {
+        "name": "Dietary constraint / negation",
+        "n_queries": 10,
+        "ndcg@5": 0.6428045457455345,
+        "recall@10": 0.7017195767195767,
+        "mrr": 0.7037037037037037
+      },
+      "C09": {
+        "name": "Synonym / paraphrase",
+        "n_queries": 10,
+        "ndcg@5": 0.7293506547898958,
+        "recall@10": 0.7454545454545454,
+        "mrr": 0.75
+      },
+      "C10": {
+        "name": "Multi-constraint compositional",
+        "n_queries": 2,
+        "ndcg@5": 0.1789122088255236,
+        "recall@10": 0.35714285714285715,
+        "mrr": 0.16666666666666666
+      },
+      "C11": {
+        "name": "Soup varieties",
+        "n_queries": 7,
+        "ndcg@5": 0.9518898643719317,
+        "recall@10": 1.0,
+        "mrr": 1.0
+      },
+      "C12": {
+        "name": "Burger varieties",
+        "n_queries": 6,
+        "ndcg@5": 0.7865369046034822,
+        "recall@10": 0.8333333333333334,
+        "mrr": 0.8333333333333334
+      },
+      "C13": {
+        "name": "Taco varieties",
+        "n_queries": 8,
+        "ndcg@5": 0.8245156528966125,
+        "recall@10": 0.875,
+        "mrr": 0.8125
+      },
+      "C14": {
+        "name": "Pasta varieties",
+        "n_queries": 8,
+        "ndcg@5": 0.8229120270123623,
+        "recall@10": 0.8060855263157894,
+        "mrr": 0.890625
+      },
+      "C15": {
+        "name": "Sandwich varieties",
+        "n_queries": 7,
+        "ndcg@5": 0.9651546303679204,
+        "recall@10": 0.9323308270676691,
+        "mrr": 1.0
+      },
+      "C16": {
+        "name": "Salad varieties",
+        "n_queries": 7,
+        "ndcg@5": 0.7806824312877364,
+        "recall@10": 0.7792207792207791,
+        "mrr": 0.8571428571428571
+      },
+      "C17": {
+        "name": "Dessert varieties",
+        "n_queries": 8,
+        "ndcg@5": 0.8456700796235777,
+        "recall@10": 0.8194444444444444,
+        "mrr": 0.875
+      },
+      "C18": {
+        "name": "Chicken dishes",
+        "n_queries": 6,
+        "ndcg@5": 0.5612885173695445,
+        "recall@10": 0.8055555555555555,
+        "mrr": 0.6875
+      },
+      "C19": {
+        "name": "Beef dishes",
+        "n_queries": 6,
+        "ndcg@5": 0.7534165653064523,
+        "recall@10": 0.9057971014492754,
+        "mrr": 0.8333333333333334
+      },
+      "C20": {
+        "name": "Pork dishes",
+        "n_queries": 6,
+        "ndcg@5": 0.8978301877169602,
+        "recall@10": 0.8444444444444444,
+        "mrr": 0.8888888888888888
+      },
+      "C21": {
+        "name": "Seafood dishes",
+        "n_queries": 9,
+        "ndcg@5": 0.8453335954150485,
+        "recall@10": 0.8020833333333334,
+        "mrr": 1.0
+      },
+      "C22": {
+        "name": "Ingredient focus",
+        "n_queries": 13,
+        "ndcg@5": 0.867179137242985,
+        "recall@10": 0.9070818070818072,
+        "mrr": 0.9230769230769231
+      },
+      "C23": {
+        "name": "Typical dish names",
+        "n_queries": 12,
+        "ndcg@5": 0.9024924692148417,
+        "recall@10": 0.8974358974358975,
+        "mrr": 0.9166666666666666
+      },
+      "C24": {
+        "name": "Pizza varieties",
+        "n_queries": 3,
+        "ndcg@5": 0.6666666666666666,
+        "recall@10": 0.6666666666666666,
+        "mrr": 0.6666666666666666
+      },
+      "C25": {
+        "name": "Occasion / meal-time",
+        "n_queries": 2,
+        "ndcg@5": 0.8613632863224759,
+        "recall@10": 0.18035714285714288,
+        "mrr": 1.0
+      }
+    },
+    "by_difficulty": {
+      "Easy": {
+        "n_queries": 125,
+        "ndcg@5": 0.8280610823478641,
+        "recall@10": 0.8386891111304154,
+        "mrr": 0.8877999999999999
+      },
+      "Medium": {
+        "n_queries": 55,
+        "ndcg@5": 0.78861190216855,
+        "recall@10": 0.8762081857536402,
+        "mrr": 0.8650000000000001
+      },
+      "Hard": {
+        "n_queries": 29,
+        "ndcg@5": 0.60072933264162,
+        "recall@10": 0.6631562881562881,
+        "mrr": 0.7106227106227105
+      }
+    }
+  },
+  "eval_seconds": 12.3
+}

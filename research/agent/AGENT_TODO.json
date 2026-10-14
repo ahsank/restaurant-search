@@ -1,6 +1,19 @@
 {
-  "iteration": 46,
-  "pending_tasks": [],
+  "iteration": 47,
+  "pending_tasks": [
+    {
+      "action": "change_code",
+      "family": "word-vector",
+      "details": "Update research/search/soft_bm25_search.py, research/search/enhanced_text_search.py, and research/search/engines.py to include restaurant names (from restaurants[rid]['name']) and item price_raw in their indexing and scoring representations, matching the neural engines and resolving blind spots on restaurant-named queries (e.g. C07-08, C07-09) and price constraints. Verify by running evaluate.py --engine soft_bm25 --vectors /content/scratch/numberbatch-en-19.08.txt.gz.",
+      "evidence": [
+        "research/search/soft_bm25_search.py",
+        "research/search/enhanced_text_search.py",
+        "research/search/engines.py",
+        "research/search/crossencoder_search.py"
+      ],
+      "reasoning": "In iteration 43, crossencoder-ms-marco-electra-base achieved NDCG@5=0.6806 and MRR=0.8255, outperforming MiniLM-L12 (0.6747) and MiniLM-L6 (0.6770) as the strongest cross-encoder backbone in the repository. We hypothesize that reranking Qwen2.5-7B candidates with Electra-base and grade-boost 2.0 will improve upon the current benchmark leader (hybrid MiniLM-L12 at 0.8195). In parallel, while neural retrievers gained significantly from adding restaurant names and price metadata in iteration 40, soft_bm25_search.py and enhanced_text_search.py still omit these fields, leaving word-vector and lexical retrieval impaired on restaurant-named and price-constrained queries."
+    }
+  ],
   "completed_tasks": [
     {
       "action": "run_experiment",
@@ -374,6 +387,15 @@
       "setup": "",
       "eval_args": "--engine sbert --model all-mpnet-base-v2",
       "description": "re-run after code change: re-run after code change: re-run after code change: re-run to record seconds per query (and refresh results made stale by later code changes)"
+    },
+    {
+      "action": "run_experiment",
+      "family": "llm",
+      "name": "hybrid-qwen2.5-7b-electra-boost2",
+      "eval_args": "--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-electra-base --grade-boost 2.0",
+      "setup": "",
+      "description": "Evaluate hybrid search with ms-marco-electra-base reranker and grade-boost 2.0 on Qwen2.5-7B candidates to test whether Electra's superior cross-encoder ranking beats MiniLM-L12",
+      "reasoning": "In iteration 43, crossencoder-ms-marco-electra-base achieved NDCG@5=0.6806 and MRR=0.8255, outperforming MiniLM-L12 (0.6747) and MiniLM-L6 (0.6770) as the strongest cross-encoder backbone in the repository. We hypothesize that reranking Qwen2.5-7B candidates with Electra-base and grade-boost 2.0 will improve upon the current benchmark leader (hybrid MiniLM-L12 at 0.8195). In parallel, while neural retrievers gained significantly from adding restaurant names and price metadata in iteration 40, soft_bm25_search.py and enhanced_text_search.py still omit these fields, leaving word-vector and lexical retrieval impaired on restaurant-named and price-constrained queries."
     }
   ]
 }
