@@ -351,3 +351,14 @@ current labels, so the agent starts from comparable baselines.
 - Eval args: `--engine sbert --model all-mpnet-base-v2` | family `bi-encoder`
 - ndcg@5 0.525 | recall@10 0.4462 | mrr 0.6747 | 0.0048 s/query | efficiency 0.1049 | 206/209 queries judged
 - Weakest categories (NDCG@5): C03 Attribute / implied meaning 0.1756, C08 Dietary constraint / negation 0.2535, C10 Multi-constraint compositional 0.2574, C18 Chicken dishes 0.2806, C13 Taco varieties 0.3305
+
+### Plan (iteration 39)
+- Hypothesis: In iteration 34, `menu_type` was added to `_item_text` across neural retrievers, which boosted category C25 from 0.2648 to 1.0000 on CrossEncoder, but `colbert-colbertv2.0` has not yet been re-evaluated to refresh the late-interaction benchmark. Category-level analysis of the leading hybrid engine's weakest areas (C10 at 0.2590, C07 at 0.5464) reveals that items omit price information (critical for C10-02 'gluten free seafood under $30') and restaurant brand name (critical for C07-08 'due cucina pasta' and C07-09 'staple fancy restaurant') in `_item_text` and `candidate_item_text`. We first re-evaluate ColBERT to record its updated late-interaction metrics, and then enrich item text representations with restaurant name and `price_raw` across the neural search engines.
+- Queued: run_experiment colbert-colbertv2.0
+- Queued: change_code Update research/search/hybrid_search.py, research/search/crossencoder_search.py, research/search/colbert_search.py, and research/search/sbert_search.p
+
+### Iteration 39: colbert-colbertv2.0 (SUCCESS)
+- Result: `research/agent/results/colbert-colbertv2.0.json` | commit `bfa1c7a` | 9.6s
+- Eval args: `--engine colbert` | family `late-interaction`
+- ndcg@5 0.665 | recall@10 0.5662 | mrr 0.8049 | 0.0091 s/query | efficiency 0.1328 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.0, C03 Attribute / implied meaning 0.2137, C08 Dietary constraint / negation 0.374, C02 Ingredient generalization 0.4264, C04 Cooking method synonyms 0.453

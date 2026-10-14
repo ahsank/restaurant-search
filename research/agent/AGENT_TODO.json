@@ -1,6 +1,19 @@
 {
-  "iteration": 39,
-  "pending_tasks": [],
+  "iteration": 40,
+  "pending_tasks": [
+    {
+      "action": "change_code",
+      "details": "Update research/search/hybrid_search.py, research/search/crossencoder_search.py, research/search/colbert_search.py, and research/search/sbert_search.py to include restaurant name (from restaurants[rid]['name']) and item.get('price_raw') in _item_text and candidate_item_text representations, resolving missing signal on price constraints (e.g. C10-02) and restaurant-named queries (e.g. C07-08, C07-09). Verify by running evaluate.py --engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L12-v2 --grade-boost 2.0.",
+      "evidence": [
+        "research/search/hybrid_search.py",
+        "research/search/crossencoder_search.py",
+        "research/search/colbert_search.py",
+        "research/search/sbert_search.py",
+        "data/queries/queries.csv"
+      ],
+      "reasoning": "In iteration 34, `menu_type` was added to `_item_text` across neural retrievers, which boosted category C25 from 0.2648 to 1.0000 on CrossEncoder, but `colbert-colbertv2.0` has not yet been re-evaluated to refresh the late-interaction benchmark. Category-level analysis of the leading hybrid engine's weakest areas (C10 at 0.2590, C07 at 0.5464) reveals that items omit price information (critical for C10-02 'gluten free seafood under $30') and restaurant brand name (critical for C07-08 'due cucina pasta' and C07-09 'staple fancy restaurant') in `_item_text` and `candidate_item_text`. We first re-evaluate ColBERT to record its updated late-interaction metrics, and then enrich item text representations with restaurant name and `price_raw` across the neural search engines."
+    }
+  ],
   "completed_tasks": [
     {
       "action": "run_experiment",
@@ -319,6 +332,14 @@
       "setup": "",
       "eval_args": "--engine sbert --model all-mpnet-base-v2",
       "description": "re-run after code change: re-run after code change: re-run to record seconds per query (and refresh results made stale by later code changes)"
+    },
+    {
+      "action": "run_experiment",
+      "name": "colbert-colbertv2.0",
+      "eval_args": "--engine colbert",
+      "setup": "",
+      "description": "Re-evaluate ColBERT v2.0 after adding menu_type to _item_text in iteration 34 to refresh the late-interaction benchmark",
+      "reasoning": "In iteration 34, `menu_type` was added to `_item_text` across neural retrievers, which boosted category C25 from 0.2648 to 1.0000 on CrossEncoder, but `colbert-colbertv2.0` has not yet been re-evaluated to refresh the late-interaction benchmark. Category-level analysis of the leading hybrid engine's weakest areas (C10 at 0.2590, C07 at 0.5464) reveals that items omit price information (critical for C10-02 'gluten free seafood under $30') and restaurant brand name (critical for C07-08 'due cucina pasta' and C07-09 'staple fancy restaurant') in `_item_text` and `candidate_item_text`. We first re-evaluate ColBERT to record its updated late-interaction metrics, and then enrich item text representations with restaurant name and `price_raw` across the neural search engines."
     }
   ]
 }
