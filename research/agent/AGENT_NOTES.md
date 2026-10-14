@@ -182,3 +182,15 @@ current labels, so the agent starts from comparable baselines.
 - Eval args: `--engine sbert --model all-mpnet-base-v2` | family `bi-encoder`
 - ndcg@5 0.5577 | recall@10 0.4803 | mrr 0.7158 | 0.0048 s/query | efficiency 0.1114 | 206/209 queries judged
 - Weakest categories (NDCG@5): C03 Attribute / implied meaning 0.1655, C10 Multi-constraint compositional 0.1689, C08 Dietary constraint / negation 0.2537, C18 Chicken dishes 0.2967, C02 Ingredient generalization 0.3423
+
+### Plan (iteration 23)
+- Hypothesis: Hybrid search with MiniLM-L12 and grade-boost 2.0 leads the benchmark (NDCG@5=0.8058), but the word-vector family has no recorded runs on the leaderboard, and pure neural retrievers (CrossEncoder and ColBERT) exhibit a severe blind spot on dietary queries (C08 NDCG@5 ~0.33) because their indexed item texts omit dietary metadata. First, we benchmark Phrase-Aware Soft-BM25 with ConceptNet Numberbatch to establish baseline performance for the word-vector family. Second, we update crossencoder_search.py and colbert_search.py to incorporate item['dietary'] annotations into their text representations (matching hybrid_search.py), improving retrieval accuracy across dietary constraint categories.
+- Queued: run_experiment softbm25-conceptnet
+- Queued: change_code Update research/search/crossencoder_search.py and research/search/colbert_search.py to include item.get('dietary') in their item text representations 
+
+### Iteration 23: softbm25-conceptnet (SUCCESS)
+- Result: `research/agent/results/softbm25-conceptnet.json` | commit `59c587a` | 23.5s
+- Setup: `mkdir -p /content/scratch && [ -f /content/scratch/numberbatch-en-19.08.txt.gz ] || wget -q -O /content/scratch/numberbatch-en-19.08.txt.gz https://conceptnet.s3.amazonaws.com/downloads/2019/numberbatch/numberbatch-en-19.08.txt.gz`
+- Eval args: `--engine soft_bm25 --vectors /content/scratch/numberbatch-en-19.08.txt.gz` | family `word-vector`
+- ndcg@5 0.5664 | recall@10 0.5456 | mrr 0.7287 | 0.0165 s/query | efficiency 0.1129 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.1173, C08 Dietary constraint / negation 0.2396, C03 Attribute / implied meaning 0.2853, C07 Hyphenation / spacing / stop words 0.2931, C01 Cuisine type inference 0.3589
