@@ -254,3 +254,9 @@ current labels, so the agent starts from comparable baselines.
  M research/agent/LEADERBOARD.md
  M research/search/sbert_search.py
 ```
+
+### Iteration 29: sbert-all-mpnet-base-v2 (SUCCESS)
+- Result: `research/agent/results/sbert-all-mpnet-base-v2.json` | commit `e2ec35b` | 8.7s
+- Eval args: `--engine sbert --model all-mpnet-base-v2` | family `bi-encoder`
+- ndcg@5 0.5447 | recall@10 0.4702 | mrr 0.7098 | 0.0048 s/query | efficiency 0.1088 | 206/209 queries judged
+- Weakest categories (NDCG@5): C03 Attribute / implied meaning 0.1953, C08 Dietary constraint / negation 0.2643, C18 Chicken dishes 0.2964, C10 Multi-constraint compositional 0.3274, C02 Ingredient generalization 0.3393

@@ -1,14 +1,6 @@
 {
-  "iteration": 29,
-  "pending_tasks": [
-    {
-      "action": "run_experiment",
-      "name": "sbert-all-mpnet-base-v2",
-      "setup": "",
-      "eval_args": "--engine sbert --model all-mpnet-base-v2",
-      "description": "re-run after code change: re-run to record seconds per query (and refresh results made stale by later code changes)"
-    }
-  ],
+  "iteration": 30,
+  "pending_tasks": [],
   "completed_tasks": [
     {
       "action": "run_experiment",
@@ -242,6 +234,13 @@
         "research/search/crossencoder_search.py"
       ],
       "reasoning": "In iteration 24, dietary metadata was added to colbert_search.py and crossencoder_search.py, yielding a significant boost on dietary constraints (C08 NDCG@5 increased from 0.3316 to 0.4099 on CrossEncoder), but ColBERT has not yet been re-evaluated with this update. Meanwhile, sbert_search.py still uses lib.data.item_text which omits dietary metadata, leaving the bi-encoder family with low scores on C08 (0.3637). We first re-run ColBERT to measure the effect of dietary metadata on late-interaction retrieval, and then update sbert_search.py to include dietary annotations in its text representation."
+    },
+    {
+      "action": "run_experiment",
+      "name": "sbert-all-mpnet-base-v2",
+      "setup": "",
+      "eval_args": "--engine sbert --model all-mpnet-base-v2",
+      "description": "re-run after code change: re-run to record seconds per query (and refresh results made stale by later code changes)"
     }
   ]
 }
