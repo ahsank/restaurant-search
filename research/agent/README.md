@@ -32,10 +32,26 @@ checklist below is how to catch a violation.
 | `AGENT_NOTES.md` | notebook, `run_experiment.py` | Plans (hypotheses), experiment results, code-change summaries with the changed files |
 | `results/<name>.json` | `run_experiment.py` | Latest run of one experiment: `status` (SUCCESS / SETUP_FAILED / EVAL_FAILED), `setup`, `eval_args`, `git_commit`, `seconds`, and `metrics` with `overall`, `by_category`, `by_difficulty` (same layout as `evaluate.py --save-metrics`); `error` when it failed |
 | `results/history.jsonl` | `run_experiment.py` | One line per run with key metrics, so overwritten results stay visible |
-| `summary.csv` | `run_experiment.py` | One row per experiment, best NDCG@5 first |
+| `summary.csv` | `run_experiment.py` | One row per experiment, best NDCG@5 first, with family, seconds per query and efficiency |
+| `LEADERBOARD.md` | `run_experiment.py` | Best experiment per method family, and all experiments ranked by efficiency (below) |
 | `HUMAN_ACTIONS.md` | agents ([`agent_requests.py`](agent_requests.py)) | Requests for you; mark `[x]` done or `[-]` rejected, optionally add `Reply: ...` |
 | `runs/` | experiments | Text outputs worth keeping, e.g. LLM rankings JSONL (replayable with `--engine llm --rankings`) |
 | `setup_machine.sh` | agents | Idempotent pip installs and downloads that experiments need; the notebook runs it at the start of every session |
+
+## Method families and efficiency
+
+So the agents don't only polish the current leader, every experiment has a **family**: `lexical`,
+`word-vector`, `bi-encoder`, `late-interaction`, `cross-encoder`, `llm` (anything that calls an LLM,
+including hybrids that use LLM rankings) or `other`. It comes from the engine (`FAMILIES` in
+`run_experiment.py`); a new engine passes `--family`. The planner must give every task a family and
+put at least one of its two tasks per plan into a non-LLM family, rotating between them.
+
+`evaluate.py` times the search calls (model loading and indexing excluded) and `run_experiment.py`
+adds the per-query LLM generation time recorded in a `--rankings` file, so replayed LLM engines aren't
+counted as free. **Efficiency** = NDCG@5 / (seconds per query + 5); the 5 s offset keeps a method that
+returns bad results instantly from ranking first. Timings are from the Colab GPU, where the LLM reader
+takes ~0.2 s/query, so efficiency barely penalizes it there; the per-family rule is what keeps the
+non-LLM families moving.
 
 ## Large artifacts are reproduced, not committed
 
