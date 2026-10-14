@@ -6,6 +6,9 @@ At query time the query is encoded and items are ranked by cosine similarity.
 The model reads the full item string in one forward pass, so phrase context
 ("not spicy", "oyster sauce") is captured without explicit phrase detection.
 
+Item text includes name, description, category, and dietary annotations
+(matching colbert_search.py and crossencoder_search.py).
+
 Default model: all-MiniLM-L6-v2 (~80 MB, 384 dimensions)
   fast, strong general-purpose retrieval baseline
 
@@ -30,7 +33,25 @@ import numpy as np
 from sentence_transformers import SentenceTransformer
 
 sys.path.insert(0, str(Path(__file__).parents[1]))
-from lib.data import item_text, load_data, judged_restaurant_ids, restaurant_scope_cli_args
+from lib.data import load_data, judged_restaurant_ids, restaurant_scope_cli_args
+
+
+def _item_text(item: dict) -> str:
+    """
+    Build text for SBERT bi-encoder encoding:
+    item name, description, category, and dietary annotations (matches colbert_search.py and crossencoder_search.py).
+    """
+    parts = [item.get("name", "")]
+    if item.get("description"):
+        parts.append(item["description"])
+    if item.get("category"):
+        parts.append(item["category"])
+    if item.get("dietary"):
+        parts.append(item["dietary"])
+    return ". ".join(p for p in parts if p)
+
+
+item_text = _item_text
 
 
 def build_index(
@@ -47,7 +68,7 @@ def build_index(
     """
     index: dict[str, list[dict]] = {}
     for rid, items in menus.items():
-        texts = [item_text(item) for item in items]
+        texts = [_item_text(item) for item in items]
         vecs = model.encode(
             texts,
             normalize_embeddings=True,

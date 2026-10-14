@@ -10,7 +10,7 @@ recorded (re-run it).
 |---|---|---|---|---|---|---|---|
 | lexical | baseline-enhanced | 0.5484 | 0.5498 | 0.5925 | 0.0103 | 0.1095 | 2 |
 | word-vector | softbm25-conceptnet | 0.5664 | 0.5456 | 0.7287 | 0.0165 | 0.1129 | 1 |
-| bi-encoder | sbert-all-MiniLM-L6-v2 | 0.5592 | 0.4883 | 0.7093 | 0.0032 | 0.1118 | 2 |
+| bi-encoder | sbert-all-mpnet-base-v2 | 0.5577 | 0.4803 | 0.7158 | 0.0048 | 0.1114 | 2 |
 | late-interaction | colbert-colbertv2.0 | 0.6542 | 0.5654 | 0.7981 | 0.0091 | 0.1306 | 1 |
 | cross-encoder | crossencoder-ms-marco-MiniLM-L6-v2 | 0.6569 | 0.5869 | 0.8042 | 0.0562 | 0.1299 | 2 |
 | llm | hybrid-qwen2.5-7b-minilm-l12-boost2 | 0.8058 | 0.8273 | 0.8637 | 0.2022 | 0.1549 | 5 |
@@ -29,7 +29,7 @@ recorded (re-run it).
 | 7 | crossencoder-ms-marco-MiniLM-L6-v2 | cross-encoder | 0.1299 | 0.6569 | 0.0562 |
 | 8 | crossencoder-ms-marco-MiniLM-L12-v2 | cross-encoder | 0.1289 | 0.6562 | 0.0890 |
 | 9 | softbm25-conceptnet | word-vector | 0.1129 | 0.5664 | 0.0165 |
-| 10 | sbert-all-MiniLM-L6-v2 | bi-encoder | 0.1118 | 0.5592 | 0.0032 |
-| 11 | sbert-all-mpnet-base-v2 | bi-encoder | 0.1114 | 0.5577 | 0.0048 |
-| 12 | baseline-enhanced | lexical | 0.1095 | 0.5484 | 0.0103 |
+| 10 | sbert-all-mpnet-base-v2 | bi-encoder | 0.1114 | 0.5577 | 0.0048 |
+| 11 | baseline-enhanced | lexical | 0.1095 | 0.5484 | 0.0103 |
+| 12 | sbert-all-MiniLM-L6-v2 | bi-encoder | 0.1090 | 0.5452 | 0.0032 |
 | 13 | baseline-text | lexical | 0.0891 | 0.4456 | 0.0003 |

@@ -237,3 +237,20 @@ current labels, so the agent starts from comparable baselines.
 - Eval args: `--engine colbert` | family `late-interaction`
 - ndcg@5 0.6542 | recall@10 0.5654 | mrr 0.7981 | 0.0091 s/query | efficiency 0.1306 | 206/209 queries judged
 - Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.0, C03 Attribute / implied meaning 0.2252, C25 Occasion / meal-time 0.3187, C02 Ingredient generalization 0.386, C08 Dietary constraint / negation 0.3945
+
+### Iteration 28: sbert-all-MiniLM-L6-v2 (SUCCESS)
+- Result: `research/agent/results/sbert-all-MiniLM-L6-v2.json` | commit `4bae3fa` | 8.2s
+- Eval args: `--engine sbert --model all-MiniLM-L6-v2` | family `bi-encoder`
+- ndcg@5 0.5452 | recall@10 0.4786 | mrr 0.6994 | 0.0032 s/query | efficiency 0.109 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.107, C03 Attribute / implied meaning 0.1933, C18 Chicken dishes 0.1969, C08 Dietary constraint / negation 0.3499, C04 Cooking method synonyms 0.3547
+
+### Iteration 28: code change
+**Goal**: Update research/search/sbert_search.py to include item.get('dietary') in its item text representation using a local _item_text helper (matching colbert_search.py and crossencoder_search.py). Verify by running research/search/evaluate.py --engine sbert --model all-MiniLM-L6-v2.
+
+**Summary**: Updated research/search/sbert_search.py to include item.get('dietary') in its item text representation via a local _item_text helper (matching colbert_search.py and crossencoder_search.py). Re-evaluated sbert all-MiniLM-L6-v2 on the benchmark, achieving overall NDCG@5=0.5452, Recall@10=0.4786, and MRR=0.6994.
+
+**Files changed**:
+```
+ M research/agent/LEADERBOARD.md
+ M research/search/sbert_search.py
+```

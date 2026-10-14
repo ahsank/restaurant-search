@@ -8,7 +8,7 @@ crossencoder-ms-marco-MiniLM-L6-v2,cross-encoder,SUCCESS,0.6569,0.5869,0.8042,0.
 crossencoder-ms-marco-MiniLM-L12-v2,cross-encoder,SUCCESS,0.6562,0.5834,0.7985,0.089,0.1289,209,25.6,c84d3c8,2026-10-14T22:12:04,--engine crossencoder --model cross-encoder/ms-marco-MiniLM-L12-v2
 colbert-colbertv2.0,late-interaction,SUCCESS,0.6542,0.5654,0.7981,0.0091,0.1306,209,9.4,b378a32,2026-10-14T22:13:17,--engine colbert
 softbm25-conceptnet,word-vector,SUCCESS,0.5664,0.5456,0.7287,0.0165,0.1129,209,23.5,59c587a,2026-10-14T22:09:00,--engine soft_bm25 --vectors /content/scratch/numberbatch-en-19.08.txt.gz
-sbert-all-MiniLM-L6-v2,bi-encoder,SUCCESS,0.5592,0.4883,0.7093,0.0032,0.1118,209,9.7,03cd080,2026-10-14T22:06:50,--engine sbert --model all-MiniLM-L6-v2
 sbert-all-mpnet-base-v2,bi-encoder,SUCCESS,0.5577,0.4803,0.7158,0.0048,0.1114,209,10.9,f4ca7e8,2026-10-14T22:07:01,--engine sbert --model all-mpnet-base-v2
 baseline-enhanced,lexical,SUCCESS,0.5484,0.5498,0.5925,0.0103,0.1095,209,2.2,9afa8a0,2026-10-14T22:04:44,--engine enhanced
+sbert-all-MiniLM-L6-v2,bi-encoder,SUCCESS,0.5452,0.4786,0.6994,0.0032,0.109,209,8.2,4bae3fa,2026-10-14T22:14:20,--engine sbert --model all-MiniLM-L6-v2
 baseline-text,lexical,SUCCESS,0.4456,0.4708,0.4692,0.0003,0.0891,209,0.1,4d21690,2026-10-14T22:04:48,--engine text
