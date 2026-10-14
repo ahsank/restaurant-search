@@ -47,6 +47,9 @@ Three pluggable components — swap any independently:
 Default implementation uses ConceptNet Numberbatch (English), which serves as
 both the phrase vocabulary and the vector source from a single ~75 MB file.
 
+Item text includes name, description, category, menu type, and dietary annotations
+(matching the representation used in hybrid, crossencoder, colbert, and sbert search).
+
 Download:
   https://conceptnet.s3.amazonaws.com/downloads/2019/numberbatch/numberbatch-en-19.08.txt.gz
 
@@ -470,15 +473,20 @@ def load_conceptnet(path: str | Path) -> tuple[dict[str, np.ndarray], set[str]]:
 
 # ── Index builder ──────────────────────────────────────────────────────────────
 
-# Fields included in each item's text for indexing.
-# Adjust to include/exclude restaurant-level context.
+# Fields included in each item's text for indexing:
+# item name, description, category, menu_type, and dietary annotations
+# (matching the representation used in hybrid, crossencoder, colbert, and sbert search).
 def _item_text(item: dict) -> str:
     return " ".join(filter(None, [
         item.get("name", ""),
         item.get("description", ""),
         item.get("category", ""),
         item.get("menu_type", ""),
+        item.get("dietary", ""),
     ]))
+
+
+item_text = _item_text
 
 
 def build_index(
@@ -716,6 +724,7 @@ def search(
                     "price_raw":  item["price_raw"],
                     "category":   item["category"],
                     "menu_type":  item["menu_type"],
+                    "dietary":    item.get("dietary", ""),
                     "score":      round(s, 4),
                     "tokens":     entry["tokens"],   # for debugging phrase detection
                 }))
@@ -800,6 +809,7 @@ def search_contextual(
                     "price_raw":   item["price_raw"],
                     "category":    item["category"],
                     "menu_type":   item["menu_type"],
+                    "dietary":     item.get("dietary", ""),
                     "score":       round(s, 4),
                     "tokens":      entry["tokens"],
                 }))
@@ -885,8 +895,9 @@ if __name__ == "__main__":
             f"${r['price']:.2f}" if r["price"] is not None
             else r["price_raw"] or "N/A"
         )
+        dietary_str = f" ({r['dietary']})" if r.get("dietary") else ""
         print(f"  [{r['score']:.4f}] {r['restaurant']} | {r['item']}  {price_str}"
-              f"  [{r['category']} · {r['menu_type']}]")
+              f"  [{r['category']} · {r['menu_type']}]{dietary_str}")
         if args.show_tokens:
             print(f"           item tokens: {r['tokens']}")
         if r["description"]:

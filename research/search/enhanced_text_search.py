@@ -6,7 +6,7 @@ Scoring tiers (per query term):
   - Term in item name         → weight 4
   - Term in item description  → weight 2
   - Term in context fields    → weight 1
-    (category, menu type, restaurant cuisine, restaurant description)
+    (category, menu type, dietary, restaurant cuisine, restaurant description)
 
 Items are only returned when ALL query terms match across any tier combined.
 
@@ -17,7 +17,7 @@ Bonuses:
 Filtered mode (filter_restaurant_ctx=True):
   Before matching a query term against restaurant-level context (cuisine,
   restaurant description), check whether the term already appears anywhere in
-  that restaurant's menu (item names, descriptions, categories, menu types).
+  that restaurant's menu (item names, descriptions, categories, menu types, dietary).
   If it does, skip the restaurant-level match — item-level matching handles it.
   This prevents a label like "pasta" in `cuisine: italian, pasta, sandwiches`
   from surfacing every item in the restaurant for a "pasta" query.
@@ -49,8 +49,8 @@ def normalize(text: str) -> str:
 def build_menu_vocab(menus: dict) -> dict[str, set[str]]:
     """
     Per-restaurant set of all words appearing in item names, descriptions,
-    categories, and menu types. Used to suppress restaurant-level context
-    matching for terms already findable via item-level matching.
+    categories, menu types, and dietary annotations. Used to suppress
+    restaurant-level context matching for terms already findable via item-level matching.
     """
     vocab: dict[str, set[str]] = {}
     for restaurant_id, items in menus.items():
@@ -61,6 +61,7 @@ def build_menu_vocab(menus: dict) -> dict[str, set[str]]:
                 item["description"],
                 item.get("category") or "",
                 item.get("menu_type") or "",
+                item.get("dietary") or "",
             ):
                 words.update(normalize(field).split())
         vocab[restaurant_id] = words
@@ -78,6 +79,7 @@ def _score_item(
     desc = normalize(item["description"])
     category = normalize(item.get("category") or "")
     menu_type = normalize(item.get("menu_type") or "")
+    dietary = normalize(item.get("dietary") or "")
     cuisine = normalize(restaurant.get("cuisine", ""))
     rest_desc = normalize(restaurant.get("description", ""))
 
@@ -90,7 +92,7 @@ def _score_item(
             name_hits += 1
         elif term in desc:
             desc_hits += 1
-        elif term in category or term in menu_type:
+        elif term in category or term in menu_type or term in dietary:
             ctx_hits += 1
         elif term in cuisine or term in rest_desc:
             # Skip restaurant-level context if this term is already
@@ -134,6 +136,7 @@ def search(
                     "price_raw": item["price_raw"],
                     "category": item["category"],
                     "menu_type": item["menu_type"],
+                    "dietary": item.get("dietary", ""),
                     "score": score,
                 }))
 
@@ -157,9 +160,10 @@ if __name__ == "__main__":
     print(f"Query: '{query}'  [{mode}]  —  {len(results)} match(es)\n")
     for r in results:
         price_str = f"${r['price']:.2f}" if r["price"] is not None else (r["price_raw"] or "N/A")
+        dietary_str = f" ({r['dietary']})" if r.get("dietary") else ""
         print(
             f"  [{r['score']:>3}] {r['restaurant']} | {r['item']}  {price_str}"
-            f"  [{r['category']} · {r['menu_type']}]"
+            f"  [{r['category']} · {r['menu_type']}]{dietary_str}"
         )
         if r["description"]:
             print(f"       {r['description']}")

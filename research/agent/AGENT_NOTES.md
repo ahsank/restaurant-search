@@ -271,3 +271,22 @@ current labels, so the agent starts from comparable baselines.
 - Eval args: `--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L12-v2 --grade-boost 3.0` | family `llm`
 - ndcg@5 0.8057 | recall@10 0.8317 | mrr 0.8639 | 0.2025 s/query | efficiency 0.1549 | 206/209 queries judged
 - Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.259, C03 Attribute / implied meaning 0.5479, C08 Dietary constraint / negation 0.5558, C24 Pizza varieties 0.6667, C09 Synonym / paraphrase 0.6748
+
+### Iteration 31: softbm25-conceptnet (SUCCESS)
+- Result: `research/agent/results/softbm25-conceptnet.json` | commit `f79483b` | 18.9s
+- Setup: `mkdir -p /content/scratch && [ -f /content/scratch/numberbatch-en-19.08.txt.gz ] || wget -q -O /content/scratch/numberbatch-en-19.08.txt.gz https://conceptnet.s3.amazonaws.com/downloads/2019/numberbatch/numberbatch-en-19.08.txt.gz`
+- Eval args: `--engine soft_bm25 --vectors /content/scratch/numberbatch-en-19.08.txt.gz` | family `word-vector`
+- ndcg@5 0.5644 | recall@10 0.5508 | mrr 0.725 | 0.0165 s/query | efficiency 0.1125 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.0908, C08 Dietary constraint / negation 0.1778, C03 Attribute / implied meaning 0.2657, C07 Hyphenation / spacing / stop words 0.3173, C02 Ingredient generalization 0.3487
+
+### Iteration 31: code change
+**Goal**: Update research/search/soft_bm25_search.py and research/search/enhanced_text_search.py to include item.get('dietary') in their text representations and vocabularies (matching the representation used in hybrid, crossencoder, colbert, and sbert search). Verify by benchmarking soft_bm25 on evaluate.py with ConceptNet vectors.
+
+**Summary**: Updated research/search/soft_bm25_search.py and research/search/enhanced_text_search.py to include item.get('dietary') in their text representations and vocabularies. In soft_bm25_search.py, item['dietary'] is now indexed via _item_text (and item_text is exposed as a module attribute) and returned in search results. In enhanced_text_search.py, item['dietary'] is incorporated into build_menu_vocab for vocabulary-based context suppression and matched under the context tier (weight 1) in _score_item. Soft-BM25 evaluated with ConceptNet Numberbatch achieved overall NDCG@5=0.5644, Recall@10=0.5508 (up from 0.5456), and MRR=0.7250.
+
+**Files changed**:
+```
+ M research/agent/LEADERBOARD.md
+ M research/search/enhanced_text_search.py
+ M research/search/soft_bm25_search.py
+```
