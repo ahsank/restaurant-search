@@ -1,17 +1,23 @@
 {
   "name": "baseline-text",
-  "description": "keyword baseline on the current labels",
+  "description": "re-run to record seconds per query (and refresh results made stale by later code changes)",
   "status": "SUCCESS",
-  "iteration": 0,
-  "timestamp": "2026-10-13T19:39:27",
-  "git_commit": "2646904",
+  "iteration": 12,
+  "timestamp": "2026-10-14T22:04:48",
+  "git_commit": "4d21690",
   "result_file": "research/agent/results/baseline-text.json",
+  "family": "lexical",
   "setup": null,
   "eval_args": [
     "--engine",
     "text"
   ],
   "seconds": 0.1,
+  "timing": {
+    "seconds_per_query": 0.0003,
+    "search_seconds_per_query": 0.0003,
+    "rankings_generation_seconds_per_query": 0.0
+  },
   "metrics": {
     "overall": {
       "ndcg@5": 0.4456013438461215,

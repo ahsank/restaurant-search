@@ -10,4 +10,4 @@ colbert-colbertv2.0,late-interaction,SUCCESS,0.6422,0.5616,0.7851,,,209,11.8,ef1
 sbert-all-MiniLM-L6-v2,bi-encoder,SUCCESS,0.5592,0.4883,0.7093,,,209,20.7,7d057b3,2026-10-13T19:39:33,--engine sbert --model all-MiniLM-L6-v2
 sbert-all-mpnet-base-v2,bi-encoder,SUCCESS,0.5577,0.4803,0.7158,,,209,11.2,f51b5b3,2026-10-13T19:39:55,--engine sbert --model all-mpnet-base-v2
 baseline-enhanced,lexical,SUCCESS,0.5484,0.5498,0.5925,0.0103,0.1095,209,2.2,9afa8a0,2026-10-14T22:04:44,--engine enhanced
-baseline-text,lexical,SUCCESS,0.4456,0.4708,0.4692,,,209,0.1,2646904,2026-10-13T19:39:27,--engine text
+baseline-text,lexical,SUCCESS,0.4456,0.4708,0.4692,0.0003,0.0891,209,0.1,4d21690,2026-10-14T22:04:48,--engine text

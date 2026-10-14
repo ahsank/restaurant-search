@@ -1,14 +1,6 @@
 {
-  "iteration": 12,
+  "iteration": 13,
   "pending_tasks": [
-    {
-      "action": "run_experiment",
-      "name": "baseline-text",
-      "family": "",
-      "eval_args": "--engine text",
-      "setup": "",
-      "description": "re-run to record seconds per query (and refresh results made stale by later code changes)"
-    },
     {
       "action": "run_experiment",
       "name": "colbert-colbertv2.0",
@@ -182,6 +174,14 @@
       "name": "baseline-enhanced",
       "family": "",
       "eval_args": "--engine enhanced",
+      "setup": "",
+      "description": "re-run to record seconds per query (and refresh results made stale by later code changes)"
+    },
+    {
+      "action": "run_experiment",
+      "name": "baseline-text",
+      "family": "",
+      "eval_args": "--engine text",
       "setup": "",
       "description": "re-run to record seconds per query (and refresh results made stale by later code changes)"
     }
