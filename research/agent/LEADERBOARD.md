@@ -12,7 +12,7 @@ recorded (re-run it).
 | word-vector | (none yet) | | | | | | 0 |
 | bi-encoder | sbert-all-MiniLM-L6-v2 | 0.5592 | 0.4883 | 0.7093 | – | – | 2 |
 | late-interaction | colbert-colbertv2.0 | 0.6422 | 0.5616 | 0.7851 | 0.0095 | 0.1282 | 1 |
-| cross-encoder | crossencoder-ms-marco-MiniLM-L6-v2 | 0.6510 | 0.5874 | 0.7989 | – | – | 2 |
+| cross-encoder | crossencoder-ms-marco-MiniLM-L6-v2 | 0.6510 | 0.5874 | 0.7989 | 0.0549 | 0.1288 | 2 |
 | llm | hybrid-qwen2.5-7b-minilm-l6-boost2 | 0.8006 | 0.8265 | 0.8707 | – | – | 5 |
 | other | (none yet) | | | | | | 0 |
 
@@ -20,15 +20,15 @@ recorded (re-run it).
 
 | # | Experiment | Family | Efficiency | NDCG@5 | s/query |
 |---|---|---|---|---|---|
-| 1 | colbert-colbertv2.0 | late-interaction | 0.1282 | 0.6422 | 0.0095 |
-| 2 | crossencoder-ms-marco-MiniLM-L12-v2 | cross-encoder | 0.1270 | 0.6462 | 0.0872 |
-| 3 | baseline-enhanced | lexical | 0.1095 | 0.5484 | 0.0103 |
-| 4 | baseline-text | lexical | 0.0891 | 0.4456 | 0.0003 |
-| 5 | hybrid-qwen2.5-7b-minilm-l6-boost2 | llm | – | 0.8006 | – |
-| 6 | hybrid-qwen2.5-7b-minilm-l12-boost2 | llm | – | 0.7999 | – |
-| 7 | hybrid-qwen2.5-7b-minilm-l6-strict-grade | llm | – | 0.7858 | – |
-| 8 | hybrid-qwen2.5-7b-ms-marco-MiniLM-L6-v2 | llm | – | 0.7840 | – |
-| 9 | llm-qwen2.5-7b-instruct | llm | – | 0.6993 | – |
-| 10 | crossencoder-ms-marco-MiniLM-L6-v2 | cross-encoder | – | 0.6510 | – |
+| 1 | crossencoder-ms-marco-MiniLM-L6-v2 | cross-encoder | 0.1288 | 0.6510 | 0.0549 |
+| 2 | colbert-colbertv2.0 | late-interaction | 0.1282 | 0.6422 | 0.0095 |
+| 3 | crossencoder-ms-marco-MiniLM-L12-v2 | cross-encoder | 0.1270 | 0.6462 | 0.0872 |
+| 4 | baseline-enhanced | lexical | 0.1095 | 0.5484 | 0.0103 |
+| 5 | baseline-text | lexical | 0.0891 | 0.4456 | 0.0003 |
+| 6 | hybrid-qwen2.5-7b-minilm-l6-boost2 | llm | – | 0.8006 | – |
+| 7 | hybrid-qwen2.5-7b-minilm-l12-boost2 | llm | – | 0.7999 | – |
+| 8 | hybrid-qwen2.5-7b-minilm-l6-strict-grade | llm | – | 0.7858 | – |
+| 9 | hybrid-qwen2.5-7b-ms-marco-MiniLM-L6-v2 | llm | – | 0.7840 | – |
+| 10 | llm-qwen2.5-7b-instruct | llm | – | 0.6993 | – |
 | 11 | sbert-all-MiniLM-L6-v2 | bi-encoder | – | 0.5592 | – |
 | 12 | sbert-all-mpnet-base-v2 | bi-encoder | – | 0.5577 | – |
