@@ -296,3 +296,14 @@ current labels, so the agent starts from comparable baselines.
 - Eval args: `--engine enhanced` | family `lexical`
 - ndcg@5 0.5578 | recall@10 0.5564 | mrr 0.6022 | 0.0106 s/query | efficiency 0.1113 | 206/209 queries judged
 - Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.0, C02 Ingredient generalization 0.0553, C05 Spelling variations 0.0667, C03 Attribute / implied meaning 0.1224, C01 Cuisine type inference 0.2382
+
+### Plan (iteration 33)
+- Hypothesis: Comparing results across families reveals that while Soft-BM25 achieves a perfect 1.0 NDCG@5 on category C25 (Occasion / meal-time — happy hour) because it indexes item['menu_type'], all four neural search modules (crossencoder, colbert, sbert, hybrid) omit menu_type from _item_text, leaving C25 as one of their worst categories (0.26–0.32 NDCG@5). In parallel, the cross-encoder family has only been evaluated on 6- and 12-layer MiniLM checkpoints; testing cross-encoder/ms-marco-electra-base will test whether Electra's stronger retrieval pretraining and larger capacity improve dense ranking beyond MiniLM. We first benchmark ms-marco-electra-base on the cross-encoder engine, then update _item_text across all neural search engines to incorporate menu_type.
+- Queued: run_experiment crossencoder-ms-marco-electra-base
+- Queued: change_code Update research/search/crossencoder_search.py, research/search/colbert_search.py, research/search/sbert_search.py, and research/search/hybrid_search.p
+
+### Iteration 33: crossencoder-ms-marco-electra-base (SUCCESS)
+- Result: `research/agent/results/crossencoder-ms-marco-electra-base.json` | commit `7ea2df3` | 62.6s
+- Eval args: `--engine crossencoder --model cross-encoder/ms-marco-electra-base` | family `cross-encoder`
+- ndcg@5 0.6598 | recall@10 0.5754 | mrr 0.811 | 0.2522 s/query | efficiency 0.1256 | 206/209 queries judged
+- Weakest categories (NDCG@5): C25 Occasion / meal-time 0.107, C10 Multi-constraint compositional 0.2234, C03 Attribute / implied meaning 0.3034, C04 Cooking method synonyms 0.3782, C02 Ingredient generalization 0.4118

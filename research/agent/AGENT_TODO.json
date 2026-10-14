@@ -1,6 +1,20 @@
 {
-  "iteration": 33,
-  "pending_tasks": [],
+  "iteration": 34,
+  "pending_tasks": [
+    {
+      "action": "change_code",
+      "family": "cross-encoder",
+      "details": "Update research/search/crossencoder_search.py, research/search/colbert_search.py, research/search/sbert_search.py, and research/search/hybrid_search.py to include item.get('menu_type') in their item text representations (_item_text and candidate_item_text), matching soft_bm25_search.py and enhanced_text_search.py. Verify by running research/search/evaluate.py --engine crossencoder --model cross-encoder/ms-marco-MiniLM-L6-v2.",
+      "evidence": [
+        "research/search/crossencoder_search.py",
+        "research/search/colbert_search.py",
+        "research/search/sbert_search.py",
+        "research/search/hybrid_search.py",
+        "menu-search-benchmark-queries.md"
+      ],
+      "reasoning": "Comparing results across families reveals that while Soft-BM25 achieves a perfect 1.0 NDCG@5 on category C25 (Occasion / meal-time \u2014 happy hour) because it indexes item['menu_type'], all four neural search modules (crossencoder, colbert, sbert, hybrid) omit menu_type from _item_text, leaving C25 as one of their worst categories (0.26\u20130.32 NDCG@5). In parallel, the cross-encoder family has only been evaluated on 6- and 12-layer MiniLM checkpoints; testing cross-encoder/ms-marco-electra-base will test whether Electra's stronger retrieval pretraining and larger capacity improve dense ranking beyond MiniLM. We first benchmark ms-marco-electra-base on the cross-encoder engine, then update _item_text across all neural search engines to incorporate menu_type."
+    }
+  ],
   "completed_tasks": [
     {
       "action": "run_experiment",
@@ -269,6 +283,15 @@
       "setup": "",
       "eval_args": "--engine enhanced",
       "description": "re-run after code change: re-run to record seconds per query (and refresh results made stale by later code changes)"
+    },
+    {
+      "action": "run_experiment",
+      "name": "crossencoder-ms-marco-electra-base",
+      "family": "cross-encoder",
+      "eval_args": "--engine crossencoder --model cross-encoder/ms-marco-electra-base",
+      "setup": "",
+      "description": "Evaluate cross-encoder with ms-marco-electra-base to test if a stronger transformer backbone improves exhaustive neural scoring beyond MiniLM",
+      "reasoning": "Comparing results across families reveals that while Soft-BM25 achieves a perfect 1.0 NDCG@5 on category C25 (Occasion / meal-time \u2014 happy hour) because it indexes item['menu_type'], all four neural search modules (crossencoder, colbert, sbert, hybrid) omit menu_type from _item_text, leaving C25 as one of their worst categories (0.26\u20130.32 NDCG@5). In parallel, the cross-encoder family has only been evaluated on 6- and 12-layer MiniLM checkpoints; testing cross-encoder/ms-marco-electra-base will test whether Electra's stronger retrieval pretraining and larger capacity improve dense ranking beyond MiniLM. We first benchmark ms-marco-electra-base on the cross-encoder engine, then update _item_text across all neural search engines to incorporate menu_type."
     }
   ]
 }
