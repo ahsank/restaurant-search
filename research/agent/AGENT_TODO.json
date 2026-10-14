@@ -1,13 +1,6 @@
 {
-  "iteration": 36,
+  "iteration": 37,
   "pending_tasks": [
-    {
-      "action": "run_experiment",
-      "name": "crossencoder-ms-marco-MiniLM-L12-v2",
-      "setup": "",
-      "eval_args": "--engine crossencoder --model cross-encoder/ms-marco-MiniLM-L12-v2",
-      "description": "re-run after code change: re-run after code change: re-run to record seconds per query (and refresh results made stale by later code changes)"
-    },
     {
       "action": "run_experiment",
       "name": "sbert-all-MiniLM-L6-v2",
@@ -320,6 +313,13 @@
       "setup": "",
       "eval_args": "--engine crossencoder --model cross-encoder/ms-marco-electra-base",
       "description": "re-run after code change: Evaluate cross-encoder with ms-marco-electra-base to test if a stronger transformer backbone improves exhaustive neural scoring beyond MiniLM"
+    },
+    {
+      "action": "run_experiment",
+      "name": "crossencoder-ms-marco-MiniLM-L12-v2",
+      "setup": "",
+      "eval_args": "--engine crossencoder --model cross-encoder/ms-marco-MiniLM-L12-v2",
+      "description": "re-run after code change: re-run after code change: re-run to record seconds per query (and refresh results made stale by later code changes)"
     }
   ]
 }

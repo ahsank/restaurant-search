@@ -28,7 +28,7 @@ recorded (re-run it).
 | 6 | llm-qwen2.5-7b-instruct | llm | 0.1347 | 0.6993 | 0.1914 |
 | 7 | crossencoder-ms-marco-MiniLM-L6-v2 | cross-encoder | 0.1313 | 0.6639 | 0.0576 |
 | 8 | colbert-colbertv2.0 | late-interaction | 0.1306 | 0.6542 | 0.0091 |
-| 9 | crossencoder-ms-marco-MiniLM-L12-v2 | cross-encoder | 0.1289 | 0.6562 | 0.0890 |
+| 9 | crossencoder-ms-marco-MiniLM-L12-v2 | cross-encoder | 0.1301 | 0.6623 | 0.0922 |
 | 10 | crossencoder-ms-marco-electra-base | cross-encoder | 0.1259 | 0.6625 | 0.2603 |
 | 11 | softbm25-conceptnet | word-vector | 0.1125 | 0.5644 | 0.0165 |
 | 12 | baseline-enhanced | lexical | 0.1113 | 0.5578 | 0.0106 |
