@@ -290,3 +290,9 @@ current labels, so the agent starts from comparable baselines.
  M research/search/enhanced_text_search.py
  M research/search/soft_bm25_search.py
 ```
+
+### Iteration 32: baseline-enhanced (SUCCESS)
+- Result: `research/agent/results/baseline-enhanced.json` | commit `f404bb3` | 2.3s
+- Eval args: `--engine enhanced` | family `lexical`
+- ndcg@5 0.5578 | recall@10 0.5564 | mrr 0.6022 | 0.0106 s/query | efficiency 0.1113 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.0, C02 Ingredient generalization 0.0553, C05 Spelling variations 0.0667, C03 Attribute / implied meaning 0.1224, C01 Cuisine type inference 0.2382

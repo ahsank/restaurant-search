@@ -1,14 +1,6 @@
 {
-  "iteration": 32,
-  "pending_tasks": [
-    {
-      "action": "run_experiment",
-      "name": "baseline-enhanced",
-      "setup": "",
-      "eval_args": "--engine enhanced",
-      "description": "re-run after code change: re-run to record seconds per query (and refresh results made stale by later code changes)"
-    }
-  ],
+  "iteration": 33,
+  "pending_tasks": [],
   "completed_tasks": [
     {
       "action": "run_experiment",
@@ -270,6 +262,13 @@
         "research/agent/results/baseline-enhanced.json"
       ],
       "reasoning": "Hybrid search with ms-marco-MiniLM-L12-v2 and grade-boost 2.0 leads the benchmark with NDCG@5=0.8058, but its weakest categories remain C10 (0.2589) and C08 (0.5356) because CrossEncoder logit swings can still override high-confidence LLM candidate grades. We test whether increasing --grade-boost to 3.0 strengthens LLM grade priority while maintaining fine-grained neural ordering within grades. In parallel, while neural retrievers gained significantly on dietary queries after incorporating item['dietary'] metadata, soft_bm25_search.py and enhanced_text_search.py still omit dietary text from their index and matching logic, leaving the word-vector and lexical families severely impaired on C08."
+    },
+    {
+      "action": "run_experiment",
+      "name": "baseline-enhanced",
+      "setup": "",
+      "eval_args": "--engine enhanced",
+      "description": "re-run after code change: re-run to record seconds per query (and refresh results made stale by later code changes)"
     }
   ]
 }

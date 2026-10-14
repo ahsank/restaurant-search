@@ -1,10 +1,10 @@
 {
   "name": "baseline-enhanced",
-  "description": "re-run to record seconds per query (and refresh results made stale by later code changes)",
+  "description": "re-run after code change: re-run to record seconds per query (and refresh results made stale by later code changes)",
   "status": "SUCCESS",
-  "iteration": 11,
-  "timestamp": "2026-10-14T22:04:44",
-  "git_commit": "9afa8a0",
+  "iteration": 32,
+  "timestamp": "2026-10-14T22:27:46",
+  "git_commit": "f404bb3",
   "result_file": "research/agent/results/baseline-enhanced.json",
   "family": "lexical",
   "setup": null,
@@ -12,17 +12,17 @@
     "--engine",
     "enhanced"
   ],
-  "seconds": 2.2,
+  "seconds": 2.3,
   "timing": {
-    "seconds_per_query": 0.0103,
-    "search_seconds_per_query": 0.0103,
+    "seconds_per_query": 0.0106,
+    "search_seconds_per_query": 0.0106,
     "rankings_generation_seconds_per_query": 0.0
   },
   "metrics": {
     "overall": {
-      "ndcg@5": 0.5484263513721422,
-      "recall@10": 0.5497999904721105,
-      "mrr": 0.5924855349612631,
+      "ndcg@5": 0.557816630310219,
+      "recall@10": 0.5564492521185166,
+      "mrr": 0.6021942728253408,
       "n_queries": 209,
       "n_with_judgments": 206
     },
@@ -72,16 +72,16 @@
       "C07": {
         "name": "Hyphenation / spacing / stop words",
         "n_queries": 14,
-        "ndcg@5": 0.33626938666559336,
-        "recall@10": 0.3075396825396825,
-        "mrr": 0.35714285714285715
+        "ndcg@5": 0.40769795809416476,
+        "recall@10": 0.37896825396825395,
+        "mrr": 0.42857142857142855
       },
       "C08": {
         "name": "Dietary constraint / negation",
         "n_queries": 10,
-        "ndcg@5": 0.19870323460012473,
-        "recall@10": 0.2222222222222222,
-        "mrr": 0.2222222222222222
+        "ndcg@5": 0.30252517473832796,
+        "recall@10": 0.2698412698412698,
+        "mrr": 0.3333333333333333
       },
       "C09": {
         "name": "Synonym / paraphrase",
@@ -157,14 +157,14 @@
         "name": "Beef dishes",
         "n_queries": 6,
         "ndcg@5": 0.6948223292695563,
-        "recall@10": 0.7107843137254902,
+        "recall@10": 0.7083333333333334,
         "mrr": 0.8333333333333334
       },
       "C20": {
         "name": "Pork dishes",
         "n_queries": 6,
         "ndcg@5": 0.9356738801059227,
-        "recall@10": 0.8406862745098039,
+        "recall@10": 0.8333333333333334,
         "mrr": 1.0
       },
       "C21": {
@@ -206,15 +206,15 @@
     "by_difficulty": {
       "Easy": {
         "n_queries": 125,
-        "ndcg@5": 0.6925446396071215,
-        "recall@10": 0.6814665747742286,
-        "mrr": 0.7397494949494949
+        "ndcg@5": 0.7005446396071215,
+        "recall@10": 0.6889959865389345,
+        "mrr": 0.7477494949494949
       },
       "Medium": {
         "n_queries": 55,
-        "ndcg@5": 0.38478194583503406,
-        "recall@10": 0.4013722943722944,
-        "mrr": 0.4424242424242424
+        "ndcg@5": 0.4017709905849219,
+        "recall@10": 0.4091645021645022,
+        "mrr": 0.4606060606060606
       },
       "Hard": {
         "n_queries": 29,
@@ -224,5 +224,5 @@
       }
     }
   },
-  "eval_seconds": 2.2
+  "eval_seconds": 2.3
 }
