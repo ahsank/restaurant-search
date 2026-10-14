@@ -6,7 +6,7 @@ At query time the query is encoded and items are ranked by cosine similarity.
 The model reads the full item string in one forward pass, so phrase context
 ("not spicy", "oyster sauce") is captured without explicit phrase detection.
 
-Item text includes name, description, category, and dietary annotations
+Item text includes name, description, category, menu type, and dietary annotations
 (matching colbert_search.py and crossencoder_search.py).
 
 Default model: all-MiniLM-L6-v2 (~80 MB, 384 dimensions)
@@ -39,13 +39,15 @@ from lib.data import load_data, judged_restaurant_ids, restaurant_scope_cli_args
 def _item_text(item: dict) -> str:
     """
     Build text for SBERT bi-encoder encoding:
-    item name, description, category, and dietary annotations (matches colbert_search.py and crossencoder_search.py).
+    item name, description, category, menu type, and dietary annotations (matches colbert_search.py and crossencoder_search.py).
     """
     parts = [item.get("name", "")]
     if item.get("description"):
         parts.append(item["description"])
     if item.get("category"):
         parts.append(item["category"])
+    if item.get("menu_type"):
+        parts.append(item["menu_type"])
     if item.get("dietary"):
         parts.append(item["dietary"])
     return ". ".join(p for p in parts if p)

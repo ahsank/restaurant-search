@@ -12,8 +12,8 @@ Cost: one forward pass per item per query. Over the 7 benchmark restaurants
 (~640 items) that's a few seconds per query on CPU — fine for the benchmark,
 not for a web request.
 
-Item text is name, description, category, and dietary annotations (matching
-hybrid_search.py).
+Item text is name, description, category, menu type, and dietary annotations
+(matching hybrid_search.py).
 
 Usage:
     python research/search/crossencoder_search.py seafood italian
@@ -40,13 +40,15 @@ STOCK_MODEL = "cross-encoder/ms-marco-MiniLM-L6-v2"
 def _item_text(item: dict) -> str:
     """
     Build text for CrossEncoder scoring:
-    item name, description, category, and dietary annotations (matches hybrid_search.py).
+    item name, description, category, menu type, and dietary annotations (matches hybrid_search.py).
     """
     parts = [item.get("name", "")]
     if item.get("description"):
         parts.append(item["description"])
     if item.get("category"):
         parts.append(item["category"])
+    if item.get("menu_type"):
+        parts.append(item["menu_type"])
     if item.get("dietary"):
         parts.append(item["dietary"])
     return ". ".join(p for p in parts if p)

@@ -62,7 +62,7 @@ def cli_args() -> argparse.ArgumentParser:
     return parser
 
 
-# ── text field selection (matches hybrid_search.py — name, description, category, dietary) ──
+# ── text field selection (matches hybrid_search.py — name, description, category, menu type, dietary) ──
 
 def _item_text(item: dict) -> str:
     parts = [item.get("name", "")]
@@ -70,6 +70,8 @@ def _item_text(item: dict) -> str:
         parts.append(item["description"])
     if item.get("category"):
         parts.append(item["category"])
+    if item.get("menu_type"):
+        parts.append(item["menu_type"])
     if item.get("dietary"):
         parts.append(item["dietary"])
     return ". ".join(p for p in parts if p)

@@ -10,7 +10,7 @@ Architecture:
 2. Cross-encoder rescoring: Each candidate item is rescored using a
    CrossEncoder (--model, default: cross-encoder/ms-marco-MiniLM-L6-v2) on
    (query, candidate_text). Candidate text includes item name, description,
-   category, and dietary metadata.
+   category, menu type, and dietary metadata.
 3. LLM grade boost & strict grade:
    - By default, score = cross_encoder_score + grade_boost * grade
      (default grade_boost = 0.0, using pure cross-encoder scoring).
@@ -48,16 +48,21 @@ STOCK_MODEL = "cross-encoder/ms-marco-MiniLM-L6-v2"
 def candidate_item_text(item: dict) -> str:
     """
     Build candidate text for CrossEncoder rescoring:
-    item name, description, category, and dietary annotations.
+    item name, description, category, menu type, and dietary annotations.
     """
     parts = [item.get("name", "")]
     if item.get("description"):
         parts.append(item["description"])
     if item.get("category"):
         parts.append(item["category"])
+    if item.get("menu_type"):
+        parts.append(item["menu_type"])
     if item.get("dietary"):
         parts.append(item["dietary"])
     return ". ".join(p for p in parts if p)
+
+
+_item_text = candidate_item_text
 
 
 def cli_args() -> argparse.ArgumentParser:

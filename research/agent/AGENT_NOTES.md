@@ -307,3 +307,23 @@ current labels, so the agent starts from comparable baselines.
 - Eval args: `--engine crossencoder --model cross-encoder/ms-marco-electra-base` | family `cross-encoder`
 - ndcg@5 0.6598 | recall@10 0.5754 | mrr 0.811 | 0.2522 s/query | efficiency 0.1256 | 206/209 queries judged
 - Weakest categories (NDCG@5): C25 Occasion / meal-time 0.107, C10 Multi-constraint compositional 0.2234, C03 Attribute / implied meaning 0.3034, C04 Cooking method synonyms 0.3782, C02 Ingredient generalization 0.4118
+
+### Iteration 34: crossencoder-ms-marco-MiniLM-L6-v2 (SUCCESS)
+- Result: `research/agent/results/crossencoder-ms-marco-MiniLM-L6-v2.json` | commit `77c83d1` | 19.0s
+- Eval args: `--engine crossencoder --model cross-encoder/ms-marco-MiniLM-L6-v2` | family `cross-encoder`
+- ndcg@5 0.6639 | recall@10 0.5845 | mrr 0.8122 | 0.0576 s/query | efficiency 0.1313 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.0656, C03 Attribute / implied meaning 0.2654, C08 Dietary constraint / negation 0.4062, C02 Ingredient generalization 0.4445, C04 Cooking method synonyms 0.4525
+
+### Iteration 34: code change
+**Goal**: Update research/search/crossencoder_search.py, research/search/colbert_search.py, research/search/sbert_search.py, and research/search/hybrid_search.py to include item.get('menu_type') in their item text representations (_item_text and candidate_item_text), matching soft_bm25_search.py and enhanced_text_search.py. Verify by running research/search/evaluate.py --engine crossencoder --model cross-encoder/ms-marco-MiniLM-L6-v2.
+
+**Summary**: Updated research/search/crossencoder_search.py, research/search/colbert_search.py, research/search/sbert_search.py, and research/search/hybrid_search.py to include item.get('menu_type') in _item_text and candidate_item_text representations, aligning them with soft_bm25_search.py and enhanced_text_search.py. Verified by re-evaluating crossencoder ms-marco-MiniLM-L6-v2: category C25 (Occasion / meal-time — happy hour) NDCG@5 improved from 0.2648 to 1.0000, bringing overall NDCG@5 from 0.6569 to 0.6639 and MRR from 0.8042 to 0.8122.
+
+**Files changed**:
+```
+ M research/agent/LEADERBOARD.md
+ M research/search/colbert_search.py
+ M research/search/crossencoder_search.py
+ M research/search/hybrid_search.py
+ M research/search/sbert_search.py
+```
