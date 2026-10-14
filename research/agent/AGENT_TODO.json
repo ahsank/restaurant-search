@@ -1,15 +1,6 @@
 {
-  "iteration": 22,
-  "pending_tasks": [
-    {
-      "action": "run_experiment",
-      "name": "sbert-all-mpnet-base-v2",
-      "family": "",
-      "eval_args": "--engine sbert --model all-mpnet-base-v2",
-      "setup": "",
-      "description": "re-run to record seconds per query (and refresh results made stale by later code changes)"
-    }
-  ],
+  "iteration": 23,
+  "pending_tasks": [],
   "completed_tasks": [
     {
       "action": "run_experiment",
@@ -182,6 +173,14 @@
       "name": "sbert-all-MiniLM-L6-v2",
       "family": "",
       "eval_args": "--engine sbert --model all-MiniLM-L6-v2",
+      "setup": "",
+      "description": "re-run to record seconds per query (and refresh results made stale by later code changes)"
+    },
+    {
+      "action": "run_experiment",
+      "name": "sbert-all-mpnet-base-v2",
+      "family": "",
+      "eval_args": "--engine sbert --model all-mpnet-base-v2",
       "setup": "",
       "description": "re-run to record seconds per query (and refresh results made stale by later code changes)"
     }

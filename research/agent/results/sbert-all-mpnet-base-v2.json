@@ -1,11 +1,12 @@
 {
   "name": "sbert-all-mpnet-base-v2",
-  "description": "larger bi-encoder",
+  "description": "re-run to record seconds per query (and refresh results made stale by later code changes)",
   "status": "SUCCESS",
-  "iteration": 3,
-  "timestamp": "2026-10-13T19:39:55",
-  "git_commit": "f51b5b3",
+  "iteration": 22,
+  "timestamp": "2026-10-14T22:07:01",
+  "git_commit": "f4ca7e8",
   "result_file": "research/agent/results/sbert-all-mpnet-base-v2.json",
+  "family": "bi-encoder",
   "setup": null,
   "eval_args": [
     "--engine",
@@ -13,7 +14,12 @@
     "--model",
     "all-mpnet-base-v2"
   ],
-  "seconds": 11.2,
+  "seconds": 10.9,
+  "timing": {
+    "seconds_per_query": 0.0048,
+    "search_seconds_per_query": 0.0048,
+    "rankings_generation_seconds_per_query": 0.0
+  },
   "metrics": {
     "overall": {
       "ndcg@5": 0.557734082316452,
@@ -220,5 +226,5 @@
       }
     }
   },
-  "eval_seconds": 11.2
+  "eval_seconds": 10.9
 }

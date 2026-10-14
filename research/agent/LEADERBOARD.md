@@ -29,6 +29,6 @@ recorded (re-run it).
 | 7 | colbert-colbertv2.0 | late-interaction | 0.1282 | 0.6422 | 0.0095 |
 | 8 | crossencoder-ms-marco-MiniLM-L12-v2 | cross-encoder | 0.1270 | 0.6462 | 0.0872 |
 | 9 | sbert-all-MiniLM-L6-v2 | bi-encoder | 0.1118 | 0.5592 | 0.0032 |
-| 10 | baseline-enhanced | lexical | 0.1095 | 0.5484 | 0.0103 |
-| 11 | baseline-text | lexical | 0.0891 | 0.4456 | 0.0003 |
-| 12 | sbert-all-mpnet-base-v2 | bi-encoder | – | 0.5577 | – |
+| 10 | sbert-all-mpnet-base-v2 | bi-encoder | 0.1114 | 0.5577 | 0.0048 |
+| 11 | baseline-enhanced | lexical | 0.1095 | 0.5484 | 0.0103 |
+| 12 | baseline-text | lexical | 0.0891 | 0.4456 | 0.0003 |
