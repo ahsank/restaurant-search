@@ -1,10 +1,10 @@
 {
   "name": "crossencoder-ms-marco-MiniLM-L6-v2",
-  "description": "Evaluate crossencoder ms-marco-MiniLM-L6-v2 with dietary metadata included in item text",
+  "description": "re-run after code change: Evaluate crossencoder ms-marco-MiniLM-L6-v2 with dietary metadata included in item text",
   "status": "SUCCESS",
-  "iteration": 24,
-  "timestamp": "2026-10-14T22:11:13",
-  "git_commit": "a474807",
+  "iteration": 25,
+  "timestamp": "2026-10-14T22:11:44",
+  "git_commit": "2f65e1f",
   "result_file": "research/agent/results/crossencoder-ms-marco-MiniLM-L6-v2.json",
   "family": "cross-encoder",
   "setup": null,
@@ -16,8 +16,8 @@
   ],
   "seconds": 18.7,
   "timing": {
-    "seconds_per_query": 0.0563,
-    "search_seconds_per_query": 0.0563,
+    "seconds_per_query": 0.0562,
+    "search_seconds_per_query": 0.0562,
     "rankings_generation_seconds_per_query": 0.0
   },
   "metrics": {

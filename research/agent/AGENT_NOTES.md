@@ -214,3 +214,9 @@ current labels, so the agent starts from comparable baselines.
  M research/search/colbert_search.py
  M research/search/crossencoder_search.py
 ```
+
+### Iteration 25: crossencoder-ms-marco-MiniLM-L6-v2 (SUCCESS)
+- Result: `research/agent/results/crossencoder-ms-marco-MiniLM-L6-v2.json` | commit `2f65e1f` | 18.7s
+- Eval args: `--engine crossencoder --model cross-encoder/ms-marco-MiniLM-L6-v2` | family `cross-encoder`
+- ndcg@5 0.6569 | recall@10 0.5869 | mrr 0.8042 | 0.0562 s/query | efficiency 0.1299 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.2024, C25 Occasion / meal-time 0.2648, C03 Attribute / implied meaning 0.2743, C08 Dietary constraint / negation 0.4099, C02 Ingredient generalization 0.4267

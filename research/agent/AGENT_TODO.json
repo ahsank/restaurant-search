@@ -1,13 +1,6 @@
 {
-  "iteration": 25,
+  "iteration": 26,
   "pending_tasks": [
-    {
-      "action": "run_experiment",
-      "name": "crossencoder-ms-marco-MiniLM-L6-v2",
-      "setup": "",
-      "eval_args": "--engine crossencoder --model cross-encoder/ms-marco-MiniLM-L6-v2",
-      "description": "re-run after code change: Evaluate crossencoder ms-marco-MiniLM-L6-v2 with dietary metadata included in item text"
-    },
     {
       "action": "run_experiment",
       "name": "crossencoder-ms-marco-MiniLM-L12-v2",
@@ -217,6 +210,13 @@
         "research/agent/setup_machine.sh"
       ],
       "reasoning": "Hybrid search with MiniLM-L12 and grade-boost 2.0 leads the benchmark (NDCG@5=0.8058), but the word-vector family has no recorded runs on the leaderboard, and pure neural retrievers (CrossEncoder and ColBERT) exhibit a severe blind spot on dietary queries (C08 NDCG@5 ~0.33) because their indexed item texts omit dietary metadata. First, we benchmark Phrase-Aware Soft-BM25 with ConceptNet Numberbatch to establish baseline performance for the word-vector family. Second, we update crossencoder_search.py and colbert_search.py to incorporate item['dietary'] annotations into their text representations (matching hybrid_search.py), improving retrieval accuracy across dietary constraint categories."
+    },
+    {
+      "action": "run_experiment",
+      "name": "crossencoder-ms-marco-MiniLM-L6-v2",
+      "setup": "",
+      "eval_args": "--engine crossencoder --model cross-encoder/ms-marco-MiniLM-L6-v2",
+      "description": "re-run after code change: Evaluate crossencoder ms-marco-MiniLM-L6-v2 with dietary metadata included in item text"
     }
   ]
 }
