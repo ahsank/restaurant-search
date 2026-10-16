@@ -16,16 +16,23 @@ Other good options:
   multi-qa-MiniLM-L6-cos-v1   — fine-tuned for question-answer retrieval
   all-mpnet-base-v2            — higher quality, slower (~420 MB)
   BAAI/bge-small-en-v1.5      — strong retrieval, 33M params
+  BAAI/bge-base-en-v1.5       — strong retrieval, 109M params
+
+Query instructions:
+  Models like BGE require query-side instruction prefixes (such as
+  'Represent this sentence for searching relevant passages: '). These are
+  auto-enabled when a BGE model is used, or can be specified via --query-prefix.
 
 Usage:
   python sbert_search.py seafood italian
   python sbert_search.py --model multi-qa-MiniLM-L6-cos-v1 spicy noodles
-  python sbert_search.py oyster
+  python sbert_search.py --model BAAI/bge-base-en-v1.5 oyster
 
 The model is downloaded automatically on first use and cached in
 ~/.cache/torch/sentence_transformers/.
 """
 
+import argparse
 import sys
 from pathlib import Path
 
@@ -34,6 +41,35 @@ from sentence_transformers import SentenceTransformer
 
 sys.path.insert(0, str(Path(__file__).parents[1]))
 from lib.data import load_data, judged_restaurant_ids, restaurant_scope_cli_args
+
+
+BGE_QUERY_PREFIX = "Represent this sentence for searching relevant passages: "
+
+
+def cli_args() -> argparse.ArgumentParser:
+    """Reusable CLI-flag fragment for sbert search scoring parameters."""
+    parser = argparse.ArgumentParser(add_help=False)
+    parser.add_argument(
+        "--query-prefix", type=str, default=None,
+        help="Query instruction/prefix to prepend to search queries (e.g. "
+             "'Represent this sentence for searching relevant passages: ' for BGE models). "
+             "Auto-enabled when a BGE model is used if left unset.",
+    )
+    return parser
+
+
+def resolve_query_prefix(model_name: str = "", query_prefix: str | None = None) -> str:
+    """
+    Determine the query instruction/prefix to prepend to queries.
+
+    If query_prefix is explicitly provided (not None), use it directly.
+    If query_prefix is None, auto-enable BGE_QUERY_PREFIX when model_name indicates a BGE model.
+    """
+    if query_prefix is not None:
+        return query_prefix
+    if model_name and "bge" in model_name.lower():
+        return BGE_QUERY_PREFIX
+    return ""
 
 
 def _item_text(item: dict, restaurant_name: str = "") -> str:
@@ -97,13 +133,23 @@ def search(
     restaurants: dict,
     index: dict[str, list[dict]],
     model: SentenceTransformer,
+    query_prefix: str | None = None,
 ) -> list[dict]:
     """
     Encode query and rank all indexed items by cosine similarity.
 
     Since vectors are unit-normalised, cosine similarity == dot product.
     """
-    query_vec = model.encode(query, normalize_embeddings=True)
+    if query_prefix is None:
+        model_name = ""
+        try:
+            model_name = getattr(model[0].auto_model.config, "_name_or_path", "")
+        except Exception:
+            pass
+        query_prefix = resolve_query_prefix(model_name)
+
+    query_to_encode = f"{query_prefix}{query}" if query_prefix else query
+    query_vec = model.encode(query_to_encode, normalize_embeddings=True)
 
     scored: list[tuple[float, dict]] = []
     for rid, entries in index.items():
@@ -127,11 +173,9 @@ def search(
 
 
 if __name__ == "__main__":
-    import argparse
-
     parser = argparse.ArgumentParser(
         description="SBERT bi-encoder menu search (Approach 4)",
-        parents=[restaurant_scope_cli_args()],
+        parents=[cli_args(), restaurant_scope_cli_args()],
     )
     parser.add_argument(
         "--model", default="all-MiniLM-L6-v2",
@@ -144,6 +188,10 @@ if __name__ == "__main__":
     model = SentenceTransformer(args.model)
     print("done")
 
+    prefix = resolve_query_prefix(args.model, args.query_prefix)
+    if prefix:
+        print(f"Using query prefix: {prefix!r}")
+
     print("Loading menus and building index...", end=" ", flush=True)
     restaurants, menus = load_data(judged_restaurant_ids() if args.benchmark_only else None)
     index = build_index(menus, restaurants, model)
@@ -153,7 +201,7 @@ if __name__ == "__main__":
     query = " ".join(args.terms)
     print(f"\nQuery: '{query}'\n")
 
-    results = search(query, restaurants, index, model)
+    results = search(query, restaurants, index, model, query_prefix=prefix)
 
     for r in results[:20]:
         price_str = (

@@ -1,19 +1,6 @@
 {
-  "iteration": 53,
-  "pending_tasks": [
-    {
-      "action": "change_code",
-      "family": "bi-encoder",
-      "details": "Update research/search/sbert_search.py and research/search/engines.py to support query-side instructions/prefixes (such as 'Represent this sentence for searching relevant passages: ' for BGE models), auto-enabling the instruction when a BGE model is specified or when passed via --query-prefix, and registering sbert in _ENGINE_FLAG_MODULES. Verify by benchmarking evaluate.py --engine sbert --model BAAI/bge-base-en-v1.5.",
-      "evidence": [
-        "research/APPROACHES.md",
-        "research/search/sbert_search.py",
-        "research/search/engines.py",
-        "research/agent/results/sbert-all-mpnet-base-v2.json"
-      ],
-      "reasoning": "In iteration 51, enhanced_text_search.py was upgraded with stop-word filtering and singular/plural stemming, but baseline-enhanced has not yet been benchmarked on evaluate.py to measure the resulting gains for the lexical family. Meanwhile, the bi-encoder family currently lags behind all other neural families (NDCG@5=0.5484) because sbert_search.py only uses symmetric sentence-similarity models without query instruction support required by modern retrieval bi-encoders like BGE. We first benchmark baseline-enhanced to record the lexical gains, and then add query instruction prefix support to sbert_search.py and engines.py to evaluate BAAI/bge-base-en-v1.5."
-    }
-  ],
+  "iteration": 54,
+  "pending_tasks": [],
   "completed_tasks": [
     {
       "action": "run_experiment",
@@ -450,6 +437,18 @@
       "eval_args": "--engine enhanced",
       "setup": "",
       "description": "Benchmark enhanced text search after iteration 51 added stop-word filtering and singular/plural stemming",
+      "reasoning": "In iteration 51, enhanced_text_search.py was upgraded with stop-word filtering and singular/plural stemming, but baseline-enhanced has not yet been benchmarked on evaluate.py to measure the resulting gains for the lexical family. Meanwhile, the bi-encoder family currently lags behind all other neural families (NDCG@5=0.5484) because sbert_search.py only uses symmetric sentence-similarity models without query instruction support required by modern retrieval bi-encoders like BGE. We first benchmark baseline-enhanced to record the lexical gains, and then add query instruction prefix support to sbert_search.py and engines.py to evaluate BAAI/bge-base-en-v1.5."
+    },
+    {
+      "action": "change_code",
+      "family": "bi-encoder",
+      "details": "Update research/search/sbert_search.py and research/search/engines.py to support query-side instructions/prefixes (such as 'Represent this sentence for searching relevant passages: ' for BGE models), auto-enabling the instruction when a BGE model is specified or when passed via --query-prefix, and registering sbert in _ENGINE_FLAG_MODULES. Verify by benchmarking evaluate.py --engine sbert --model BAAI/bge-base-en-v1.5.",
+      "evidence": [
+        "research/APPROACHES.md",
+        "research/search/sbert_search.py",
+        "research/search/engines.py",
+        "research/agent/results/sbert-all-mpnet-base-v2.json"
+      ],
       "reasoning": "In iteration 51, enhanced_text_search.py was upgraded with stop-word filtering and singular/plural stemming, but baseline-enhanced has not yet been benchmarked on evaluate.py to measure the resulting gains for the lexical family. Meanwhile, the bi-encoder family currently lags behind all other neural families (NDCG@5=0.5484) because sbert_search.py only uses symmetric sentence-similarity models without query instruction support required by modern retrieval bi-encoders like BGE. We first benchmark baseline-enhanced to record the lexical gains, and then add query instruction prefix support to sbert_search.py and engines.py to evaluate BAAI/bge-base-en-v1.5."
     }
   ]

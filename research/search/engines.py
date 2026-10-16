@@ -33,6 +33,7 @@ ENGINE_CHOICES = ["text", "enhanced", "filtered", "soft_bm25", "sbert", "colbert
 # Engines whose module contributes extra CLI flags via its own cli_args().
 _ENGINE_FLAG_MODULES = {
     "soft_bm25": "soft_bm25_search",
+    "sbert": "sbert_search",
     "colbert": "colbert_search",
     "llm": "llm_search",
     "hybrid": "hybrid_search",
@@ -163,17 +164,29 @@ def build_search_fn(args: argparse.Namespace, restaurants: dict, menus: dict) ->
                                          combiner=args.combiner)
 
     elif args.engine == "sbert":
-        from sbert_search import build_index as _sbert_build_index, search as _sbert_search
+        from sbert_search import (
+            build_index as _sbert_build_index,
+            search as _sbert_search,
+            resolve_query_prefix as _sbert_resolve_query_prefix,
+        )
         from sentence_transformers import SentenceTransformer
         print(f"Loading model '{args.model}'...", end=" ", flush=True)
         _sbert_model = SentenceTransformer(args.model)
         print("done")
+        _sbert_query_prefix = _sbert_resolve_query_prefix(
+            args.model, getattr(args, "query_prefix", None)
+        )
+        if _sbert_query_prefix:
+            print(f"Using query prefix: {_sbert_query_prefix!r}")
         print("Building index...", end=" ", flush=True)
         _sbert_index = _sbert_build_index(menus, restaurants, _sbert_model)
         print(f"{sum(len(v) for v in _sbert_index.values())} items encoded")
 
         def _raw_search(query, _restaurants, _menus):
-            return _sbert_search(query, _restaurants, _sbert_index, _sbert_model)
+            return _sbert_search(
+                query, _restaurants, _sbert_index, _sbert_model,
+                query_prefix=_sbert_query_prefix,
+            )
 
     elif args.engine == "colbert":
         from colbert_search import build_index as _cb_build_index, search as _cb_search

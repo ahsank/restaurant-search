@@ -10,6 +10,7 @@ crossencoder-ms-marco-electra-base,cross-encoder,SUCCESS,0.6806,0.5909,0.8255,0.
 crossencoder-ms-marco-MiniLM-L6-v2,cross-encoder,SUCCESS,0.677,0.5974,0.8168,0.0607,0.1338,209,19.6,0262b1c,2026-10-14T22:42:13,--engine crossencoder --model cross-encoder/ms-marco-MiniLM-L6-v2
 crossencoder-ms-marco-MiniLM-L12-v2,cross-encoder,SUCCESS,0.6747,0.5954,0.8156,0.0985,0.1323,209,27.6,1d57cb9,2026-10-14T22:42:34,--engine crossencoder --model cross-encoder/ms-marco-MiniLM-L12-v2
 colbert-colbertv2.0,late-interaction,SUCCESS,0.6713,0.584,0.8134,0.0097,0.134,209,25.1,75ae0ff,2026-10-16T02:16:56,--engine colbert
+sbert-bge-base-en-v1.5,bi-encoder,SUCCESS,0.6359,0.56,0.7974,0.0044,0.1271,209,9.6,1fb6879,2026-10-16T02:34:46,--engine sbert --model BAAI/bge-base-en-v1.5
 softbm25-conceptnet,word-vector,SUCCESS,0.5702,0.5443,0.7326,0.0166,0.1137,209,18.9,83f58ad,2026-10-16T02:14:35,--engine soft_bm25 --vectors /content/scratch/numberbatch-en-19.08.txt.gz
 baseline-enhanced,lexical,SUCCESS,0.5566,0.5589,0.605,0.014,0.111,209,3.0,b08df53,2026-10-16T02:29:42,--engine enhanced
 sbert-all-mpnet-base-v2,bi-encoder,SUCCESS,0.5484,0.4678,0.7375,0.0048,0.1096,209,8.7,eab2c5b,2026-10-14T22:44:22,--engine sbert --model all-mpnet-base-v2

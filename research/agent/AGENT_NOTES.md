@@ -494,3 +494,20 @@ current labels, so the agent starts from comparable baselines.
 - Eval args: `--engine enhanced` | family `lexical`
 - ndcg@5 0.5566 | recall@10 0.5589 | mrr 0.605 | 0.014 s/query | efficiency 0.111 | 206/209 queries judged
 - Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.0, C02 Ingredient generalization 0.0553, C05 Spelling variations 0.0667, C03 Attribute / implied meaning 0.1224, C01 Cuisine type inference 0.1838
+
+### Iteration 53: sbert-bge-base-en-v1.5 (SUCCESS)
+- Result: `research/agent/results/sbert-bge-base-en-v1.5.json` | commit `1fb6879` | 9.6s
+- Eval args: `--engine sbert --model BAAI/bge-base-en-v1.5` | family `bi-encoder`
+- ndcg@5 0.6359 | recall@10 0.56 | mrr 0.7974 | 0.0044 s/query | efficiency 0.1271 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.1497, C03 Attribute / implied meaning 0.2461, C02 Ingredient generalization 0.3455, C18 Chicken dishes 0.4804, C04 Cooking method synonyms 0.4933
+
+### Iteration 53: code change
+**Goal**: Update research/search/sbert_search.py and research/search/engines.py to support query-side instructions/prefixes (such as 'Represent this sentence for searching relevant passages: ' for BGE models), auto-enabling the instruction when a BGE model is specified or when passed via --query-prefix, and registering sbert in _ENGINE_FLAG_MODULES. Verify by benchmarking evaluate.py --engine sbert --model BAAI/bge-base-en-v1.5.
+
+**Summary**: Updated research/search/sbert_search.py and research/search/engines.py to support query instruction prefixes (e.g. 'Represent this sentence for searching relevant passages: '), auto-enabling the instruction for BGE retrieval models or when passed via --query-prefix, and registered sbert in _ENGINE_FLAG_MODULES. Evaluated sbert with BAAI/bge-base-en-v1.5, which improved the bi-encoder family NDCG@5 from 0.5484 to 0.6359 (+0.0875) and Recall@10 from 0.4678 to 0.5600 at 0.0044 s/query.
+
+**Files changed**:
+```
+ M research/search/engines.py
+ M research/search/sbert_search.py
+```
