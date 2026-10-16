@@ -8,7 +8,10 @@ Scoring tiers (per query term):
   - Term in context fields    → weight 1
     (category, menu type, dietary, price_raw, restaurant name, restaurant cuisine, restaurant description)
 
-Items are only returned when ALL query terms match across any tier combined.
+Items are only returned when ALL mandatory query terms match across any tier combined.
+Standard English stop words (e.g. 'with', 'and', 'or', 'in', 'on', 'at', 'to', 'for', 'of', 'by', 'a', 'an', 'the')
+are filtered from mandatory matching, and basic singular/plural stemming is supported so inflections
+(e.g. 'dishes' ↔ 'dish', 'tacos' ↔ 'taco') match their base forms.
 
 Bonuses:
   - All query terms found in name alone  → +10
@@ -39,11 +42,64 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parents[1]))
 from lib.data import load_data, judged_restaurant_ids, restaurant_scope_cli_args
 
+STOP_WORDS = {
+    "a", "an", "the",
+    "and", "or", "&",
+    "with", "in", "on", "at", "to", "for", "of", "by", "from",
+    "as", "into", "over", "after", "before", "between", "under", "about", "through",
+    "is", "are", "was", "were", "be", "been", "being",
+    "it", "its", "that", "this", "these", "those",
+}
+
 
 def normalize(text: str) -> str:
     """Lowercase and strip combining diacritics (à → a, é → e, etc.)."""
     nfkd = unicodedata.normalize("NFKD", text)
     return "".join(c for c in nfkd if not unicodedata.combining(c)).lower()
+
+
+def term_variants(term: str) -> set[str]:
+    """Return the term itself plus basic singular/plural variants."""
+    variants = {term}
+    # Plural -> singular
+    if len(term) > 3:
+        if term.endswith("ies") and len(term) > 4:
+            variants.add(term[:-3] + "y")  # berries -> berry, fries -> fry
+            variants.add(term[:-1])        # cookies -> cookie
+        elif term.endswith("ves") and len(term) > 4:
+            variants.add(term[:-3] + "f")   # leaves -> leaf, loaves -> loaf
+            variants.add(term[:-3] + "fe")  # knives -> knife
+        elif term.endswith("es") and len(term) > 3:
+            if term.endswith(("shes", "ches", "sses", "xes", "zes")):
+                variants.add(term[:-2])     # dishes -> dish, sandwiches -> sandwich, glasses -> glass
+            elif term.endswith("oes"):
+                variants.add(term[:-2])     # tomatoes -> tomato, potatoes -> potato
+                variants.add(term[:-1])
+            else:
+                variants.add(term[:-1])     # plates -> plate, casseroles -> casserole
+                variants.add(term[:-2])
+        elif term.endswith("s") and not term.endswith(("ss", "us", "is")):
+            variants.add(term[:-1])         # tacos -> taco, burgers -> burger, salads -> salad
+
+    # Singular -> plural
+    if len(term) > 2 and (not term.endswith("s") or term.endswith("ss")):
+        if term.endswith("y") and len(term) >= 3 and term[-2] not in "aeiou":
+            variants.add(term[:-1] + "ies")  # fry -> fries, berry -> berries, curry -> curries
+        elif term.endswith(("sh", "ch", "ss", "x", "z")):
+            variants.add(term + "es")        # dish -> dishes, sandwich -> sandwiches, glass -> glasses
+        elif term.endswith("f") and len(term) > 3:
+            variants.add(term[:-1] + "ves")  # loaf -> loaves, leaf -> leaves
+            variants.add(term + "s")
+        elif term.endswith("fe") and len(term) > 3:
+            variants.add(term[:-2] + "ves")  # knife -> knives
+            variants.add(term + "s")
+        elif term.endswith("o") and len(term) > 3:
+            variants.add(term + "es")        # tomato -> tomatoes, potato -> potatoes, taco -> tacos
+            variants.add(term + "s")
+        else:
+            variants.add(term + "s")
+
+    return {v for v in variants if v}
 
 
 def build_menu_vocab(menus: dict) -> dict[str, set[str]]:
@@ -64,7 +120,11 @@ def build_menu_vocab(menus: dict) -> dict[str, set[str]]:
                 item.get("dietary") or "",
                 item.get("price_raw") or "",
             ):
-                words.update(normalize(field).split())
+                for token in normalize(field).split():
+                    t = token.strip(".,;:!?\"'()")
+                    if t:
+                        words.add(t)
+                        words.update(term_variants(t))
         vocab[restaurant_id] = words
     return vocab
 
@@ -90,26 +150,30 @@ def _score_item(
     if query_norm == name:
         return 100
 
+    # Ensure stop words are filtered from mandatory matching
+    terms = [t for t in query_terms if t not in STOP_WORDS] or query_terms
+
     name_hits = desc_hits = ctx_hits = 0
-    for term in query_terms:
-        if term in name:
+    for term in terms:
+        variants = term_variants(term)
+        if any(v in name for v in variants):
             name_hits += 1
-        elif term in desc:
+        elif any(v in desc for v in variants):
             desc_hits += 1
-        elif term in category or term in menu_type or term in dietary or term in price_raw:
+        elif any(v in category or v in menu_type or v in dietary or v in price_raw for v in variants):
             ctx_hits += 1
-        elif term in rest_name or term in cuisine or term in rest_desc:
+        elif any(v in rest_name or v in cuisine or v in rest_desc for v in variants):
             # Skip restaurant-level context if this term is already
             # findable anywhere in the menu (item-level matching handles it).
-            if menu_vocab is None or term in rest_name or term not in menu_vocab:
+            if menu_vocab is None or any(v in rest_name for v in variants) or not any(v in menu_vocab for v in variants):
                 ctx_hits += 1
 
     total = name_hits + desc_hits + ctx_hits
-    if total < len(query_terms):
+    if total < len(terms):
         return 0
 
     score = name_hits * 4 + desc_hits * 2 + ctx_hits * 1
-    if name_hits == len(query_terms):
+    if name_hits == len(terms):
         score += 10  # all terms in item name alone
     return score
 
@@ -121,7 +185,11 @@ def search(
     filter_restaurant_ctx: bool = False,
 ) -> list[dict]:
     query_norm = normalize(query)
-    query_terms = query_norm.split()
+    raw_terms = [t.strip(".,;:!?\"'()") for t in query_norm.split()]
+    raw_terms = [t for t in raw_terms if t]
+    query_terms = [t for t in raw_terms if t not in STOP_WORDS]
+    if not query_terms:
+        query_terms = raw_terms
     all_vocab = build_menu_vocab(menus) if filter_restaurant_ctx else {}
     scored: list[tuple[int, dict]] = []
 
@@ -157,7 +225,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     query = " ".join(args.terms)
-    restaurants, menus = load_data(judged_restaurant_ids() if args.benchmark_only else None)
+    restaurants, menus = load_data(judged_restaurant_ids())
     results = search(query, restaurants, menus, filter_restaurant_ctx=args.filtered)
 
     mode = "filtered" if args.filtered else "unfiltered"

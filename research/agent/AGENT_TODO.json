@@ -1,18 +1,6 @@
 {
-  "iteration": 51,
-  "pending_tasks": [
-    {
-      "action": "change_code",
-      "family": "lexical",
-      "details": "Update research/search/enhanced_text_search.py to filter standard English stop words (e.g., 'with', 'and', 'or', 'in', 'on', 'at', 'to', 'for', 'of', 'by', 'a', 'an', 'the') from mandatory term-matching and support basic singular/plural stemming, preventing queries with stop words or inflected forms from being disqualified when all content terms match. Verify by running evaluate.py --engine enhanced.",
-      "evidence": [
-        "research/search/enhanced_text_search.py",
-        "research/agent/results/baseline-enhanced.json",
-        "research/APPROACHES.md"
-      ],
-      "reasoning": "Comparing results across method families, the late-interaction family has only a single recorded experiment (ColBERT v2.0 at NDCG@5=0.6650) which is currently marked stale because iteration 40 enriched neural item text representations with restaurant names and price metadata. Re-running ColBERT v2.0 will update the late-interaction benchmark to measure the impact of these representation gains. In parallel, lexical retrieval (baseline-enhanced at NDCG@5=0.5592) suffers from a severe structural flaw where enhanced_text_search.py requires every query token to match without stop-word filtering or plural stemming, completely disqualifying relevant dishes on queries with stop words (e.g. 'with') or inflections ('dishes', 'tacos')."
-    }
-  ],
+  "iteration": 52,
+  "pending_tasks": [],
   "completed_tasks": [
     {
       "action": "run_experiment",
@@ -429,6 +417,17 @@
       "eval_args": "--engine colbert",
       "setup": "",
       "description": "Re-evaluate ColBERT v2.0 after adding restaurant name and price metadata to _item_text in iteration 40 to refresh the late-interaction benchmark",
+      "reasoning": "Comparing results across method families, the late-interaction family has only a single recorded experiment (ColBERT v2.0 at NDCG@5=0.6650) which is currently marked stale because iteration 40 enriched neural item text representations with restaurant names and price metadata. Re-running ColBERT v2.0 will update the late-interaction benchmark to measure the impact of these representation gains. In parallel, lexical retrieval (baseline-enhanced at NDCG@5=0.5592) suffers from a severe structural flaw where enhanced_text_search.py requires every query token to match without stop-word filtering or plural stemming, completely disqualifying relevant dishes on queries with stop words (e.g. 'with') or inflections ('dishes', 'tacos')."
+    },
+    {
+      "action": "change_code",
+      "family": "lexical",
+      "details": "Update research/search/enhanced_text_search.py to filter standard English stop words (e.g., 'with', 'and', 'or', 'in', 'on', 'at', 'to', 'for', 'of', 'by', 'a', 'an', 'the') from mandatory term-matching and support basic singular/plural stemming, preventing queries with stop words or inflected forms from being disqualified when all content terms match. Verify by running evaluate.py --engine enhanced.",
+      "evidence": [
+        "research/search/enhanced_text_search.py",
+        "research/agent/results/baseline-enhanced.json",
+        "research/APPROACHES.md"
+      ],
       "reasoning": "Comparing results across method families, the late-interaction family has only a single recorded experiment (ColBERT v2.0 at NDCG@5=0.6650) which is currently marked stale because iteration 40 enriched neural item text representations with restaurant names and price metadata. Re-running ColBERT v2.0 will update the late-interaction benchmark to measure the impact of these representation gains. In parallel, lexical retrieval (baseline-enhanced at NDCG@5=0.5592) suffers from a severe structural flaw where enhanced_text_search.py requires every query token to match without stop-word filtering or plural stemming, completely disqualifying relevant dishes on queries with stop words (e.g. 'with') or inflections ('dishes', 'tacos')."
     }
   ]

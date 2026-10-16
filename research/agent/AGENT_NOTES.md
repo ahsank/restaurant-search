@@ -473,3 +473,13 @@ current labels, so the agent starts from comparable baselines.
 - Eval args: `--engine colbert` | family `late-interaction`
 - ndcg@5 0.6713 | recall@10 0.584 | mrr 0.8134 | 0.0097 s/query | efficiency 0.134 | 206/209 queries judged
 - Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.215, C03 Attribute / implied meaning 0.2325, C08 Dietary constraint / negation 0.3904, C02 Ingredient generalization 0.4155, C04 Cooking method synonyms 0.4727
+
+### Iteration 51: code change
+**Goal**: Update research/search/enhanced_text_search.py to filter standard English stop words (e.g., 'with', 'and', 'or', 'in', 'on', 'at', 'to', 'for', 'of', 'by', 'a', 'an', 'the') from mandatory term-matching and support basic singular/plural stemming, preventing queries with stop words or inflected forms from being disqualified when all content terms match. Verify by running evaluate.py --engine enhanced.
+
+**Summary**: (no summary)
+
+**Files changed**:
+```
+ M research/search/enhanced_text_search.py
+```
