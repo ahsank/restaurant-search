@@ -1,10 +1,10 @@
 {
   "name": "softbm25-conceptnet",
-  "description": "Benchmark Phrase-Aware Soft-BM25 with ConceptNet Numberbatch after adding restaurant name and price_raw to indexing and scoring representations",
+  "description": "re-run after code change: Benchmark Phrase-Aware Soft-BM25 with ConceptNet Numberbatch after adding restaurant name and price_raw to indexing and scoring representations",
   "status": "SUCCESS",
-  "iteration": 47,
-  "timestamp": "2026-10-14T22:55:31",
-  "git_commit": "bcd8f39",
+  "iteration": 48,
+  "timestamp": "2026-10-16T02:14:35",
+  "git_commit": "83f58ad",
   "result_file": "research/agent/results/softbm25-conceptnet.json",
   "family": "word-vector",
   "setup": "mkdir -p /content/scratch && [ -f /content/scratch/numberbatch-en-19.08.txt.gz ] || wget -q -O /content/scratch/numberbatch-en-19.08.txt.gz https://conceptnet.s3.amazonaws.com/downloads/2019/numberbatch/numberbatch-en-19.08.txt.gz",
@@ -14,7 +14,7 @@
     "--vectors",
     "/content/scratch/numberbatch-en-19.08.txt.gz"
   ],
-  "seconds": 19.0,
+  "seconds": 18.9,
   "timing": {
     "seconds_per_query": 0.0166,
     "search_seconds_per_query": 0.0166,
@@ -227,5 +227,5 @@
     }
   },
   "setup_seconds": 0.0,
-  "eval_seconds": 19.0
+  "eval_seconds": 18.9
 }

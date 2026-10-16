@@ -1,13 +1,6 @@
 {
-  "iteration": 48,
+  "iteration": 49,
   "pending_tasks": [
-    {
-      "action": "run_experiment",
-      "name": "softbm25-conceptnet",
-      "setup": "mkdir -p /content/scratch && [ -f /content/scratch/numberbatch-en-19.08.txt.gz ] || wget -q -O /content/scratch/numberbatch-en-19.08.txt.gz https://conceptnet.s3.amazonaws.com/downloads/2019/numberbatch/numberbatch-en-19.08.txt.gz",
-      "eval_args": "--engine soft_bm25 --vectors /content/scratch/numberbatch-en-19.08.txt.gz",
-      "description": "re-run after code change: Benchmark Phrase-Aware Soft-BM25 with ConceptNet Numberbatch after adding restaurant name and price_raw to indexing and scoring representations"
-    },
     {
       "action": "run_experiment",
       "name": "baseline-enhanced",
@@ -410,6 +403,13 @@
         "research/search/crossencoder_search.py"
       ],
       "reasoning": "In iteration 43, crossencoder-ms-marco-electra-base achieved NDCG@5=0.6806 and MRR=0.8255, outperforming MiniLM-L12 (0.6747) and MiniLM-L6 (0.6770) as the strongest cross-encoder backbone in the repository. We hypothesize that reranking Qwen2.5-7B candidates with Electra-base and grade-boost 2.0 will improve upon the current benchmark leader (hybrid MiniLM-L12 at 0.8195). In parallel, while neural retrievers gained significantly from adding restaurant names and price metadata in iteration 40, soft_bm25_search.py and enhanced_text_search.py still omit these fields, leaving word-vector and lexical retrieval impaired on restaurant-named and price-constrained queries."
+    },
+    {
+      "action": "run_experiment",
+      "name": "softbm25-conceptnet",
+      "setup": "mkdir -p /content/scratch && [ -f /content/scratch/numberbatch-en-19.08.txt.gz ] || wget -q -O /content/scratch/numberbatch-en-19.08.txt.gz https://conceptnet.s3.amazonaws.com/downloads/2019/numberbatch/numberbatch-en-19.08.txt.gz",
+      "eval_args": "--engine soft_bm25 --vectors /content/scratch/numberbatch-en-19.08.txt.gz",
+      "description": "re-run after code change: Benchmark Phrase-Aware Soft-BM25 with ConceptNet Numberbatch after adding restaurant name and price_raw to indexing and scoring representations"
     }
   ]
 }

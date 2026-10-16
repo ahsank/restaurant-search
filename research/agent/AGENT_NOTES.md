@@ -449,3 +449,10 @@ current labels, so the agent starts from comparable baselines.
  M research/search/enhanced_text_search.py
  M research/search/soft_bm25_search.py
 ```
+
+### Iteration 48: softbm25-conceptnet (SUCCESS)
+- Result: `research/agent/results/softbm25-conceptnet.json` | commit `83f58ad` | 18.9s
+- Setup: `mkdir -p /content/scratch && [ -f /content/scratch/numberbatch-en-19.08.txt.gz ] || wget -q -O /content/scratch/numberbatch-en-19.08.txt.gz https://conceptnet.s3.amazonaws.com/downloads/2019/numberbatch/numberbatch-en-19.08.txt.gz`
+- Eval args: `--engine soft_bm25 --vectors /content/scratch/numberbatch-en-19.08.txt.gz` | family `word-vector`
+- ndcg@5 0.5702 | recall@10 0.5443 | mrr 0.7326 | 0.0166 s/query | efficiency 0.1137 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.0841, C08 Dietary constraint / negation 0.1567, C03 Attribute / implied meaning 0.2602, C02 Ingredient generalization 0.3487, C01 Cuisine type inference 0.3797
