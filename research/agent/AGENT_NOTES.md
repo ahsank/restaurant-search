@@ -456,3 +456,9 @@ current labels, so the agent starts from comparable baselines.
 - Eval args: `--engine soft_bm25 --vectors /content/scratch/numberbatch-en-19.08.txt.gz` | family `word-vector`
 - ndcg@5 0.5702 | recall@10 0.5443 | mrr 0.7326 | 0.0166 s/query | efficiency 0.1137 | 206/209 queries judged
 - Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.0841, C08 Dietary constraint / negation 0.1567, C03 Attribute / implied meaning 0.2602, C02 Ingredient generalization 0.3487, C01 Cuisine type inference 0.3797
+
+### Iteration 49: baseline-enhanced (SUCCESS)
+- Result: `research/agent/results/baseline-enhanced.json` | commit `912abb9` | 2.5s
+- Eval args: `--engine enhanced` | family `lexical`
+- ndcg@5 0.5592 | recall@10 0.5597 | mrr 0.6034 | 0.0116 s/query | efficiency 0.1116 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.0, C02 Ingredient generalization 0.0553, C05 Spelling variations 0.0667, C03 Attribute / implied meaning 0.1224, C01 Cuisine type inference 0.2382

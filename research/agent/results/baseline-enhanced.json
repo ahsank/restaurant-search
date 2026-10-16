@@ -1,10 +1,10 @@
 {
   "name": "baseline-enhanced",
-  "description": "Benchmark enhanced text search baseline after adding restaurant name and price_raw to matching tiers",
+  "description": "re-run after code change: Benchmark enhanced text search baseline after adding restaurant name and price_raw to matching tiers",
   "status": "SUCCESS",
-  "iteration": 47,
-  "timestamp": "2026-10-14T22:56:03",
-  "git_commit": "bcd8f39",
+  "iteration": 49,
+  "timestamp": "2026-10-16T02:14:56",
+  "git_commit": "912abb9",
   "result_file": "research/agent/results/baseline-enhanced.json",
   "family": "lexical",
   "setup": null,
@@ -14,8 +14,8 @@
   ],
   "seconds": 2.5,
   "timing": {
-    "seconds_per_query": 0.0115,
-    "search_seconds_per_query": 0.0115,
+    "seconds_per_query": 0.0116,
+    "search_seconds_per_query": 0.0116,
     "rankings_generation_seconds_per_query": 0.0
   },
   "metrics": {

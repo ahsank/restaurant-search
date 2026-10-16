@@ -8,7 +8,7 @@ recorded (re-run it).
 
 | Family | Best experiment | NDCG@5 | Recall@10 | MRR | s/query | Efficiency | Experiments |
 |---|---|---|---|---|---|---|---|
-| lexical | baseline-enhanced | 0.5592 | 0.5597 | 0.6034 | 0.0115 | 0.1116 | 2 |
+| lexical | baseline-enhanced | 0.5592 | 0.5597 | 0.6034 | 0.0116 | 0.1116 | 2 |
 | word-vector | softbm25-conceptnet | 0.5702 | 0.5443 | 0.7326 | 0.0166 | 0.1137 | 1 |
 | bi-encoder | sbert-all-mpnet-base-v2 | 0.5484 | 0.4678 | 0.7375 | 0.0048 | 0.1096 | 2 |
 | late-interaction | colbert-colbertv2.0 | 0.6650 | 0.5662 | 0.8049 | 0.0091 | 0.1328 | 1 |
@@ -32,7 +32,7 @@ recorded (re-run it).
 | 10 | crossencoder-ms-marco-MiniLM-L12-v2 | cross-encoder | 0.1323 | 0.6747 | 0.0985 |
 | 11 | crossencoder-ms-marco-electra-base | cross-encoder | 0.1287 | 0.6806 | 0.2876 |
 | 12 | softbm25-conceptnet | word-vector | 0.1137 | 0.5702 | 0.0166 |
-| 13 | baseline-enhanced | lexical | 0.1116 | 0.5592 | 0.0115 |
+| 13 | baseline-enhanced | lexical | 0.1116 | 0.5592 | 0.0116 |
 | 14 | sbert-all-mpnet-base-v2 | bi-encoder | 0.1096 | 0.5484 | 0.0048 |
 | 15 | sbert-all-MiniLM-L6-v2 | bi-encoder | 0.1048 | 0.5244 | 0.0032 |
 | 16 | baseline-text | lexical | 0.0891 | 0.4456 | 0.0003 |

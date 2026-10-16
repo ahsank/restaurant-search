@@ -1,14 +1,6 @@
 {
-  "iteration": 49,
-  "pending_tasks": [
-    {
-      "action": "run_experiment",
-      "name": "baseline-enhanced",
-      "setup": "",
-      "eval_args": "--engine enhanced",
-      "description": "re-run after code change: Benchmark enhanced text search baseline after adding restaurant name and price_raw to matching tiers"
-    }
-  ],
+  "iteration": 50,
+  "pending_tasks": [],
   "completed_tasks": [
     {
       "action": "run_experiment",
@@ -410,6 +402,13 @@
       "setup": "mkdir -p /content/scratch && [ -f /content/scratch/numberbatch-en-19.08.txt.gz ] || wget -q -O /content/scratch/numberbatch-en-19.08.txt.gz https://conceptnet.s3.amazonaws.com/downloads/2019/numberbatch/numberbatch-en-19.08.txt.gz",
       "eval_args": "--engine soft_bm25 --vectors /content/scratch/numberbatch-en-19.08.txt.gz",
       "description": "re-run after code change: Benchmark Phrase-Aware Soft-BM25 with ConceptNet Numberbatch after adding restaurant name and price_raw to indexing and scoring representations"
+    },
+    {
+      "action": "run_experiment",
+      "name": "baseline-enhanced",
+      "setup": "",
+      "eval_args": "--engine enhanced",
+      "description": "re-run after code change: Benchmark enhanced text search baseline after adding restaurant name and price_raw to matching tiers"
     }
   ]
 }
