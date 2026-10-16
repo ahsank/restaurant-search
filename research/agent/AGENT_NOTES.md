@@ -483,3 +483,14 @@ current labels, so the agent starts from comparable baselines.
 ```
  M research/search/enhanced_text_search.py
 ```
+
+### Plan (iteration 52)
+- Hypothesis: In iteration 51, enhanced_text_search.py was upgraded with stop-word filtering and singular/plural stemming, but baseline-enhanced has not yet been benchmarked on evaluate.py to measure the resulting gains for the lexical family. Meanwhile, the bi-encoder family currently lags behind all other neural families (NDCG@5=0.5484) because sbert_search.py only uses symmetric sentence-similarity models without query instruction support required by modern retrieval bi-encoders like BGE. We first benchmark baseline-enhanced to record the lexical gains, and then add query instruction prefix support to sbert_search.py and engines.py to evaluate BAAI/bge-base-en-v1.5.
+- Queued (lexical): run_experiment baseline-enhanced
+- Queued (bi-encoder): change_code Update research/search/sbert_search.py and research/search/engines.py to support query-side instructions/prefixes (such as 'Represent this sentence fo
+
+### Iteration 52: baseline-enhanced (SUCCESS)
+- Result: `research/agent/results/baseline-enhanced.json` | commit `b08df53` | 3.0s
+- Eval args: `--engine enhanced` | family `lexical`
+- ndcg@5 0.5566 | recall@10 0.5589 | mrr 0.605 | 0.014 s/query | efficiency 0.111 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.0, C02 Ingredient generalization 0.0553, C05 Spelling variations 0.0667, C03 Attribute / implied meaning 0.1224, C01 Cuisine type inference 0.1838
