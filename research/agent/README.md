@@ -17,6 +17,14 @@ reviews and merges it.
    the experiments its change affects, and those are re-run.
 4. After every task the notebook commits everything and pushes to `agent/campaign`.
 
+**Session budget.** The time limit is checked only before calling the planner. Once a plan is made,
+its tasks (and the re-runs a code change asks for) always finish, even past the budget, so new code is
+evaluated in the session that wrote it rather than left for the next session's planner to build on.
+
+**Open the notebook fresh each session** from the badge on GitHub (`agent/campaign` branch). An old
+Colab tab still has the old code, and saving it would overwrite newer changes; the notebook checks its
+`NOTEBOOK_VERSION` against the branch copy and refuses to run if it is older.
+
 The planner and code agent are told: don't modify `data/` or the metric code, don't train on or
 hard-code anything from the benchmark queries, labels or menu items, use `run_shell` only for
 installing packages and downloading models, don't commit large artifacts (add setup steps to
