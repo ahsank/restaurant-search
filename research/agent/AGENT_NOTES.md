@@ -462,3 +462,14 @@ current labels, so the agent starts from comparable baselines.
 - Eval args: `--engine enhanced` | family `lexical`
 - ndcg@5 0.5592 | recall@10 0.5597 | mrr 0.6034 | 0.0116 s/query | efficiency 0.1116 | 206/209 queries judged
 - Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.0, C02 Ingredient generalization 0.0553, C05 Spelling variations 0.0667, C03 Attribute / implied meaning 0.1224, C01 Cuisine type inference 0.2382
+
+### Plan (iteration 50)
+- Hypothesis: Comparing results across method families, the late-interaction family has only a single recorded experiment (ColBERT v2.0 at NDCG@5=0.6650) which is currently marked stale because iteration 40 enriched neural item text representations with restaurant names and price metadata. Re-running ColBERT v2.0 will update the late-interaction benchmark to measure the impact of these representation gains. In parallel, lexical retrieval (baseline-enhanced at NDCG@5=0.5592) suffers from a severe structural flaw where enhanced_text_search.py requires every query token to match without stop-word filtering or plural stemming, completely disqualifying relevant dishes on queries with stop words (e.g. 'with') or inflections ('dishes', 'tacos').
+- Queued (late-interaction): run_experiment colbert-colbertv2.0
+- Queued (lexical): change_code Update research/search/enhanced_text_search.py to filter standard English stop words (e.g., 'with', 'and', 'or', 'in', 'on', 'at', 'to', 'for', 'of', 
+
+### Iteration 50: colbert-colbertv2.0 (SUCCESS)
+- Result: `research/agent/results/colbert-colbertv2.0.json` | commit `75ae0ff` | 25.1s
+- Eval args: `--engine colbert` | family `late-interaction`
+- ndcg@5 0.6713 | recall@10 0.584 | mrr 0.8134 | 0.0097 s/query | efficiency 0.134 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.215, C03 Attribute / implied meaning 0.2325, C08 Dietary constraint / negation 0.3904, C02 Ingredient generalization 0.4155, C04 Cooking method synonyms 0.4727

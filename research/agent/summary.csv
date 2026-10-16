@@ -9,7 +9,7 @@ llm-qwen2.5-7b-instruct,llm,SUCCESS,0.6993,0.7739,0.7687,0.1914,0.1347,209,0.1,0
 crossencoder-ms-marco-electra-base,cross-encoder,SUCCESS,0.6806,0.5909,0.8255,0.2876,0.1287,209,67.1,327144d,2026-10-14T22:43:03,--engine crossencoder --model cross-encoder/ms-marco-electra-base
 crossencoder-ms-marco-MiniLM-L6-v2,cross-encoder,SUCCESS,0.677,0.5974,0.8168,0.0607,0.1338,209,19.6,0262b1c,2026-10-14T22:42:13,--engine crossencoder --model cross-encoder/ms-marco-MiniLM-L6-v2
 crossencoder-ms-marco-MiniLM-L12-v2,cross-encoder,SUCCESS,0.6747,0.5954,0.8156,0.0985,0.1323,209,27.6,1d57cb9,2026-10-14T22:42:34,--engine crossencoder --model cross-encoder/ms-marco-MiniLM-L12-v2
-colbert-colbertv2.0,late-interaction,SUCCESS,0.665,0.5662,0.8049,0.0091,0.1328,209,9.6,bfa1c7a,2026-10-14T22:37:43,--engine colbert
+colbert-colbertv2.0,late-interaction,SUCCESS,0.6713,0.584,0.8134,0.0097,0.134,209,25.1,75ae0ff,2026-10-16T02:16:56,--engine colbert
 softbm25-conceptnet,word-vector,SUCCESS,0.5702,0.5443,0.7326,0.0166,0.1137,209,18.9,83f58ad,2026-10-16T02:14:35,--engine soft_bm25 --vectors /content/scratch/numberbatch-en-19.08.txt.gz
 baseline-enhanced,lexical,SUCCESS,0.5592,0.5597,0.6034,0.0116,0.1116,209,2.5,912abb9,2026-10-16T02:14:56,--engine enhanced
 sbert-all-mpnet-base-v2,bi-encoder,SUCCESS,0.5484,0.4678,0.7375,0.0048,0.1096,209,8.7,eab2c5b,2026-10-14T22:44:22,--engine sbert --model all-mpnet-base-v2
