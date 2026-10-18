@@ -1,6 +1,15 @@
 {
   "iteration": 65,
-  "pending_tasks": [],
+  "pending_tasks": [
+    {
+      "action": "run_experiment",
+      "family": "bi-encoder",
+      "name": "sbert-mxbai-embed-large",
+      "eval_args": "--engine sbert --model mixedbread-ai/mxbai-embed-large-v1 --query-prefix \"Represent this sentence for searching relevant passages: \"",
+      "setup": "",
+      "description": "re-run with the correct Hugging Face id (mxbai-embed-large-v1); the previous attempt used a non-existent repo name"
+    }
+  ],
   "completed_tasks": [
     {
       "action": "run_experiment",
