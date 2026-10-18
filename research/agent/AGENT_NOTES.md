@@ -588,3 +588,10 @@ usage: evaluate.py [-h]
 evaluate.py: error: unrecognized arguments: this sentence for searching relevant passages: "
 
 ```
+
+### Iteration 61: llm-qwen2.5-32b-instruct (SUCCESS)
+- Result: `research/agent/results/llm-qwen2.5-32b-instruct.json` | commit `48e6ba9` | 336.2s
+- Setup: `python research/search/llm_search.py --model Qwen/Qwen2.5-32B-Instruct --out research/agent/runs/qwen2.5-32b-instruct.jsonl`
+- Eval args: `--engine llm --rankings research/agent/runs/qwen2.5-32b-instruct.jsonl` | family `llm`
+- ndcg@5 0.7538 | recall@10 0.7682 | mrr 0.8066 | 0.3292 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.1414 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.285, C03 Attribute / implied meaning 0.3744, C02 Ingredient generalization 0.6206, C01 Cuisine type inference 0.6228, C08 Dietary constraint / negation 0.6448
