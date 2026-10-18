@@ -1,0 +1,32 @@
+{
+  "name": "sbert-mxbai-embed-large",
+  "description": "Benchmark mixedbread-ai/mxbai-embed-large (335M params) with query retrieval prefix to test whether SOTA retrieval bi-encoders beat bge-base (0.6359 NDCG@5) at sub-10ms latency.",
+  "status": "EVAL_FAILED",
+  "iteration": 60,
+  "timestamp": "2026-10-18T16:47:05",
+  "git_commit": "445801c",
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "result_file": "research/agent/results/sbert-mxbai-embed-large.json",
+  "family": "bi-encoder",
+  "setup": null,
+  "eval_args": [
+    "--engine",
+    "sbert",
+    "--model",
+    "mixedbread-ai/mxbai-embed-large",
+    "--query-prefix",
+    "\"Represent",
+    "this",
+    "sentence",
+    "for",
+    "searching",
+    "relevant",
+    "passages:",
+    "\""
+  ],
+  "seconds": 5.2,
+  "timing": null,
+  "metrics": null,
+  "eval_seconds": 5.2,
+  "error": "Exit code 2\n\n--- STDERR ---\nusage: evaluate.py [-h]\n                   [--engine {text,enhanced,filtered,soft_bm25,sbert,colbert,crossencoder,llm,hybrid}]\n                   [--model MODEL] [--query-prefix QUERY_PREFIX]\n                   [--category CATEGORY] [--difficulty {Easy,Medium,Hard}]\n                   [--query-ids-file QUERY_IDS_FILE]\n                   [--save-metrics SAVE_METRICS]\n                   [--exclude-query-ids-file EXCLUDE_QUERY_IDS_FILE]\n                   [--verbose]\nevaluate.py: error: unrecognized arguments: this sentence for searching relevant passages: \"\n"
+}

@@ -1,6 +1,16 @@
 {
-  "iteration": 60,
-  "pending_tasks": [],
+  "iteration": 61,
+  "pending_tasks": [
+    {
+      "action": "run_experiment",
+      "family": "llm",
+      "name": "llm-qwen2.5-32b-instruct",
+      "setup": "python research/search/llm_search.py --model Qwen/Qwen2.5-32B-Instruct --out research/agent/runs/qwen2.5-32b-instruct.jsonl",
+      "eval_args": "--engine llm --rankings research/agent/runs/qwen2.5-32b-instruct.jsonl",
+      "description": "Generate and benchmark LLM reader rankings with Qwen/Qwen2.5-32B-Instruct in bf16 on the 96 GB Blackwell GPU to test whether 32B model capacity improves difficult compositional (C10) and attribute (C03) queries.",
+      "reasoning": "Recent evaluations established BAAI/bge-reranker-v2-m3 as the non-LLM record (0.7242 NDCG@5) while scaling LLMs from 7B to 14B showed big gains in easy categories and exact dish retrieval, but complex compositional (C10) and implied attribute (C03) queries remain the primary bottleneck. Taking full advantage of our 96 GB Blackwell GPU, we first evaluate mixedbread-ai/mxbai-embed-large (335M parameters with query instruction prefix) to test whether modern SOTA retrieval bi-encoders can surpass bge-base (0.6359) at sub-10ms latency. Second, we scale the LLM reader to Qwen/Qwen2.5-32B-Instruct in bf16, testing whether 32B reasoning capacity and instruction adherence resolve difficult multi-constraint queries and provide stronger candidate rankings for hybrid search."
+    }
+  ],
   "completed_tasks": [
     {
       "action": "run_experiment",
@@ -504,6 +514,15 @@
       "setup": "",
       "description": "Evaluate hybrid search combining Qwen2.5-7B candidate retrieval with BAAI/bge-reranker-large rescoring and grade-boost 2.0, testing whether a 560M-parameter reranker outperforms ms-marco-MiniLM-L12-v2 (0.8195 NDCG@5).",
       "reasoning": "Evaluating BAAI/bge-reranker-large previously achieved a non-LLM benchmark record (0.7091 NDCG@5), substantially outperforming ms-marco-MiniLM-L12-v2 (0.6747) and Electra (0.6806). Leveraging our 96 GB Blackwell GPU, we first evaluate the newer BAAI/bge-reranker-v2-m3 (568M params) to test if an updated cross-encoder architecture further advances the non-LLM state of the art. Second, because our current #1 leaderboard engine (hybrid-qwen2.5-7b-minilm-l12-boost2 at 0.8195 NDCG@5) relies on a much smaller 33M-parameter MiniLM reranker, we evaluate a hybrid search coupling Qwen2.5-7B candidate retrieval with BAAI/bge-reranker-large to test if superior cross-encoder scoring precision raises the overall leaderboard ceiling."
+    },
+    {
+      "action": "run_experiment",
+      "family": "bi-encoder",
+      "name": "sbert-mxbai-embed-large",
+      "eval_args": "--engine sbert --model mixedbread-ai/mxbai-embed-large --query-prefix \"Represent this sentence for searching relevant passages: \"",
+      "setup": "",
+      "description": "Benchmark mixedbread-ai/mxbai-embed-large (335M params) with query retrieval prefix to test whether SOTA retrieval bi-encoders beat bge-base (0.6359 NDCG@5) at sub-10ms latency.",
+      "reasoning": "Recent evaluations established BAAI/bge-reranker-v2-m3 as the non-LLM record (0.7242 NDCG@5) while scaling LLMs from 7B to 14B showed big gains in easy categories and exact dish retrieval, but complex compositional (C10) and implied attribute (C03) queries remain the primary bottleneck. Taking full advantage of our 96 GB Blackwell GPU, we first evaluate mixedbread-ai/mxbai-embed-large (335M parameters with query instruction prefix) to test whether modern SOTA retrieval bi-encoders can surpass bge-base (0.6359) at sub-10ms latency. Second, we scale the LLM reader to Qwen/Qwen2.5-32B-Instruct in bf16, testing whether 32B reasoning capacity and instruction adherence resolve difficult multi-constraint queries and provide stronger candidate rankings for hybrid search."
     }
   ]
 }

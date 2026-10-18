@@ -563,3 +563,28 @@ current labels, so the agent starts from comparable baselines.
 - Eval args: `--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model BAAI/bge-reranker-large --grade-boost 2.0` | family `llm`
 - ndcg@5 0.7978 | recall@10 0.8282 | mrr 0.8704 | 0.2511 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.1519 | 206/209 queries judged
 - Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.0492, C18 Chicken dishes 0.5911, C03 Attribute / implied meaning 0.6294, C24 Pizza varieties 0.6667, C02 Ingredient generalization 0.6706
+
+### Plan (iteration 60)
+- Hypothesis: Recent evaluations established BAAI/bge-reranker-v2-m3 as the non-LLM record (0.7242 NDCG@5) while scaling LLMs from 7B to 14B showed big gains in easy categories and exact dish retrieval, but complex compositional (C10) and implied attribute (C03) queries remain the primary bottleneck. Taking full advantage of our 96 GB Blackwell GPU, we first evaluate mixedbread-ai/mxbai-embed-large (335M parameters with query instruction prefix) to test whether modern SOTA retrieval bi-encoders can surpass bge-base (0.6359) at sub-10ms latency. Second, we scale the LLM reader to Qwen/Qwen2.5-32B-Instruct in bf16, testing whether 32B reasoning capacity and instruction adherence resolve difficult multi-constraint queries and provide stronger candidate rankings for hybrid search.
+- Queued (bi-encoder): run_experiment sbert-mxbai-embed-large
+- Queued (llm): run_experiment llm-qwen2.5-32b-instruct
+
+### Iteration 60: sbert-mxbai-embed-large (EVAL_FAILED)
+- Result: `research/agent/results/sbert-mxbai-embed-large.json` | commit `445801c` | 5.2s
+- Eval args: `--engine sbert --model mixedbread-ai/mxbai-embed-large --query-prefix "Represent this sentence for searching relevant passages: "` | family `bi-encoder`
+- Error:
+```
+Exit code 2
+
+--- STDERR ---
+usage: evaluate.py [-h]
+                   [--engine {text,enhanced,filtered,soft_bm25,sbert,colbert,crossencoder,llm,hybrid}]
+                   [--model MODEL] [--query-prefix QUERY_PREFIX]
+                   [--category CATEGORY] [--difficulty {Easy,Medium,Hard}]
+                   [--query-ids-file QUERY_IDS_FILE]
+                   [--save-metrics SAVE_METRICS]
+                   [--exclude-query-ids-file EXCLUDE_QUERY_IDS_FILE]
+                   [--verbose]
+evaluate.py: error: unrecognized arguments: this sentence for searching relevant passages: "
+
+```
