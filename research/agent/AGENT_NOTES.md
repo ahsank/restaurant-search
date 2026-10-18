@@ -511,3 +511,14 @@ current labels, so the agent starts from comparable baselines.
  M research/search/engines.py
  M research/search/sbert_search.py
 ```
+
+### Plan (iteration 54)
+- Hypothesis: We compared cross-encoder results where ms-marco-electra-base led the non-LLM families at NDCG@5=0.6806 but struggled on complex attributes and multi-constraints (C03=0.3010, C10=0.1726), while the LLM reader with Qwen2.5-7B achieved Recall@10=0.7739. Taking advantage of the 96 GB Blackwell GPU, we first evaluate BAAI/bge-reranker-large to test whether a modern 560M-parameter cross-encoder improves non-LLM ranking accuracy over Electra. In parallel, we scale the LLM reader by generating rankings with Qwen/Qwen2.5-14B-Instruct, hypothesizing that doubled model capacity and instruction reasoning will resolve complex constraint queries and yield a superior candidate pool for hybrid search.
+- Queued (cross-encoder): run_experiment crossencoder-bge-reranker-large
+- Queued (llm): run_experiment llm-qwen2.5-14b-instruct
+
+### Iteration 54: crossencoder-bge-reranker-large (SUCCESS)
+- Result: `research/agent/results/crossencoder-bge-reranker-large.json` | commit `41f12d4` | 161.8s
+- Eval args: `--engine crossencoder --model BAAI/bge-reranker-large` | family `cross-encoder`
+- ndcg@5 0.7091 | recall@10 0.6102 | mrr 0.8487 | 0.6188 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.1262 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.0365, C03 Attribute / implied meaning 0.3142, C08 Dietary constraint / negation 0.421, C02 Ingredient generalization 0.4575, C09 Synonym / paraphrase 0.5356
