@@ -557,3 +557,9 @@ current labels, so the agent starts from comparable baselines.
 - Eval args: `--engine crossencoder --model BAAI/bge-reranker-v2-m3` | family `cross-encoder`
 - ndcg@5 0.7242 | recall@10 0.6165 | mrr 0.8745 | 0.6148 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.129 | 206/209 queries judged
 - Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.0535, C03 Attribute / implied meaning 0.3594, C02 Ingredient generalization 0.4867, C08 Dietary constraint / negation 0.5218, C04 Cooking method synonyms 0.5247
+
+### Iteration 59: hybrid-qwen2.5-7b-bge-reranker-large (SUCCESS)
+- Result: `research/agent/results/hybrid-qwen2.5-7b-bge-reranker-large.json` | commit `d0d693b` | 21.5s
+- Eval args: `--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model BAAI/bge-reranker-large --grade-boost 2.0` | family `llm`
+- ndcg@5 0.7978 | recall@10 0.8282 | mrr 0.8704 | 0.2511 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.1519 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.0492, C18 Chicken dishes 0.5911, C03 Attribute / implied meaning 0.6294, C24 Pizza varieties 0.6667, C02 Ingredient generalization 0.6706
