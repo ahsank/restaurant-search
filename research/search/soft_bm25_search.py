@@ -47,9 +47,8 @@ Three pluggable components — swap any independently:
 Default implementation uses ConceptNet Numberbatch (English), which serves as
 both the phrase vocabulary and the vector source from a single ~75 MB file.
 
-Item text includes restaurant name, item name, description, category, menu type,
-dietary annotations, and price (matching the representation used in hybrid,
-crossencoder, colbert, and sbert search).
+Item text includes restaurant name, restaurant cuisine, item name, description,
+category, menu type, dietary annotations, and price.
 
 Download:
   https://conceptnet.s3.amazonaws.com/downloads/2019/numberbatch/numberbatch-en-19.08.txt.gz
@@ -72,6 +71,59 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).parents[1]))
 from lib.data import load_data, judged_restaurant_ids, restaurant_scope_cli_args
+
+STOP_WORDS = {
+    "a", "an", "the",
+    "and", "or", "&",
+    "with", "in", "on", "at", "to", "for", "of", "by", "from",
+    "as", "into", "over", "after", "before", "between", "under", "about", "through",
+    "is", "are", "was", "were", "be", "been", "being",
+    "it", "its", "that", "this", "these", "those",
+}
+
+
+def term_variants(term: str) -> set[str]:
+    """Return the term itself plus basic singular/plural variants."""
+    variants = {term}
+    # Plural -> singular
+    if len(term) > 3:
+        if term.endswith("ies") and len(term) > 4:
+            variants.add(term[:-3] + "y")  # berries -> berry, fries -> fry
+            variants.add(term[:-1])        # cookies -> cookie
+        elif term.endswith("ves") and len(term) > 4:
+            variants.add(term[:-3] + "f")   # leaves -> leaf, loaves -> loaf
+            variants.add(term[:-3] + "fe")  # knives -> knife
+        elif term.endswith("es") and len(term) > 3:
+            if term.endswith(("shes", "ches", "sses", "xes", "zes")):
+                variants.add(term[:-2])     # dishes -> dish, sandwiches -> sandwich, glasses -> glass
+            elif term.endswith("oes"):
+                variants.add(term[:-2])     # tomatoes -> tomato, potatoes -> potato
+                variants.add(term[:-1])
+            else:
+                variants.add(term[:-1])     # plates -> plate, casseroles -> casserole
+                variants.add(term[:-2])
+        elif term.endswith("s") and not term.endswith(("ss", "us", "is")):
+            variants.add(term[:-1])         # tacos -> taco, burgers -> burger, salads -> salad
+
+    # Singular -> plural
+    if len(term) > 2 and (not term.endswith("s") or term.endswith("ss")):
+        if term.endswith("y") and len(term) >= 3 and term[-2] not in "aeiou":
+            variants.add(term[:-1] + "ies")  # fry -> fries, berry -> berries, curry -> curries
+        elif term.endswith(("sh", "ch", "ss", "x", "z")):
+            variants.add(term + "es")        # dish -> dishes, sandwich -> sandwiches, glass -> glasses
+        elif term.endswith("f") and len(term) > 3:
+            variants.add(term[:-1] + "ves")  # loaf -> loaves, leaf -> leaves
+            variants.add(term + "s")
+        elif term.endswith("fe") and len(term) > 3:
+            variants.add(term[:-2] + "ves")  # knife -> knives
+            variants.add(term + "s")
+        elif term.endswith("o") and len(term) > 3:
+            variants.add(term + "es")        # tomato -> tomatoes, potato -> potatoes, taco -> tacos
+            variants.add(term + "s")
+        else:
+            variants.add(term + "s")
+
+    return {v for v in variants if v}
 
 
 def cli_args() -> argparse.ArgumentParser:
@@ -172,11 +224,11 @@ class PhraseTokenizer:
         self.phrase_vocab = phrase_vocab
         self.max_phrase_len = max_phrase_len
 
-    # Punctuation stripped from word boundaries; hyphens kept (pan-fried, gluten-free).
-    _STRIP = str.maketrans("", "", ".,;:!?()[]{}\"'`—–&")
+    # Punctuation stripped from word boundaries; hyphens and slashes are replaced with spaces first.
+    _STRIP = str.maketrans("", "", ".,;:!?()[]{}\"'`—–&-/")
 
     def tokenize(self, text: str) -> list[str]:
-        raw = normalize(text).split()
+        raw = normalize(text).replace("-", " ").replace("/", " ").split()
         words = [w.translate(self._STRIP) for w in raw]
         words = [w for w in words if w]   # drop anything that became empty
         tokens: list[str] = []
@@ -184,16 +236,32 @@ class PhraseTokenizer:
         while i < len(words):
             matched = False
             for length in range(min(self.max_phrase_len, len(words) - i), 1, -1):
-                phrase = " ".join(words[i : i + length])
+                phrase_words = words[i : i + length]
+                if all(w in STOP_WORDS for w in phrase_words):
+                    continue
+                phrase = " ".join(phrase_words)
                 if phrase in self.phrase_vocab:
                     tokens.append(phrase.replace(" ", "_"))
                     i += length
                     matched = True
                     break
+                if phrase_words[0] not in STOP_WORDS and phrase_words[-1] not in STOP_WORDS:
+                    for v in sorted(term_variants(phrase_words[-1]), key=len):
+                        if v == phrase_words[-1]:
+                            continue
+                        cand_phrase = " ".join(phrase_words[:-1] + [v])
+                        if cand_phrase in self.phrase_vocab:
+                            tokens.append(cand_phrase.replace(" ", "_"))
+                            i += length
+                            matched = True
+                            break
+                if matched:
+                    break
             if not matched:
                 tokens.append(words[i])
                 i += 1
-        return tokens
+        filtered = [t for t in tokens if "_" in t or t not in STOP_WORDS]
+        return filtered if filtered else tokens
 
 
 # ── Vector store ───────────────────────────────────────────────────────────────
@@ -229,29 +297,54 @@ class VectorStore:
         self._token_idf = token_idf or {}
         self._cache: dict[str, np.ndarray | None] = {}
 
+    def _word_vec(self, word: str) -> np.ndarray | None:
+        if word in self._vecs:
+            return self._vecs[word]
+        if word not in STOP_WORDS:
+            for v in sorted(term_variants(word), key=len):
+                if v in self._vecs:
+                    return self._vecs[v]
+        return None
+
     def lookup(self, token: str) -> np.ndarray | None:
         """Return unit-normalised vector, or None if unrepresentable."""
         if token in self._cache:
             return self._cache[token]
 
+        norm_token = token.replace("-", "_")
         vec = self._vecs.get(token)
+        if vec is None and norm_token != token:
+            vec = self._vecs.get(norm_token)
 
         if vec is None:
-            parts = token.split("_")
+            parts = [p for p in norm_token.split("_") if p]
             if len(parts) > 1:
-                if self._composition == "idf_mean" and self._token_idf:
-                    pairs = [
-                        (self._vecs[p], self._token_idf.get(p, 1.0))
-                        for p in parts if p in self._vecs
-                    ]
-                    if pairs:
-                        vecs_arr = np.array([v for v, _ in pairs])
-                        weights  = np.array([w for _, w in pairs])
-                        vec = np.average(vecs_arr, weights=weights, axis=0)
-                else:
-                    component_vecs = [self._vecs[p] for p in parts if p in self._vecs]
-                    if component_vecs:
-                        vec = np.mean(component_vecs, axis=0)
+                if parts[-1] not in STOP_WORDS:
+                    for v in sorted(term_variants(parts[-1]), key=len):
+                        cand = "_".join(parts[:-1] + [v])
+                        if cand in self._vecs:
+                            vec = self._vecs[cand]
+                            break
+                if vec is None:
+                    if self._composition == "idf_mean" and self._token_idf:
+                        pairs = [
+                            (pv, self._token_idf.get(p, 1.0))
+                            for p in parts
+                            if (pv := self._word_vec(p)) is not None
+                        ]
+                        if pairs:
+                            vecs_arr = np.array([v for v, _ in pairs])
+                            weights  = np.array([w for _, w in pairs])
+                            vec = np.average(vecs_arr, weights=weights, axis=0)
+                    else:
+                        component_vecs = [
+                            pv for p in parts
+                            if (pv := self._word_vec(p)) is not None
+                        ]
+                        if component_vecs:
+                            vec = np.mean(component_vecs, axis=0)
+            elif len(parts) == 1:
+                vec = self._word_vec(parts[0])
 
         result = _unit(vec) if vec is not None else None
         self._cache[token] = result
@@ -475,13 +568,16 @@ def load_conceptnet(path: str | Path) -> tuple[dict[str, np.ndarray], set[str]]:
 # ── Index builder ──────────────────────────────────────────────────────────────
 
 # Fields included in each item's text for indexing:
-# restaurant name, item name, description, category, menu_type, dietary annotations, and price
-# (matching the representation used in hybrid, crossencoder, colbert, and sbert search).
-def _item_text(item: dict, restaurant_name: str = "") -> str:
+# restaurant name, restaurant cuisine, item name, description, category, menu_type,
+# dietary annotations, and price.
+def _item_text(item: dict, restaurant_name: str = "", restaurant_cuisine: str = "") -> str:
     r_name = restaurant_name or (item.get("restaurant") if isinstance(item.get("restaurant"), str) else "") or item.get("restaurant_name", "")
+    r_cuisine = restaurant_cuisine or item.get("restaurant_cuisine", "") or item.get("cuisine", "")
     parts = []
     if r_name:
         parts.append(r_name)
+    if r_cuisine:
+        parts.append(r_cuisine)
     if item.get("name"):
         parts.append(item["name"])
     if item.get("description"):
@@ -522,11 +618,17 @@ def build_index(
 
     for rid, items in menus.items():
         rest_name = ""
+        rest_cuisine = ""
         if restaurants and rid in restaurants:
-            rest_name = restaurants[rid].get("name", rid) if isinstance(restaurants[rid], dict) else restaurants[rid]
+            r_info = restaurants[rid]
+            if isinstance(r_info, dict):
+                rest_name = r_info.get("name", rid)
+                rest_cuisine = r_info.get("cuisine", "")
+            else:
+                rest_name = r_info
         entries: list[dict] = []
         for item in items:
-            tokens = tokenizer.tokenize(_item_text(item, rest_name))
+            tokens = tokenizer.tokenize(_item_text(item, rest_name, rest_cuisine))
             vecs = [vector_store.lookup(t) for t in tokens]
             # keep only tokens that have representable vectors
             pairs = [(t, v) for t, v in zip(tokens, vecs) if v is not None]
@@ -771,11 +873,17 @@ def build_index_contextual(
         if n % 50 == 0 or n == len(all_rids):
             print(f"\r  {n}/{len(all_rids)} restaurants", end="", flush=True)
         rest_name = ""
+        rest_cuisine = ""
         if restaurants and rid in restaurants:
-            rest_name = restaurants[rid].get("name", rid) if isinstance(restaurants[rid], dict) else restaurants[rid]
+            r_info = restaurants[rid]
+            if isinstance(r_info, dict):
+                rest_name = r_info.get("name", rid)
+                rest_cuisine = r_info.get("cuisine", "")
+            else:
+                rest_name = r_info
         entries: list[dict] = []
         for item in menus[rid]:
-            segments, vecs_matrix = encoder.encode(_item_text(item, rest_name))
+            segments, vecs_matrix = encoder.encode(_item_text(item, rest_name, rest_cuisine))
             for t in set(segments):
                 doc_freq[t] = doc_freq.get(t, 0) + 1
             entries.append({"item": item, "tokens": segments, "vecs": vecs_matrix})

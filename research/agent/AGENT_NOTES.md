@@ -625,3 +625,25 @@ For more details, see https://huggingface.co/docs/huggingface_hub/authentication
 - Eval args: `--engine hybrid --rankings research/agent/runs/qwen2.5-32b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L12-v2 --grade-boost 2.0` | family `llm`
 - ndcg@5 0.8168 | recall@10 0.8011 | mrr 0.8836 | 0.3803 s/query on NVIDIA L4 | efficiency 0.1518 | 206/209 queries judged
 - Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.2766, C03 Attribute / implied meaning 0.3955, C02 Ingredient generalization 0.6028, C08 Dietary constraint / negation 0.605, C12 Burger varieties 0.6545
+
+### Iteration 64: softbm25-conceptnet (SUCCESS)
+- Result: `research/agent/results/softbm25-conceptnet.json` | commit `5a9d6a9` | 45.0s
+- Setup: `mkdir -p /content/scratch && [ -f /content/scratch/numberbatch-en-19.08.txt.gz ] || wget -q -O /content/scratch/numberbatch-en-19.08.txt.gz https://conceptnet.s3.amazonaws.com/downloads/2019/numberbatch/numberbatch-en-19.08.txt.gz`
+- Eval args: `--engine soft_bm25 --vectors /content/scratch/numberbatch-en-19.08.txt.gz` | family `word-vector`
+- ndcg@5 0.5704 | recall@10 0.5279 | mrr 0.7318 | 0.037 s/query on NVIDIA L4 | efficiency 0.1133 | 206/209 queries judged
+- Weakest categories (NDCG@5): C08 Dietary constraint / negation 0.2131, C02 Ingredient generalization 0.2341, C03 Attribute / implied meaning 0.2667, C11 Soup varieties 0.363, C04 Cooking method synonyms 0.4245
+
+### Iteration 64: code change
+**Goal**: Improve `research/search/soft_bm25_search.py` to fix tokenization and indexing bottlenecks in the `word-vector` family:
+1. Fix hyphen and slash handling in `PhraseTokenizer.tokenize`: replace `-` and `/` with spaces before splitting into words (and also split on `-` alongside `_` in `VectorStore.lookup` as a safeguard). Currently `_STRIP` keeps `-`, so hyphenated menu/query words like `gluten-free`, `pan-fried`, `stir-fried`, and `dairy-free` fail to match space-separated `phrase_vocab` entries (`gluten free`), fail direct lookup in ConceptNet (`gluten_free`), and fail `token.split('_')`, dropping them completely.
+2. Add basic singular/plural fallback (using general English inflection rules like `enhanced_text_search.term_variants`) in `PhraseTokenizer.tokenize` (when checking candidate multi-word phrases against `phrase_vocab`, if the exact phrase is not in `phrase_vocab`, check singularized last-word variants so e.g. `fish tacos` matches `fish taco` -> `fish_taco`) and in `VectorStore.lookup` (when a single word has no direct vector in `self._vecs`, try its singular/plural variants before returning `None`).
+3. Filter standard English stop words (`STOP_WORDS` as in `enhanced_text_search.py`, e.g. `a`, `an`, `the`, `and`, `or`, `with`, `in`, `on`, `at`, `to`, `for`, `of`, `by`, `from`, `is`, `are`, `it`, `that`, `this`) from single-word tokens returned by `PhraseTokenizer.tokenize` (keep multi-word `_` phrases, and fall back to keeping raw tokens if a query consists solely of stop words) so stop words do not add noisy soft-TF matches.
+4. Include the restaurant's `cuisine` field in `_item_text(item, restaurant_name, restaurant_cuisine)` in `soft_bm25_search.py` (passing the restaurant's `cuisine` from `restaurants[rid]` in `build_index` and `build_index_contextual`) so Soft-BM25 can match cuisine inference queries (`C01`).
+5. Re-run `softbm25-conceptnet` via `run_experiment` (`--engine soft_bm25 --vectors /content/scratch/numberbatch-en-19.08.txt.gz`) to verify that `word-vector` NDCG@5 improves over 0.5702.
+
+**Summary**: (no summary)
+
+**Files changed**:
+```
+ M research/search/soft_bm25_search.py
+```
