@@ -59,6 +59,16 @@ FAMILY_CHOICES = ["lexical", "word-vector", "bi-encoder", "late-interaction", "c
 TIME_OFFSET = 5.0
 
 
+def gpu_name() -> str:
+    """GPU this run used (first GPU's name from nvidia-smi), or "cpu"."""
+    try:
+        out = subprocess.run(["nvidia-smi", "--query-gpu=name", "--format=csv,noheader"],
+                             capture_output=True, text=True, timeout=20).stdout.strip()
+        return out.splitlines()[0].strip() if out else "cpu"
+    except Exception:
+        return "cpu"
+
+
 def git_commit_sha() -> str | None:
     try:
         return subprocess.run(["git", "-C", str(REPO_ROOT), "rev-parse", "--short", "HEAD"],
@@ -139,13 +149,13 @@ def write_summary(results_dir: Path, out_csv: Path) -> None:
             "name": r.get("name"), "family": r.get("family") or family_of(r.get("eval_args") or [], None),
             "status": r.get("status"),
             **{m: fmt(o.get(m)) for m in METRICS},
-            "sec_per_query": spq, "efficiency": fmt(efficiency(o.get("ndcg@5"), spq)),
+            "sec_per_query": spq, "gpu": r.get("gpu"), "efficiency": fmt(efficiency(o.get("ndcg@5"), spq)),
             "n_queries": o.get("n_queries"), "seconds": r.get("seconds"),
             "git_commit": r.get("git_commit"), "timestamp": r.get("timestamp"),
             "eval_args": " ".join(r.get("eval_args") or []),
         })
     rows.sort(key=lambda r: -(r["ndcg@5"] or -1))
-    fields = ["name", "family", "status", *METRICS, "sec_per_query", "efficiency", "n_queries", "seconds",
+    fields = ["name", "family", "status", *METRICS, "sec_per_query", "gpu", "efficiency", "n_queries", "seconds",
               "git_commit", "timestamp", "eval_args"]
     with open(out_csv, "w", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, fieldnames=fields, lineterminator="\n")
@@ -158,26 +168,26 @@ def write_leaderboard(rows: list[dict], path: Path) -> None:
     def cell(v):
         return "–" if v is None else (f"{v:.4f}" if isinstance(v, float) else str(v))
     lines = ["# Leaderboard", "",
-             "Rebuilt by `run_experiment.py` from `results/`. Seconds per query are measured on the Colab GPU",
-             "and include LLM generation for engines that replay `--rankings`; `–` = run before timing was",
-             "recorded (re-run it).", "",
+             "Rebuilt by `run_experiment.py` from `results/`. Seconds per query include LLM generation for",
+             "engines that replay `--rankings`, and depend on the GPU (column GPU): compare them only between",
+             "runs on the same GPU. `–` = not recorded (re-run it).", "",
              "## Best per method family (by NDCG@5)", "",
-             "| Family | Best experiment | NDCG@5 | Recall@10 | MRR | s/query | Efficiency | Experiments |",
-             "|---|---|---|---|---|---|---|---|"]
+             "| Family | Best experiment | NDCG@5 | Recall@10 | MRR | s/query | GPU | Efficiency | Experiments |",
+             "|---|---|---|---|---|---|---|---|---|"]
     for fam in FAMILY_CHOICES:
         fr = [r for r in rows if r["family"] == fam]
         if not fr:
-            lines.append(f"| {fam} | (none yet) | | | | | | 0 |")
+            lines.append(f"| {fam} | (none yet) | | | | | | | 0 |")
             continue
         b = max(fr, key=lambda r: r["ndcg@5"] or -1)
         lines.append(f"| {fam} | {b['name']} | {cell(b['ndcg@5'])} | {cell(b['recall@10'])} | {cell(b['mrr'])} "
-                     f"| {cell(b['sec_per_query'])} | {cell(b['efficiency'])} | {len(fr)} |")
+                     f"| {cell(b['sec_per_query'])} | {cell(b['gpu'])} | {cell(b['efficiency'])} | {len(fr)} |")
     lines += ["", f"## Efficiency = NDCG@5 / (seconds per query + {TIME_OFFSET:g})", "",
-              "| # | Experiment | Family | Efficiency | NDCG@5 | s/query |", "|---|---|---|---|---|---|"]
+              "| # | Experiment | Family | Efficiency | NDCG@5 | s/query | GPU |", "|---|---|---|---|---|---|---|"]
     ranked = sorted(rows, key=lambda r: -(r["efficiency"] if r["efficiency"] is not None else -1))
     for i, r in enumerate(ranked, 1):
         lines.append(f"| {i} | {r['name']} | {r['family']} | {cell(r['efficiency'])} | {cell(r['ndcg@5'])} "
-                     f"| {cell(r['sec_per_query'])} |")
+                     f"| {cell(r['sec_per_query'])} | {cell(r['gpu'])} |")
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
@@ -193,7 +203,7 @@ def write_notes(notes_file: Path, row: dict) -> None:
         o = row["metrics"]["overall"]
         spq = row["timing"]["seconds_per_query"]
         lines.append("- " + " | ".join(f"{m} {fmt(o.get(m))}" for m in METRICS)
-                     + f" | {spq} s/query | efficiency {fmt(efficiency(o.get('ndcg@5'), spq))}"
+                     + f" | {spq} s/query on {row.get('gpu')} | efficiency {fmt(efficiency(o.get('ndcg@5'), spq))}"
                      + f" | {o.get('n_with_judgments')}/{o.get('n_queries')} queries judged")
         cats = sorted(row["metrics"].get("by_category", {}).items(), key=lambda kv: kv[1].get("ndcg@5", 0))
         lines.append("- Weakest categories (NDCG@5): " + ", ".join(
@@ -238,7 +248,7 @@ def main() -> None:
     row = {
         "name": name, "description": args.description, "status": "SUCCESS",
         "iteration": args.iteration, "timestamp": datetime.now().isoformat(timespec="seconds"),
-        "git_commit": git_commit_sha(), "result_file": result_rel,
+        "git_commit": git_commit_sha(), "gpu": gpu_name(), "result_file": result_rel,
         "family": family_of(eval_args, args.family),
         "setup": args.setup, "eval_args": eval_args, "seconds": None, "timing": None, "metrics": None,
     }
@@ -276,7 +286,7 @@ def main() -> None:
 
     o = (row["metrics"] or {}).get("overall", {})
     with open(args.results_dir / "history.jsonl", "a", encoding="utf-8") as f:
-        f.write(json.dumps({k: row.get(k) for k in ("timestamp", "iteration", "git_commit", "name", "family",
+        f.write(json.dumps({k: row.get(k) for k in ("timestamp", "iteration", "git_commit", "gpu", "name", "family",
                                                      "status", "setup", "eval_args", "seconds")}
                            | {"metrics": {m: fmt(o.get(m)) for m in METRICS} if o else None,
                               "seconds_per_query": (row.get("timing") or {}).get("seconds_per_query")}) + "\n")

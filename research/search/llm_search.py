@@ -157,14 +157,17 @@ def load_llm(
     model_name: str = DEFAULT_MODEL,
     max_model_len: int = 12288,
     gpu_memory_utilization: float = 0.90,
+    dtype: str = "auto",
 ):
-    """vLLM engine with prefix caching (each menu is a shared prompt prefix)."""
+    """vLLM engine with prefix caching (each menu is a shared prompt prefix).
+    dtype: "auto" uses the checkpoint's dtype; pass "half" on GPUs without bf16 (e.g. T4)."""
     from vllm import LLM
     return LLM(
         model=model_name,
         max_model_len=max_model_len,
         gpu_memory_utilization=gpu_memory_utilization,
         enable_prefix_caching=True,
+        dtype=dtype,
     )
 
 
@@ -340,6 +343,8 @@ if __name__ == "__main__":
     parser.add_argument("--max-model-len", type=int, default=12288)
     parser.add_argument("--max-tokens", type=int, default=768, help="Max generated tokens per prompt")
     parser.add_argument("--gpu-memory-utilization", type=float, default=0.90)
+    parser.add_argument("--dtype", default="auto",
+                        help='vLLM weight dtype (default: auto = checkpoint dtype; "half" on GPUs without bf16, e.g. T4)')
     parser.add_argument("--all-restaurants", action="store_true",
                         help="Ad-hoc search over every restaurant in data/menus/, not just the benchmark set")
     args = parser.parse_args()
@@ -350,7 +355,7 @@ if __name__ == "__main__":
     if args.server:
         llm = ServerLLM(args.server, model=args.model)
     else:
-        llm = load_llm(args.model or DEFAULT_MODEL, args.max_model_len, args.gpu_memory_utilization)
+        llm = load_llm(args.model or DEFAULT_MODEL, args.max_model_len, args.gpu_memory_utilization, args.dtype)
     model_name = getattr(llm, "model", None) or args.model or DEFAULT_MODEL
 
     if args.terms:

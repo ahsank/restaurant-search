@@ -61,6 +61,15 @@ returns bad results instantly from ranking first. Timings are from the Colab GPU
 takes ~0.2 s/query, so efficiency barely penalizes it there; the per-family rule is what keeps the
 non-LLM families moving.
 
+## GPU-aware planning
+
+The notebook detects the GPU at the start of each session (`GPU_TIER` in the install cell: `large`
+≥ 40 GB such as G4/A100, `medium` such as L4, `small` such as T4, or `cpu`) and gives both agents the
+matching rules. A large-GPU session is spent on work that needs it (LLM rankings, comparing LLMs,
+fine-tuning); CPU-only work such as keyword-search changes is left for cheaper sessions. A small-GPU
+session doesn't generate LLM rankings above ~3B (Qwen2.5-7B doesn't fit a T4) but can replay existing
+rankings. Each result records its GPU, and timings are compared only between runs on the same GPU.
+
 ## Large artifacts are reproduced, not committed
 
 Model weights, checkpoints, datasets and vector files go to `/content/scratch` or `models/` and are
