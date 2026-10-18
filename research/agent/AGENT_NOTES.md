@@ -647,3 +647,6 @@ For more details, see https://huggingface.co/docs/huggingface_hub/authentication
 ```
  M research/search/soft_bm25_search.py
 ```
+
+### Session Gemini usage
+- gemini-4-argon: 19 requests, 1,040,157 input tokens (796,434 cached), 13,866 output, 79,485 thinking
