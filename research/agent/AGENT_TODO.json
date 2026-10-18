@@ -1,6 +1,15 @@
 {
   "iteration": 62,
-  "pending_tasks": [],
+  "pending_tasks": [
+    {
+      "action": "run_experiment",
+      "family": "bi-encoder",
+      "name": "sbert-mxbai-embed-large",
+      "eval_args": "--engine sbert --model mixedbread-ai/mxbai-embed-large --query-prefix \"Represent this sentence for searching relevant passages: \"",
+      "setup": "",
+      "description": "re-run: the first attempt failed because the notebook split the quoted --query-prefix on spaces (fixed)"
+    }
+  ],
   "completed_tasks": [
     {
       "action": "run_experiment",

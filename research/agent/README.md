@@ -44,6 +44,7 @@ checklist below is how to catch a violation.
 | `LEADERBOARD.md` | `run_experiment.py` | Best experiment per method family, and all experiments ranked by efficiency (below) |
 | `HUMAN_ACTIONS.md` | agents ([`agent_requests.py`](agent_requests.py)) | Requests for you; mark `[x]` done or `[-]` rejected, optionally add `Reply: ...` |
 | `runs/` | experiments | Text outputs worth keeping, e.g. LLM rankings JSONL (replayable with `--engine llm --rankings`) |
+| `token_usage.jsonl` | notebook | One line per session: GPU, minutes, tasks, and Gemini requests and tokens per model (input, cached, output, thinking), to compare the cost of Flash and Pro sessions |
 | `setup_machine.sh` | agents | Idempotent pip installs and downloads that experiments need; the notebook runs it at the start of every session |
 
 ## Method families and efficiency
@@ -60,6 +61,13 @@ counted as free. **Efficiency** = NDCG@5 / (seconds per query + 5); the 5 s offs
 returns bad results instantly from ranking first. Timings are from the Colab GPU, where the LLM reader
 takes ~0.2 s/query, so efficiency barely penalizes it there; the per-family rule is what keeps the
 non-LLM families moving.
+
+## Gemini model
+
+`USE_PRO_MODEL` in the notebook's configuration cell switches both agents from `GEMINI_FLASH_MODEL` to
+`GEMINI_PRO_MODEL` (check the exact Pro name in Google's model list; the notebook stops at startup with
+the available names if it's wrong). Each session's token usage is appended to `token_usage.jsonl` and
+the notes; multiply by Google's per-token prices to compare sessions.
 
 ## GPU-aware planning
 
