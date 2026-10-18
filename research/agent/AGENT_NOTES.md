@@ -522,3 +522,10 @@ current labels, so the agent starts from comparable baselines.
 - Eval args: `--engine crossencoder --model BAAI/bge-reranker-large` | family `cross-encoder`
 - ndcg@5 0.7091 | recall@10 0.6102 | mrr 0.8487 | 0.6188 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.1262 | 206/209 queries judged
 - Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.0365, C03 Attribute / implied meaning 0.3142, C08 Dietary constraint / negation 0.421, C02 Ingredient generalization 0.4575, C09 Synonym / paraphrase 0.5356
+
+### Iteration 55: llm-qwen2.5-14b-instruct (SUCCESS)
+- Result: `research/agent/results/llm-qwen2.5-14b-instruct.json` | commit `d1192ba` | 312.4s
+- Setup: `python research/search/llm_search.py --model Qwen/Qwen2.5-14B-Instruct --out research/agent/runs/qwen2.5-14b-instruct.jsonl`
+- Eval args: `--engine llm --rankings research/agent/runs/qwen2.5-14b-instruct.jsonl` | family `llm`
+- ndcg@5 0.7154 | recall@10 0.777 | mrr 0.7751 | 0.178 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.1382 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.1952, C03 Attribute / implied meaning 0.3228, C04 Cooking method synonyms 0.4696, C18 Chicken dishes 0.4745, C08 Dietary constraint / negation 0.5995

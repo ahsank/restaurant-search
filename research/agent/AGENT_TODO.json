@@ -1,16 +1,6 @@
 {
-  "iteration": 55,
-  "pending_tasks": [
-    {
-      "action": "run_experiment",
-      "family": "llm",
-      "name": "llm-qwen2.5-14b-instruct",
-      "eval_args": "--engine llm --rankings research/agent/runs/qwen2.5-14b-instruct.jsonl",
-      "setup": "python research/search/llm_search.py --model Qwen/Qwen2.5-14B-Instruct --out research/agent/runs/qwen2.5-14b-instruct.jsonl",
-      "description": "Generate and evaluate rankings with Qwen2.5-14B-Instruct on the 96GB GPU to test whether scaling LLM parameters improves complex constraint and ingredient reasoning over Qwen2.5-7B",
-      "reasoning": "We compared cross-encoder results where ms-marco-electra-base led the non-LLM families at NDCG@5=0.6806 but struggled on complex attributes and multi-constraints (C03=0.3010, C10=0.1726), while the LLM reader with Qwen2.5-7B achieved Recall@10=0.7739. Taking advantage of the 96 GB Blackwell GPU, we first evaluate BAAI/bge-reranker-large to test whether a modern 560M-parameter cross-encoder improves non-LLM ranking accuracy over Electra. In parallel, we scale the LLM reader by generating rankings with Qwen/Qwen2.5-14B-Instruct, hypothesizing that doubled model capacity and instruction reasoning will resolve complex constraint queries and yield a superior candidate pool for hybrid search."
-    }
-  ],
+  "iteration": 56,
+  "pending_tasks": [],
   "completed_tasks": [
     {
       "action": "run_experiment",
@@ -468,6 +458,15 @@
       "eval_args": "--engine crossencoder --model BAAI/bge-reranker-large",
       "setup": "",
       "description": "Evaluate cross-encoder with BAAI/bge-reranker-large to test whether a state-of-the-art 560M parameter reranker outperforms ms-marco-electra-base (0.6806)",
+      "reasoning": "We compared cross-encoder results where ms-marco-electra-base led the non-LLM families at NDCG@5=0.6806 but struggled on complex attributes and multi-constraints (C03=0.3010, C10=0.1726), while the LLM reader with Qwen2.5-7B achieved Recall@10=0.7739. Taking advantage of the 96 GB Blackwell GPU, we first evaluate BAAI/bge-reranker-large to test whether a modern 560M-parameter cross-encoder improves non-LLM ranking accuracy over Electra. In parallel, we scale the LLM reader by generating rankings with Qwen/Qwen2.5-14B-Instruct, hypothesizing that doubled model capacity and instruction reasoning will resolve complex constraint queries and yield a superior candidate pool for hybrid search."
+    },
+    {
+      "action": "run_experiment",
+      "family": "llm",
+      "name": "llm-qwen2.5-14b-instruct",
+      "eval_args": "--engine llm --rankings research/agent/runs/qwen2.5-14b-instruct.jsonl",
+      "setup": "python research/search/llm_search.py --model Qwen/Qwen2.5-14B-Instruct --out research/agent/runs/qwen2.5-14b-instruct.jsonl",
+      "description": "Generate and evaluate rankings with Qwen2.5-14B-Instruct on the 96GB GPU to test whether scaling LLM parameters improves complex constraint and ingredient reasoning over Qwen2.5-7B",
       "reasoning": "We compared cross-encoder results where ms-marco-electra-base led the non-LLM families at NDCG@5=0.6806 but struggled on complex attributes and multi-constraints (C03=0.3010, C10=0.1726), while the LLM reader with Qwen2.5-7B achieved Recall@10=0.7739. Taking advantage of the 96 GB Blackwell GPU, we first evaluate BAAI/bge-reranker-large to test whether a modern 560M-parameter cross-encoder improves non-LLM ranking accuracy over Electra. In parallel, we scale the LLM reader by generating rankings with Qwen/Qwen2.5-14B-Instruct, hypothesizing that doubled model capacity and instruction reasoning will resolve complex constraint queries and yield a superior candidate pool for hybrid search."
     }
   ]
