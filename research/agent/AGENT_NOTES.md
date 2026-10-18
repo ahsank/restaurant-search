@@ -613,3 +613,15 @@ If you are trying to access a private or gated repo, make sure you are authentic
 For more details, see https://huggingface.co/docs/huggingface_hub/authentication
 
 ```
+
+### Plan (iteration 63)
+- Hypothesis: In iteration 61, scaling the standalone LLM reader to Qwen2.5-32B-Instruct jumped LLM NDCG@5 from 0.6993 (7B) and 0.7154 (14B) to 0.7538, with major gains on C04 cooking methods (0.7314 vs 0.4696) and C10 multi-constraint queries (0.2850 vs 0.1952), but its rankings have not yet been evaluated in our top-performing hybrid pipeline. Meanwhile, among non-LLM families, `word-vector` (`softbm25-conceptnet`, 0.5702 NDCG@5) has only 1 experiment and suffers from a critical tokenization bug in `soft_bm25_search.py`: `PhraseTokenizer` keeps hyphens (`-`) while ConceptNet keys and `phrase_vocab` use underscores/spaces (`gluten_free` / `gluten free`), and `VectorStore.lookup` only splits on `_`, causing all hyphenated tokens (`gluten-free`, `pan-fried`, `dairy-free`, etc.) to return `None` and be dropped completely (explaining C08 Dietary = 0.1567 and C07 Hyphenation/stop-words = 0.4289). We therefore run the 32B hybrid experiment and fix `soft_bm25_search.py` to properly handle hyphens, stop words, plural phrase variants, and restaurant cuisine metadata.
+- Queued (llm): run_experiment hybrid-qwen2.5-32b-minilm-l12-boost2
+- Queued (word-vector): change_code Improve `research/search/soft_bm25_search.py` to fix tokenization and indexing bottlenecks in the `word-vector` family:
+1. Fix hyphen and slash handli
+
+### Iteration 63: hybrid-qwen2.5-32b-minilm-l12-boost2 (SUCCESS)
+- Result: `research/agent/results/hybrid-qwen2.5-32b-minilm-l12-boost2.json` | commit `00e6411` | 45.6s
+- Eval args: `--engine hybrid --rankings research/agent/runs/qwen2.5-32b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L12-v2 --grade-boost 2.0` | family `llm`
+- ndcg@5 0.8168 | recall@10 0.8011 | mrr 0.8836 | 0.3803 s/query on NVIDIA L4 | efficiency 0.1518 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.2766, C03 Attribute / implied meaning 0.3955, C02 Ingredient generalization 0.6028, C08 Dietary constraint / negation 0.605, C12 Burger varieties 0.6545
