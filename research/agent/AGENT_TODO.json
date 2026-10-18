@@ -1,6 +1,16 @@
 {
-  "iteration": 58,
-  "pending_tasks": [],
+  "iteration": 59,
+  "pending_tasks": [
+    {
+      "action": "run_experiment",
+      "family": "llm",
+      "name": "hybrid-qwen2.5-7b-bge-reranker-large",
+      "eval_args": "--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model BAAI/bge-reranker-large --grade-boost 2.0",
+      "setup": "",
+      "description": "Evaluate hybrid search combining Qwen2.5-7B candidate retrieval with BAAI/bge-reranker-large rescoring and grade-boost 2.0, testing whether a 560M-parameter reranker outperforms ms-marco-MiniLM-L12-v2 (0.8195 NDCG@5).",
+      "reasoning": "Evaluating BAAI/bge-reranker-large previously achieved a non-LLM benchmark record (0.7091 NDCG@5), substantially outperforming ms-marco-MiniLM-L12-v2 (0.6747) and Electra (0.6806). Leveraging our 96 GB Blackwell GPU, we first evaluate the newer BAAI/bge-reranker-v2-m3 (568M params) to test if an updated cross-encoder architecture further advances the non-LLM state of the art. Second, because our current #1 leaderboard engine (hybrid-qwen2.5-7b-minilm-l12-boost2 at 0.8195 NDCG@5) relies on a much smaller 33M-parameter MiniLM reranker, we evaluate a hybrid search coupling Qwen2.5-7B candidate retrieval with BAAI/bge-reranker-large to test if superior cross-encoder scoring precision raises the overall leaderboard ceiling."
+    }
+  ],
   "completed_tasks": [
     {
       "action": "run_experiment",
@@ -486,6 +496,15 @@
       "setup": "",
       "description": "Hybrid search combining Qwen2.5-14B candidate retrieval with ms-marco-MiniLM-L12-v2 reranking and grade boost 2.0",
       "reasoning": "Recent evaluations showed BAAI/bge-reranker-large setting a new non-LLM high of 0.7091 NDCG@5 and Qwen2.5-14B generating candidates with 0.7770 Recall@10. In this plan, we first scale the bi-encoder family by benchmarking BAAI/bge-large-en-v1.5 (335M params) against bge-base-en-v1.5 (0.6359 NDCG@5) to test if larger bi-encoders can close the gap with late-interaction and cross-encoders at near-instant latency. Second, we evaluate a hybrid search pairing the freshly generated Qwen2.5-14B candidate rankings with ms-marco-MiniLM-L12-v2 cross-encoder rescoring and grade-boost 2.0, testing whether superior 14B candidate quality beats the overall leaderboard best (0.8195 NDCG@5)."
+    },
+    {
+      "action": "run_experiment",
+      "family": "cross-encoder",
+      "name": "crossencoder-bge-reranker-v2-m3",
+      "eval_args": "--engine crossencoder --model BAAI/bge-reranker-v2-m3",
+      "setup": "",
+      "description": "Evaluate exhaustive cross-encoder search with BAAI/bge-reranker-v2-m3 (568M params) to compare against bge-reranker-large (0.7091 NDCG@5) for the non-LLM record.",
+      "reasoning": "Evaluating BAAI/bge-reranker-large previously achieved a non-LLM benchmark record (0.7091 NDCG@5), substantially outperforming ms-marco-MiniLM-L12-v2 (0.6747) and Electra (0.6806). Leveraging our 96 GB Blackwell GPU, we first evaluate the newer BAAI/bge-reranker-v2-m3 (568M params) to test if an updated cross-encoder architecture further advances the non-LLM state of the art. Second, because our current #1 leaderboard engine (hybrid-qwen2.5-7b-minilm-l12-boost2 at 0.8195 NDCG@5) relies on a much smaller 33M-parameter MiniLM reranker, we evaluate a hybrid search coupling Qwen2.5-7B candidate retrieval with BAAI/bge-reranker-large to test if superior cross-encoder scoring precision raises the overall leaderboard ceiling."
     }
   ]
 }
