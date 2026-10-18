@@ -10,7 +10,7 @@ runs on the same GPU. `–` = not recorded (re-run it).
 |---|---|---|---|---|---|---|---|---|
 | lexical | baseline-enhanced | 0.5566 | 0.5589 | 0.6050 | 0.0140 | – | 0.1110 | 2 |
 | word-vector | softbm25-conceptnet | 0.5702 | 0.5443 | 0.7326 | 0.0166 | – | 0.1137 | 1 |
-| bi-encoder | sbert-bge-base-en-v1.5 | 0.6359 | 0.5600 | 0.7974 | 0.0044 | – | 0.1271 | 3 |
+| bi-encoder | sbert-bge-base-en-v1.5 | 0.6359 | 0.5600 | 0.7974 | 0.0044 | – | 0.1271 | 4 |
 | late-interaction | colbert-colbertv2.0 | 0.6713 | 0.5840 | 0.8134 | 0.0097 | – | 0.1340 | 1 |
 | cross-encoder | crossencoder-bge-reranker-large | 0.7091 | 0.6102 | 0.8487 | 0.6188 | NVIDIA RTX PRO 6000 Blackwell Server Edition | 0.1262 | 4 |
 | llm | hybrid-qwen2.5-7b-minilm-l12-boost2 | 0.8195 | 0.8427 | 0.8712 | 0.2033 | – | 0.1575 | 8 |
@@ -34,8 +34,9 @@ runs on the same GPU. `–` = not recorded (re-run it).
 | 12 | crossencoder-ms-marco-electra-base | cross-encoder | 0.1287 | 0.6806 | 0.2876 | – |
 | 13 | sbert-bge-base-en-v1.5 | bi-encoder | 0.1271 | 0.6359 | 0.0044 | – |
 | 14 | crossencoder-bge-reranker-large | cross-encoder | 0.1262 | 0.7091 | 0.6188 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 15 | softbm25-conceptnet | word-vector | 0.1137 | 0.5702 | 0.0166 | – |
-| 16 | baseline-enhanced | lexical | 0.1110 | 0.5566 | 0.0140 | – |
-| 17 | sbert-all-mpnet-base-v2 | bi-encoder | 0.1096 | 0.5484 | 0.0048 | – |
-| 18 | sbert-all-MiniLM-L6-v2 | bi-encoder | 0.1048 | 0.5244 | 0.0032 | – |
-| 19 | baseline-text | lexical | 0.0891 | 0.4456 | 0.0003 | – |
+| 15 | sbert-bge-large-en-v1.5 | bi-encoder | 0.1237 | 0.6191 | 0.0072 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 16 | softbm25-conceptnet | word-vector | 0.1137 | 0.5702 | 0.0166 | – |
+| 17 | baseline-enhanced | lexical | 0.1110 | 0.5566 | 0.0140 | – |
+| 18 | sbert-all-mpnet-base-v2 | bi-encoder | 0.1096 | 0.5484 | 0.0048 | – |
+| 19 | sbert-all-MiniLM-L6-v2 | bi-encoder | 0.1048 | 0.5244 | 0.0032 | – |
+| 20 | baseline-text | lexical | 0.0891 | 0.4456 | 0.0003 | – |

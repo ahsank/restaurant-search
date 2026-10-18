@@ -1,6 +1,16 @@
 {
-  "iteration": 56,
-  "pending_tasks": [],
+  "iteration": 57,
+  "pending_tasks": [
+    {
+      "action": "run_experiment",
+      "family": "llm",
+      "name": "hybrid-qwen2.5-14b-minilm-l12-boost2",
+      "eval_args": "--engine hybrid --rankings research/agent/runs/qwen2.5-14b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L12-v2 --grade-boost 2.0",
+      "setup": "",
+      "description": "Hybrid search combining Qwen2.5-14B candidate retrieval with ms-marco-MiniLM-L12-v2 reranking and grade boost 2.0",
+      "reasoning": "Recent evaluations showed BAAI/bge-reranker-large setting a new non-LLM high of 0.7091 NDCG@5 and Qwen2.5-14B generating candidates with 0.7770 Recall@10. In this plan, we first scale the bi-encoder family by benchmarking BAAI/bge-large-en-v1.5 (335M params) against bge-base-en-v1.5 (0.6359 NDCG@5) to test if larger bi-encoders can close the gap with late-interaction and cross-encoders at near-instant latency. Second, we evaluate a hybrid search pairing the freshly generated Qwen2.5-14B candidate rankings with ms-marco-MiniLM-L12-v2 cross-encoder rescoring and grade-boost 2.0, testing whether superior 14B candidate quality beats the overall leaderboard best (0.8195 NDCG@5)."
+    }
+  ],
   "completed_tasks": [
     {
       "action": "run_experiment",
@@ -468,6 +478,15 @@
       "setup": "python research/search/llm_search.py --model Qwen/Qwen2.5-14B-Instruct --out research/agent/runs/qwen2.5-14b-instruct.jsonl",
       "description": "Generate and evaluate rankings with Qwen2.5-14B-Instruct on the 96GB GPU to test whether scaling LLM parameters improves complex constraint and ingredient reasoning over Qwen2.5-7B",
       "reasoning": "We compared cross-encoder results where ms-marco-electra-base led the non-LLM families at NDCG@5=0.6806 but struggled on complex attributes and multi-constraints (C03=0.3010, C10=0.1726), while the LLM reader with Qwen2.5-7B achieved Recall@10=0.7739. Taking advantage of the 96 GB Blackwell GPU, we first evaluate BAAI/bge-reranker-large to test whether a modern 560M-parameter cross-encoder improves non-LLM ranking accuracy over Electra. In parallel, we scale the LLM reader by generating rankings with Qwen/Qwen2.5-14B-Instruct, hypothesizing that doubled model capacity and instruction reasoning will resolve complex constraint queries and yield a superior candidate pool for hybrid search."
+    },
+    {
+      "action": "run_experiment",
+      "family": "bi-encoder",
+      "name": "sbert-bge-large-en-v1.5",
+      "eval_args": "--engine sbert --model BAAI/bge-large-en-v1.5",
+      "setup": "",
+      "description": "SBERT bi-encoder retrieval using 335M-parameter BAAI/bge-large-en-v1.5 with auto-enabled query instruction prefix",
+      "reasoning": "Recent evaluations showed BAAI/bge-reranker-large setting a new non-LLM high of 0.7091 NDCG@5 and Qwen2.5-14B generating candidates with 0.7770 Recall@10. In this plan, we first scale the bi-encoder family by benchmarking BAAI/bge-large-en-v1.5 (335M params) against bge-base-en-v1.5 (0.6359 NDCG@5) to test if larger bi-encoders can close the gap with late-interaction and cross-encoders at near-instant latency. Second, we evaluate a hybrid search pairing the freshly generated Qwen2.5-14B candidate rankings with ms-marco-MiniLM-L12-v2 cross-encoder rescoring and grade-boost 2.0, testing whether superior 14B candidate quality beats the overall leaderboard best (0.8195 NDCG@5)."
     }
   ]
 }

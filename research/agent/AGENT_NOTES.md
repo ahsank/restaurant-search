@@ -529,3 +529,14 @@ current labels, so the agent starts from comparable baselines.
 - Eval args: `--engine llm --rankings research/agent/runs/qwen2.5-14b-instruct.jsonl` | family `llm`
 - ndcg@5 0.7154 | recall@10 0.777 | mrr 0.7751 | 0.178 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.1382 | 206/209 queries judged
 - Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.1952, C03 Attribute / implied meaning 0.3228, C04 Cooking method synonyms 0.4696, C18 Chicken dishes 0.4745, C08 Dietary constraint / negation 0.5995
+
+### Plan (iteration 56)
+- Hypothesis: Recent evaluations showed BAAI/bge-reranker-large setting a new non-LLM high of 0.7091 NDCG@5 and Qwen2.5-14B generating candidates with 0.7770 Recall@10. In this plan, we first scale the bi-encoder family by benchmarking BAAI/bge-large-en-v1.5 (335M params) against bge-base-en-v1.5 (0.6359 NDCG@5) to test if larger bi-encoders can close the gap with late-interaction and cross-encoders at near-instant latency. Second, we evaluate a hybrid search pairing the freshly generated Qwen2.5-14B candidate rankings with ms-marco-MiniLM-L12-v2 cross-encoder rescoring and grade-boost 2.0, testing whether superior 14B candidate quality beats the overall leaderboard best (0.8195 NDCG@5).
+- Queued (bi-encoder): run_experiment sbert-bge-large-en-v1.5
+- Queued (llm): run_experiment hybrid-qwen2.5-14b-minilm-l12-boost2
+
+### Iteration 56: sbert-bge-large-en-v1.5 (SUCCESS)
+- Result: `research/agent/results/sbert-bge-large-en-v1.5.json` | commit `6918681` | 20.1s
+- Eval args: `--engine sbert --model BAAI/bge-large-en-v1.5` | family `bi-encoder`
+- ndcg@5 0.6191 | recall@10 0.5516 | mrr 0.7945 | 0.0072 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.1237 | 206/209 queries judged
+- Weakest categories (NDCG@5): C03 Attribute / implied meaning 0.2783, C18 Chicken dishes 0.298, C02 Ingredient generalization 0.3028, C13 Taco varieties 0.4246, C04 Cooking method synonyms 0.436
