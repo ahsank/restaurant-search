@@ -1,15 +1,6 @@
 {
-  "iteration": 62,
-  "pending_tasks": [
-    {
-      "action": "run_experiment",
-      "family": "bi-encoder",
-      "name": "sbert-mxbai-embed-large",
-      "eval_args": "--engine sbert --model mixedbread-ai/mxbai-embed-large --query-prefix \"Represent this sentence for searching relevant passages: \"",
-      "setup": "",
-      "description": "re-run: the first attempt failed because the notebook split the quoted --query-prefix on spaces (fixed)"
-    }
-  ],
+  "iteration": 63,
+  "pending_tasks": [],
   "completed_tasks": [
     {
       "action": "run_experiment",
@@ -531,6 +522,14 @@
       "eval_args": "--engine llm --rankings research/agent/runs/qwen2.5-32b-instruct.jsonl",
       "description": "Generate and benchmark LLM reader rankings with Qwen/Qwen2.5-32B-Instruct in bf16 on the 96 GB Blackwell GPU to test whether 32B model capacity improves difficult compositional (C10) and attribute (C03) queries.",
       "reasoning": "Recent evaluations established BAAI/bge-reranker-v2-m3 as the non-LLM record (0.7242 NDCG@5) while scaling LLMs from 7B to 14B showed big gains in easy categories and exact dish retrieval, but complex compositional (C10) and implied attribute (C03) queries remain the primary bottleneck. Taking full advantage of our 96 GB Blackwell GPU, we first evaluate mixedbread-ai/mxbai-embed-large (335M parameters with query instruction prefix) to test whether modern SOTA retrieval bi-encoders can surpass bge-base (0.6359) at sub-10ms latency. Second, we scale the LLM reader to Qwen/Qwen2.5-32B-Instruct in bf16, testing whether 32B reasoning capacity and instruction adherence resolve difficult multi-constraint queries and provide stronger candidate rankings for hybrid search."
+    },
+    {
+      "action": "run_experiment",
+      "family": "bi-encoder",
+      "name": "sbert-mxbai-embed-large",
+      "eval_args": "--engine sbert --model mixedbread-ai/mxbai-embed-large --query-prefix \"Represent this sentence for searching relevant passages: \"",
+      "setup": "",
+      "description": "re-run: the first attempt failed because the notebook split the quoted --query-prefix on spaces (fixed)"
     }
   ]
 }

@@ -1,11 +1,11 @@
 {
   "name": "sbert-mxbai-embed-large",
-  "description": "Benchmark mixedbread-ai/mxbai-embed-large (335M params) with query retrieval prefix to test whether SOTA retrieval bi-encoders beat bge-base (0.6359 NDCG@5) at sub-10ms latency.",
+  "description": "re-run: the first attempt failed because the notebook split the quoted --query-prefix on spaces (fixed)",
   "status": "EVAL_FAILED",
-  "iteration": 60,
-  "timestamp": "2026-10-18T16:47:05",
-  "git_commit": "445801c",
-  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+  "iteration": 62,
+  "timestamp": "2026-10-18T17:08:45",
+  "git_commit": "07c69b7",
+  "gpu": "NVIDIA L4",
   "result_file": "research/agent/results/sbert-mxbai-embed-large.json",
   "family": "bi-encoder",
   "setup": null,
@@ -15,18 +15,11 @@
     "--model",
     "mixedbread-ai/mxbai-embed-large",
     "--query-prefix",
-    "\"Represent",
-    "this",
-    "sentence",
-    "for",
-    "searching",
-    "relevant",
-    "passages:",
-    "\""
+    "Represent this sentence for searching relevant passages: "
   ],
-  "seconds": 5.2,
+  "seconds": 24.3,
   "timing": null,
   "metrics": null,
-  "eval_seconds": 5.2,
-  "error": "Exit code 2\n\n--- STDERR ---\nusage: evaluate.py [-h]\n                   [--engine {text,enhanced,filtered,soft_bm25,sbert,colbert,crossencoder,llm,hybrid}]\n                   [--model MODEL] [--query-prefix QUERY_PREFIX]\n                   [--category CATEGORY] [--difficulty {Easy,Medium,Hard}]\n                   [--query-ids-file QUERY_IDS_FILE]\n                   [--save-metrics SAVE_METRICS]\n                   [--exclude-query-ids-file EXCLUDE_QUERY_IDS_FILE]\n                   [--verbose]\nevaluate.py: error: unrecognized arguments: this sentence for searching relevant passages: \"\n"
+  "eval_seconds": 24.3,
+  "error": "Exit code 1\nh/search/engines.py\", line 174, in build_search_fn\n    _sbert_model = SentenceTransformer(args.model)\n  File \"/usr/local/lib/python3.13/dist-packages/sentence_transformers/util/decorators.py\", line 41, in wrapper\n    return func(*args, **kwargs)\n  File \"/usr/local/lib/python3.13/dist-packages/sentence_transformers/sentence_transformer/model.py\", line 188, in __init__\n    super().__init__(\n    ~~~~~~~~~~~~~~~~^\n        model_name_or_path=model_name_or_path,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    ...<13 lines>...\n        default_prompt_name=default_prompt_name,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/usr/local/lib/python3.13/dist-packages/sentence_transformers/base/model.py\", line 222, in __init__\n    modules, self.module_kwargs = self._load_modules(\n                                  ~~~~~~~~~~~~~~~~~~^\n        model_name_or_path,\n        ^^^^^^^^^^^^^^^^^^^\n    ...<7 lines>...\n        config_kwargs=config_kwargs,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/usr/local/lib/python3.13/dist-packages/sentence_transformers/base/model.py\", line 1002, in _load_modules\n    modules_json_path = load_file_path(\n        model_name_or_path,\n    ...<4 lines>...\n        local_files_only=local_files_only,\n    )\n  File \"/usr/local/lib/python3.13/dist-packages/sentence_transformers/util/file_io.py\", line 116, in load_file_path\n    return hf_hub_download(\n        model_name_or_path,\n    ...<6 lines>...\n        local_files_only=local_files_only,\n    )\n  File \"/usr/local/lib/python3.13/dist-packages/huggingface_hub/utils/_validators.py\", line 89, in _inner_fn\n    return fn(*args, **kwargs)\n  File \"/usr/local/lib/python3.13/dist-packages/huggingface_hub/utils/_http.py\", line 266, in _inner\n    return fn(*args, **kwargs)\n  File \"/usr/local/lib/python3.13/dist-packages/huggingface_hub/file_download.py\", line 1047, in hf_hub_download\n    return _hf_hub_download_to_cache_dir(\n        # Destination\n    ...<15 lines>...\n        dry_run=dry_run,\n    )\n  File \"/usr/local/lib/python3.13/dist-packages/huggingface_hub/file_download.py\", line 1194, in _hf_hub_download_to_cache_dir\n    _raise_on_head_call_error(head_call_error, force_download, local_files_only)\n    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/dist-packages/huggingface_hub/file_download.py\", line 1953, in _raise_on_head_call_error\n    raise head_call_error\nhuggingface_hub.errors.RepositoryNotFoundError: 404 Client Error. (Request ID: Root=1-6ad4fd32-4b03fd7b357991b20596074d;33c1afca-92c3-40fe-bb16-42593d04bf82)\n\nRepository Not Found for url: https://huggingface.co/mixedbread-ai/mxbai-embed-large/resolve/main/modules.json.\nPlease make sure you specified the correct `repo_id` and `repo_type`.\nIf you are trying to access a private or gated repo, make sure you are authenticated and your token has the required permissions.\nFor more details, see https://huggingface.co/docs/huggingface_hub/authentication\n"
 }

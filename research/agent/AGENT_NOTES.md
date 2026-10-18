@@ -595,3 +595,21 @@ evaluate.py: error: unrecognized arguments: this sentence for searching relevant
 - Eval args: `--engine llm --rankings research/agent/runs/qwen2.5-32b-instruct.jsonl` | family `llm`
 - ndcg@5 0.7538 | recall@10 0.7682 | mrr 0.8066 | 0.3292 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.1414 | 206/209 queries judged
 - Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.285, C03 Attribute / implied meaning 0.3744, C02 Ingredient generalization 0.6206, C01 Cuisine type inference 0.6228, C08 Dietary constraint / negation 0.6448
+
+### Iteration 62: sbert-mxbai-embed-large (EVAL_FAILED)
+- Result: `research/agent/results/sbert-mxbai-embed-large.json` | commit `07c69b7` | 24.3s
+- Eval args: `--engine sbert --model mixedbread-ai/mxbai-embed-large --query-prefix Represent this sentence for searching relevant passages: ` | family `bi-encoder`
+- Error:
+```
+local_files_only)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/huggingface_hub/file_download.py", line 1953, in _raise_on_head_call_error
+    raise head_call_error
+huggingface_hub.errors.RepositoryNotFoundError: 404 Client Error. (Request ID: Root=1-6ad4fd32-4b03fd7b357991b20596074d;33c1afca-92c3-40fe-bb16-42593d04bf82)
+
+Repository Not Found for url: https://huggingface.co/mixedbread-ai/mxbai-embed-large/resolve/main/modules.json.
+Please make sure you specified the correct `repo_id` and `repo_type`.
+If you are trying to access a private or gated repo, make sure you are authenticated and your token has the required permissions.
+For more details, see https://huggingface.co/docs/huggingface_hub/authentication
+
+```
