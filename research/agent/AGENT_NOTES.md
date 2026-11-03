@@ -766,3 +766,6 @@ ModuleNotFoundError: Could not import module 'TrainerCallback'. Are this object'
 - Eval args: `--engine hybrid --rankings research/agent/runs/qwen2.5-32b-instruct.jsonl --model BAAI/bge-reranker-v2-m3 --grade-boost 2.0` | family `llm`
 - ndcg@5 0.8204 | recall@10 0.7937 | mrr 0.8892 | 1.6113 s/query on Tesla T4 | efficiency 0.1241 | 206/209 queries judged
 - Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.1504, C03 Attribute / implied meaning 0.4498, C01 Cuisine type inference 0.6493, C12 Burger varieties 0.6525, C02 Ingredient generalization 0.6759
+
+### Session Gemini usage
+- gemini-3.8-flash: 60 requests, 2,136,009 input tokens (1,916,104 cached), 6,115 output, 22,431 thinking
