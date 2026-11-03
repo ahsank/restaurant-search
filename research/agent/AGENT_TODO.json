@@ -1,15 +1,6 @@
 {
-  "iteration": 65,
-  "pending_tasks": [
-    {
-      "action": "run_experiment",
-      "family": "bi-encoder",
-      "name": "sbert-mxbai-embed-large",
-      "eval_args": "--engine sbert --model mixedbread-ai/mxbai-embed-large-v1 --query-prefix \"Represent this sentence for searching relevant passages: \"",
-      "setup": "",
-      "description": "re-run with the correct Hugging Face id (mxbai-embed-large-v1); the previous attempt used a non-existent repo name"
-    }
-  ],
+  "iteration": 66,
+  "pending_tasks": [],
   "completed_tasks": [
     {
       "action": "run_experiment",
@@ -559,6 +550,14 @@
         "research/agent/results/softbm25-conceptnet.json"
       ],
       "reasoning": "In iteration 61, scaling the standalone LLM reader to Qwen2.5-32B-Instruct jumped LLM NDCG@5 from 0.6993 (7B) and 0.7154 (14B) to 0.7538, with major gains on C04 cooking methods (0.7314 vs 0.4696) and C10 multi-constraint queries (0.2850 vs 0.1952), but its rankings have not yet been evaluated in our top-performing hybrid pipeline. Meanwhile, among non-LLM families, `word-vector` (`softbm25-conceptnet`, 0.5702 NDCG@5) has only 1 experiment and suffers from a critical tokenization bug in `soft_bm25_search.py`: `PhraseTokenizer` keeps hyphens (`-`) while ConceptNet keys and `phrase_vocab` use underscores/spaces (`gluten_free` / `gluten free`), and `VectorStore.lookup` only splits on `_`, causing all hyphenated tokens (`gluten-free`, `pan-fried`, `dairy-free`, etc.) to return `None` and be dropped completely (explaining C08 Dietary = 0.1567 and C07 Hyphenation/stop-words = 0.4289). We therefore run the 32B hybrid experiment and fix `soft_bm25_search.py` to properly handle hyphens, stop words, plural phrase variants, and restaurant cuisine metadata."
+    },
+    {
+      "action": "run_experiment",
+      "family": "bi-encoder",
+      "name": "sbert-mxbai-embed-large",
+      "eval_args": "--engine sbert --model mixedbread-ai/mxbai-embed-large-v1 --query-prefix \"Represent this sentence for searching relevant passages: \"",
+      "setup": "",
+      "description": "re-run with the correct Hugging Face id (mxbai-embed-large-v1); the previous attempt used a non-existent repo name"
     }
   ]
 }

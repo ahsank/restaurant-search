@@ -650,3 +650,9 @@ For more details, see https://huggingface.co/docs/huggingface_hub/authentication
 
 ### Session Gemini usage
 - gemini-4-argon: 19 requests, 1,040,157 input tokens (796,434 cached), 13,866 output, 79,485 thinking
+
+### Iteration 65: sbert-mxbai-embed-large (SUCCESS)
+- Result: `research/agent/results/sbert-mxbai-embed-large.json` | commit `e722ef8` | 48.5s
+- Eval args: `--engine sbert --model mixedbread-ai/mxbai-embed-large-v1 --query-prefix Represent this sentence for searching relevant passages: ` | family `bi-encoder`
+- ndcg@5 0.6278 | recall@10 0.5389 | mrr 0.7998 | 0.0271 s/query on NVIDIA L4 | efficiency 0.1249 | 206/209 queries judged
+- Weakest categories (NDCG@5): C03 Attribute / implied meaning 0.2982, C02 Ingredient generalization 0.3454, C18 Chicken dishes 0.3479, C13 Taco varieties 0.4357, C04 Cooking method synonyms 0.4832

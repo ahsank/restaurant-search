@@ -1,10 +1,10 @@
 {
   "name": "sbert-mxbai-embed-large",
-  "description": "re-run: the first attempt failed because the notebook split the quoted --query-prefix on spaces (fixed)",
-  "status": "EVAL_FAILED",
-  "iteration": 62,
-  "timestamp": "2026-10-18T17:08:45",
-  "git_commit": "07c69b7",
+  "description": "re-run with the correct Hugging Face id (mxbai-embed-large-v1); the previous attempt used a non-existent repo name",
+  "status": "SUCCESS",
+  "iteration": 65,
+  "timestamp": "2026-11-03T02:15:39",
+  "git_commit": "e722ef8",
   "gpu": "NVIDIA L4",
   "result_file": "research/agent/results/sbert-mxbai-embed-large.json",
   "family": "bi-encoder",
@@ -13,13 +13,221 @@
     "--engine",
     "sbert",
     "--model",
-    "mixedbread-ai/mxbai-embed-large",
+    "mixedbread-ai/mxbai-embed-large-v1",
     "--query-prefix",
     "Represent this sentence for searching relevant passages: "
   ],
-  "seconds": 24.3,
-  "timing": null,
-  "metrics": null,
-  "eval_seconds": 24.3,
-  "error": "Exit code 1\nh/search/engines.py\", line 174, in build_search_fn\n    _sbert_model = SentenceTransformer(args.model)\n  File \"/usr/local/lib/python3.13/dist-packages/sentence_transformers/util/decorators.py\", line 41, in wrapper\n    return func(*args, **kwargs)\n  File \"/usr/local/lib/python3.13/dist-packages/sentence_transformers/sentence_transformer/model.py\", line 188, in __init__\n    super().__init__(\n    ~~~~~~~~~~~~~~~~^\n        model_name_or_path=model_name_or_path,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    ...<13 lines>...\n        default_prompt_name=default_prompt_name,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/usr/local/lib/python3.13/dist-packages/sentence_transformers/base/model.py\", line 222, in __init__\n    modules, self.module_kwargs = self._load_modules(\n                                  ~~~~~~~~~~~~~~~~~~^\n        model_name_or_path,\n        ^^^^^^^^^^^^^^^^^^^\n    ...<7 lines>...\n        config_kwargs=config_kwargs,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/usr/local/lib/python3.13/dist-packages/sentence_transformers/base/model.py\", line 1002, in _load_modules\n    modules_json_path = load_file_path(\n        model_name_or_path,\n    ...<4 lines>...\n        local_files_only=local_files_only,\n    )\n  File \"/usr/local/lib/python3.13/dist-packages/sentence_transformers/util/file_io.py\", line 116, in load_file_path\n    return hf_hub_download(\n        model_name_or_path,\n    ...<6 lines>...\n        local_files_only=local_files_only,\n    )\n  File \"/usr/local/lib/python3.13/dist-packages/huggingface_hub/utils/_validators.py\", line 89, in _inner_fn\n    return fn(*args, **kwargs)\n  File \"/usr/local/lib/python3.13/dist-packages/huggingface_hub/utils/_http.py\", line 266, in _inner\n    return fn(*args, **kwargs)\n  File \"/usr/local/lib/python3.13/dist-packages/huggingface_hub/file_download.py\", line 1047, in hf_hub_download\n    return _hf_hub_download_to_cache_dir(\n        # Destination\n    ...<15 lines>...\n        dry_run=dry_run,\n    )\n  File \"/usr/local/lib/python3.13/dist-packages/huggingface_hub/file_download.py\", line 1194, in _hf_hub_download_to_cache_dir\n    _raise_on_head_call_error(head_call_error, force_download, local_files_only)\n    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/dist-packages/huggingface_hub/file_download.py\", line 1953, in _raise_on_head_call_error\n    raise head_call_error\nhuggingface_hub.errors.RepositoryNotFoundError: 404 Client Error. (Request ID: Root=1-6ad4fd32-4b03fd7b357991b20596074d;33c1afca-92c3-40fe-bb16-42593d04bf82)\n\nRepository Not Found for url: https://huggingface.co/mixedbread-ai/mxbai-embed-large/resolve/main/modules.json.\nPlease make sure you specified the correct `repo_id` and `repo_type`.\nIf you are trying to access a private or gated repo, make sure you are authenticated and your token has the required permissions.\nFor more details, see https://huggingface.co/docs/huggingface_hub/authentication\n"
+  "seconds": 48.5,
+  "timing": {
+    "seconds_per_query": 0.0271,
+    "search_seconds_per_query": 0.0271,
+    "rankings_generation_seconds_per_query": 0.0
+  },
+  "metrics": {
+    "overall": {
+      "ndcg@5": 0.6277895755676747,
+      "recall@10": 0.5388990948081364,
+      "mrr": 0.7997755041026028,
+      "n_queries": 209,
+      "n_with_judgments": 206
+    },
+    "by_category": {
+      "C01": {
+        "name": "Cuisine type inference",
+        "n_queries": 8,
+        "ndcg@5": 0.6259289545206478,
+        "recall@10": 0.357863896546761,
+        "mrr": 0.875
+      },
+      "C02": {
+        "name": "Ingredient generalization",
+        "n_queries": 10,
+        "ndcg@5": 0.3454349229458715,
+        "recall@10": 0.2650532915360502,
+        "mrr": 0.4742002442002442
+      },
+      "C03": {
+        "name": "Attribute / implied meaning",
+        "n_queries": 12,
+        "ndcg@5": 0.29815567958353506,
+        "recall@10": 0.21609646273968522,
+        "mrr": 0.5940668567807351
+      },
+      "C04": {
+        "name": "Cooking method synonyms",
+        "n_queries": 10,
+        "ndcg@5": 0.483234036059635,
+        "recall@10": 0.393821267802246,
+        "mrr": 0.7795138888888888
+      },
+      "C05": {
+        "name": "Spelling variations",
+        "n_queries": 15,
+        "ndcg@5": 0.6380253068160379,
+        "recall@10": 0.7295238095238096,
+        "mrr": 0.7253453453453453
+      },
+      "C06": {
+        "name": "Stemming & lemmatization",
+        "n_queries": 10,
+        "ndcg@5": 0.5854186849602911,
+        "recall@10": 0.6449084249084249,
+        "mrr": 0.76875
+      },
+      "C07": {
+        "name": "Hyphenation / spacing / stop words",
+        "n_queries": 14,
+        "ndcg@5": 0.6144922860444845,
+        "recall@10": 0.5677655677655677,
+        "mrr": 0.7574786324786326
+      },
+      "C08": {
+        "name": "Dietary constraint / negation",
+        "n_queries": 10,
+        "ndcg@5": 0.5542415522467743,
+        "recall@10": 0.39488155430184413,
+        "mrr": 0.8240740740740741
+      },
+      "C09": {
+        "name": "Synonym / paraphrase",
+        "n_queries": 10,
+        "ndcg@5": 0.6244375048840392,
+        "recall@10": 0.4582323232323232,
+        "mrr": 0.9015873015873016
+      },
+      "C10": {
+        "name": "Multi-constraint compositional",
+        "n_queries": 2,
+        "ndcg@5": 0.5610779250373488,
+        "recall@10": 0.4342105263157895,
+        "mrr": 0.6666666666666666
+      },
+      "C11": {
+        "name": "Soup varieties",
+        "n_queries": 7,
+        "ndcg@5": 0.6977024749456421,
+        "recall@10": 0.5887804397121167,
+        "mrr": 0.8571428571428571
+      },
+      "C12": {
+        "name": "Burger varieties",
+        "n_queries": 6,
+        "ndcg@5": 0.9257158820197678,
+        "recall@10": 1.0,
+        "mrr": 1.0
+      },
+      "C13": {
+        "name": "Taco varieties",
+        "n_queries": 8,
+        "ndcg@5": 0.4356929578337585,
+        "recall@10": 0.48333333333333334,
+        "mrr": 0.6011904761904762
+      },
+      "C14": {
+        "name": "Pasta varieties",
+        "n_queries": 8,
+        "ndcg@5": 0.7067451972067418,
+        "recall@10": 0.5323343830965782,
+        "mrr": 0.9166666666666666
+      },
+      "C15": {
+        "name": "Sandwich varieties",
+        "n_queries": 7,
+        "ndcg@5": 0.7794529516439105,
+        "recall@10": 0.6450014788524105,
+        "mrr": 0.9285714285714286
+      },
+      "C16": {
+        "name": "Salad varieties",
+        "n_queries": 7,
+        "ndcg@5": 0.757266909636992,
+        "recall@10": 0.733534322820037,
+        "mrr": 0.8571428571428571
+      },
+      "C17": {
+        "name": "Dessert varieties",
+        "n_queries": 8,
+        "ndcg@5": 0.9556804313800163,
+        "recall@10": 0.8920454545454546,
+        "mrr": 1.0
+      },
+      "C18": {
+        "name": "Chicken dishes",
+        "n_queries": 6,
+        "ndcg@5": 0.34789558057288694,
+        "recall@10": 0.23296296296296296,
+        "mrr": 0.4782163742690058
+      },
+      "C19": {
+        "name": "Beef dishes",
+        "n_queries": 6,
+        "ndcg@5": 0.6372615172924702,
+        "recall@10": 0.4965143235635039,
+        "mrr": 0.7708333333333334
+      },
+      "C20": {
+        "name": "Pork dishes",
+        "n_queries": 6,
+        "ndcg@5": 0.48350834214456656,
+        "recall@10": 0.3669753086419753,
+        "mrr": 0.6091269841269841
+      },
+      "C21": {
+        "name": "Seafood dishes",
+        "n_queries": 9,
+        "ndcg@5": 0.8128158741706923,
+        "recall@10": 0.5005155338488672,
+        "mrr": 0.925925925925926
+      },
+      "C22": {
+        "name": "Ingredient focus",
+        "n_queries": 13,
+        "ndcg@5": 0.7576722754686293,
+        "recall@10": 0.6382687487950646,
+        "mrr": 1.0
+      },
+      "C23": {
+        "name": "Typical dish names",
+        "n_queries": 12,
+        "ndcg@5": 0.7084695667954629,
+        "recall@10": 0.6767399267399267,
+        "mrr": 0.8819444444444445
+      },
+      "C24": {
+        "name": "Pizza varieties",
+        "n_queries": 3,
+        "ndcg@5": 0.9556956695617673,
+        "recall@10": 0.8888888888888888,
+        "mrr": 1.0
+      },
+      "C25": {
+        "name": "Occasion / meal-time",
+        "n_queries": 2,
+        "ndcg@5": 0.8554853481239505,
+        "recall@10": 0.10469508904479223,
+        "mrr": 1.0
+      }
+    },
+    "by_difficulty": {
+      "Easy": {
+        "n_queries": 125,
+        "ndcg@5": 0.7027800841045774,
+        "recall@10": 0.606204335749006,
+        "mrr": 0.8481429580534844
+      },
+      "Medium": {
+        "n_queries": 55,
+        "ndcg@5": 0.5613243250409305,
+        "recall@10": 0.49262852564771126,
+        "mrr": 0.7866078366078365
+      },
+      "Hard": {
+        "n_queries": 29,
+        "ndcg@5": 0.40785785294683224,
+        "recall@10": 0.3131962558163931,
+        "mrr": 0.595094349039216
+      }
+    }
+  },
+  "eval_seconds": 48.5
 }
