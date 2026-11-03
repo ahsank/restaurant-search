@@ -735,3 +735,6 @@ ormers/base/__init__.py", line 4, in <module>
 ModuleNotFoundError: Could not import module 'TrainerCallback'. Are this object's requirements defined correctly?
 
 ```
+
+### Session Gemini usage
+- gemini-3.8-flash: 25 requests, 1,385,532 input tokens (1,201,106 cached), 1,334 output, 20,378 thinking
