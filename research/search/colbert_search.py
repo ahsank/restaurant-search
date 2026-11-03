@@ -62,13 +62,16 @@ def cli_args() -> argparse.ArgumentParser:
     return parser
 
 
-# ── text field selection (matches hybrid_search.py — restaurant name, name, description, category, menu type, dietary, price) ──
+# ── text field selection (matches soft_bm25_search.py — restaurant name, cuisine, name, description, category, menu type, dietary, price) ──
 
-def _item_text(item: dict, restaurant_name: str = "") -> str:
+def _item_text(item: dict, restaurant_name: str = "", restaurant_cuisine: str = "") -> str:
     r_name = restaurant_name or (item.get("restaurant") if isinstance(item.get("restaurant"), str) else "") or item.get("restaurant_name", "")
+    r_cuisine = restaurant_cuisine or item.get("restaurant_cuisine", "") or item.get("cuisine", "")
     parts = []
     if r_name:
         parts.append(r_name)
+    if r_cuisine:
+        parts.append(r_cuisine)
     if item.get("name"):
         parts.append(item["name"])
     if item.get("description"):
@@ -82,6 +85,9 @@ def _item_text(item: dict, restaurant_name: str = "") -> str:
     if item.get("price_raw"):
         parts.append(item["price_raw"])
     return ". ".join(p for p in parts if p)
+
+
+item_text = _item_text
 
 
 # ── index ─────────────────────────────────────────────────────────────────────
@@ -104,8 +110,9 @@ def build_index(
 
     for rid, items in menus.items():
         rest_name = restaurants.get(rid, {}).get("name", rid) if isinstance(restaurants.get(rid), dict) else rid
+        rest_cuisine = restaurants[rid].get("cuisine", "") if isinstance(restaurants.get(rid), dict) else ""
         for item in items:
-            all_texts.append(_item_text(item, rest_name))
+            all_texts.append(_item_text(item, rest_name, rest_cuisine))
             all_meta.append((rid, item))
 
     # Encode in batches — returns list[np.ndarray], one matrix per item

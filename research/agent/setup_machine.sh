@@ -12,6 +12,9 @@ mkdir -p "$SCRATCH_DIR"
 
 # --- packages ------------------------------------------------------------------------
 # e.g. pip install -q rank-bm25
+pip install -q accelerate
+# Mismatched torchaudio/torchvision breaks transformers imports on PyTorch with CUDA 13.0
+pip uninstall -y torchaudio torchvision >/dev/null 2>&1 || true
 
 # --- models / data -------------------------------------------------------------------
 # Hugging Face models normally need no step here: they download on first use into the HF cache.

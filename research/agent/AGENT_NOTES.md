@@ -738,3 +738,25 @@ ModuleNotFoundError: Could not import module 'TrainerCallback'. Are this object'
 
 ### Session Gemini usage
 - gemini-3.8-flash: 25 requests, 1,385,532 input tokens (1,201,106 cached), 1,334 output, 20,378 thinking
+
+### Plan (iteration 71)
+- Hypothesis: Iterations 69 and 70 failed because transformers' TrainerCallback requires the 'accelerate' package under Python 3.13, breaking all sentence_transformers imports across bi-encoder, late-interaction (PyLate), and cross-encoder/hybrid engines. In addition, the late-interaction family has only 1 experiment (colbert-colbertv2.0 at 0.6713 NDCG@5) and currently omits restaurant cuisine metadata in its item representations, causing low recall (0.372) on C01 cuisine inference. We first fix the missing accelerate dependency in setup_machine.sh and enrich colbert_search.py with restaurant cuisine metadata, then evaluate the hybrid combination of Qwen2.5-32B candidate rankings with BAAI/bge-reranker-v2-m3 once the environment is unblocked.
+- Queued (late-interaction): change_code 1) Add 'pip install -q accelerate' to research/agent/setup_machine.sh and install it via pip so that 'from transformers import TrainerCallback' and se
+- Queued (llm): run_experiment hybrid-qwen2.5-32b-bge-reranker-v2-m3
+
+### Iteration 71: colbert-colbertv2.0 (SUCCESS)
+- Result: `research/agent/results/colbert-colbertv2.0.json` | commit `fd939cd` | 21.5s
+- Eval args: `--engine colbert` | family `late-interaction`
+- ndcg@5 0.6583 | recall@10 0.5733 | mrr 0.8036 | 0.031 s/query on Tesla T4 | efficiency 0.1309 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.0656, C03 Attribute / implied meaning 0.2447, C02 Ingredient generalization 0.3367, C04 Cooking method synonyms 0.4175, C08 Dietary constraint / negation 0.4249
+
+### Iteration 71: code change
+**Goal**: 1) Add 'pip install -q accelerate' to research/agent/setup_machine.sh and install it via pip so that 'from transformers import TrainerCallback' and sentence_transformers/pylate import cleanly. 2) Update research/search/colbert_search.py: extract restaurant cuisine from restaurants[rid].get('cuisine', '') in build_index and pass it into _item_text(item, rest_name, rest_cuisine) (matching soft_bm25_search.py) so ColBERT token vectors encode cuisine concepts (e.g. Italian, Mexican, Chinese). 3) Re-run colbert-colbertv2.0 via run_experiment.py (--engine colbert) to verify the late-interaction family NDCG@5 improves over 0.6713.
+
+**Summary**: Added 'pip install -q accelerate' and removed mismatched CUDA libraries (torchaudio, torchvision) in research/agent/setup_machine.sh, unblocking imports of TrainerCallback, sentence_transformers, and pylate across all engines. Updated research/search/colbert_search.py to extract restaurant cuisine in build_index and pass it into _item_text(item, rest_name, rest_cuisine) matching soft_bm25_search.py. Re-ran colbert-colbertv2.0 via run_experiment: late-interaction retrieval completed successfully in 21.5s on Tesla T4 with NDCG@5=0.6583, Recall@10=0.5733, and MRR=0.8036. The empirical test disconfirms the hypothesis that adding restaurant-level cuisine metadata improves ColBERT ranking over 0.6713: MaxSim matches restaurant cuisine tokens across non-relevant items (sides, drinks, desserts), causing false-positive dilution that reduced C01 (0.6335 -> 0.5906) and C10 (0.2150 -> 0.0656).
+
+**Files changed**:
+```
+ M research/agent/setup_machine.sh
+ M research/search/colbert_search.py
+```

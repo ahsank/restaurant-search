@@ -11,7 +11,7 @@ runs on the same GPU. `–` = not recorded (re-run it).
 | lexical | baseline-enhanced | 0.6397 | 0.5936 | 0.7656 | 0.0640 | NVIDIA L4 | 0.1263 | 2 |
 | word-vector | softbm25-conceptnet | 0.5704 | 0.5279 | 0.7318 | 0.0370 | NVIDIA L4 | 0.1133 | 1 |
 | bi-encoder | sbert-bge-base-en-v1.5 | 0.6359 | 0.5600 | 0.7974 | 0.0044 | – | 0.1271 | 5 |
-| late-interaction | colbert-colbertv2.0 | 0.6713 | 0.5840 | 0.8134 | 0.0097 | – | 0.1340 | 1 |
+| late-interaction | colbert-colbertv2.0 | 0.6583 | 0.5733 | 0.8036 | 0.0310 | Tesla T4 | 0.1309 | 1 |
 | cross-encoder | crossencoder-bge-reranker-v2-m3 | 0.7242 | 0.6165 | 0.8745 | 0.6148 | NVIDIA RTX PRO 6000 Blackwell Server Edition | 0.1290 | 5 |
 | llm | hybrid-qwen2.5-7b-minilm-l12-boost2 | 0.8195 | 0.8427 | 0.8712 | 0.2033 | – | 0.1575 | 13 |
 | other | (none yet) | | | | | | | 0 |
@@ -33,9 +33,9 @@ runs on the same GPU. `–` = not recorded (re-run it).
 | 11 | llm-qwen2.5-32b-instruct | llm | 0.1414 | 0.7538 | 0.3292 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
 | 12 | llm-qwen2.5-14b-instruct | llm | 0.1382 | 0.7154 | 0.1780 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
 | 13 | llm-qwen2.5-7b-instruct | llm | 0.1347 | 0.6993 | 0.1914 | – |
-| 14 | colbert-colbertv2.0 | late-interaction | 0.1340 | 0.6713 | 0.0097 | – |
-| 15 | crossencoder-ms-marco-MiniLM-L6-v2 | cross-encoder | 0.1338 | 0.6770 | 0.0607 | – |
-| 16 | crossencoder-ms-marco-MiniLM-L12-v2 | cross-encoder | 0.1323 | 0.6747 | 0.0985 | – |
+| 14 | crossencoder-ms-marco-MiniLM-L6-v2 | cross-encoder | 0.1338 | 0.6770 | 0.0607 | – |
+| 15 | crossencoder-ms-marco-MiniLM-L12-v2 | cross-encoder | 0.1323 | 0.6747 | 0.0985 | – |
+| 16 | colbert-colbertv2.0 | late-interaction | 0.1309 | 0.6583 | 0.0310 | Tesla T4 |
 | 17 | crossencoder-bge-reranker-v2-m3 | cross-encoder | 0.1290 | 0.7242 | 0.6148 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
 | 18 | crossencoder-ms-marco-electra-base | cross-encoder | 0.1287 | 0.6806 | 0.2876 | – |
 | 19 | sbert-bge-base-en-v1.5 | bi-encoder | 0.1271 | 0.6359 | 0.0044 | – |
