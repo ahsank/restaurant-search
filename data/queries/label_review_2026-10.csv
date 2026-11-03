@@ -431,3 +431,4 @@ C01-01,plaza-garcia,Seafood Burrito,0,1,mixed seafood including shrimp (same gra
 C01-01,plaza-garcia,Sopa Del Mar,0,1,fish and shrimp soup
 C01-01,plaza-garcia,Fajitas Garcia,0,1,"steak, chicken and shrimp fajitas"
 C14-03,staple-and-fancy,Rigatoni alla Vodka,0,2,rigatoni dish (happy-hour menu); direct shape-name match
+C14-02,staple-and-fancy,Spaghetti,0,2,"spaghetti (vegetarian chef's menu); exact match, named for this query in the benchmark doc"
