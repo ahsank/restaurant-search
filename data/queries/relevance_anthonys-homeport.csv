@@ -1,6 +1,9 @@
 restaurant,query_id,menu_item,relevance,comment
-anthonys-homeport,C01-08,Dungeness Crab & Shrimp Fettuccine,1,
-anthonys-homeport,C01-08,Seafood Fettuccine,1,
+anthonys-homeport,C01-08,Dungeness Crab & Shrimp Fettuccine,1,"pasta dish at Anthony's HomePort, a $$$$ restaurant"
+anthonys-homeport,C01-08,Seafood Fettuccine,1,"pasta dish at Anthony's HomePort, a $$$$ restaurant"
+anthonys-homeport,C01-08,Kids Fettuccine,1,"pasta dish at Anthony's HomePort, a $$$$ restaurant; kids menu"
+anthonys-homeport,C01-08,Butter Noodles,1,"pasta dish at Anthony's HomePort, a $$$$ restaurant; kids menu"
+anthonys-homeport,C01-08,Mac 'n Cheese,1,"pasta dish at Anthony's HomePort, a $$$$ restaurant; kids menu"
 anthonys-homeport,C02-01,Rockfish Tacos,2,
 anthonys-homeport,C02-01,Wild Salmon Tacos,2,
 anthonys-homeport,C02-02,Dungeness Crab & Shrimp Fettuccine,2,
