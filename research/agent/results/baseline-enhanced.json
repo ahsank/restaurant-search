@@ -1,10 +1,10 @@
 {
   "name": "baseline-enhanced",
-  "description": "Enhanced text search with token matching, hyphen normalization, dynamic Levenshtein spelling tolerance, and IDF-weighted partial scoring",
+  "description": "re-run after code change: Enhanced text search with token matching, hyphen normalization, dynamic Levenshtein spelling tolerance, and IDF-weighted partial scoring",
   "status": "SUCCESS",
-  "iteration": 67,
-  "timestamp": "2026-11-03T02:30:08",
-  "git_commit": "a27bd4f",
+  "iteration": 68,
+  "timestamp": "2026-11-03T02:30:42",
+  "git_commit": "ea8025c",
   "gpu": "NVIDIA L4",
   "result_file": "research/agent/results/baseline-enhanced.json",
   "family": "lexical",
@@ -13,10 +13,10 @@
     "--engine",
     "enhanced"
   ],
-  "seconds": 13.4,
+  "seconds": 13.5,
   "timing": {
-    "seconds_per_query": 0.0635,
-    "search_seconds_per_query": 0.0635,
+    "seconds_per_query": 0.064,
+    "search_seconds_per_query": 0.064,
     "rankings_generation_seconds_per_query": 0.0
   },
   "metrics": {
@@ -225,5 +225,5 @@
       }
     }
   },
-  "eval_seconds": 13.4
+  "eval_seconds": 13.5
 }

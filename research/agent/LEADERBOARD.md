@@ -8,7 +8,7 @@ runs on the same GPU. `–` = not recorded (re-run it).
 
 | Family | Best experiment | NDCG@5 | Recall@10 | MRR | s/query | GPU | Efficiency | Experiments |
 |---|---|---|---|---|---|---|---|---|
-| lexical | baseline-enhanced | 0.6397 | 0.5936 | 0.7656 | 0.0635 | NVIDIA L4 | 0.1263 | 2 |
+| lexical | baseline-enhanced | 0.6397 | 0.5936 | 0.7656 | 0.0640 | NVIDIA L4 | 0.1263 | 2 |
 | word-vector | softbm25-conceptnet | 0.5704 | 0.5279 | 0.7318 | 0.0370 | NVIDIA L4 | 0.1133 | 1 |
 | bi-encoder | sbert-bge-base-en-v1.5 | 0.6359 | 0.5600 | 0.7974 | 0.0044 | – | 0.1271 | 5 |
 | late-interaction | colbert-colbertv2.0 | 0.6713 | 0.5840 | 0.8134 | 0.0097 | – | 0.1340 | 1 |
@@ -39,7 +39,7 @@ runs on the same GPU. `–` = not recorded (re-run it).
 | 17 | crossencoder-bge-reranker-v2-m3 | cross-encoder | 0.1290 | 0.7242 | 0.6148 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
 | 18 | crossencoder-ms-marco-electra-base | cross-encoder | 0.1287 | 0.6806 | 0.2876 | – |
 | 19 | sbert-bge-base-en-v1.5 | bi-encoder | 0.1271 | 0.6359 | 0.0044 | – |
-| 20 | baseline-enhanced | lexical | 0.1263 | 0.6397 | 0.0635 | NVIDIA L4 |
+| 20 | baseline-enhanced | lexical | 0.1263 | 0.6397 | 0.0640 | NVIDIA L4 |
 | 21 | crossencoder-bge-reranker-large | cross-encoder | 0.1262 | 0.7091 | 0.6188 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
 | 22 | sbert-mxbai-embed-large | bi-encoder | 0.1249 | 0.6278 | 0.0271 | NVIDIA L4 |
 | 23 | sbert-bge-large-en-v1.5 | bi-encoder | 0.1237 | 0.6191 | 0.0072 | NVIDIA RTX PRO 6000 Blackwell Server Edition |

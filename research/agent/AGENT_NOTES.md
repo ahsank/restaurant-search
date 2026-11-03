@@ -683,3 +683,9 @@ For more details, see https://huggingface.co/docs/huggingface_hub/authentication
 ```
  M research/search/enhanced_text_search.py
 ```
+
+### Iteration 68: baseline-enhanced (SUCCESS)
+- Result: `research/agent/results/baseline-enhanced.json` | commit `ea8025c` | 13.5s
+- Eval args: `--engine enhanced` | family `lexical`
+- ndcg@5 0.6397 | recall@10 0.5936 | mrr 0.7656 | 0.064 s/query on NVIDIA L4 | efficiency 0.1263 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.1021, C03 Attribute / implied meaning 0.1563, C02 Ingredient generalization 0.2376, C01 Cuisine type inference 0.2789, C08 Dietary constraint / negation 0.283
