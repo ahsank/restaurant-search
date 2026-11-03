@@ -716,3 +716,22 @@ ormers/base/__init__.py", line 4, in <module>
 ModuleNotFoundError: Could not import module 'TrainerCallback'. Are this object's requirements defined correctly?
 
 ```
+
+### Iteration 70: hybrid-qwen2.5-32b-bge-reranker-v2-m3 (EVAL_FAILED)
+- Result: `research/agent/results/hybrid-qwen2.5-32b-bge-reranker-v2-m3.json` | commit `273d941` | 10.7s
+- Eval args: `--engine hybrid --rankings research/agent/runs/qwen2.5-32b-instruct.jsonl --model BAAI/bge-reranker-v2-m3 --grade-boost 2.0` | family `llm`
+- Error:
+```
+ormers/base/__init__.py", line 4, in <module>
+    from .model import BaseModel
+  File "/usr/local/lib/python3.13/dist-packages/sentence_transformers/base/model.py", line 32, in <module>
+    from sentence_transformers.base.model_card import BaseModelCardData, generate_model_card
+  File "/usr/local/lib/python3.13/dist-packages/sentence_transformers/base/model_card.py", line 27, in <module>
+    from transformers import TrainerCallback
+  File "/usr/local/lib/python3.13/dist-packages/transformers/utils/import_utils.py", line 2619, in __getattr__
+    raise ModuleNotFoundError(
+        f"Could not import module '{name}'. Are this object's requirements defined correctly?"
+    ) from e
+ModuleNotFoundError: Could not import module 'TrainerCallback'. Are this object's requirements defined correctly?
+
+```
