@@ -667,3 +667,19 @@ For more details, see https://huggingface.co/docs/huggingface_hub/authentication
 - Eval args: `--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model BAAI/bge-reranker-v2-m3 --grade-boost 2.0` | family `llm`
 - ndcg@5 0.7976 | recall@10 0.8236 | mrr 0.8733 | 0.5243 s/query on NVIDIA L4 | efficiency 0.1444 | 206/209 queries judged
 - Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.1832, C03 Attribute / implied meaning 0.5474, C18 Chicken dishes 0.5911, C24 Pizza varieties 0.6667, C02 Ingredient generalization 0.6794
+
+### Iteration 67: baseline-enhanced (SUCCESS)
+- Result: `research/agent/results/baseline-enhanced.json` | commit `a27bd4f` | 13.4s
+- Eval args: `--engine enhanced` | family `lexical`
+- ndcg@5 0.6397 | recall@10 0.5936 | mrr 0.7656 | 0.0635 s/query on NVIDIA L4 | efficiency 0.1263 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.1021, C03 Attribute / implied meaning 0.1563, C02 Ingredient generalization 0.2376, C01 Cuisine type inference 0.2789, C08 Dietary constraint / negation 0.283
+
+### Iteration 67: code change
+**Goal**: Upgrade research/search/enhanced_text_search.py to address critical lexical search bottlenecks: 1) Replace raw substring matching ('v in name') with word-boundary/token matching so subwords like 'tea' do not falsely match 'steak' or 'pie' in 'piece'; 2) Normalize hyphens and slashes to spaces in queries and indexed texts to handle compound and hyphenated dish terms (C07); 3) Add dynamic Levenshtein edit-distance spelling tolerance (edit distance <= 1 for terms len >= 4, <= 2 for len >= 6) against the indexed menu vocabulary when a query term has no exact match, repairing C05 spelling variations (currently 0.0667); 4) Replace the strict all-or-nothing requirement ('if total < len(terms): return 0') with IDF-weighted partial scoring and an all-terms-matched bonus, preventing multi-word queries in C10, C02, and C03 from returning 0 results; 5) Re-run baseline-enhanced via evaluate.py to verify NDCG@5 improves over 0.5566.
+
+**Summary**: Upgraded research/search/enhanced_text_search.py to eliminate key lexical search bottlenecks: 1) Replaced raw substring matching ('v in name') with word-boundary token matching to prevent false subword hits like 'tea' in 'steak' or 'pie' in 'piece'; 2) Added hyphen and slash normalization ('[-/]' -> ' ') in queries and indexed texts to handle compound terms and hyphenated dish attributes; 3) Implemented dynamic Levenshtein edit-distance spelling tolerance (<= 1 for length >= 4, <= 2 for length >= 6) against the indexed corpus vocabulary when a query term has no exact match (tie-breaking candidates by corpus document frequency); 4) Replaced strict all-or-nothing matching with smooth IDF-weighted tier scoring, an all-terms-matched bonus (+15), and exact match handling (+1000). Re-evaluated baseline-enhanced, achieving NDCG@5 = 0.6397 (up from 0.5566, +14.9% relative), MRR = 0.7656 (up from 0.6050, +26.5% relative), and Recall@10 = 0.5936 (up from 0.5589), with C05 spelling variations jumping from 0.0667 to 0.9485, C02 ingredient generalization from 0.0553 to 0.2376, C10 multi-constraint from 0.0000 to 0.1021, and C07 hyphenation/stop words from 0.4275 to 0.5163.
+
+**Files changed**:
+```
+ M research/search/enhanced_text_search.py
+```

@@ -18,11 +18,11 @@ crossencoder-ms-marco-electra-base,cross-encoder,SUCCESS,0.6806,0.5909,0.8255,0.
 crossencoder-ms-marco-MiniLM-L6-v2,cross-encoder,SUCCESS,0.677,0.5974,0.8168,0.0607,,0.1338,209,19.6,0262b1c,2026-10-14T22:42:13,--engine crossencoder --model cross-encoder/ms-marco-MiniLM-L6-v2
 crossencoder-ms-marco-MiniLM-L12-v2,cross-encoder,SUCCESS,0.6747,0.5954,0.8156,0.0985,,0.1323,209,27.6,1d57cb9,2026-10-14T22:42:34,--engine crossencoder --model cross-encoder/ms-marco-MiniLM-L12-v2
 colbert-colbertv2.0,late-interaction,SUCCESS,0.6713,0.584,0.8134,0.0097,,0.134,209,25.1,75ae0ff,2026-10-16T02:16:56,--engine colbert
+baseline-enhanced,lexical,SUCCESS,0.6397,0.5936,0.7656,0.0635,NVIDIA L4,0.1263,209,13.4,a27bd4f,2026-11-03T02:30:08,--engine enhanced
 sbert-bge-base-en-v1.5,bi-encoder,SUCCESS,0.6359,0.56,0.7974,0.0044,,0.1271,209,9.6,1fb6879,2026-10-16T02:34:46,--engine sbert --model BAAI/bge-base-en-v1.5
 sbert-mxbai-embed-large,bi-encoder,SUCCESS,0.6278,0.5389,0.7998,0.0271,NVIDIA L4,0.1249,209,48.5,e722ef8,2026-11-03T02:15:39,--engine sbert --model mixedbread-ai/mxbai-embed-large-v1 --query-prefix Represent this sentence for searching relevant passages: 
 sbert-bge-large-en-v1.5,bi-encoder,SUCCESS,0.6191,0.5516,0.7945,0.0072,NVIDIA RTX PRO 6000 Blackwell Server Edition,0.1237,209,20.1,6918681,2026-10-18T16:39:00,--engine sbert --model BAAI/bge-large-en-v1.5
 softbm25-conceptnet,word-vector,SUCCESS,0.5704,0.5279,0.7318,0.037,NVIDIA L4,0.1133,209,45.0,5a9d6a9,2026-10-18T17:24:32,--engine soft_bm25 --vectors /content/scratch/numberbatch-en-19.08.txt.gz
-baseline-enhanced,lexical,SUCCESS,0.5566,0.5589,0.605,0.014,,0.111,209,3.0,b08df53,2026-10-16T02:29:42,--engine enhanced
 sbert-all-mpnet-base-v2,bi-encoder,SUCCESS,0.5484,0.4678,0.7375,0.0048,,0.1096,209,8.7,eab2c5b,2026-10-14T22:44:22,--engine sbert --model all-mpnet-base-v2
 sbert-all-MiniLM-L6-v2,bi-encoder,SUCCESS,0.5244,0.4677,0.6789,0.0032,,0.1048,209,8.2,7022031,2026-10-14T22:44:12,--engine sbert --model all-MiniLM-L6-v2
 baseline-text,lexical,SUCCESS,0.4456,0.4708,0.4692,0.0003,,0.0891,209,0.1,4d21690,2026-10-14T22:04:48,--engine text
