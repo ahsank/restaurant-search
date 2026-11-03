@@ -1,6 +1,16 @@
 {
-  "iteration": 69,
-  "pending_tasks": [],
+  "iteration": 70,
+  "pending_tasks": [
+    {
+      "action": "run_experiment",
+      "family": "llm",
+      "name": "hybrid-qwen2.5-32b-bge-reranker-v2-m3",
+      "eval_args": "--engine hybrid --rankings research/agent/runs/qwen2.5-32b-instruct.jsonl --model BAAI/bge-reranker-v2-m3 --grade-boost 2.0",
+      "setup": "",
+      "description": "Evaluate hybrid retrieval combining Qwen2.5-32B candidate rankings with BAAI/bge-reranker-v2-m3 cross-encoder rescoring and grade-boost 2.0 to test whether BGE-Reranker's strength on C04 and C08 unlocks higher NDCG@5 than MiniLM-L12 (0.8168)",
+      "reasoning": "In the LLM hybrid pipeline, Qwen2.5-32B candidate rankings achieved an MRR record of 0.8836 and 0.8168 NDCG@5 with MiniLM-L12, while BAAI/bge-reranker-v2-m3 demonstrated dramatically superior discrimination on C04 cooking methods (0.9229 vs 0.8583) and C08 dietary constraints (0.7188 vs 0.5375), making their combination a strong candidate to surpass the 0.8195 overall benchmark ceiling. In the non-LLM bi-encoder family, where BAAI/bge-base-en-v1.5 currently leads at 0.6359 NDCG@5, the widely benchmarked 335M-parameter thenlper/gte-large model offers significantly higher capacity and pre-training diversity without requiring prompt prefixes."
+    }
+  ],
   "completed_tasks": [
     {
       "action": "run_experiment",
@@ -586,6 +596,15 @@
       "setup": "",
       "eval_args": "--engine enhanced",
       "description": "re-run after code change: Enhanced text search with token matching, hyphen normalization, dynamic Levenshtein spelling tolerance, and IDF-weighted partial scoring"
+    },
+    {
+      "action": "run_experiment",
+      "family": "bi-encoder",
+      "name": "sbert-gte-large",
+      "eval_args": "--engine sbert --model thenlper/gte-large",
+      "setup": "",
+      "description": "Evaluate SentenceTransformer bi-encoder retrieval using 335M-parameter thenlper/gte-large without query prefix to test whether high-capacity general retrieval representations improve over bge-base-en-v1.5 (0.6359)",
+      "reasoning": "In the LLM hybrid pipeline, Qwen2.5-32B candidate rankings achieved an MRR record of 0.8836 and 0.8168 NDCG@5 with MiniLM-L12, while BAAI/bge-reranker-v2-m3 demonstrated dramatically superior discrimination on C04 cooking methods (0.9229 vs 0.8583) and C08 dietary constraints (0.7188 vs 0.5375), making their combination a strong candidate to surpass the 0.8195 overall benchmark ceiling. In the non-LLM bi-encoder family, where BAAI/bge-base-en-v1.5 currently leads at 0.6359 NDCG@5, the widely benchmarked 335M-parameter thenlper/gte-large model offers significantly higher capacity and pre-training diversity without requiring prompt prefixes."
     }
   ]
 }

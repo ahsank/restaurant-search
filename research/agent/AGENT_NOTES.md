@@ -692,3 +692,27 @@ For more details, see https://huggingface.co/docs/huggingface_hub/authentication
 
 ### Session Gemini usage
 - gemini-3.8-flash: 48 requests, 2,101,599 input tokens (1,895,519 cached), 23,633 output, 42,054 thinking
+
+### Plan (iteration 69)
+- Hypothesis: In the LLM hybrid pipeline, Qwen2.5-32B candidate rankings achieved an MRR record of 0.8836 and 0.8168 NDCG@5 with MiniLM-L12, while BAAI/bge-reranker-v2-m3 demonstrated dramatically superior discrimination on C04 cooking methods (0.9229 vs 0.8583) and C08 dietary constraints (0.7188 vs 0.5375), making their combination a strong candidate to surpass the 0.8195 overall benchmark ceiling. In the non-LLM bi-encoder family, where BAAI/bge-base-en-v1.5 currently leads at 0.6359 NDCG@5, the widely benchmarked 335M-parameter thenlper/gte-large model offers significantly higher capacity and pre-training diversity without requiring prompt prefixes.
+- Queued (bi-encoder): run_experiment sbert-gte-large
+- Queued (llm): run_experiment hybrid-qwen2.5-32b-bge-reranker-v2-m3
+
+### Iteration 69: sbert-gte-large (EVAL_FAILED)
+- Result: `research/agent/results/sbert-gte-large.json` | commit `555b10b` | 25.6s
+- Eval args: `--engine sbert --model thenlper/gte-large` | family `bi-encoder`
+- Error:
+```
+ormers/base/__init__.py", line 4, in <module>
+    from .model import BaseModel
+  File "/usr/local/lib/python3.13/dist-packages/sentence_transformers/base/model.py", line 32, in <module>
+    from sentence_transformers.base.model_card import BaseModelCardData, generate_model_card
+  File "/usr/local/lib/python3.13/dist-packages/sentence_transformers/base/model_card.py", line 27, in <module>
+    from transformers import TrainerCallback
+  File "/usr/local/lib/python3.13/dist-packages/transformers/utils/import_utils.py", line 2619, in __getattr__
+    raise ModuleNotFoundError(
+        f"Could not import module '{name}'. Are this object's requirements defined correctly?"
+    ) from e
+ModuleNotFoundError: Could not import module 'TrainerCallback'. Are this object's requirements defined correctly?
+
+```

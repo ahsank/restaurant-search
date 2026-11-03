@@ -1,0 +1,23 @@
+{
+  "name": "sbert-gte-large",
+  "description": "Evaluate SentenceTransformer bi-encoder retrieval using 335M-parameter thenlper/gte-large without query prefix to test whether high-capacity general retrieval representations improve over bge-base-en-v1.5 (0.6359)",
+  "status": "EVAL_FAILED",
+  "iteration": 69,
+  "timestamp": "2026-11-03T03:17:42",
+  "git_commit": "555b10b",
+  "gpu": "Tesla T4",
+  "result_file": "research/agent/results/sbert-gte-large.json",
+  "family": "bi-encoder",
+  "setup": null,
+  "eval_args": [
+    "--engine",
+    "sbert",
+    "--model",
+    "thenlper/gte-large"
+  ],
+  "seconds": 25.6,
+  "timing": null,
+  "metrics": null,
+  "eval_seconds": 25.6,
+  "error": "Exit code 1\nconstants import ALLOWED_COMPUTE_DTYPES, UPCAST_DTYPES\n  File \"/usr/local/lib/python3.13/dist-packages/peft/utils/constants.py\", line 16, in <module>\n    from transformers import BloomPreTrainedModel\n  File \"/usr/local/lib/python3.13/dist-packages/transformers/utils/import_utils.py\", line 2619, in __getattr__\n    raise ModuleNotFoundError(\n        f\"Could not import module '{name}'. Are this object's requirements defined correctly?\"\n    ) from e\nModuleNotFoundError: Could not import module 'BloomPreTrainedModel'. Are this object's requirements defined correctly?\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/kaggle/working/restaurant-search/research/search/evaluate.py\", line 308, in <module>\n    parser = engines.build_arg_parser(\"Evaluate search against the benchmark\")\n  File \"/kaggle/working/restaurant-search/research/search/engines.py\", line 70, in build_arg_parser\n    engine_parents.append(importlib.import_module(_ENGINE_FLAG_MODULES[known.engine]).cli_args())\n                          ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.13/importlib/__init__.py\", line 88, in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen importlib._bootstrap>\", line 1395, in _gcd_import\n  File \"<frozen importlib._bootstrap>\", line 1360, in _find_and_load\n  File \"<frozen importlib._bootstrap>\", line 1331, in _find_and_load_unlocked\n  File \"<frozen importlib._bootstrap>\", line 935, in _load_unlocked\n  File \"<frozen importlib._bootstrap_external>\", line 1023, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 488, in _call_with_frames_removed\n  File \"/kaggle/working/restaurant-search/research/search/sbert_search.py\", line 40, in <module>\n    from sentence_transformers import SentenceTransformer\n  File \"/usr/local/lib/python3.13/dist-packages/sentence_transformers/__init__.py\", line 15, in <module>\n    from sentence_transformers.base.sampler import DefaultBatchSampler, MultiDatasetDefaultBatchSampler\n  File \"/usr/local/lib/python3.13/dist-packages/sentence_transformers/base/__init__.py\", line 4, in <module>\n    from .model import BaseModel\n  File \"/usr/local/lib/python3.13/dist-packages/sentence_transformers/base/model.py\", line 32, in <module>\n    from sentence_transformers.base.model_card import BaseModelCardData, generate_model_card\n  File \"/usr/local/lib/python3.13/dist-packages/sentence_transformers/base/model_card.py\", line 27, in <module>\n    from transformers import TrainerCallback\n  File \"/usr/local/lib/python3.13/dist-packages/transformers/utils/import_utils.py\", line 2619, in __getattr__\n    raise ModuleNotFoundError(\n        f\"Could not import module '{name}'. Are this object's requirements defined correctly?\"\n    ) from e\nModuleNotFoundError: Could not import module 'TrainerCallback'. Are this object's requirements defined correctly?\n"
+}
