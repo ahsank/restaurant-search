@@ -1,4 +1,5 @@
 name,family,status,ndcg@5,recall@10,mrr,sec_per_query,gpu,efficiency,n_queries,seconds,git_commit,timestamp,eval_args
+hybrid-qwen2.5-32b-bge-reranker-v2-m3,llm,SUCCESS,0.8204,0.7937,0.8892,1.6113,Tesla T4,0.1241,209,298.7,6327e60,2026-11-03T14:47:23,--engine hybrid --rankings research/agent/runs/qwen2.5-32b-instruct.jsonl --model BAAI/bge-reranker-v2-m3 --grade-boost 2.0
 hybrid-qwen2.5-7b-minilm-l12-boost2,llm,SUCCESS,0.8195,0.8427,0.8712,0.2033,,0.1575,209,9.4,3783240,2026-10-14T22:41:44,--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L12-v2 --grade-boost 2.0
 hybrid-qwen2.5-32b-minilm-l12-boost2,llm,SUCCESS,0.8168,0.8011,0.8836,0.3803,NVIDIA L4,0.1518,209,45.6,00e6411,2026-10-18T17:20:14,--engine hybrid --rankings research/agent/runs/qwen2.5-32b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L12-v2 --grade-boost 2.0
 hybrid-qwen2.5-7b-minilm-l12-boost3,llm,SUCCESS,0.8057,0.8317,0.8639,0.2025,,0.1549,209,9.6,64b357a,2026-10-14T22:16:39,--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L12-v2 --grade-boost 3.0
@@ -26,5 +27,4 @@ softbm25-conceptnet,word-vector,SUCCESS,0.5704,0.5279,0.7318,0.037,NVIDIA L4,0.1
 sbert-all-mpnet-base-v2,bi-encoder,SUCCESS,0.5484,0.4678,0.7375,0.0048,,0.1096,209,8.7,eab2c5b,2026-10-14T22:44:22,--engine sbert --model all-mpnet-base-v2
 sbert-all-MiniLM-L6-v2,bi-encoder,SUCCESS,0.5244,0.4677,0.6789,0.0032,,0.1048,209,8.2,7022031,2026-10-14T22:44:12,--engine sbert --model all-MiniLM-L6-v2
 baseline-text,lexical,SUCCESS,0.4456,0.4708,0.4692,0.0003,,0.0891,209,0.1,4d21690,2026-10-14T22:04:48,--engine text
-hybrid-qwen2.5-32b-bge-reranker-v2-m3,llm,EVAL_FAILED,,,,,Tesla T4,,,10.7,273d941,2026-11-03T03:18:10,--engine hybrid --rankings research/agent/runs/qwen2.5-32b-instruct.jsonl --model BAAI/bge-reranker-v2-m3 --grade-boost 2.0
 sbert-gte-large,bi-encoder,EVAL_FAILED,,,,,Tesla T4,,,25.6,555b10b,2026-11-03T03:17:42,--engine sbert --model thenlper/gte-large

@@ -13,7 +13,7 @@ runs on the same GPU. `–` = not recorded (re-run it).
 | bi-encoder | sbert-bge-base-en-v1.5 | 0.6359 | 0.5600 | 0.7974 | 0.0044 | – | 0.1271 | 5 |
 | late-interaction | colbert-colbertv2.0 | 0.6583 | 0.5733 | 0.8036 | 0.0310 | Tesla T4 | 0.1309 | 1 |
 | cross-encoder | crossencoder-bge-reranker-v2-m3 | 0.7242 | 0.6165 | 0.8745 | 0.6148 | NVIDIA RTX PRO 6000 Blackwell Server Edition | 0.1290 | 5 |
-| llm | hybrid-qwen2.5-7b-minilm-l12-boost2 | 0.8195 | 0.8427 | 0.8712 | 0.2033 | – | 0.1575 | 13 |
+| llm | hybrid-qwen2.5-32b-bge-reranker-v2-m3 | 0.8204 | 0.7937 | 0.8892 | 1.6113 | Tesla T4 | 0.1241 | 14 |
 | other | (none yet) | | | | | | | 0 |
 
 ## Efficiency = NDCG@5 / (seconds per query + 5)
@@ -42,8 +42,9 @@ runs on the same GPU. `–` = not recorded (re-run it).
 | 20 | baseline-enhanced | lexical | 0.1263 | 0.6397 | 0.0640 | NVIDIA L4 |
 | 21 | crossencoder-bge-reranker-large | cross-encoder | 0.1262 | 0.7091 | 0.6188 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
 | 22 | sbert-mxbai-embed-large | bi-encoder | 0.1249 | 0.6278 | 0.0271 | NVIDIA L4 |
-| 23 | sbert-bge-large-en-v1.5 | bi-encoder | 0.1237 | 0.6191 | 0.0072 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 24 | softbm25-conceptnet | word-vector | 0.1133 | 0.5704 | 0.0370 | NVIDIA L4 |
-| 25 | sbert-all-mpnet-base-v2 | bi-encoder | 0.1096 | 0.5484 | 0.0048 | – |
-| 26 | sbert-all-MiniLM-L6-v2 | bi-encoder | 0.1048 | 0.5244 | 0.0032 | – |
-| 27 | baseline-text | lexical | 0.0891 | 0.4456 | 0.0003 | – |
+| 23 | hybrid-qwen2.5-32b-bge-reranker-v2-m3 | llm | 0.1241 | 0.8204 | 1.6113 | Tesla T4 |
+| 24 | sbert-bge-large-en-v1.5 | bi-encoder | 0.1237 | 0.6191 | 0.0072 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 25 | softbm25-conceptnet | word-vector | 0.1133 | 0.5704 | 0.0370 | NVIDIA L4 |
+| 26 | sbert-all-mpnet-base-v2 | bi-encoder | 0.1096 | 0.5484 | 0.0048 | – |
+| 27 | sbert-all-MiniLM-L6-v2 | bi-encoder | 0.1048 | 0.5244 | 0.0032 | – |
+| 28 | baseline-text | lexical | 0.0891 | 0.4456 | 0.0003 | – |
