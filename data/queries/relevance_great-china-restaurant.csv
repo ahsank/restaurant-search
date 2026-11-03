@@ -8,6 +8,11 @@ great-china-restaurant,C03-08,Family Dinner B,1,
 great-china-restaurant,C04-09,Fried Chicken Wing (8),2,
 great-china-restaurant,C04-10,Almond Fried Chicken,2,
 great-china-restaurant,C04-10,Sweet & Sour Chicken,1,
+great-china-restaurant,C06-09,Salt and Pepper Chicken,1,chicken defined by its dry salt-and-pepper seasoning; concept match without the word 'seasoned'
+great-china-restaurant,C06-09,Mongolian Chicken,0,"chicken in a sauce or stir-fry, not seasoned chicken"
+great-china-restaurant,C06-09,Wild Basil Chicken,0,"chicken in a sauce or stir-fry, not seasoned chicken"
+great-china-restaurant,C06-09,Wild Basil Chicken Thai Style,0,"chicken in a sauce or stir-fry, not seasoned chicken"
+great-china-restaurant,C06-09,Jalapeño Chicken,0,"chicken in a sauce or stir-fry, not seasoned chicken"
 great-china-restaurant,C08-06,Broccoli in Black Bean Sauce,1,
 great-china-restaurant,C08-06,Curry Vegetable,1,
 great-china-restaurant,C08-06,Jalapeño Vegetable,1,

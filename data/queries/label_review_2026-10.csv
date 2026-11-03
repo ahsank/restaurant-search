@@ -415,3 +415,5 @@ C01-08,staple-and-fancy,Rigatoni alla Vodka,0,2,"pasta dish at Staple & Fancy, a
 C01-08,anthonys-homeport,Kids Fettuccine,0,1,"pasta dish at Anthony's HomePort, a $$$$ restaurant; kids menu"
 C01-08,anthonys-homeport,Butter Noodles,0,1,"pasta dish at Anthony's HomePort, a $$$$ restaurant; kids menu"
 C01-08,anthonys-homeport,Mac 'n Cheese,0,1,"pasta dish at Anthony's HomePort, a $$$$ restaurant; kids menu"
+C06-09,plaza-garcia,Pollo Ranchero,0,2,marinated chicken breast with spices = seasoned chicken (listed for this query in the benchmark doc)
+C06-09,great-china-restaurant,Salt and Pepper Chicken,0,1,chicken defined by its dry salt-and-pepper seasoning; concept match without the word 'seasoned'
