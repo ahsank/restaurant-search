@@ -432,3 +432,74 @@ C01-01,plaza-garcia,Sopa Del Mar,0,1,fish and shrimp soup
 C01-01,plaza-garcia,Fajitas Garcia,0,1,"steak, chicken and shrimp fajitas"
 C14-03,staple-and-fancy,Rigatoni alla Vodka,0,2,rigatoni dish (happy-hour menu); direct shape-name match
 C14-02,staple-and-fancy,Spaghetti,0,2,"spaghetti (vegetarian chef's menu); exact match, named for this query in the benchmark doc"
+C07-09,staple-and-fancy,Bruschetta,0,2,Staple & Fancy dish (intent: the restaurant)
+C07-09,staple-and-fancy,Burrata,0,2,Staple & Fancy dish (intent: the restaurant)
+C07-09,staple-and-fancy,Butternut Squash Soup,0,2,Staple & Fancy dish (intent: the restaurant)
+C07-09,staple-and-fancy,Carrots,0,2,Staple & Fancy dish (intent: the restaurant)
+C07-09,staple-and-fancy,Coulotte Steak,0,2,Staple & Fancy dish (intent: the restaurant)
+C07-09,staple-and-fancy,Duck Breast,0,2,Staple & Fancy dish (intent: the restaurant)
+C07-09,staple-and-fancy,Farratto,0,2,Staple & Fancy dish (intent: the restaurant)
+C07-09,staple-and-fancy,Fried Artichokes,0,2,Staple & Fancy dish (intent: the restaurant)
+C07-09,staple-and-fancy,Fried Oysters,0,2,Staple & Fancy dish (intent: the restaurant)
+C07-09,staple-and-fancy,Gem Lettuce,0,2,Staple & Fancy dish (intent: the restaurant)
+C07-09,staple-and-fancy,Gem Salad,0,2,Staple & Fancy dish (intent: the restaurant)
+C07-09,staple-and-fancy,Grilled Octopus,0,2,Staple & Fancy dish (intent: the restaurant)
+C07-09,staple-and-fancy,Halibut,0,2,Staple & Fancy dish (intent: the restaurant)
+C07-09,staple-and-fancy,Hamachi Crudo,0,2,Staple & Fancy dish (intent: the restaurant)
+C07-09,staple-and-fancy,Little Gem,0,2,Staple & Fancy dish (intent: the restaurant)
+C07-09,staple-and-fancy,Mezze Rigatoni,0,2,Staple & Fancy dish (intent: the restaurant)
+C07-09,staple-and-fancy,Prosciutto,0,2,Staple & Fancy dish (intent: the restaurant)
+C07-09,staple-and-fancy,Radiatore alla Vodka,0,2,Staple & Fancy dish (intent: the restaurant)
+C07-09,staple-and-fancy,Roasted Carrots,0,2,Staple & Fancy dish (intent: the restaurant)
+C07-09,staple-and-fancy,Roasted Cauliflower,0,2,Staple & Fancy dish (intent: the restaurant)
+C07-09,staple-and-fancy,SRF Skirt Wagyu,0,2,Staple & Fancy dish (intent: the restaurant)
+C07-09,staple-and-fancy,Smoked Fish Bruschetta,0,2,Staple & Fancy dish (intent: the restaurant)
+C07-09,staple-and-fancy,Sourdough,0,2,Staple & Fancy dish (intent: the restaurant)
+C07-09,staple-and-fancy,Spaghetti,0,2,Staple & Fancy dish (intent: the restaurant)
+C07-09,staple-and-fancy,Tiramisu,0,2,Staple & Fancy dish (intent: the restaurant)
+C07-09,staple-and-fancy,Avennia x ESR 'Franc the Blanc' Columbia Valley,0,1,Staple & Fancy drink (intent: the restaurant)
+C07-09,staple-and-fancy,Cleto Chiarli Brut Rosé,0,1,Staple & Fancy drink (intent: the restaurant)
+C07-09,staple-and-fancy,Colle Massari 'Melacce' Tuscany,0,1,Staple & Fancy drink (intent: the restaurant)
+C07-09,staple-and-fancy,ESR 'Annabelle',0,1,Staple & Fancy drink (intent: the restaurant)
+C07-09,staple-and-fancy,ESR 'Grace' Brut Prosecco,0,1,Staple & Fancy drink (intent: the restaurant)
+C07-09,staple-and-fancy,Mark Ryan 'Numbskull' Columbia Valley,0,1,Staple & Fancy drink (intent: the restaurant)
+C07-09,staple-and-fancy,Mark Ryan x ESR 'Adrian' Columbia Valley,0,1,Staple & Fancy drink (intent: the restaurant)
+C14-01,staple-and-fancy,Spaghetti,0,2,cacio e pepe spaghetti with truffle butter (same grades as Cacio e Pepe Bucatini)
+C14-06,staple-and-fancy,Spaghetti,0,2,cacio e pepe spaghetti with truffle butter (same grades as Cacio e Pepe Bucatini)
+C07-01,staple-and-fancy,Spaghetti,0,2,cacio e pepe spaghetti with truffle butter (same grades as Cacio e Pepe Bucatini)
+C07-02,staple-and-fancy,Spaghetti,0,2,cacio e pepe spaghetti with truffle butter (same grades as Cacio e Pepe Bucatini)
+C14-08,staple-and-fancy,Spaghetti,0,2,cacio e pepe spaghetti with truffle butter (same grades as Cacio e Pepe Bucatini)
+C22-08,staple-and-fancy,Spaghetti,0,2,cacio e pepe spaghetti with truffle butter (same grades as Cacio e Pepe Bucatini)
+C03-03,staple-and-fancy,Spaghetti,0,2,cacio e pepe spaghetti with truffle butter (same grades as Cacio e Pepe Bucatini)
+C03-06,staple-and-fancy,Spaghetti,0,2,cacio e pepe spaghetti with truffle butter (same grades as Cacio e Pepe Bucatini)
+C03-07,staple-and-fancy,Spaghetti,0,2,cacio e pepe spaghetti with truffle butter (same grades as Cacio e Pepe Bucatini)
+C14-01,staple-and-fancy,Radiatore alla Vodka,0,2,pasta in vodka tomato sauce (same grades as Rigatoni alla Vodka)
+C14-06,staple-and-fancy,Radiatore alla Vodka,0,2,pasta in vodka tomato sauce (same grades as Rigatoni alla Vodka)
+C14-07,staple-and-fancy,Radiatore alla Vodka,0,2,pasta in vodka tomato sauce (same grades as Rigatoni alla Vodka)
+C21-07,staple-and-fancy,Hamachi Crudo,0,2,raw hamachi (fish)
+C10-02,staple-and-fancy,Hamachi Crudo,0,2,$25 gluten-free raw fish starter
+C23-12,staple-and-fancy,Hamachi Crudo,0,1,"citrus-dressed raw fish, close to ceviche"
+C05-08,staple-and-fancy,Hamachi Crudo,0,1,"citrus-dressed raw fish, close to ceviche"
+C08-09,staple-and-fancy,Hamachi Crudo,0,1,"fish starter, not a full dinner"
+C19-02,staple-and-fancy,SRF Skirt Wagyu,0,2,wood-fire grilled wagyu skirt steak with salsa verde
+C22-10,staple-and-fancy,SRF Skirt Wagyu,0,2,wood-fire grilled wagyu skirt steak with salsa verde
+C04-01,staple-and-fancy,SRF Skirt Wagyu,0,2,wood-fire grilled wagyu skirt steak with salsa verde
+C03-01,staple-and-fancy,Shrimp & Clam Bucatini,0,2,shrimp with Calabrian chili
+C09-01,staple-and-fancy,Shrimp & Clam Bucatini,0,1,shrimp is one of two shellfish in the pasta
+C05-06,staple-and-fancy,Tiramisu,0,2,tiramisu (misspelled query)
+C02-03,staple-and-fancy,Little Gem,1,2,gem lettuce salad (same grade as Gem Salad / Gem Lettuce)
+C03-10,staple-and-fancy,Little Gem,0,1,ramp buttermilk dressing
+C11-01,staple-and-fancy,Butternut Squash Soup,0,2,vegetable soup
+C11-07,staple-and-fancy,Butternut Squash Soup,0,2,vegetable soup
+C22-10,staple-and-fancy,Roasted Cauliflower,0,2,served with salsa verde
+C03-11,staple-and-fancy,Roasted Cauliflower,0,1,roasted vegetable main
+C08-06,staple-and-fancy,Roasted Cauliflower,0,1,vegetarian-menu entree; likely plant based but not stated
+C23-09,staple-and-fancy,Farratto,0,1,"farro cooked risotto-style, not rice"
+C08-06,staple-and-fancy,Farratto,0,1,vegetarian; not stated vegan
+C06-01,staple-and-fancy,Carrots,0,1,"carrot dish, not stated roasted"
+C16-01,staple-and-fancy,Burrata,0,1,"burrata with tomato/arugula, salad-like"
+C09-02,staple-and-fancy,Fried Oysters,0,1,"shellfish starter, but oysters not mussels or clams"
+C08-09,staple-and-fancy,Fried Oysters,0,1,"seafood starter, not a full dinner"
+C17-03,staple-and-fancy,Sorbetto,0,1,"sorbet, close to gelato"
+C08-04,staple-and-fancy,Sorbetto,0,1,sorbet is usually dairy-free (not stated)
+C17-07,staple-and-fancy,Vanilla Gelato,0,1,served with an almond shortbread cookie
