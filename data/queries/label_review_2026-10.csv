@@ -417,3 +417,16 @@ C01-08,anthonys-homeport,Butter Noodles,0,1,"pasta dish at Anthony's HomePort, a
 C01-08,anthonys-homeport,Mac 'n Cheese,0,1,"pasta dish at Anthony's HomePort, a $$$$ restaurant; kids menu"
 C06-09,plaza-garcia,Pollo Ranchero,0,2,marinated chicken breast with spices = seasoned chicken (listed for this query in the benchmark doc)
 C06-09,great-china-restaurant,Salt and Pepper Chicken,0,1,chicken defined by its dry salt-and-pepper seasoning; concept match without the word 'seasoned'
+C01-01,juanita-cantina,Seafood Burrito,0,1,mixed seafood including shrimp (same grade as Seafood Enchiladas)
+C01-01,juanita-cantina,Camarones Zarandeados,0,2,grilled shrimp (camarones = shrimp)
+C01-01,plaza-garcia,Camarones Bravos,0,2,shrimp entree
+C01-01,plaza-garcia,Seafood Chimichangas,0,1,mixed seafood including shrimp (same grade as Seafood Enchiladas)
+C01-01,plaza-garcia,Fajitas Shrimp,0,2,shrimp fajitas (same grade as Juanita's Shrimp Fajitas)
+C01-01,plaza-garcia,Deluxe Camaron Enchilada,0,2,shrimp enchiladas
+C01-01,plaza-garcia,Quesadilla Camarones,0,2,shrimp quesadilla
+C01-01,plaza-garcia,Coctel de Camaron,0,2,shrimp cocktail
+C01-01,plaza-garcia,Mar y Tierra,0,2,carne asada plus a shrimp dish (same grade as Carne and Camaron)
+C01-01,plaza-garcia,Cielo Mar Y Tierra,0,2,carne asada and chicken plus a shrimp dish (same grade as Carne and Camaron)
+C01-01,plaza-garcia,Seafood Burrito,0,1,mixed seafood including shrimp (same grade as Seafood Enchiladas)
+C01-01,plaza-garcia,Sopa Del Mar,0,1,fish and shrimp soup
+C01-01,plaza-garcia,Fajitas Garcia,0,1,"steak, chicken and shrimp fajitas"
