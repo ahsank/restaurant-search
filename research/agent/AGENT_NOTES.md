@@ -656,3 +656,14 @@ For more details, see https://huggingface.co/docs/huggingface_hub/authentication
 - Eval args: `--engine sbert --model mixedbread-ai/mxbai-embed-large-v1 --query-prefix Represent this sentence for searching relevant passages: ` | family `bi-encoder`
 - ndcg@5 0.6278 | recall@10 0.5389 | mrr 0.7998 | 0.0271 s/query on NVIDIA L4 | efficiency 0.1249 | 206/209 queries judged
 - Weakest categories (NDCG@5): C03 Attribute / implied meaning 0.2982, C02 Ingredient generalization 0.3454, C18 Chicken dishes 0.3479, C13 Taco varieties 0.4357, C04 Cooking method synonyms 0.4832
+
+### Plan (iteration 66)
+- Hypothesis: Comparing results across method families, BAAI/bge-reranker-v2-m3 set the non-LLM record at 0.7242 NDCG@5 (outperforming MiniLM-L12 at 0.6747 and Electra at 0.6806), but it has never been evaluated within our hybrid retrieval pipeline where MiniLM-L12 currently leads the leaderboard at 0.8195. Meanwhile, the lexical family has had only 2 experiments and remains severely handicapped at 0.5566 NDCG@5 due to brittle substring matching, strict all-or-nothing AND semantics dropping multi-word queries (C10 at 0.0000, C02 at 0.0553), and zero typo tolerance causing near-total failure on spelling variations (C05 at 0.0667). We first evaluate hybrid search combining Qwen2.5-7B candidates with BAAI/bge-reranker-v2-m3, and second upgrade enhanced_text_search.py with corpus-vocabulary Levenshtein spelling correction, word boundary token matching, hyphen normalization, and IDF-weighted partial scoring.
+- Queued (llm): run_experiment hybrid-qwen2.5-7b-bge-reranker-v2-m3
+- Queued (lexical): change_code Upgrade research/search/enhanced_text_search.py to address critical lexical search bottlenecks: 1) Replace raw substring matching ('v in name') with w
+
+### Iteration 66: hybrid-qwen2.5-7b-bge-reranker-v2-m3 (SUCCESS)
+- Result: `research/agent/results/hybrid-qwen2.5-7b-bge-reranker-v2-m3.json` | commit `bb3aa41` | 105.1s
+- Eval args: `--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model BAAI/bge-reranker-v2-m3 --grade-boost 2.0` | family `llm`
+- ndcg@5 0.7976 | recall@10 0.8236 | mrr 0.8733 | 0.5243 s/query on NVIDIA L4 | efficiency 0.1444 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.1832, C03 Attribute / implied meaning 0.5474, C18 Chicken dishes 0.5911, C24 Pizza varieties 0.6667, C02 Ingredient generalization 0.6794

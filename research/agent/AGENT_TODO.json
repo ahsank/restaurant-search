@@ -1,6 +1,18 @@
 {
-  "iteration": 66,
-  "pending_tasks": [],
+  "iteration": 67,
+  "pending_tasks": [
+    {
+      "action": "change_code",
+      "family": "lexical",
+      "details": "Upgrade research/search/enhanced_text_search.py to address critical lexical search bottlenecks: 1) Replace raw substring matching ('v in name') with word-boundary/token matching so subwords like 'tea' do not falsely match 'steak' or 'pie' in 'piece'; 2) Normalize hyphens and slashes to spaces in queries and indexed texts to handle compound and hyphenated dish terms (C07); 3) Add dynamic Levenshtein edit-distance spelling tolerance (edit distance <= 1 for terms len >= 4, <= 2 for len >= 6) against the indexed menu vocabulary when a query term has no exact match, repairing C05 spelling variations (currently 0.0667); 4) Replace the strict all-or-nothing requirement ('if total < len(terms): return 0') with IDF-weighted partial scoring and an all-terms-matched bonus, preventing multi-word queries in C10, C02, and C03 from returning 0 results; 5) Re-run baseline-enhanced via evaluate.py to verify NDCG@5 improves over 0.5566.",
+      "evidence": [
+        "research/search/enhanced_text_search.py",
+        "research/agent/results/baseline-enhanced.json",
+        "research/APPROACHES.md"
+      ],
+      "reasoning": "Comparing results across method families, BAAI/bge-reranker-v2-m3 set the non-LLM record at 0.7242 NDCG@5 (outperforming MiniLM-L12 at 0.6747 and Electra at 0.6806), but it has never been evaluated within our hybrid retrieval pipeline where MiniLM-L12 currently leads the leaderboard at 0.8195. Meanwhile, the lexical family has had only 2 experiments and remains severely handicapped at 0.5566 NDCG@5 due to brittle substring matching, strict all-or-nothing AND semantics dropping multi-word queries (C10 at 0.0000, C02 at 0.0553), and zero typo tolerance causing near-total failure on spelling variations (C05 at 0.0667). We first evaluate hybrid search combining Qwen2.5-7B candidates with BAAI/bge-reranker-v2-m3, and second upgrade enhanced_text_search.py with corpus-vocabulary Levenshtein spelling correction, word boundary token matching, hyphen normalization, and IDF-weighted partial scoring."
+    }
+  ],
   "completed_tasks": [
     {
       "action": "run_experiment",
@@ -558,6 +570,15 @@
       "eval_args": "--engine sbert --model mixedbread-ai/mxbai-embed-large-v1 --query-prefix \"Represent this sentence for searching relevant passages: \"",
       "setup": "",
       "description": "re-run with the correct Hugging Face id (mxbai-embed-large-v1); the previous attempt used a non-existent repo name"
+    },
+    {
+      "action": "run_experiment",
+      "family": "llm",
+      "name": "hybrid-qwen2.5-7b-bge-reranker-v2-m3",
+      "eval_args": "--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model BAAI/bge-reranker-v2-m3 --grade-boost 2.0",
+      "setup": "",
+      "description": "Evaluate hybrid search combining Qwen2.5-7B candidate retrieval with BAAI/bge-reranker-v2-m3 reranking (0.7242 standalone record) and grade-boost 2.0 to test if superior cross-encoder scoring beats ms-marco-MiniLM-L12-v2 (0.8195).",
+      "reasoning": "Comparing results across method families, BAAI/bge-reranker-v2-m3 set the non-LLM record at 0.7242 NDCG@5 (outperforming MiniLM-L12 at 0.6747 and Electra at 0.6806), but it has never been evaluated within our hybrid retrieval pipeline where MiniLM-L12 currently leads the leaderboard at 0.8195. Meanwhile, the lexical family has had only 2 experiments and remains severely handicapped at 0.5566 NDCG@5 due to brittle substring matching, strict all-or-nothing AND semantics dropping multi-word queries (C10 at 0.0000, C02 at 0.0553), and zero typo tolerance causing near-total failure on spelling variations (C05 at 0.0667). We first evaluate hybrid search combining Qwen2.5-7B candidates with BAAI/bge-reranker-v2-m3, and second upgrade enhanced_text_search.py with corpus-vocabulary Levenshtein spelling correction, word boundary token matching, hyphen normalization, and IDF-weighted partial scoring."
     }
   ]
 }
