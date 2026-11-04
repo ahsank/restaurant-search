@@ -1055,3 +1055,48 @@ Capturing CUDA graphs (PIECEWISE):  43%|████▎     | 22/51 [00:22<00:03
 
 ### Session Gemini usage
 - (no Gemini calls)
+
+### Iteration 102: llm-qwen2.5-7b-instruct (SETUP_FAILED)
+- Result: `research/agent/results/llm-qwen2.5-7b-instruct.json` | commit `5f99423` | 157.8s
+- Setup: `python research/search/llm_search.py --model Qwen/Qwen2.5-7B-Instruct --out research/agent/runs/qwen2.5-7b-instruct.jsonl --gpu-memory-utilization 0.85`
+- Eval args: `--engine llm --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl` | family `llm`
+- Error:
+```
+Exit code 1 (full output: research/agent/runs/logs/llm-qwen2.5-7b-instruct.setup.log)
+Key lines:
+(EngineCore pid=8244) ERROR 11-04 21:40:36 [core.py:1584] EngineCore failed to start.
+(EngineCore pid=8244) ERROR 11-04 21:40:36 [core.py:1584] Traceback (most recent call last):
+(EngineCore pid=8244) ERROR 11-04 21:40:36 [core.py:1584] ModuleNotFoundError: No module named 'torchvision'
+Traceback (most recent call last):
+ModuleNotFoundError: No module named 'torchvision'
+raise RuntimeError(
+RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}
+
+--- last 1500 chars ---
+t.py", line 129, in make_client
+    return SyncMPClient(
+        vllm_config,
+    ...<2 lines>...
+        renderer=renderer,
+    )
+  File "/usr/local/lib/python3.13/dist-packages/vllm/tracing/otel.py", line 175, in sync_wrapper
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.13/dist-packages/vllm/v1/engine/core_client.py", line 966, in __init__
+    super().__init__(
+    ~~~~~~~~~~~~~~~~^
+        asyncio_mode=False,
+        ^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        renderer=renderer,
+        ^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/usr/local/lib/python3.13/dist-packages/vllm/v1/engine/core_client.py", line 699, in __init__
+    with launch_core_engines(
+         ~~~~~~~~~~~~~~~~~~~^
+        vllm_config, executor_class, log_stats, addresses
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ) as engine_launch:
+    ^
+  File "/usr/lib/python3.13/cont
+```

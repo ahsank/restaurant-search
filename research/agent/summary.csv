@@ -26,5 +26,5 @@ sbert-all-MiniLM-L6-v2,bi-encoder,SUCCESS,0.5398,0.4685,0.6982,0.0035,NVIDIA RTX
 baseline-text,lexical,SUCCESS,0.4562,0.4804,0.4789,0.0003,NVIDIA RTX PRO 6000 Blackwell Server Edition,0.0912,209,0.1,5022f82,2026-11-04T20:53:23,--engine text
 llm-qwen2.5-14b-instruct,llm,SETUP_FAILED,,,,,NVIDIA RTX PRO 6000 Blackwell Server Edition,,,129.3,a16bc3a,2026-11-04T20:19:07,--engine llm --rankings research/agent/runs/qwen2.5-14b-instruct.jsonl
 llm-qwen2.5-32b-instruct,llm,SETUP_FAILED,,,,,NVIDIA RTX PRO 6000 Blackwell Server Edition,,,323.8,f3ec327,2026-11-04T20:44:35,--engine llm --rankings research/agent/runs/qwen2.5-32b-instruct.jsonl
-llm-qwen2.5-7b-instruct,llm,SETUP_FAILED,,,,,NVIDIA RTX PRO 6000 Blackwell Server Edition,,,161.3,79a40e4,2026-11-04T20:16:23,--engine llm --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl
+llm-qwen2.5-7b-instruct,llm,SETUP_FAILED,,,,,NVIDIA RTX PRO 6000 Blackwell Server Edition,,,157.8,5f99423,2026-11-04T21:38:00,--engine llm --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl
 sbert-gte-large,bi-encoder,EVAL_FAILED,,,,,Tesla T4,,,25.6,555b10b,2026-11-03T03:17:42,--engine sbert --model thenlper/gte-large
