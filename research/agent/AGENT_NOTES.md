@@ -1238,3 +1238,9 @@ t.py", line 129, in make_client
 - Eval args: `--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model BAAI/bge-reranker-large --grade-boost 2.0` | family `llm`
 - ndcg@5 0.8056 | recall@10 0.8335 | mrr 0.8766 | 0.147 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.1565 | 206/209 queries judged
 - Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.0492, C18 Chicken dishes 0.5911, C03 Attribute / implied meaning 0.6284, C24 Pizza varieties 0.6667, C19 Beef dishes 0.6735
+
+### Iteration 125: hybrid-qwen2.5-7b-electra-boost2 (SUCCESS)
+- Result: `research/agent/results/hybrid-qwen2.5-7b-electra-boost2.json` | commit `c3057c0` | 15.9s
+- Eval args: `--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-electra-base --grade-boost 2.0` | family `llm`
+- ndcg@5 0.8049 | recall@10 0.8238 | mrr 0.8757 | 0.1111 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.1575 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.1789, C03 Attribute / implied meaning 0.6139, C18 Chicken dishes 0.6422, C08 Dietary constraint / negation 0.6489, C24 Pizza varieties 0.6667
