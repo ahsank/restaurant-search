@@ -1,4 +1,86 @@
 {
   "iteration": 116,
-  "pending_tasks": []
+  "pending_tasks": [
+    {
+      "action": "run_experiment",
+      "family": "llm",
+      "name": "llm-qwen2.5-7b-instruct",
+      "setup": "python research/search/llm_search.py --model Qwen/Qwen2.5-7B-Instruct --out research/agent/runs/qwen2.5-7b-instruct.jsonl --gpu-memory-utilization 0.85",
+      "eval_args": "--engine llm --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl",
+      "description": "re-run: iteration 102 failed because setup_machine.sh uninstalled torchvision (now fixed); regenerates rankings incl. the 7 rewritten queries"
+    },
+    {
+      "action": "run_experiment",
+      "family": "bi-encoder",
+      "name": "sbert-gte-large",
+      "eval_args": "--engine sbert --model thenlper/gte-large",
+      "setup": "",
+      "description": "re-run: iteration 69 failed on a broken transformers import (mismatched torchvision on that machine) and was never re-run",
+      "reasoning": "In the LLM hybrid pipeline, Qwen2.5-32B candidate rankings achieved an MRR record of 0.8836 and 0.8168 NDCG@5 with MiniLM-L12, while BAAI/bge-reranker-v2-m3 demonstrated dramatically superior discrimination on C04 cooking methods (0.9229 vs 0.8583) and C08 dietary constraints (0.7188 vs 0.5375), making their combination a strong candidate to surpass the 0.8195 overall benchmark ceiling. In the non-LLM bi-encoder family, where BAAI/bge-base-en-v1.5 currently leads at 0.6359 NDCG@5, the widely benchmarked 335M-parameter thenlper/gte-large model offers significantly higher capacity and pre-training diversity without requiring prompt prefixes."
+    },
+    {
+      "action": "run_experiment",
+      "family": "llm",
+      "name": "hybrid-qwen2.5-7b-minilm-l6-boost2",
+      "setup": "",
+      "eval_args": "--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L6-v2 --grade-boost 2.0",
+      "description": "re-run on the regenerated 7B rankings: the old file lacked the 7 rewritten queries, which fell back to the cross-encoder"
+    },
+    {
+      "action": "run_experiment",
+      "family": "llm",
+      "name": "hybrid-qwen2.5-7b-minilm-l12-boost2",
+      "setup": "",
+      "eval_args": "--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L12-v2 --grade-boost 2.0",
+      "description": "re-run on the regenerated 7B rankings: the old file lacked the 7 rewritten queries, which fell back to the cross-encoder"
+    },
+    {
+      "action": "run_experiment",
+      "family": "llm",
+      "name": "hybrid-qwen2.5-7b-minilm-l12-boost3",
+      "setup": "",
+      "eval_args": "--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L12-v2 --grade-boost 3.0",
+      "description": "re-run on the regenerated 7B rankings: the old file lacked the 7 rewritten queries, which fell back to the cross-encoder"
+    },
+    {
+      "action": "run_experiment",
+      "family": "llm",
+      "name": "hybrid-qwen2.5-7b-minilm-l6-strict-grade",
+      "setup": "",
+      "eval_args": "--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L6-v2 --strict-grade",
+      "description": "re-run on the regenerated 7B rankings: the old file lacked the 7 rewritten queries, which fell back to the cross-encoder"
+    },
+    {
+      "action": "run_experiment",
+      "family": "llm",
+      "name": "hybrid-qwen2.5-7b-ms-marco-MiniLM-L6-v2",
+      "setup": "",
+      "eval_args": "--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L6-v2",
+      "description": "re-run on the regenerated 7B rankings: the old file lacked the 7 rewritten queries, which fell back to the cross-encoder"
+    },
+    {
+      "action": "run_experiment",
+      "family": "llm",
+      "name": "hybrid-qwen2.5-7b-bge-reranker-v2-m3",
+      "setup": "",
+      "eval_args": "--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model BAAI/bge-reranker-v2-m3 --grade-boost 2.0",
+      "description": "re-run on the regenerated 7B rankings: the old file lacked the 7 rewritten queries, which fell back to the cross-encoder"
+    },
+    {
+      "action": "run_experiment",
+      "family": "llm",
+      "name": "hybrid-qwen2.5-7b-bge-reranker-large",
+      "setup": "",
+      "eval_args": "--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model BAAI/bge-reranker-large --grade-boost 2.0",
+      "description": "re-run on the regenerated 7B rankings: the old file lacked the 7 rewritten queries, which fell back to the cross-encoder"
+    },
+    {
+      "action": "run_experiment",
+      "family": "llm",
+      "name": "hybrid-qwen2.5-7b-electra-boost2",
+      "setup": "",
+      "eval_args": "--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-electra-base --grade-boost 2.0",
+      "description": "re-run on the regenerated 7B rankings: the old file lacked the 7 rewritten queries, which fell back to the cross-encoder"
+    }
+  ]
 }
