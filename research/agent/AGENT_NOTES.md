@@ -1183,3 +1183,10 @@ t.py", line 129, in make_client
 
 ### Session Gemini usage
 - (no Gemini calls)
+
+### Iteration 116: llm-qwen2.5-7b-instruct (SUCCESS)
+- Result: `research/agent/results/llm-qwen2.5-7b-instruct.json` | commit `74812a5` | 244.5s
+- Setup: `python research/search/llm_search.py --model Qwen/Qwen2.5-7B-Instruct --out research/agent/runs/qwen2.5-7b-instruct.jsonl --gpu-memory-utilization 0.85`
+- Eval args: `--engine llm --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl` | family `llm`
+- ndcg@5 0.708 | recall@10 0.7759 | mrr 0.776 | 0.09 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.1391 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.2461, C03 Attribute / implied meaning 0.426, C18 Chicken dishes 0.484, C25 Occasion / meal-time 0.5996, C09 Synonym / paraphrase 0.6052

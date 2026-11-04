@@ -1,14 +1,6 @@
 {
-  "iteration": 116,
+  "iteration": 117,
   "pending_tasks": [
-    {
-      "action": "run_experiment",
-      "family": "llm",
-      "name": "llm-qwen2.5-7b-instruct",
-      "setup": "python research/search/llm_search.py --model Qwen/Qwen2.5-7B-Instruct --out research/agent/runs/qwen2.5-7b-instruct.jsonl --gpu-memory-utilization 0.85",
-      "eval_args": "--engine llm --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl",
-      "description": "re-run: iteration 102 failed because setup_machine.sh uninstalled torchvision (now fixed); regenerates rankings incl. the 7 rewritten queries"
-    },
     {
       "action": "run_experiment",
       "family": "bi-encoder",

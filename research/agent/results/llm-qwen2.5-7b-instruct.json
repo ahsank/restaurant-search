@@ -1,10 +1,10 @@
 {
   "name": "llm-qwen2.5-7b-instruct",
-  "description": "re-run: LLM rankings regenerated with the interpreter fix (earlier runs used the wrong python)",
-  "status": "SETUP_FAILED",
-  "iteration": 102,
-  "timestamp": "2026-11-04T21:38:00",
-  "git_commit": "5f99423",
+  "description": "re-run: iteration 102 failed because setup_machine.sh uninstalled torchvision (now fixed); regenerates rankings incl. the 7 rewritten queries",
+  "status": "SUCCESS",
+  "iteration": 116,
+  "timestamp": "2026-11-04T22:47:18",
+  "git_commit": "74812a5",
   "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
   "result_file": "research/agent/results/llm-qwen2.5-7b-instruct.json",
   "family": "llm",
@@ -15,9 +15,218 @@
     "--rankings",
     "research/agent/runs/qwen2.5-7b-instruct.jsonl"
   ],
-  "seconds": 157.8,
-  "timing": null,
-  "metrics": null,
-  "setup_seconds": 157.8,
-  "error": "Exit code 1 (full output: research/agent/runs/logs/llm-qwen2.5-7b-instruct.setup.log)\nKey lines:\n(EngineCore pid=8244) ERROR 11-04 21:40:36 [core.py:1584] EngineCore failed to start.\n(EngineCore pid=8244) ERROR 11-04 21:40:36 [core.py:1584] Traceback (most recent call last):\n(EngineCore pid=8244) ERROR 11-04 21:40:36 [core.py:1584] ModuleNotFoundError: No module named 'torchvision'\nTraceback (most recent call last):\nModuleNotFoundError: No module named 'torchvision'\nraise RuntimeError(\nRuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}\n\n--- last 1500 chars ---\nt.py\", line 129, in make_client\n    return SyncMPClient(\n        vllm_config,\n    ...<2 lines>...\n        renderer=renderer,\n    )\n  File \"/usr/local/lib/python3.13/dist-packages/vllm/tracing/otel.py\", line 175, in sync_wrapper\n    return func(*args, **kwargs)\n  File \"/usr/local/lib/python3.13/dist-packages/vllm/v1/engine/core_client.py\", line 966, in __init__\n    super().__init__(\n    ~~~~~~~~~~~~~~~~^\n        asyncio_mode=False,\n        ^^^^^^^^^^^^^^^^^^^\n    ...<3 lines>...\n        renderer=renderer,\n        ^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/usr/local/lib/python3.13/dist-packages/vllm/v1/engine/core_client.py\", line 699, in __init__\n    with launch_core_engines(\n         ~~~~~~~~~~~~~~~~~~~^\n        vllm_config, executor_class, log_stats, addresses\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    ) as engine_launch:\n    ^\n  File \"/usr/lib/python3.13/contextlib.py\", line 148, in __exit__\n    next(self.gen)\n    ~~~~^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/dist-packages/vllm/v1/engine/utils.py\", line 1393, in launch_core_engines\n    wait_for_engine_startup(\n    ~~~~~~~~~~~~~~~~~~~~~~~^\n        handshake_socket,\n        ^^^^^^^^^^^^^^^^^\n    ...<4 lines>...\n        launch,\n        ^^^^^^^\n    )\n    ^\n  File \"/usr/local/lib/python3.13/dist-packages/vllm/v1/engine/utils.py\", line 1473, in wait_for_engine_startup\n    raise RuntimeError(\n    ...<8 lines>...\n    )\nRuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}\n"
+  "seconds": 244.5,
+  "timing": {
+    "seconds_per_query": 0.09,
+    "search_seconds_per_query": 0.0,
+    "rankings_generation_seconds_per_query": 0.09
+  },
+  "metrics": {
+    "overall": {
+      "ndcg@5": 0.7080097953938786,
+      "recall@10": 0.7759443863831957,
+      "mrr": 0.7760171058714748,
+      "n_queries": 209,
+      "n_with_judgments": 206
+    },
+    "by_category": {
+      "C01": {
+        "name": "Cuisine type inference",
+        "n_queries": 8,
+        "ndcg@5": 0.8506884699833922,
+        "recall@10": 0.7333333333333334,
+        "mrr": 1.0
+      },
+      "C02": {
+        "name": "Ingredient generalization",
+        "n_queries": 10,
+        "ndcg@5": 0.7159120173528524,
+        "recall@10": 0.7922077922077922,
+        "mrr": 0.8
+      },
+      "C03": {
+        "name": "Attribute / implied meaning",
+        "n_queries": 12,
+        "ndcg@5": 0.4260044417092845,
+        "recall@10": 0.5694444444444444,
+        "mrr": 0.5694444444444444
+      },
+      "C04": {
+        "name": "Cooking method synonyms",
+        "n_queries": 10,
+        "ndcg@5": 0.8578229985066084,
+        "recall@10": 0.9125,
+        "mrr": 0.9166666666666666
+      },
+      "C05": {
+        "name": "Spelling variations",
+        "n_queries": 15,
+        "ndcg@5": 0.7866885623764167,
+        "recall@10": 0.8811111111111111,
+        "mrr": 0.8333333333333334
+      },
+      "C06": {
+        "name": "Stemming & lemmatization",
+        "n_queries": 10,
+        "ndcg@5": 0.8120048579613487,
+        "recall@10": 0.8857142857142858,
+        "mrr": 0.8566666666666667
+      },
+      "C07": {
+        "name": "Hyphenation / spacing / stop words",
+        "n_queries": 14,
+        "ndcg@5": 0.6252045601149627,
+        "recall@10": 0.7317460317460318,
+        "mrr": 0.6928571428571428
+      },
+      "C08": {
+        "name": "Dietary constraint / negation",
+        "n_queries": 10,
+        "ndcg@5": 0.6237847898746558,
+        "recall@10": 0.777027027027027,
+        "mrr": 0.712962962962963
+      },
+      "C09": {
+        "name": "Synonym / paraphrase",
+        "n_queries": 10,
+        "ndcg@5": 0.6051963457198527,
+        "recall@10": 0.7055555555555555,
+        "mrr": 0.675
+      },
+      "C10": {
+        "name": "Multi-constraint compositional",
+        "n_queries": 2,
+        "ndcg@5": 0.24609259723736487,
+        "recall@10": 0.35714285714285715,
+        "mrr": 0.5
+      },
+      "C11": {
+        "name": "Soup varieties",
+        "n_queries": 7,
+        "ndcg@5": 0.7518125918947952,
+        "recall@10": 0.9821428571428571,
+        "mrr": 0.6904761904761905
+      },
+      "C12": {
+        "name": "Burger varieties",
+        "n_queries": 6,
+        "ndcg@5": 0.7132343525391374,
+        "recall@10": 1.0,
+        "mrr": 0.7777777777777778
+      },
+      "C13": {
+        "name": "Taco varieties",
+        "n_queries": 8,
+        "ndcg@5": 0.7786560648380584,
+        "recall@10": 0.85,
+        "mrr": 0.8125
+      },
+      "C14": {
+        "name": "Pasta varieties",
+        "n_queries": 8,
+        "ndcg@5": 0.8383798762321187,
+        "recall@10": 0.7806186868686869,
+        "mrr": 0.9166666666666666
+      },
+      "C15": {
+        "name": "Sandwich varieties",
+        "n_queries": 7,
+        "ndcg@5": 0.9194816023309155,
+        "recall@10": 0.911922663802363,
+        "mrr": 0.9285714285714286
+      },
+      "C16": {
+        "name": "Salad varieties",
+        "n_queries": 7,
+        "ndcg@5": 0.7511094564974895,
+        "recall@10": 0.7738095238095238,
+        "mrr": 0.7428571428571429
+      },
+      "C17": {
+        "name": "Dessert varieties",
+        "n_queries": 8,
+        "ndcg@5": 0.7818453129536626,
+        "recall@10": 0.8194444444444444,
+        "mrr": 0.8125
+      },
+      "C18": {
+        "name": "Chicken dishes",
+        "n_queries": 6,
+        "ndcg@5": 0.4840022513325595,
+        "recall@10": 0.4621212121212121,
+        "mrr": 0.6071428571428571
+      },
+      "C19": {
+        "name": "Beef dishes",
+        "n_queries": 6,
+        "ndcg@5": 0.6054229299252795,
+        "recall@10": 0.7243589743589743,
+        "mrr": 0.75
+      },
+      "C20": {
+        "name": "Pork dishes",
+        "n_queries": 6,
+        "ndcg@5": 0.6462619712604721,
+        "recall@10": 0.7200000000000001,
+        "mrr": 0.625
+      },
+      "C21": {
+        "name": "Seafood dishes",
+        "n_queries": 9,
+        "ndcg@5": 0.6753555214662454,
+        "recall@10": 0.6428571428571428,
+        "mrr": 0.787037037037037
+      },
+      "C22": {
+        "name": "Ingredient focus",
+        "n_queries": 13,
+        "ndcg@5": 0.6904266552583368,
+        "recall@10": 0.7893356643356644,
+        "mrr": 0.8076923076923077
+      },
+      "C23": {
+        "name": "Typical dish names",
+        "n_queries": 12,
+        "ndcg@5": 0.8320855158506774,
+        "recall@10": 0.8974358974358975,
+        "mrr": 0.8541666666666666
+      },
+      "C24": {
+        "name": "Pizza varieties",
+        "n_queries": 3,
+        "ndcg@5": 0.6666666666666666,
+        "recall@10": 0.6666666666666666,
+        "mrr": 0.6666666666666666
+      },
+      "C25": {
+        "name": "Occasion / meal-time",
+        "n_queries": 2,
+        "ndcg@5": 0.5995614962020815,
+        "recall@10": 0.15515350877192982,
+        "mrr": 0.75
+      }
+    },
+    "by_difficulty": {
+      "Easy": {
+        "n_queries": 126,
+        "ndcg@5": 0.7680871233854044,
+        "recall@10": 0.8005126508134027,
+        "mrr": 0.8286470143613001
+      },
+      "Medium": {
+        "n_queries": 58,
+        "ndcg@5": 0.6814943210393604,
+        "recall@10": 0.8015359879584018,
+        "mrr": 0.7614942528735632
+      },
+      "Hard": {
+        "n_queries": 25,
+        "ndcg@5": 0.4338349856497796,
+        "recall@10": 0.5677664677664678,
+        "mrr": 0.5128787878787878
+      }
+    }
+  },
+  "setup_seconds": 244.5,
+  "eval_seconds": 0.1
 }
