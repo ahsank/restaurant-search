@@ -13,7 +13,7 @@ runs on the same GPU. `–` = not recorded (re-run it).
 | bi-encoder | sbert-bge-base-en-v1.5 | 0.6359 | 0.5600 | 0.7974 | 0.0044 | – | 0.1271 | 5 |
 | late-interaction | colbert-colbertv2.0 | 0.6583 | 0.5733 | 0.8036 | 0.0310 | Tesla T4 | 0.1309 | 1 |
 | cross-encoder | crossencoder-bge-reranker-v2-m3 | 0.7242 | 0.6165 | 0.8745 | 0.6148 | NVIDIA RTX PRO 6000 Blackwell Server Edition | 0.1290 | 5 |
-| llm | hybrid-qwen2.5-32b-bge-reranker-v2-m3 | 0.8204 | 0.7937 | 0.8892 | 1.6113 | Tesla T4 | 0.1241 | 12 |
+| llm | hybrid-qwen2.5-32b-bge-reranker-v2-m3 | 0.8204 | 0.7937 | 0.8892 | 1.6113 | Tesla T4 | 0.1241 | 11 |
 | other | (none yet) | | | | | | | 0 |
 
 ## Efficiency = NDCG@5 / (seconds per query + 5)
@@ -30,19 +30,18 @@ runs on the same GPU. `–` = not recorded (re-run it).
 | 8 | hybrid-qwen2.5-7b-electra-boost2 | llm | 0.1512 | 0.7888 | 0.2172 | – |
 | 9 | hybrid-qwen2.5-7b-minilm-l6-strict-grade | llm | 0.1512 | 0.7858 | 0.1987 | – |
 | 10 | hybrid-qwen2.5-7b-bge-reranker-v2-m3 | llm | 0.1444 | 0.7976 | 0.5243 | NVIDIA L4 |
-| 11 | llm-qwen2.5-32b-instruct | llm | 0.1414 | 0.7538 | 0.3292 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 12 | crossencoder-ms-marco-MiniLM-L6-v2 | cross-encoder | 0.1338 | 0.6770 | 0.0607 | – |
-| 13 | crossencoder-ms-marco-MiniLM-L12-v2 | cross-encoder | 0.1323 | 0.6747 | 0.0985 | – |
-| 14 | colbert-colbertv2.0 | late-interaction | 0.1309 | 0.6583 | 0.0310 | Tesla T4 |
-| 15 | crossencoder-bge-reranker-v2-m3 | cross-encoder | 0.1290 | 0.7242 | 0.6148 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 16 | crossencoder-ms-marco-electra-base | cross-encoder | 0.1287 | 0.6806 | 0.2876 | – |
-| 17 | sbert-bge-base-en-v1.5 | bi-encoder | 0.1271 | 0.6359 | 0.0044 | – |
-| 18 | baseline-enhanced | lexical | 0.1263 | 0.6397 | 0.0640 | NVIDIA L4 |
-| 19 | crossencoder-bge-reranker-large | cross-encoder | 0.1262 | 0.7091 | 0.6188 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 20 | sbert-mxbai-embed-large | bi-encoder | 0.1249 | 0.6278 | 0.0271 | NVIDIA L4 |
-| 21 | hybrid-qwen2.5-32b-bge-reranker-v2-m3 | llm | 0.1241 | 0.8204 | 1.6113 | Tesla T4 |
-| 22 | sbert-bge-large-en-v1.5 | bi-encoder | 0.1237 | 0.6191 | 0.0072 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 23 | softbm25-conceptnet | word-vector | 0.1133 | 0.5704 | 0.0370 | NVIDIA L4 |
-| 24 | sbert-all-mpnet-base-v2 | bi-encoder | 0.1096 | 0.5484 | 0.0048 | – |
-| 25 | sbert-all-MiniLM-L6-v2 | bi-encoder | 0.1048 | 0.5244 | 0.0032 | – |
-| 26 | baseline-text | lexical | 0.0891 | 0.4456 | 0.0003 | – |
+| 11 | crossencoder-ms-marco-MiniLM-L6-v2 | cross-encoder | 0.1338 | 0.6770 | 0.0607 | – |
+| 12 | crossencoder-ms-marco-MiniLM-L12-v2 | cross-encoder | 0.1323 | 0.6747 | 0.0985 | – |
+| 13 | colbert-colbertv2.0 | late-interaction | 0.1309 | 0.6583 | 0.0310 | Tesla T4 |
+| 14 | crossencoder-bge-reranker-v2-m3 | cross-encoder | 0.1290 | 0.7242 | 0.6148 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 15 | crossencoder-ms-marco-electra-base | cross-encoder | 0.1287 | 0.6806 | 0.2876 | – |
+| 16 | sbert-bge-base-en-v1.5 | bi-encoder | 0.1271 | 0.6359 | 0.0044 | – |
+| 17 | baseline-enhanced | lexical | 0.1263 | 0.6397 | 0.0640 | NVIDIA L4 |
+| 18 | crossencoder-bge-reranker-large | cross-encoder | 0.1262 | 0.7091 | 0.6188 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 19 | sbert-mxbai-embed-large | bi-encoder | 0.1249 | 0.6278 | 0.0271 | NVIDIA L4 |
+| 20 | hybrid-qwen2.5-32b-bge-reranker-v2-m3 | llm | 0.1241 | 0.8204 | 1.6113 | Tesla T4 |
+| 21 | sbert-bge-large-en-v1.5 | bi-encoder | 0.1237 | 0.6191 | 0.0072 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 22 | softbm25-conceptnet | word-vector | 0.1133 | 0.5704 | 0.0370 | NVIDIA L4 |
+| 23 | sbert-all-mpnet-base-v2 | bi-encoder | 0.1096 | 0.5484 | 0.0048 | – |
+| 24 | sbert-all-MiniLM-L6-v2 | bi-encoder | 0.1048 | 0.5244 | 0.0032 | – |
+| 25 | baseline-text | lexical | 0.0891 | 0.4456 | 0.0003 | – |

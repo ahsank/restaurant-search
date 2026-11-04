@@ -10,7 +10,6 @@ hybrid-qwen2.5-7b-bge-reranker-v2-m3,llm,SUCCESS,0.7976,0.8236,0.8733,0.5243,NVI
 hybrid-qwen2.5-7b-ms-marco-MiniLM-L6-v2,llm,SUCCESS,0.7909,0.8146,0.8578,0.1987,,0.1521,209,8.5,0d7f654,2026-10-14T22:06:38,--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L6-v2
 hybrid-qwen2.5-7b-electra-boost2,llm,SUCCESS,0.7888,0.8266,0.8594,0.2172,,0.1512,209,12.3,71c66a4,2026-10-14T22:46:32,--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-electra-base --grade-boost 2.0
 hybrid-qwen2.5-7b-minilm-l6-strict-grade,llm,SUCCESS,0.7858,0.821,0.8665,0.1987,,0.1512,209,8.5,ed60ce2,2026-10-14T22:06:28,--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L6-v2 --strict-grade
-llm-qwen2.5-32b-instruct,llm,SUCCESS,0.7538,0.7682,0.8066,0.3292,NVIDIA RTX PRO 6000 Blackwell Server Edition,0.1414,209,336.2,48e6ba9,2026-10-18T16:47:13,--engine llm --rankings research/agent/runs/qwen2.5-32b-instruct.jsonl
 crossencoder-bge-reranker-v2-m3,cross-encoder,SUCCESS,0.7242,0.6165,0.8745,0.6148,NVIDIA RTX PRO 6000 Blackwell Server Edition,0.129,209,149.5,8e7ebf5,2026-10-18T16:42:06,--engine crossencoder --model BAAI/bge-reranker-v2-m3
 crossencoder-bge-reranker-large,cross-encoder,SUCCESS,0.7091,0.6102,0.8487,0.6188,NVIDIA RTX PRO 6000 Blackwell Server Edition,0.1262,209,161.8,41f12d4,2026-10-18T16:30:03,--engine crossencoder --model BAAI/bge-reranker-large
 crossencoder-ms-marco-electra-base,cross-encoder,SUCCESS,0.6806,0.5909,0.8255,0.2876,,0.1287,209,67.1,327144d,2026-10-14T22:43:03,--engine crossencoder --model cross-encoder/ms-marco-electra-base
@@ -26,5 +25,6 @@ sbert-all-mpnet-base-v2,bi-encoder,SUCCESS,0.5484,0.4678,0.7375,0.0048,,0.1096,2
 sbert-all-MiniLM-L6-v2,bi-encoder,SUCCESS,0.5244,0.4677,0.6789,0.0032,,0.1048,209,8.2,7022031,2026-10-14T22:44:12,--engine sbert --model all-MiniLM-L6-v2
 baseline-text,lexical,SUCCESS,0.4456,0.4708,0.4692,0.0003,,0.0891,209,0.1,4d21690,2026-10-14T22:04:48,--engine text
 llm-qwen2.5-14b-instruct,llm,SETUP_FAILED,,,,,NVIDIA RTX PRO 6000 Blackwell Server Edition,,,129.3,a16bc3a,2026-11-04T20:19:07,--engine llm --rankings research/agent/runs/qwen2.5-14b-instruct.jsonl
+llm-qwen2.5-32b-instruct,llm,SETUP_FAILED,,,,,NVIDIA RTX PRO 6000 Blackwell Server Edition,,,323.8,f3ec327,2026-11-04T20:44:35,--engine llm --rankings research/agent/runs/qwen2.5-32b-instruct.jsonl
 llm-qwen2.5-7b-instruct,llm,SETUP_FAILED,,,,,NVIDIA RTX PRO 6000 Blackwell Server Edition,,,161.3,79a40e4,2026-11-04T20:16:23,--engine llm --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl
 sbert-gte-large,bi-encoder,EVAL_FAILED,,,,,Tesla T4,,,25.6,555b10b,2026-11-03T03:17:42,--engine sbert --model thenlper/gte-large

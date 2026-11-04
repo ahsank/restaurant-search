@@ -880,3 +880,30 @@ Capturing CUDA graphs (PIECEWISE):  25%|██▌       | 13/51 [00:00<00:02, 14
 Capturing CUDA graphs (PIECEWISE):  29%|██▉       | 15/51 [00:01<00:02, 15.30it/s]
 Capturing CUDA graphs (PIECEWISE):  33%|███▎      | 17/51 [00:01<00
 ```
+
+### Iteration 77: llm-qwen2.5-32b-instruct (SETUP_FAILED)
+- Result: `research/agent/results/llm-qwen2.5-32b-instruct.json` | commit `f3ec327` | 323.8s
+- Setup: `python research/search/llm_search.py --model Qwen/Qwen2.5-32B-Instruct --out research/agent/runs/qwen2.5-32b-instruct.jsonl --gpu-memory-utilization 0.85`
+- Eval args: `--engine llm --rankings research/agent/runs/qwen2.5-32b-instruct.jsonl` | family `llm`
+- Error:
+```
+Exit code 1 (full output: research/agent/runs/logs/llm-qwen2.5-32b-instruct.setup.log)
+Key lines:
+Capturing CUDA graphs (PIECEWISE):   8%|▊         | 4/51 [00:20<02:10,  2.78s/it]
+Capturing CUDA graphs (PIECEWISE):  10%|▉         | 5/51 [00:20<01:23,  1.82s/it]
+Capturing CUDA graphs (PIECEWISE):  12%|█▏        | 6/51 [00:20<00:56,  1.25s/it]
+Capturing CUDA graphs (PIECEWISE):  14%|█▎        | 7/51 [00:20<00:38,  1.14it/s]
+Capturing CUDA graphs (PIECEWISE):  16%|█▌        | 8/51 [00:20<00:27,  1.56it/s]
+Capturing CUDA graphs (PIECEWISE):  18%|█▊        | 9/51 [00:20<00:19,  2.10it/s]
+Capturing CUDA graphs (PIECEWISE):  20%|█▉        | 10/51 [00:20<00:14,  2.75it/s]
+Capturing CUDA graphs (PIECEWISE):  22%|██▏       | 11/51 [00:20<00:11,  3.48it/s]
+Capturing CUDA graphs (PIECEWISE):  24%|██▎       | 12/51 [00:21<00:09,  4.27it/s]
+Capturing CUDA graphs (PIECEWISE):  25%|██▌       | 13/51 [00:21<00:07,  5.07it/s]
+Capturing CUDA graphs (PIECEWISE):  27%|██▋       | 14/51 [00:21<00:06,  5.84it/s]
+Capturing CUDA graphs (PIECEWISE):  29%|██▉       | 15/51 [00:21<00:05,  6.54it/s]
+Capturing CUDA graphs (PIECEWISE):  31%|███▏      | 16/51 [00:21<00:04,  7.14it/s]
+Capturing CUDA graphs (PIECEWISE):  33%|███▎      | 17/51 [00:21<00:04,  7.80it/s]
+Capturing CUDA graphs (PIECEWISE):  35%|███▌      | 18/51 [00:21<00:03,  8.35it/s]
+Capturing CUDA graphs (PIECEWISE):  39%|███▉      | 20/51 [00:21<00:03,  9.05it/s]
+Capturing CUDA graphs (PIECEWISE):  43%|████▎     | 22/51 [00:22<00:03,  9.44it/
+```
