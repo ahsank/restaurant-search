@@ -21,7 +21,7 @@ sbert-bge-base-en-v1.5,bi-encoder,SUCCESS,0.6359,0.56,0.7974,0.0044,,0.1271,209,
 sbert-mxbai-embed-large,bi-encoder,SUCCESS,0.6278,0.5389,0.7998,0.0271,NVIDIA L4,0.1249,209,48.5,e722ef8,2026-11-03T02:15:39,--engine sbert --model mixedbread-ai/mxbai-embed-large-v1 --query-prefix Represent this sentence for searching relevant passages: 
 sbert-bge-large-en-v1.5,bi-encoder,SUCCESS,0.6191,0.5516,0.7945,0.0072,NVIDIA RTX PRO 6000 Blackwell Server Edition,0.1237,209,20.1,6918681,2026-10-18T16:39:00,--engine sbert --model BAAI/bge-large-en-v1.5
 softbm25-conceptnet,word-vector,SUCCESS,0.5704,0.5279,0.7318,0.037,NVIDIA L4,0.1133,209,45.0,5a9d6a9,2026-10-18T17:24:32,--engine soft_bm25 --vectors /content/scratch/numberbatch-en-19.08.txt.gz
-sbert-all-mpnet-base-v2,bi-encoder,SUCCESS,0.5484,0.4678,0.7375,0.0048,,0.1096,209,8.7,eab2c5b,2026-10-14T22:44:22,--engine sbert --model all-mpnet-base-v2
+sbert-all-mpnet-base-v2,bi-encoder,SUCCESS,0.5608,0.4658,0.7486,0.005,NVIDIA RTX PRO 6000 Blackwell Server Edition,0.112,209,12.3,e43f609,2026-11-04T20:59:47,--engine sbert --model all-mpnet-base-v2
 sbert-all-MiniLM-L6-v2,bi-encoder,SUCCESS,0.5398,0.4685,0.6982,0.0035,NVIDIA RTX PRO 6000 Blackwell Server Edition,0.1079,209,9.8,a6468ae,2026-11-04T20:59:35,--engine sbert --model all-MiniLM-L6-v2
 baseline-text,lexical,SUCCESS,0.4562,0.4804,0.4789,0.0003,NVIDIA RTX PRO 6000 Blackwell Server Edition,0.0912,209,0.1,5022f82,2026-11-04T20:53:23,--engine text
 llm-qwen2.5-14b-instruct,llm,SETUP_FAILED,,,,,NVIDIA RTX PRO 6000 Blackwell Server Edition,,,129.3,a16bc3a,2026-11-04T20:19:07,--engine llm --rankings research/agent/runs/qwen2.5-14b-instruct.jsonl
