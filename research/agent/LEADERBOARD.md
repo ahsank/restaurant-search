@@ -44,4 +44,4 @@ runs on the same GPU. `–` = not recorded (re-run it).
 | 22 | softbm25-conceptnet | word-vector | 0.1133 | 0.5704 | 0.0370 | NVIDIA L4 |
 | 23 | sbert-all-mpnet-base-v2 | bi-encoder | 0.1096 | 0.5484 | 0.0048 | – |
 | 24 | sbert-all-MiniLM-L6-v2 | bi-encoder | 0.1048 | 0.5244 | 0.0032 | – |
-| 25 | baseline-text | lexical | 0.0891 | 0.4456 | 0.0003 | – |
+| 25 | baseline-text | lexical | 0.0912 | 0.4562 | 0.0003 | NVIDIA RTX PRO 6000 Blackwell Server Edition |

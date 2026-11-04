@@ -1,14 +1,6 @@
 {
-  "iteration": 90,
+  "iteration": 91,
   "pending_tasks": [
-    {
-      "action": "run_experiment",
-      "family": "lexical",
-      "name": "baseline-text",
-      "setup": "",
-      "eval_args": "--engine text",
-      "description": "re-run after the 7 query rewrites and today's label fixes"
-    },
     {
       "action": "run_experiment",
       "family": "cross-encoder",

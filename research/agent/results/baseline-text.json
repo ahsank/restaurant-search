@@ -1,10 +1,11 @@
 {
   "name": "baseline-text",
-  "description": "re-run to record seconds per query (and refresh results made stale by later code changes)",
+  "description": "re-run after the 7 query rewrites and today's label fixes",
   "status": "SUCCESS",
-  "iteration": 12,
-  "timestamp": "2026-10-14T22:04:48",
-  "git_commit": "4d21690",
+  "iteration": 90,
+  "timestamp": "2026-11-04T20:53:23",
+  "git_commit": "5022f82",
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
   "result_file": "research/agent/results/baseline-text.json",
   "family": "lexical",
   "setup": null,
@@ -20,9 +21,9 @@
   },
   "metrics": {
     "overall": {
-      "ndcg@5": 0.4456013438461215,
-      "recall@10": 0.4708025812410076,
-      "mrr": 0.4691551975532558,
+      "ndcg@5": 0.4561559880985015,
+      "recall@10": 0.48038639049286364,
+      "mrr": 0.47886393541733346,
       "n_queries": 209,
       "n_with_judgments": 206
     },
@@ -44,9 +45,9 @@
       "C03": {
         "name": "Attribute / implied meaning",
         "n_queries": 12,
-        "ndcg@5": 0.07550211962789019,
-        "recall@10": 0.08333333333333333,
-        "mrr": 0.08333333333333333
+        "ndcg@5": 0.1588354529612235,
+        "recall@10": 0.16666666666666666,
+        "mrr": 0.16666666666666666
       },
       "C04": {
         "name": "Cooking method synonyms",
@@ -72,7 +73,7 @@
       "C07": {
         "name": "Hyphenation / spacing / stop words",
         "n_queries": 14,
-        "ndcg@5": 0.20539645588428157,
+        "ndcg@5": 0.20855148493915626,
         "recall@10": 0.21428571428571427,
         "mrr": 0.22023809523809526
       },
@@ -101,7 +102,7 @@
         "name": "Soup varieties",
         "n_queries": 7,
         "ndcg@5": 0.40349647598778965,
-        "recall@10": 0.6339285714285714,
+        "recall@10": 0.6302521008403362,
         "mrr": 0.33333333333333337
       },
       "C12": {
@@ -121,9 +122,9 @@
       "C14": {
         "name": "Pasta varieties",
         "n_queries": 8,
-        "ndcg@5": 0.8365697744100107,
-        "recall@10": 0.7946428571428571,
-        "mrr": 0.875
+        "ndcg@5": 0.9615697744100107,
+        "recall@10": 0.9196428571428571,
+        "mrr": 1.0
       },
       "C15": {
         "name": "Sandwich varieties",
@@ -142,7 +143,7 @@
       "C17": {
         "name": "Dessert varieties",
         "n_queries": 8,
-        "ndcg@5": 0.9009902652223788,
+        "ndcg@5": 0.8922142168225838,
         "recall@10": 1.0,
         "mrr": 0.875
       },
@@ -177,7 +178,7 @@
       "C22": {
         "name": "Ingredient focus",
         "n_queries": 13,
-        "ndcg@5": 0.7102826987325319,
+        "ndcg@5": 0.7256899830725618,
         "recall@10": 0.7206410256410257,
         "mrr": 0.848901098901099
       },
@@ -205,22 +206,22 @@
     },
     "by_difficulty": {
       "Easy": {
-        "n_queries": 125,
-        "ndcg@5": 0.5970496352929441,
-        "recall@10": 0.6226026538851805,
-        "mrr": 0.6325010989010988
+        "n_queries": 126,
+        "ndcg@5": 0.6012002760399255,
+        "recall@10": 0.6253936225518247,
+        "mrr": 0.6354177568463283
       },
       "Medium": {
-        "n_queries": 55,
-        "ndcg@5": 0.2368305507904684,
-        "recall@10": 0.25745454545454544,
-        "mrr": 0.24242424242424243
+        "n_queries": 58,
+        "ndcg@5": 0.2427570110354042,
+        "recall@10": 0.2613793103448276,
+        "mrr": 0.2471264367816092
       },
       "Hard": {
-        "n_queries": 29,
-        "ndcg@5": 0.15911508181566328,
-        "recall@10": 0.19230769230769232,
-        "mrr": 0.16346153846153846
+        "n_queries": 25,
+        "ndcg@5": 0.1880450966912384,
+        "recall@10": 0.22727272727272727,
+        "mrr": 0.19318181818181818
       }
     }
   },

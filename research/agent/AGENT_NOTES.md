@@ -979,3 +979,9 @@ Capturing CUDA graphs (PIECEWISE):  43%|████▎     | 22/51 [00:22<00:03
 - Eval args: `--engine enhanced` | family `lexical`
 - ndcg@5 0.6514 | recall@10 0.598 | mrr 0.774 | 0.0267 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.1296 | 206/209 queries judged
 - Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.1021, C03 Attribute / implied meaning 0.2225, C02 Ingredient generalization 0.2376, C08 Dietary constraint / negation 0.283, C01 Cuisine type inference 0.2871
+
+### Iteration 90: baseline-text (SUCCESS)
+- Result: `research/agent/results/baseline-text.json` | commit `5022f82` | 0.1s
+- Eval args: `--engine text` | family `lexical`
+- ndcg@5 0.4562 | recall@10 0.4804 | mrr 0.4789 | 0.0003 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.0912 | 206/209 queries judged
+- Weakest categories (NDCG@5): C01 Cuisine type inference 0.0, C02 Ingredient generalization 0.0, C08 Dietary constraint / negation 0.0, C10 Multi-constraint compositional 0.0, C25 Occasion / meal-time 0.0
