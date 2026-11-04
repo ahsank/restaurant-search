@@ -1015,3 +1015,9 @@ Capturing CUDA graphs (PIECEWISE):  43%|████▎     | 22/51 [00:22<00:03
 - Eval args: `--engine crossencoder --model cross-encoder/ms-marco-electra-base` | family `cross-encoder`
 - ndcg@5 0.6905 | recall@10 0.5864 | mrr 0.834 | 0.2052 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.1327 | 206/209 queries judged
 - Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.1726, C03 Attribute / implied meaning 0.3858, C04 Cooking method synonyms 0.4182, C08 Dietary constraint / negation 0.4677, C02 Ingredient generalization 0.5043
+
+### Iteration 96: sbert-all-MiniLM-L6-v2 (SUCCESS)
+- Result: `research/agent/results/sbert-all-MiniLM-L6-v2.json` | commit `a6468ae` | 9.8s
+- Eval args: `--engine sbert --model all-MiniLM-L6-v2` | family `bi-encoder`
+- ndcg@5 0.5398 | recall@10 0.4685 | mrr 0.6982 | 0.0035 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.1079 | 206/209 queries judged
+- Weakest categories (NDCG@5): C18 Chicken dishes 0.1667, C03 Attribute / implied meaning 0.1882, C10 Multi-constraint compositional 0.2352, C04 Cooking method synonyms 0.2895, C15 Sandwich varieties 0.3637

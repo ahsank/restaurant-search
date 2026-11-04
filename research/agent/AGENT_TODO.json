@@ -1,14 +1,6 @@
 {
-  "iteration": 96,
+  "iteration": 97,
   "pending_tasks": [
-    {
-      "action": "run_experiment",
-      "family": "bi-encoder",
-      "name": "sbert-all-MiniLM-L6-v2",
-      "setup": "",
-      "eval_args": "--engine sbert --model all-MiniLM-L6-v2",
-      "description": "re-run after the 7 query rewrites and today's label fixes"
-    },
     {
       "action": "run_experiment",
       "family": "bi-encoder",
