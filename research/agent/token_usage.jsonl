@@ -2,3 +2,4 @@
 {"timestamp": "2026-11-03T02:30:59", "gpu": "NVIDIA L4", "minutes": 15.3, "tasks": 4, "usage": {"gemini-3.8-flash": {"requests": 48, "input": 2101599, "cached_input": 1895519, "output": 23633, "thinking": 42054}}}
 {"timestamp": "2026-11-03T03:18:23", "gpu": "Tesla T4", "minutes": 4.3, "tasks": 2, "usage": {"gemini-3.8-flash": {"requests": 25, "input": 1385532, "cached_input": 1201106, "output": 1334, "thinking": 20378}}}
 {"timestamp": "2026-11-03T14:52:25", "gpu": "Tesla T4", "minutes": 19.0, "tasks": 2, "usage": {"gemini-3.8-flash": {"requests": 60, "input": 2136009, "cached_input": 1916104, "output": 6115, "thinking": 22431}}}
+{"timestamp": "2026-11-04T21:01:30", "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition", "minutes": 16.9, "tasks": 25, "usage": {}}

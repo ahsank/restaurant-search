@@ -1052,3 +1052,6 @@ Capturing CUDA graphs (PIECEWISE):  43%|████▎     | 22/51 [00:22<00:03
 - Eval args: `--engine soft_bm25 --vectors /content/scratch/numberbatch-en-19.08.txt.gz` | family `word-vector`
 - ndcg@5 0.5741 | recall@10 0.5231 | mrr 0.734 | 0.0125 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.1145 | 206/209 queries judged
 - Weakest categories (NDCG@5): C08 Dietary constraint / negation 0.2131, C02 Ingredient generalization 0.2281, C03 Attribute / implied meaning 0.2726, C11 Soup varieties 0.3473, C04 Cooking method synonyms 0.4245
+
+### Session Gemini usage
+- (no Gemini calls)
