@@ -1,10 +1,10 @@
 {
   "name": "hybrid-qwen2.5-7b-minilm-l12-boost2",
-  "description": "re-run after the 7 query rewrites and today's label fixes",
+  "description": "re-run: LLM rankings regenerated with the interpreter fix (earlier runs used the wrong python)",
   "status": "SUCCESS",
-  "iteration": 84,
-  "timestamp": "2026-11-04T20:52:25",
-  "git_commit": "7061287",
+  "iteration": 111,
+  "timestamp": "2026-11-04T22:08:05",
+  "git_commit": "feaf432",
   "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
   "result_file": "research/agent/results/hybrid-qwen2.5-7b-minilm-l12-boost2.json",
   "family": "llm",
@@ -19,7 +19,7 @@
     "--grade-boost",
     "2.0"
   ],
-  "seconds": 8.6,
+  "seconds": 9.9,
   "timing": {
     "seconds_per_query": 0.2048,
     "search_seconds_per_query": 0.0134,
@@ -231,5 +231,5 @@
       }
     }
   },
-  "eval_seconds": 8.6
+  "eval_seconds": 9.9
 }

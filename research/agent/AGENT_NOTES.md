@@ -1150,3 +1150,9 @@ t.py", line 129, in make_client
 - Eval args: `--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-electra-base --grade-boost 2.0` | family `llm`
 - ndcg@5 0.7827 | recall@10 0.8072 | mrr 0.8571 | 0.2189 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.15 | 206/209 queries judged
 - Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.1789, C18 Chicken dishes 0.5613, C03 Attribute / implied meaning 0.5977, C02 Ingredient generalization 0.6381, C08 Dietary constraint / negation 0.6428
+
+### Iteration 111: hybrid-qwen2.5-7b-minilm-l12-boost2 (SUCCESS)
+- Result: `research/agent/results/hybrid-qwen2.5-7b-minilm-l12-boost2.json` | commit `feaf432` | 9.9s
+- Eval args: `--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L12-v2 --grade-boost 2.0` | family `llm`
+- ndcg@5 0.8135 | recall@10 0.8244 | mrr 0.8697 | 0.2048 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.1563 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.1969, C08 Dietary constraint / negation 0.5375, C03 Attribute / implied meaning 0.5981, C09 Synonym / paraphrase 0.6088, C24 Pizza varieties 0.6667
