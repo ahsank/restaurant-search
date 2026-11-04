@@ -24,10 +24,10 @@ runs on the same GPU. `–` = not recorded (re-run it).
 | 2 | hybrid-qwen2.5-7b-minilm-l12-boost3 | llm | 0.1624 | 0.8286 | 0.1012 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
 | 3 | hybrid-qwen2.5-7b-minilm-l12-boost2 | llm | 0.1622 | 0.8277 | 0.1012 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
 | 4 | hybrid-qwen2.5-14b-minilm-l12-boost2 | llm | 0.1613 | 0.8361 | 0.1841 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 5 | hybrid-qwen2.5-32b-minilm-l12-boost2 | llm | 0.1572 | 0.8402 | 0.3436 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 6 | hybrid-qwen2.5-32b-bge-reranker-v2-m3 | llm | 0.1562 | 0.8428 | 0.3964 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 7 | hybrid-qwen2.5-7b-ms-marco-MiniLM-L6-v2 | llm | 0.1551 | 0.8067 | 0.2008 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 8 | hybrid-qwen2.5-7b-minilm-l6-strict-grade | llm | 0.1526 | 0.7936 | 0.2007 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 5 | hybrid-qwen2.5-7b-minilm-l6-strict-grade | llm | 0.1584 | 0.8076 | 0.0977 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 6 | hybrid-qwen2.5-32b-minilm-l12-boost2 | llm | 0.1572 | 0.8402 | 0.3436 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 7 | hybrid-qwen2.5-32b-bge-reranker-v2-m3 | llm | 0.1562 | 0.8428 | 0.3964 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 8 | hybrid-qwen2.5-7b-ms-marco-MiniLM-L6-v2 | llm | 0.1551 | 0.8067 | 0.2008 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
 | 9 | hybrid-qwen2.5-7b-bge-reranker-v2-m3 | llm | 0.1513 | 0.7969 | 0.2674 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
 | 10 | hybrid-qwen2.5-7b-electra-boost2 | llm | 0.1500 | 0.7827 | 0.2189 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
 | 11 | hybrid-qwen2.5-7b-bge-reranker-large | llm | 0.1495 | 0.7877 | 0.2676 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
