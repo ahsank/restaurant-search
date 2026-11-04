@@ -54,7 +54,31 @@ juanita-cantina,C03-05,Carne Asada,2,
 juanita-cantina,C03-05,Pollo Asado,2,
 juanita-cantina,C03-05,Tacos Al Carbon,1,
 juanita-cantina,C03-05,Burrito Asada,1,
-juanita-cantina,C03-08,Casa Burrito,2,
+juanita-cantina,C03-07,Queso Dip,2,cheese is the point of the dish
+juanita-cantina,C03-07,Queso Dip with Chorizo,2,cheese is the point of the dish
+juanita-cantina,C03-07,Queso with Spinach,2,cheese is the point of the dish
+juanita-cantina,C03-07,Cheese Sticks,2,cheese is the point of the dish
+juanita-cantina,C03-07,Quesadilla,2,cheese is the point of the dish
+juanita-cantina,C03-07,Quesadillas,2,cheese is the point of the dish
+juanita-cantina,C03-07,Nacho Supreme,1,melted or baked cheese is prominent
+juanita-cantina,C03-07,Tijuana Nachos,1,melted or baked cheese is prominent
+juanita-cantina,C03-07,Chile Relleno,1,melted or baked cheese is prominent
+juanita-cantina,C03-07,Asada Fries,1,melted or baked cheese is prominent
+juanita-cantina,C03-07,Cheeseburger,1,melted or baked cheese is prominent
+juanita-cantina,C03-07,Jalapeño Cheeseburger,1,melted or baked cheese is prominent
+juanita-cantina,C03-07,Hawaiian Cheeseburger,1,melted or baked cheese is prominent
+juanita-cantina,C03-08,Casa Burrito,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+juanita-cantina,C03-08,Burrito Asada,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+juanita-cantina,C03-08,Chili Verde,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+juanita-cantina,C03-08,Posole,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+juanita-cantina,C03-08,Ribeye Steak,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+juanita-cantina,C03-08,Carne and Camaron,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+juanita-cantina,C03-08,Steak Tapiqueño,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+juanita-cantina,C03-08,Seafood Burrito,1,substantial dinner plate
+juanita-cantina,C03-08,Fajita Burrito,1,substantial dinner plate
+juanita-cantina,C03-08,Burrito Chili Verde,1,substantial dinner plate
+juanita-cantina,C03-08,Burrito Al Pastor,1,substantial dinner plate
+juanita-cantina,C03-08,Carne Asada,1,substantial dinner plate
 juanita-cantina,C03-09,Camarones Mojo de Ajo,1,
 juanita-cantina,C03-09,Camarones à la Diabla,2,
 juanita-cantina,C04-01,Carne Asada,2,
@@ -137,6 +161,11 @@ juanita-cantina,C09-05,Chips,1,
 juanita-cantina,C09-05,Nacho Supreme,2,
 juanita-cantina,C09-05,Queso Dip,2,
 juanita-cantina,C09-05,Tijuana Nachos,2,
+juanita-cantina,C09-05,Queso Dip with Chorizo,2,queso dip (with chips)
+juanita-cantina,C09-05,Queso with Spinach,2,queso dip (with chips)
+juanita-cantina,C09-05,Fresh Avocado,1,dip or salsa side for chips
+juanita-cantina,C09-05,Salsa,1,dip or salsa side for chips
+juanita-cantina,C09-05,Guacamole,1,dip or salsa side for chips
 juanita-cantina,C09-06,Queso Dip,2,
 juanita-cantina,C09-06,Queso Dip with Chorizo,2,
 juanita-cantina,C09-06,Queso with Spinach,2,

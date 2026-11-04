@@ -3,11 +3,20 @@ great-china-restaurant,C02-09,Dinner Combination G,1,
 great-china-restaurant,C02-09,Mu Shu Pork,2,
 great-china-restaurant,C02-09,Onion Pork,2,
 great-china-restaurant,C03-01,Kung Pao Shrimp & Chicken,2,
-great-china-restaurant,C03-08,Family Dinner A,1,
-great-china-restaurant,C03-08,Family Dinner B,1,
+great-china-restaurant,C03-08,Family Dinner A,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+great-china-restaurant,C03-08,Family Dinner B,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+great-china-restaurant,C03-08,Family Dinner C,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+great-china-restaurant,C03-08,Dinner Combination D,1,combination dinner plate
+great-china-restaurant,C03-08,Dinner Combination E,1,combination dinner plate
+great-china-restaurant,C03-08,Dinner Combination F,1,combination dinner plate
+great-china-restaurant,C03-08,Dinner Combination G,1,combination dinner plate
+great-china-restaurant,C03-08,Dinner Combination H,1,combination dinner plate
+great-china-restaurant,C03-08,Dinner Combination I,1,combination dinner plate
+great-china-restaurant,C03-08,Dinner Combination J,1,combination dinner plate
 great-china-restaurant,C04-09,Fried Chicken Wing (8),2,
 great-china-restaurant,C04-10,Almond Fried Chicken,2,
 great-china-restaurant,C04-10,Sweet & Sour Chicken,1,
+great-china-restaurant,C06-08,Beef in Oyster Sauce,0,"beef in oyster sauce, not oysters"
 great-china-restaurant,C06-09,Salt and Pepper Chicken,1,chicken defined by its dry salt-and-pepper seasoning; concept match without the word 'seasoned'
 great-china-restaurant,C06-09,Mongolian Chicken,0,"chicken in a sauce or stir-fry, not seasoned chicken"
 great-china-restaurant,C06-09,Wild Basil Chicken,0,"chicken in a sauce or stir-fry, not seasoned chicken"

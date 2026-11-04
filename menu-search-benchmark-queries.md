@@ -34,11 +34,11 @@ Each query includes:
 | C02-01 | seafood tacos | Tacos De Pescado (cod), Tacos De Camarones (shrimp) | Ingredient → seafood category | Medium |
 | C02-02 | shellfish pasta | Shrimp & Clam Bucatini, Pappardelle (crab) | Shellfish generalization | Medium |
 | C02-03 | leafy green salad | Gem Lettuce, Little Gem, Cantina Salad (romaine) | Green → specific leaf type | Medium |
-| C02-04 | stone fruit dessert | Tiramisu w/ plum, Burrata (compressed pluot) | Stone fruit generalization | Hard |
+| C02-04 | fruit dessert | Crepes with Peaches, Caramel & Apple French Cake, Best of Season Crepes | Fruit generalization | Medium |
 | C02-05 | smoked meat sandwich | Heirloom BLT (bacon), Chimichurri Steak & Bacon | Smoke-cured generalization | Hard |
 | C02-06 | cured meat appetizer | Prosciutto, Bruschetta (smoked fish) | Cured → specific types | Medium |
 | C02-07 | steak dish | Carne Asada, SRF Skirt Wagyu, Ribeye Steak, Coulotte Steak | Steak generalization | Easy |
-| C02-08 | fresh cheese salad | Burrata (heirloom tomato), Burrata Salad | Fresh cheese inference | Medium |
+| C02-08 | mozzarella salad | Caprese Salad (Rimini), Burrata Salad (Due') | Burrata is a mozzarella | Medium |
 | C02-09 | pork dishes | Carnitas, Posole, Michoacan Carnitas, Short Ribs Ragu | Pork generalization | Easy |
 | C02-10 | citrus fish | Halibut (Staple & Fancy), Tacos De Pescado (lemon/lime) | Citrus + fish combination | Medium |
 
@@ -55,12 +55,12 @@ Each query includes:
 | C03-04 | light fresh starter | Hamachi Crudo, Shrimp Ceviche, Spring Pea Soup | Light/fresh attribute | Medium |
 | C03-05 | fire grilled meat | Carne Asada (flame grill), Wood Fire Grill section items | Fire → grill method | Medium |
 | C03-06 | comfort food pasta | Lasagna, Bolognese, Kid Red Sauce Pasta | Comfort food concept | Hard |
-| C03-07 | umami dish | Cacio e Pepe (truffle butter), Mushroom & White Truffle Oil | Umami inference | Hard |
-| C03-08 | gut feeling filling meal | Burrito Asada, Seafood Burrito, Casa Burrito | Satiety inference | Hard |
+| C03-07 | something cheesy | Queso Dip, Quesadillas, Mac 'n Cheese, Cacio e Pepe | Cheesy concept | Medium |
+| C03-08 | hearty dinner | Molcajete, Family Dinner A, Casa Burrito, The Sunday Sauce Pasta | Satiety inference | Medium |
 | C03-09 | cajun style shrimp | Camarones à la Diabla (closest match) | Cajun implies spicy/butter sauce | Hard |
 | C03-10 | tangy dressing salad | Caesar Salad, Gem Lettuce (raspberry vinaigrette) | Tangy → vinaigrette/dressing | Medium |
 | C03-11 | charred vegetables | Roasted Carrots (Staple & Fancy), Fried Artichokes, Veggie Fajitas | Char → roasted/grilled | Medium |
-| C03-12 | indulgent dessert | Affogato Ubriaco, Espresso Affogato, Tiramisu | Indulgent concept | Hard |
+| C03-12 | rich dessert | Bailey's Chocolate Mousse, Burnt Cream, Nutella Cheesecake, Affogato Ubriaco | Rich concept | Medium |
 
 ---
 
@@ -116,7 +116,7 @@ Each query includes:
 | C06-05 | sauted mushroom | Camarones Mojo de Ajo (mushrooms sautéed) | Misspelling + lemma | Medium |
 | C06-06 | slow braising short rib | Short Ribs Ragu' (slow-braised) | Gerund + plural stem | Medium |
 | C06-07 | breading calamari | Breaded Calamari | Gerund → past participle | Easy |
-| C06-08 | compress melon | Compressed melon (Prosciutto) | Stemming: compressed | Medium |
+| C06-08 | fried oyster | Fried Oysters (Staple), Pan Fried Oysters (Anthony's) | Plural stemming; not 'oyster sauce' | Easy |
 | C06-09 | season chicken | Pollo Asado (seasoned), Pollo Ranchero | Lemma: seasoned | Easy |
 | C06-10 | pickle vegetables | Pickled red onion (multiple sandwiches), Dill Pickle Chips | Lemma: pickled | Easy |
 
@@ -169,7 +169,7 @@ Each query includes:
 | C09-02 | mussel or clam appetizer | Clams with Chorizo | Clam = shellfish synonym | Medium |
 | C09-03 | avocado toast | Bruschetta (Smoked Fish), Sourdough + avocado mentions | Toast = bruschetta | Hard |
 | C09-04 | flatbread | Mexican Flatbread, Bruschetta (grilled bread) | Flatbread concept | Medium |
-| C09-05 | corn tortilla chips and dip | Nachos, Queso Dip, Chips + Salsa | Chips + dip = nachos | Medium |
+| C09-05 | chips and dip | Nachos, Queso Dip, Chips & Salsa | Chips + dip = nachos | Medium |
 | C09-06 | Mexican cheese dip | Queso Dip, Queso Fundido | Cheese dip = queso | Easy |
 | C09-07 | cold raw fish | Hamachi Crudo, Shrimp Ceviche | Raw fish → crudo/ceviche | Medium |
 | C09-08 | Italian rice balls | Suppli Al Telefono | Rice ball = suppli | Hard |

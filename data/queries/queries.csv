@@ -10,11 +10,11 @@ C01-08,C01,fine dining pasta,Hard,Cuisine type inference
 C02-01,C02,seafood tacos,Medium,Ingredient generalization
 C02-02,C02,shellfish pasta,Medium,Ingredient generalization
 C02-03,C02,leafy green salad,Medium,Ingredient generalization
-C02-04,C02,stone fruit dessert,Hard,Ingredient generalization
+C02-04,C02,fruit dessert,Medium,Ingredient generalization
 C02-05,C02,smoked meat sandwich,Hard,Ingredient generalization
 C02-06,C02,cured meat appetizer,Medium,Ingredient generalization
 C02-07,C02,steak dish,Easy,Ingredient generalization
-C02-08,C02,fresh cheese salad,Medium,Ingredient generalization
+C02-08,C02,mozzarella salad,Medium,Ingredient generalization
 C02-09,C02,pork dishes,Easy,Ingredient generalization
 C02-10,C02,citrus fish,Medium,Ingredient generalization
 C03-01,C03,spicy shrimp,Medium,Attribute / implied meaning
@@ -23,12 +23,12 @@ C03-03,C03,rich creamy pasta,Medium,Attribute / implied meaning
 C03-04,C03,light fresh starter,Medium,Attribute / implied meaning
 C03-05,C03,fire grilled meat,Medium,Attribute / implied meaning
 C03-06,C03,comfort food pasta,Hard,Attribute / implied meaning
-C03-07,C03,umami dish,Hard,Attribute / implied meaning
-C03-08,C03,gut feeling filling meal,Hard,Attribute / implied meaning
+C03-07,C03,something cheesy,Medium,Attribute / implied meaning
+C03-08,C03,hearty dinner,Medium,Attribute / implied meaning
 C03-09,C03,cajun style shrimp,Hard,Attribute / implied meaning
 C03-10,C03,tangy dressing salad,Medium,Attribute / implied meaning
 C03-11,C03,charred vegetables,Medium,Attribute / implied meaning
-C03-12,C03,indulgent dessert,Hard,Attribute / implied meaning
+C03-12,C03,rich dessert,Medium,Attribute / implied meaning
 C04-01,C04,charbroiled steak,Easy,Cooking method synonyms
 C04-02,C04,seared fish,Medium,Cooking method synonyms
 C04-03,C04,pan seared salmon,Medium,Cooking method synonyms
@@ -61,7 +61,7 @@ C06-04,C06,marinated steak,Easy,Stemming & lemmatization
 C06-05,C06,sauted mushroom,Medium,Stemming & lemmatization
 C06-06,C06,slow braising short rib,Medium,Stemming & lemmatization
 C06-07,C06,breading calamari,Easy,Stemming & lemmatization
-C06-08,C06,compress melon,Medium,Stemming & lemmatization
+C06-08,C06,fried oyster,Easy,Stemming & lemmatization
 C06-09,C06,season chicken,Easy,Stemming & lemmatization
 C06-10,C06,pickle vegetables,Easy,Stemming & lemmatization
 C07-01,C07,cacio e pepe,Easy,Hyphenation / spacing / stop words
@@ -92,7 +92,7 @@ C09-01,C09,prawn dish,Medium,Synonym / paraphrase
 C09-02,C09,mussel or clam appetizer,Medium,Synonym / paraphrase
 C09-03,C09,avocado toast,Hard,Synonym / paraphrase
 C09-04,C09,flatbread,Medium,Synonym / paraphrase
-C09-05,C09,corn tortilla chips and dip,Medium,Synonym / paraphrase
+C09-05,C09,chips and dip,Medium,Synonym / paraphrase
 C09-06,C09,Mexican cheese dip,Easy,Synonym / paraphrase
 C09-07,C09,cold raw fish,Medium,Synonym / paraphrase
 C09-08,C09,Italian rice balls,Hard,Synonym / paraphrase

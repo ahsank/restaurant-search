@@ -20,12 +20,13 @@ staple-and-fancy,C02-02,Shrimp & Clam Bucatini,2,
 staple-and-fancy,C02-03,Gem Lettuce,2,
 staple-and-fancy,C02-03,Little Gem,2,gem lettuce salad (same grade as Gem Salad / Gem Lettuce)
 staple-and-fancy,C02-03,Gem Salad,2,
-staple-and-fancy,C02-04,Burrata,1,
+staple-and-fancy,C02-04,Sorbetto,1,"sorbet, usually fruit (not stated)"
+staple-and-fancy,C02-04,Cheesecake,1,cheesecake with berry coulis
 staple-and-fancy,C02-06,Bruschetta,1,
 staple-and-fancy,C02-06,Prosciutto,2,
 staple-and-fancy,C02-07,Coulotte Steak,2,
 staple-and-fancy,C02-07,SRF Skirt Wagyu,2,
-staple-and-fancy,C02-08,Burrata,2,
+staple-and-fancy,C02-08,Burrata,1,"burrata with tomato / arugula, salad-like"
 staple-and-fancy,C02-10,Halibut,2,
 staple-and-fancy,C02-10,Pappardelle,1,
 staple-and-fancy,C02-10,Hamachi Crudo,2,
@@ -43,9 +44,10 @@ staple-and-fancy,C03-06,Cacio e Pepe Bucatini,2,
 staple-and-fancy,C03-06,Mezze Rigatoni,2,
 staple-and-fancy,C03-06,Shrimp & Clam Bucatini,1,
 staple-and-fancy,C03-06,Spaghetti,2,cacio e pepe spaghetti with truffle butter (same grades as Cacio e Pepe Bucatini)
-staple-and-fancy,C03-07,Cacio e Pepe Bucatini,2,
-staple-and-fancy,C03-07,Mezze Rigatoni,1,
-staple-and-fancy,C03-07,Spaghetti,2,cacio e pepe spaghetti with truffle butter (same grades as Cacio e Pepe Bucatini)
+staple-and-fancy,C03-07,Cacio e Pepe Bucatini,2,cheese is the point of the dish
+staple-and-fancy,C03-07,Spaghetti,2,cheese is the point of the dish
+staple-and-fancy,C03-07,Bucatini,2,cheese is the point of the dish
+staple-and-fancy,C03-07,Burrata,1,melted or baked cheese is prominent
 staple-and-fancy,C03-10,Gem Lettuce,2,
 staple-and-fancy,C03-10,Gem Salad,2,
 staple-and-fancy,C03-10,Little Gem,1,ramp buttermilk dressing
@@ -72,7 +74,7 @@ staple-and-fancy,C06-01,Roasted Carrots,2,
 staple-and-fancy,C06-01,Carrots,1,"carrot dish, not stated roasted"
 staple-and-fancy,C06-02,Grilled Octopus,2,
 staple-and-fancy,C06-03,Fried Artichokes,2,
-staple-and-fancy,C06-08,Prosciutto,2,
+staple-and-fancy,C06-08,Fried Oysters,2,fried oysters
 staple-and-fancy,C07-01,Cacio e Pepe Bucatini,2,
 staple-and-fancy,C07-01,Bucatini,2,
 staple-and-fancy,C07-01,Spaghetti,2,cacio e pepe spaghetti with truffle butter (same grades as Cacio e Pepe Bucatini)

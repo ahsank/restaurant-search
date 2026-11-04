@@ -14,6 +14,7 @@ due-cucina,C01-08,Ravioli Burro & Salvia,1,
 due-cucina,C01-08,Zozzona,1,
 due-cucina,C02-03,Mediterranea Salad,2,
 due-cucina,C02-03,Side Salad,2,
+due-cucina,C02-08,Burrata Salad,2,burrata (fresh mozzarella) salad
 due-cucina,C02-09,Bolognese Ragu',1,
 due-cucina,C02-09,Carbonara,2,
 due-cucina,C02-09,Zozzona,2,
@@ -26,8 +27,15 @@ due-cucina,C03-06,Bolognese Ragu',2,
 due-cucina,C03-06,Carbonara,2,
 due-cucina,C03-06,Lasagna alla Bolognese,2,
 due-cucina,C03-06,Short Ribs Ragu',2,
-due-cucina,C03-07,Mushroom & White Truffle Oil,2,
-due-cucina,C03-08,Zozzona,1,
+due-cucina,C03-07,Suppli Al Telefono,2,cheese is the point of the dish
+due-cucina,C03-07,Eggplant Parmigiana,1,melted or baked cheese is prominent
+due-cucina,C03-07,Lasagna alla Bolognese,1,melted or baked cheese is prominent
+due-cucina,C03-07,Burrata Salad,1,melted or baked cheese is prominent
+due-cucina,C03-08,Zozzona,1,substantial dinner plate
+due-cucina,C03-08,Lasagna alla Bolognese,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+due-cucina,C03-08,Short Ribs Ragu',2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+due-cucina,C03-08,Bolognese Ragu',1,substantial dinner plate
+due-cucina,C03-08,Polpette,1,substantial dinner plate
 due-cucina,C03-12,Cannolo Siciliano,1,
 due-cucina,C03-12,Tiramisu,1,
 due-cucina,C04-07,Bolognese Ragu',1,

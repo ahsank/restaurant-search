@@ -503,3 +503,153 @@ C08-09,staple-and-fancy,Fried Oysters,0,1,"seafood starter, not a full dinner"
 C17-03,staple-and-fancy,Sorbetto,0,1,"sorbet, close to gelato"
 C08-04,staple-and-fancy,Sorbetto,0,1,sorbet is usually dairy-free (not stated)
 C17-07,staple-and-fancy,Vanilla Gelato,0,1,served with an almond shortbread cookie
+C03-07,anthonys-homeport,Chicken Kalbi Bowl,1,0,query text changed to 'something cheesy'
+C03-07,anthonys-homeport,Salmon Ponzu Bowl,1,0,query text changed to 'something cheesy'
+C03-07,anthonys-homeport,Wild Alaska Black Cod,2,0,query text changed to 'something cheesy'
+C03-07,anthonys-homeport,Portabello Mushroom,2,0,query text changed to 'something cheesy'
+C03-12,anthonys-homeport,Burnt Cream,1,2,described as a rich custard
+C09-05,anthonys-homeport,Hectors Authentic Chips & Salsa,1,2,chips with salsa
+C06-08,anthonys-homeport,Pan Fried Oysters*,0,2,fried oysters
+C02-04,anthonys-homeport,Crepes with Berry,0,2,fruit crepes / apple cake
+C02-04,anthonys-homeport,Best of Season Crepes,0,2,fruit crepes / apple cake
+C02-04,anthonys-homeport,Caramel & Apple French Cake,0,2,fruit crepes / apple cake
+C02-08,anthonys-homeport,Burrata & Tomatoes,0,1,"burrata and tomatoes, salad-like"
+C03-07,anthonys-homeport,Mac 'n Cheese,0,2,cheese is the point of the dish
+C03-07,anthonys-homeport,Kids Fettuccine,0,1,melted or baked cheese is prominent
+C03-07,anthonys-homeport,Burrata & Tomatoes,0,1,melted or baked cheese is prominent
+C03-08,anthonys-homeport,Royal Ranch Ribeye*,0,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+C03-08,anthonys-homeport,Double R Ranch Top Sirloin*,0,1,substantial dinner plate
+C09-05,anthonys-homeport,Dungeness Crab & Shrimp Dip,0,1,"dip served with toast, not chips"
+C03-07,due-cucina,Mushroom & White Truffle Oil,2,0,query text changed to 'something cheesy'
+C02-08,due-cucina,Burrata Salad,0,2,burrata (fresh mozzarella) salad
+C03-07,due-cucina,Suppli Al Telefono,0,2,cheese is the point of the dish
+C03-07,due-cucina,Eggplant Parmigiana,0,1,melted or baked cheese is prominent
+C03-07,due-cucina,Lasagna alla Bolognese,0,1,melted or baked cheese is prominent
+C03-07,due-cucina,Burrata Salad,0,1,melted or baked cheese is prominent
+C03-08,due-cucina,Lasagna alla Bolognese,0,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+C03-08,due-cucina,Short Ribs Ragu',0,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+C03-08,due-cucina,Bolognese Ragu',0,1,substantial dinner plate
+C03-08,due-cucina,Polpette,0,1,substantial dinner plate
+C03-08,great-china-restaurant,Family Dinner A,1,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+C03-08,great-china-restaurant,Family Dinner B,1,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+C03-08,great-china-restaurant,Family Dinner C,0,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+C03-08,great-china-restaurant,Dinner Combination D,0,1,combination dinner plate
+C03-08,great-china-restaurant,Dinner Combination E,0,1,combination dinner plate
+C03-08,great-china-restaurant,Dinner Combination F,0,1,combination dinner plate
+C03-08,great-china-restaurant,Dinner Combination G,0,1,combination dinner plate
+C03-08,great-china-restaurant,Dinner Combination H,0,1,combination dinner plate
+C03-08,great-china-restaurant,Dinner Combination I,0,1,combination dinner plate
+C03-08,great-china-restaurant,Dinner Combination J,0,1,combination dinner plate
+C03-07,juanita-cantina,Queso Dip,0,2,cheese is the point of the dish
+C03-07,juanita-cantina,Queso Dip with Chorizo,0,2,cheese is the point of the dish
+C03-07,juanita-cantina,Queso with Spinach,0,2,cheese is the point of the dish
+C03-07,juanita-cantina,Cheese Sticks,0,2,cheese is the point of the dish
+C03-07,juanita-cantina,Quesadilla,0,2,cheese is the point of the dish
+C03-07,juanita-cantina,Quesadillas,0,2,cheese is the point of the dish
+C03-07,juanita-cantina,Nacho Supreme,0,1,melted or baked cheese is prominent
+C03-07,juanita-cantina,Tijuana Nachos,0,1,melted or baked cheese is prominent
+C03-07,juanita-cantina,Chile Relleno,0,1,melted or baked cheese is prominent
+C03-07,juanita-cantina,Asada Fries,0,1,melted or baked cheese is prominent
+C03-07,juanita-cantina,Cheeseburger,0,1,melted or baked cheese is prominent
+C03-07,juanita-cantina,Jalapeño Cheeseburger,0,1,melted or baked cheese is prominent
+C03-07,juanita-cantina,Hawaiian Cheeseburger,0,1,melted or baked cheese is prominent
+C03-08,juanita-cantina,Burrito Asada,0,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+C03-08,juanita-cantina,Chili Verde,0,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+C03-08,juanita-cantina,Posole,0,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+C03-08,juanita-cantina,Ribeye Steak,0,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+C03-08,juanita-cantina,Carne and Camaron,0,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+C03-08,juanita-cantina,Steak Tapiqueño,0,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+C03-08,juanita-cantina,Seafood Burrito,0,1,substantial dinner plate
+C03-08,juanita-cantina,Fajita Burrito,0,1,substantial dinner plate
+C03-08,juanita-cantina,Burrito Chili Verde,0,1,substantial dinner plate
+C03-08,juanita-cantina,Burrito Al Pastor,0,1,substantial dinner plate
+C03-08,juanita-cantina,Carne Asada,0,1,substantial dinner plate
+C09-05,juanita-cantina,Queso Dip with Chorizo,0,2,queso dip (with chips)
+C09-05,juanita-cantina,Queso with Spinach,0,2,queso dip (with chips)
+C09-05,juanita-cantina,Fresh Avocado,0,1,dip or salsa side for chips
+C09-05,juanita-cantina,Salsa,0,1,dip or salsa side for chips
+C09-05,juanita-cantina,Guacamole,0,1,dip or salsa side for chips
+C02-08,mendocino-farms,The Seasonal GOAT with Summer Peaches,2,0,query text changed to 'mozzarella salad'
+C02-04,mendocino-farms,Lemon Cheesecake Cookie,0,1,fruit-flavored cookie (lemon / dates)
+C02-04,mendocino-farms,Plant-Based Oat Hemp Date Cookie,0,1,fruit-flavored cookie (lemon / dates)
+C03-07,mendocino-farms,Grilled Cheddar Cheese Sandwich,0,2,cheese is the point of the dish
+C03-07,mendocino-farms,Grilled Turkey & Cheddar Sandwich,0,1,melted or baked cheese is prominent
+C03-07,mendocino-farms,Chicken Parm Dip,0,1,melted or baked cheese is prominent
+C09-05,plaza-garcia,Bean Dip,1,2,dip (with chips)
+C03-07,plaza-garcia,Queso Fundido,0,2,cheese is the point of the dish
+C03-07,plaza-garcia,Nachos,0,2,cheese is the point of the dish
+C03-07,plaza-garcia,Cheese Crispy Garcia,0,2,cheese is the point of the dish
+C03-07,plaza-garcia,Quesadillas,0,2,cheese is the point of the dish
+C03-07,plaza-garcia,Grilled Quesadillas,0,2,cheese is the point of the dish
+C03-07,plaza-garcia,Grilled Quesadilla,0,2,cheese is the point of the dish
+C03-07,plaza-garcia,Veggie Quesadilla,0,2,cheese is the point of the dish
+C03-07,plaza-garcia,Quesadilla Camarones,0,2,cheese is the point of the dish
+C03-07,plaza-garcia,Kids Quesadilla,0,2,cheese is the point of the dish
+C03-07,plaza-garcia,Kids Grilled Cheese,0,2,cheese is the point of the dish
+C03-07,plaza-garcia,Super Nachos Garcia,0,1,melted or baked cheese is prominent
+C03-07,plaza-garcia,Bean Dip,0,1,melted or baked cheese is prominent
+C03-07,plaza-garcia,Kids Cheeseburger,0,1,melted or baked cheese is prominent
+C03-08,plaza-garcia,Molcajete,0,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+C03-08,plaza-garcia,Fajitas Garcia,0,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+C03-08,plaza-garcia,Fajitas Mixto,0,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+C03-08,plaza-garcia,Tres Amigos,0,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+C03-08,plaza-garcia,Asada y Mas,0,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+C03-08,plaza-garcia,Burrito Asada,0,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+C03-08,plaza-garcia,Chile Verde,0,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+C03-08,plaza-garcia,Chef Special,0,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+C03-08,plaza-garcia,Mar y Tierra,0,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+C03-08,plaza-garcia,Cielo Mar Y Tierra,0,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+C03-08,plaza-garcia,Steak Tampiqueno,0,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+C03-08,plaza-garcia,Seafood Burrito,0,1,substantial dinner plate
+C03-08,plaza-garcia,Fajita Burrito,0,1,substantial dinner plate
+C03-08,plaza-garcia,Burrito Chile Verde,0,1,substantial dinner plate
+C03-08,plaza-garcia,Burrito Al Pastor,0,1,substantial dinner plate
+C03-08,plaza-garcia,Garcia Burrito,0,1,substantial dinner plate
+C03-08,plaza-garcia,Chile Colorado Burrito,0,1,substantial dinner plate
+C03-08,plaza-garcia,Expresso Burrito,0,1,substantial dinner plate
+C03-08,plaza-garcia,Carne Asada,0,1,substantial dinner plate
+C03-08,plaza-garcia,Maria's Favorite,0,1,substantial dinner plate
+C03-08,plaza-garcia,Combo 1: Three Tacos,0,1,combination dinner plate
+C03-08,plaza-garcia,"Combo 2: One Taco, One Enchilada, One Tamal",0,1,combination dinner plate
+C03-08,plaza-garcia,"Combo 3: Two Enchiladas, One Taco or Bean Tostada",0,1,combination dinner plate
+C03-08,plaza-garcia,"Combo 4: One Enchilada, Bean Tostada, One Taco",0,1,combination dinner plate
+C03-08,plaza-garcia,"Combo 5: One Chile Relleno, One Enchilada and Choice",0,1,combination dinner plate
+C03-08,plaza-garcia,Combo 6: Three Enchiladas,0,1,combination dinner plate
+C03-08,plaza-garcia,"Combo 7: One Enchilada, One Beef Burrito or Chalupa",0,1,combination dinner plate
+C03-08,plaza-garcia,Combo 8: Two Beef Burritos,0,1,combination dinner plate
+C03-08,plaza-garcia,Combo 9: Two Chalupas,0,1,combination dinner plate
+C03-08,plaza-garcia,Combo 10: One Chile Relleno and One Enchilada,0,1,combination dinner plate
+C03-08,plaza-garcia,Combo 11: Two Chiles Rellenos,0,1,combination dinner plate
+C03-08,plaza-garcia,Combo 12: Two Enchiladas,0,1,combination dinner plate
+C03-08,plaza-garcia,Combo 13: Two Original Chile Rellenos,0,1,combination dinner plate
+C03-08,plaza-garcia,"Combo 14: Enchilada, Taco or Tostada",0,1,combination dinner plate
+C03-08,plaza-garcia,Combo 15: Chimichanga with Rice and Beans,0,1,combination dinner plate
+C09-05,plaza-garcia,Queso Fundido,0,2,dip (with chips)
+C09-05,plaza-garcia,Fiesta Avocado,0,1,avocado dip
+C02-08,rimini-restaurant,"Arugula, Fig & Gorgonzola Salad",1,0,query text changed to 'mozzarella salad'
+C03-07,rimini-restaurant,Filetto Mignon alla Marsala,1,0,query text changed to 'something cheesy'
+C03-07,rimini-restaurant,Short Rib Ravioli,1,0,query text changed to 'something cheesy'
+C03-08,rimini-restaurant,Baked Kobe Ziti,1,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+C03-08,rimini-restaurant,The Sunday Sauce Pasta,1,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+C03-12,rimini-restaurant,Gelato Limoncello,1,0,"light lemon gelato, not rich"
+C02-04,rimini-restaurant,Gelato Limoncello,0,1,lemon gelato
+C03-07,rimini-restaurant,Tortellini Fredo,0,2,cheese is the point of the dish
+C03-07,rimini-restaurant,Sicilian Pizza Pie,0,2,cheese is the point of the dish
+C03-07,rimini-restaurant,Baked Kobe Ziti,0,1,melted or baked cheese is prominent
+C03-07,rimini-restaurant,Panna Bolognese,0,1,melted or baked cheese is prominent
+C03-07,rimini-restaurant,Filetto Mignon Gorgonzola,0,1,melted or baked cheese is prominent
+C03-07,rimini-restaurant,Veal Chop Cutlet Parmigiano,0,1,melted or baked cheese is prominent
+C03-07,rimini-restaurant,Chicken Parm alla Vodka,0,1,melted or baked cheese is prominent
+C03-08,rimini-restaurant,Bucatini Meatballs,0,1,substantial dinner plate
+C03-08,rimini-restaurant,Wild Boar Rose Bolognese,0,1,substantial dinner plate
+C03-08,rimini-restaurant,Panna Bolognese,0,1,substantial dinner plate
+C03-08,rimini-restaurant,Cioppino al Rimini,0,1,substantial dinner plate
+C02-04,staple-and-fancy,Burrata,1,0,query text changed to 'fruit dessert'
+C02-08,staple-and-fancy,Burrata,2,1,"burrata with tomato / arugula, salad-like"
+C03-07,staple-and-fancy,Mezze Rigatoni,1,0,query text changed to 'something cheesy'
+C06-08,staple-and-fancy,Prosciutto,2,0,query text changed to 'fried oyster'
+C06-08,staple-and-fancy,Fried Oysters,0,2,fried oysters
+C02-04,staple-and-fancy,Sorbetto,0,1,"sorbet, usually fruit (not stated)"
+C02-04,staple-and-fancy,Cheesecake,0,1,cheesecake with berry coulis
+C03-07,staple-and-fancy,Bucatini,0,2,cheese is the point of the dish
+C03-07,staple-and-fancy,Burrata,0,1,melted or baked cheese is prominent

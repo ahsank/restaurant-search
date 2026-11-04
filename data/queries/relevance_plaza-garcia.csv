@@ -77,6 +77,54 @@ plaza-garcia,C03-01,Garlic Shrimp,1,
 plaza-garcia,C03-05,Fajitas Carne Asada,1,
 plaza-garcia,C03-05,Steak Garcia Ranchero,1,
 plaza-garcia,C03-05,Steak Matador,2,
+plaza-garcia,C03-07,Queso Fundido,2,cheese is the point of the dish
+plaza-garcia,C03-07,Nachos,2,cheese is the point of the dish
+plaza-garcia,C03-07,Cheese Crispy Garcia,2,cheese is the point of the dish
+plaza-garcia,C03-07,Quesadillas,2,cheese is the point of the dish
+plaza-garcia,C03-07,Grilled Quesadillas,2,cheese is the point of the dish
+plaza-garcia,C03-07,Grilled Quesadilla,2,cheese is the point of the dish
+plaza-garcia,C03-07,Veggie Quesadilla,2,cheese is the point of the dish
+plaza-garcia,C03-07,Quesadilla Camarones,2,cheese is the point of the dish
+plaza-garcia,C03-07,Kids Quesadilla,2,cheese is the point of the dish
+plaza-garcia,C03-07,Kids Grilled Cheese,2,cheese is the point of the dish
+plaza-garcia,C03-07,Super Nachos Garcia,1,melted or baked cheese is prominent
+plaza-garcia,C03-07,Bean Dip,1,melted or baked cheese is prominent
+plaza-garcia,C03-07,Kids Cheeseburger,1,melted or baked cheese is prominent
+plaza-garcia,C03-08,Molcajete,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+plaza-garcia,C03-08,Fajitas Garcia,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+plaza-garcia,C03-08,Fajitas Mixto,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+plaza-garcia,C03-08,Tres Amigos,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+plaza-garcia,C03-08,Asada y Mas,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+plaza-garcia,C03-08,Burrito Asada,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+plaza-garcia,C03-08,Chile Verde,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+plaza-garcia,C03-08,Chef Special,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+plaza-garcia,C03-08,Mar y Tierra,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+plaza-garcia,C03-08,Cielo Mar Y Tierra,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+plaza-garcia,C03-08,Steak Tampiqueno,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+plaza-garcia,C03-08,Seafood Burrito,1,substantial dinner plate
+plaza-garcia,C03-08,Fajita Burrito,1,substantial dinner plate
+plaza-garcia,C03-08,Burrito Chile Verde,1,substantial dinner plate
+plaza-garcia,C03-08,Burrito Al Pastor,1,substantial dinner plate
+plaza-garcia,C03-08,Garcia Burrito,1,substantial dinner plate
+plaza-garcia,C03-08,Chile Colorado Burrito,1,substantial dinner plate
+plaza-garcia,C03-08,Expresso Burrito,1,substantial dinner plate
+plaza-garcia,C03-08,Carne Asada,1,substantial dinner plate
+plaza-garcia,C03-08,Maria's Favorite,1,substantial dinner plate
+plaza-garcia,C03-08,Combo 1: Three Tacos,1,combination dinner plate
+plaza-garcia,C03-08,"Combo 2: One Taco, One Enchilada, One Tamal",1,combination dinner plate
+plaza-garcia,C03-08,"Combo 3: Two Enchiladas, One Taco or Bean Tostada",1,combination dinner plate
+plaza-garcia,C03-08,"Combo 4: One Enchilada, Bean Tostada, One Taco",1,combination dinner plate
+plaza-garcia,C03-08,"Combo 5: One Chile Relleno, One Enchilada and Choice",1,combination dinner plate
+plaza-garcia,C03-08,Combo 6: Three Enchiladas,1,combination dinner plate
+plaza-garcia,C03-08,"Combo 7: One Enchilada, One Beef Burrito or Chalupa",1,combination dinner plate
+plaza-garcia,C03-08,Combo 8: Two Beef Burritos,1,combination dinner plate
+plaza-garcia,C03-08,Combo 9: Two Chalupas,1,combination dinner plate
+plaza-garcia,C03-08,Combo 10: One Chile Relleno and One Enchilada,1,combination dinner plate
+plaza-garcia,C03-08,Combo 11: Two Chiles Rellenos,1,combination dinner plate
+plaza-garcia,C03-08,Combo 12: Two Enchiladas,1,combination dinner plate
+plaza-garcia,C03-08,Combo 13: Two Original Chile Rellenos,1,combination dinner plate
+plaza-garcia,C03-08,"Combo 14: Enchilada, Taco or Tostada",1,combination dinner plate
+plaza-garcia,C03-08,Combo 15: Chimichanga with Rice and Beans,1,combination dinner plate
 plaza-garcia,C03-09,Camarones Bravos,1,
 plaza-garcia,C03-09,Camarones a la Diabla,2,
 plaza-garcia,C03-12,Churros,1,
@@ -159,9 +207,11 @@ plaza-garcia,C09-01,Seafood Enchiladas,1,
 plaza-garcia,C09-01,Coctel de Camaron,2,
 plaza-garcia,C09-01,Seafood Chimichangas,1,
 plaza-garcia,C09-02,Seafood Enchiladas,1,
-plaza-garcia,C09-05,Bean Dip,1,
+plaza-garcia,C09-05,Bean Dip,2,dip (with chips)
 plaza-garcia,C09-05,Nachos,2,
 plaza-garcia,C09-05,Super Nachos Garcia,2,
+plaza-garcia,C09-05,Queso Fundido,2,dip (with chips)
+plaza-garcia,C09-05,Fiesta Avocado,1,avocado dip
 plaza-garcia,C09-06,Bean Dip,1,
 plaza-garcia,C09-06,Queso Fundido,2,
 plaza-garcia,C09-07,Ceviche De Camarones,2,

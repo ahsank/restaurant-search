@@ -48,13 +48,13 @@ rimini-restaurant,C02-02,Steak and Lobster Ravioli,2,
 rimini-restaurant,C02-02,Cacio e Pepe Pasta,1,
 rimini-restaurant,C02-03,"Arugula, Fig & Gorgonzola Salad",2,
 rimini-restaurant,C02-03,Caesar Salad,2,
+rimini-restaurant,C02-04,Gelato Limoncello,1,lemon gelato
 rimini-restaurant,C02-06,Salumi & Mozzarella,2,
 rimini-restaurant,C02-06,Sicilian Pizza Pie,1,
 rimini-restaurant,C02-07,Filetto Mignon Gorgonzola,2,
 rimini-restaurant,C02-07,Filetto Mignon alla Marsala,2,
 rimini-restaurant,C02-07,Steak and Lobster Ravioli,1,
-rimini-restaurant,C02-08,Caprese Salad,2,
-rimini-restaurant,C02-08,"Arugula, Fig & Gorgonzola Salad",1,
+rimini-restaurant,C02-08,Caprese Salad,2,"caprese salad (mozzarella, tomato)"
 rimini-restaurant,C02-09,Pasta Carbonara,2,
 rimini-restaurant,C02-09,Sausage & Peppers Rigatoni,2,
 rimini-restaurant,C02-09,The Sunday Sauce Pasta,2,
@@ -94,20 +94,29 @@ rimini-restaurant,C03-06,Chicken Parm alla Vodka,1,
 rimini-restaurant,C03-06,Pasta Cone,1,
 rimini-restaurant,C03-06,Sausage & Peppers Rigatoni,1,
 rimini-restaurant,C03-06,Spicy Breaded Chicken Pasta,1,
-rimini-restaurant,C03-07,Cacio e Pepe Pasta,2,
-rimini-restaurant,C03-07,Three Cheese Mushroom Risotto,2,
-rimini-restaurant,C03-07,Filetto Mignon alla Marsala,1,
-rimini-restaurant,C03-07,Pollo Marsala con Sacchetti,1,
-rimini-restaurant,C03-07,Short Rib Ravioli,1,
-rimini-restaurant,C03-08,Baked Kobe Ziti,1,
-rimini-restaurant,C03-08,The Sunday Sauce Pasta,1,
+rimini-restaurant,C03-07,Cacio e Pepe Pasta,2,cheese is the point of the dish
+rimini-restaurant,C03-07,Three Cheese Mushroom Risotto,2,cheese is the point of the dish
+rimini-restaurant,C03-07,Pollo Marsala con Sacchetti,1,melted or baked cheese is prominent
+rimini-restaurant,C03-07,Tortellini Fredo,2,cheese is the point of the dish
+rimini-restaurant,C03-07,Sicilian Pizza Pie,2,cheese is the point of the dish
+rimini-restaurant,C03-07,Baked Kobe Ziti,1,melted or baked cheese is prominent
+rimini-restaurant,C03-07,Panna Bolognese,1,melted or baked cheese is prominent
+rimini-restaurant,C03-07,Filetto Mignon Gorgonzola,1,melted or baked cheese is prominent
+rimini-restaurant,C03-07,Veal Chop Cutlet Parmigiano,1,melted or baked cheese is prominent
+rimini-restaurant,C03-07,Chicken Parm alla Vodka,1,melted or baked cheese is prominent
+rimini-restaurant,C03-08,Baked Kobe Ziti,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+rimini-restaurant,C03-08,The Sunday Sauce Pasta,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+rimini-restaurant,C03-08,Bucatini Meatballs,1,substantial dinner plate
+rimini-restaurant,C03-08,Wild Boar Rose Bolognese,1,substantial dinner plate
+rimini-restaurant,C03-08,Panna Bolognese,1,substantial dinner plate
+rimini-restaurant,C03-08,Cioppino al Rimini,1,substantial dinner plate
 rimini-restaurant,C03-10,Caesar Salad,2,
 rimini-restaurant,C03-12,Flaming Italian Bomba Cocolata,2,
 rimini-restaurant,C03-12,It's My Birthday Italian Sundae,2,
 rimini-restaurant,C03-12,Nutella Cheesecake,2,
 rimini-restaurant,C03-12,Affogato,1,
 rimini-restaurant,C03-12,Cannoli Corleone,1,
-rimini-restaurant,C03-12,Gelato Limoncello,1,
+rimini-restaurant,C03-12,Gelato Limoncello,0,"light lemon gelato, not rich"
 rimini-restaurant,C03-12,White Chocolate Tiramisu,1,
 rimini-restaurant,C04-07,The Sunday Sauce Pasta,2,
 rimini-restaurant,C04-08,Short Rib Ravioli,2,

@@ -17,12 +17,16 @@ anthonys-homeport,C02-03,Crispy Calamari Salad,2,
 anthonys-homeport,C02-03,Seasonal Salad,2,
 anthonys-homeport,C02-03,Shrimp & Blue Cheese Salad,2,
 anthonys-homeport,C02-03,Silver Salmon Salad with Cranberry-Lime Relish,2,
-anthonys-homeport,C02-04,Crepes with Peaches,2,
+anthonys-homeport,C02-04,Crepes with Peaches,2,fruit crepes / apple cake
+anthonys-homeport,C02-04,Crepes with Berry,2,fruit crepes / apple cake
+anthonys-homeport,C02-04,Best of Season Crepes,2,fruit crepes / apple cake
+anthonys-homeport,C02-04,Caramel & Apple French Cake,2,fruit crepes / apple cake
 anthonys-homeport,C02-07,Double R Ranch Top Sirloin*,2,
 anthonys-homeport,C02-07,Filet Mignon*,2,
 anthonys-homeport,C02-07,Northwest Top Sirloin,1,
 anthonys-homeport,C02-07,Royal Ranch Ribeye*,2,
 anthonys-homeport,C02-07,Top Sirloin*,2,
+anthonys-homeport,C02-08,Burrata & Tomatoes,1,"burrata and tomatoes, salad-like"
 anthonys-homeport,C02-09,Eggs Benedict,1,
 anthonys-homeport,C02-09,Homeport Omelette,1,
 anthonys-homeport,C02-10,Fresh Pacific Swordfish,2,
@@ -47,10 +51,11 @@ anthonys-homeport,C03-06,Dungeness Crab & Shrimp Fettuccine,1,
 anthonys-homeport,C03-06,Kids Fettuccine,1,
 anthonys-homeport,C03-06,Mac 'n Cheese,1,
 anthonys-homeport,C03-06,Seafood Fettuccine,1,
-anthonys-homeport,C03-07,Chicken Kalbi Bowl,1,
-anthonys-homeport,C03-07,Salmon Ponzu Bowl,1,
-anthonys-homeport,C03-07,Wild Alaska Black Cod,2,
-anthonys-homeport,C03-07,Portabello Mushroom,2,
+anthonys-homeport,C03-07,Mac 'n Cheese,2,cheese is the point of the dish
+anthonys-homeport,C03-07,Kids Fettuccine,1,melted or baked cheese is prominent
+anthonys-homeport,C03-07,Burrata & Tomatoes,1,melted or baked cheese is prominent
+anthonys-homeport,C03-08,Royal Ranch Ribeye*,2,"large, filling dinner (platter, combination, stew, or meat-heavy plate)"
+anthonys-homeport,C03-08,Double R Ranch Top Sirloin*,1,substantial dinner plate
 anthonys-homeport,C03-09,Blackened Oregon Rockfish,1,
 anthonys-homeport,C03-09,Fresh Pacific Swordfish,1,
 anthonys-homeport,C03-10,Silver Salmon Salad with Cranberry-Lime Relish,1,
@@ -59,7 +64,7 @@ anthonys-homeport,C03-11,Portabello Mushroom,2,
 anthonys-homeport,C03-11,Portobello Mushroom,2,
 anthonys-homeport,C03-12,Bailey's Irish Cream Chocolate Mousse,2,
 anthonys-homeport,C03-12,Best of Season Crepes,1,
-anthonys-homeport,C03-12,Burnt Cream,1,
+anthonys-homeport,C03-12,Burnt Cream,2,described as a rich custard
 anthonys-homeport,C03-12,Caramel & Apple French Cake,2,
 anthonys-homeport,C04-01,Double R Ranch Top Sirloin*,2,
 anthonys-homeport,C04-01,Filet Mignon*,1,
@@ -90,6 +95,9 @@ anthonys-homeport,C05-13,Wild Alaska Halibut & Chips,2,
 anthonys-homeport,C05-13,Wild Alaska Halibut 'n Chips,2,
 anthonys-homeport,C06-05,Homeport Omelette,1,
 anthonys-homeport,C06-07,Crispy Calamari,2,
+anthonys-homeport,C06-08,Pan Fried Oysters*,2,fried oysters
+anthonys-homeport,C06-08,Fresh Oyster on the Half Shell*,0,"raw oysters, not fried"
+anthonys-homeport,C06-08,Oyster Shooter*,0,"raw oysters, not fried"
 anthonys-homeport,C08-05,Anthony's House Salad,1,
 anthonys-homeport,C08-06,Portobello Mushroom,1,
 anthonys-homeport,C08-09,Alaska Weathervane Scallops*,2,
@@ -126,7 +134,8 @@ anthonys-homeport,C09-02,Northwest Mussels,2,
 anthonys-homeport,C09-02,Steamed Manila Clams,2,
 anthonys-homeport,C09-02,Anthony's Clam Chowder,1,
 anthonys-homeport,C09-03,Moss Bay Avocado Toast,2,
-anthonys-homeport,C09-05,Hectors Authentic Chips & Salsa,1,
+anthonys-homeport,C09-05,Hectors Authentic Chips & Salsa,2,chips with salsa
+anthonys-homeport,C09-05,Dungeness Crab & Shrimp Dip,1,"dip served with toast, not chips"
 anthonys-homeport,C09-07,Fresh Oyster on the Half Shell*,2,
 anthonys-homeport,C09-07,Hawaiian Ahi Nachos*,1,
 anthonys-homeport,C09-07,Oyster Shooter*,2,
