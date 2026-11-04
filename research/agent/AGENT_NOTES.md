@@ -925,3 +925,9 @@ Capturing CUDA graphs (PIECEWISE):  43%|████▎     | 22/51 [00:22<00:03
 - Eval args: `--engine hybrid --rankings research/agent/runs/qwen2.5-32b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L12-v2 --grade-boost 2.0` | family `llm`
 - ndcg@5 0.8314 | recall@10 0.8037 | mrr 0.8973 | 0.3437 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.1556 | 206/209 queries judged
 - Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.2766, C03 Attribute / implied meaning 0.4842, C02 Ingredient generalization 0.5908, C08 Dietary constraint / negation 0.605, C12 Burger varieties 0.6545
+
+### Iteration 81: hybrid-qwen2.5-7b-bge-reranker-large (SUCCESS)
+- Result: `research/agent/results/hybrid-qwen2.5-7b-bge-reranker-large.json` | commit `699f53a` | 36.1s
+- Eval args: `--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model BAAI/bge-reranker-large --grade-boost 2.0` | family `llm`
+- ndcg@5 0.7877 | recall@10 0.8112 | mrr 0.8642 | 0.2676 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.1495 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.0492, C03 Attribute / implied meaning 0.5404, C18 Chicken dishes 0.5911, C09 Synonym / paraphrase 0.6394, C02 Ingredient generalization 0.6456
