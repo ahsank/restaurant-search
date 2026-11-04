@@ -120,15 +120,29 @@ def build_messages(query: str, menu: str) -> list[dict]:
 _PAIR = re.compile(r"\[\s*(\d+)\s*,\s*([0-2])\s*\]")
 
 
+# Where a reasoning model's final answer starts: gpt-oss ("...analysis...assistantfinal[...]" once
+# vLLM drops its special tokens, or "<|channel|>final<|message|>" with them), Qwen3 / DeepSeek ("</think>").
+_ANSWER_MARKERS = ("<|channel|>final<|message|>", "assistantfinal", "</think>")
+
+
+def strip_reasoning(text: str) -> str:
+    """The text after the last reasoning-to-answer marker, or all of it if there is none."""
+    for marker in _ANSWER_MARKERS:
+        if marker in text:
+            return text.rsplit(marker, 1)[1]
+    return text
+
+
 def parse_response(text: str, n_items: int) -> list[tuple[int, int]]:
     """
     Pull [item_number, grade] pairs out of the model's answer, in order.
     Tolerant of code fences and chatter around the JSON; drops out-of-range
-    numbers, grade-0 pairs and repeats.
+    numbers, grade-0 pairs and repeats. A reasoning model's reasoning is skipped,
+    so pairs it mentions while thinking don't count.
     """
     out: list[tuple[int, int]] = []
     seen: set[int] = set()
-    for num, grade in _PAIR.findall(text):
+    for num, grade in _PAIR.findall(strip_reasoning(text)):
         idx, g = int(num), int(grade)
         if 1 <= idx <= n_items and g > 0 and idx not in seen:
             seen.add(idx)
