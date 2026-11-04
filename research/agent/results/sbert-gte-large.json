@@ -1,11 +1,11 @@
 {
   "name": "sbert-gte-large",
-  "description": "Evaluate SentenceTransformer bi-encoder retrieval using 335M-parameter thenlper/gte-large without query prefix to test whether high-capacity general retrieval representations improve over bge-base-en-v1.5 (0.6359)",
-  "status": "EVAL_FAILED",
-  "iteration": 69,
-  "timestamp": "2026-11-03T03:17:42",
-  "git_commit": "555b10b",
-  "gpu": "Tesla T4",
+  "description": "re-run: iteration 69 failed on a broken transformers import (mismatched torchvision on that machine) and was never re-run",
+  "status": "SUCCESS",
+  "iteration": 117,
+  "timestamp": "2026-11-04T22:51:25",
+  "git_commit": "fe1f26c",
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
   "result_file": "research/agent/results/sbert-gte-large.json",
   "family": "bi-encoder",
   "setup": null,
@@ -15,9 +15,217 @@
     "--model",
     "thenlper/gte-large"
   ],
-  "seconds": 25.6,
-  "timing": null,
-  "metrics": null,
-  "eval_seconds": 25.6,
-  "error": "Exit code 1\nconstants import ALLOWED_COMPUTE_DTYPES, UPCAST_DTYPES\n  File \"/usr/local/lib/python3.13/dist-packages/peft/utils/constants.py\", line 16, in <module>\n    from transformers import BloomPreTrainedModel\n  File \"/usr/local/lib/python3.13/dist-packages/transformers/utils/import_utils.py\", line 2619, in __getattr__\n    raise ModuleNotFoundError(\n        f\"Could not import module '{name}'. Are this object's requirements defined correctly?\"\n    ) from e\nModuleNotFoundError: Could not import module 'BloomPreTrainedModel'. Are this object's requirements defined correctly?\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/kaggle/working/restaurant-search/research/search/evaluate.py\", line 308, in <module>\n    parser = engines.build_arg_parser(\"Evaluate search against the benchmark\")\n  File \"/kaggle/working/restaurant-search/research/search/engines.py\", line 70, in build_arg_parser\n    engine_parents.append(importlib.import_module(_ENGINE_FLAG_MODULES[known.engine]).cli_args())\n                          ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.13/importlib/__init__.py\", line 88, in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen importlib._bootstrap>\", line 1395, in _gcd_import\n  File \"<frozen importlib._bootstrap>\", line 1360, in _find_and_load\n  File \"<frozen importlib._bootstrap>\", line 1331, in _find_and_load_unlocked\n  File \"<frozen importlib._bootstrap>\", line 935, in _load_unlocked\n  File \"<frozen importlib._bootstrap_external>\", line 1023, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 488, in _call_with_frames_removed\n  File \"/kaggle/working/restaurant-search/research/search/sbert_search.py\", line 40, in <module>\n    from sentence_transformers import SentenceTransformer\n  File \"/usr/local/lib/python3.13/dist-packages/sentence_transformers/__init__.py\", line 15, in <module>\n    from sentence_transformers.base.sampler import DefaultBatchSampler, MultiDatasetDefaultBatchSampler\n  File \"/usr/local/lib/python3.13/dist-packages/sentence_transformers/base/__init__.py\", line 4, in <module>\n    from .model import BaseModel\n  File \"/usr/local/lib/python3.13/dist-packages/sentence_transformers/base/model.py\", line 32, in <module>\n    from sentence_transformers.base.model_card import BaseModelCardData, generate_model_card\n  File \"/usr/local/lib/python3.13/dist-packages/sentence_transformers/base/model_card.py\", line 27, in <module>\n    from transformers import TrainerCallback\n  File \"/usr/local/lib/python3.13/dist-packages/transformers/utils/import_utils.py\", line 2619, in __getattr__\n    raise ModuleNotFoundError(\n        f\"Could not import module '{name}'. Are this object's requirements defined correctly?\"\n    ) from e\nModuleNotFoundError: Could not import module 'TrainerCallback'. Are this object's requirements defined correctly?\n"
+  "seconds": 19.4,
+  "timing": {
+    "seconds_per_query": 0.0097,
+    "search_seconds_per_query": 0.0097,
+    "rankings_generation_seconds_per_query": 0.0
+  },
+  "metrics": {
+    "overall": {
+      "ndcg@5": 0.6621268142815427,
+      "recall@10": 0.557006726696663,
+      "mrr": 0.8116784068759684,
+      "n_queries": 209,
+      "n_with_judgments": 206
+    },
+    "by_category": {
+      "C01": {
+        "name": "Cuisine type inference",
+        "n_queries": 8,
+        "ndcg@5": 0.7304355556881856,
+        "recall@10": 0.3528389094565565,
+        "mrr": 1.0
+      },
+      "C02": {
+        "name": "Ingredient generalization",
+        "n_queries": 10,
+        "ndcg@5": 0.41404929018460973,
+        "recall@10": 0.3291797780763298,
+        "mrr": 0.5843493909191584
+      },
+      "C03": {
+        "name": "Attribute / implied meaning",
+        "n_queries": 12,
+        "ndcg@5": 0.33554394344006067,
+        "recall@10": 0.24271085737270215,
+        "mrr": 0.580787037037037
+      },
+      "C04": {
+        "name": "Cooking method synonyms",
+        "n_queries": 10,
+        "ndcg@5": 0.48304578459214853,
+        "recall@10": 0.3672252415458937,
+        "mrr": 0.73125
+      },
+      "C05": {
+        "name": "Spelling variations",
+        "n_queries": 15,
+        "ndcg@5": 0.6583523680692079,
+        "recall@10": 0.6898412698412699,
+        "mrr": 0.7818018018018018
+      },
+      "C06": {
+        "name": "Stemming & lemmatization",
+        "n_queries": 10,
+        "ndcg@5": 0.6151344060642596,
+        "recall@10": 0.665934065934066,
+        "mrr": 0.7424242424242424
+      },
+      "C07": {
+        "name": "Hyphenation / spacing / stop words",
+        "n_queries": 14,
+        "ndcg@5": 0.6491332119962069,
+        "recall@10": 0.6377516453735966,
+        "mrr": 0.7646683673469388
+      },
+      "C08": {
+        "name": "Dietary constraint / negation",
+        "n_queries": 10,
+        "ndcg@5": 0.5624048560195376,
+        "recall@10": 0.3897984731318065,
+        "mrr": 0.8194444444444444
+      },
+      "C09": {
+        "name": "Synonym / paraphrase",
+        "n_queries": 10,
+        "ndcg@5": 0.588191832881482,
+        "recall@10": 0.4715103215103215,
+        "mrr": 0.8346666666666666
+      },
+      "C10": {
+        "name": "Multi-constraint compositional",
+        "n_queries": 2,
+        "ndcg@5": 0.3421757737602428,
+        "recall@10": 0.36904761904761907,
+        "mrr": 0.5833333333333334
+      },
+      "C11": {
+        "name": "Soup varieties",
+        "n_queries": 7,
+        "ndcg@5": 0.7483976616609791,
+        "recall@10": 0.6903628117913831,
+        "mrr": 0.9285714285714286
+      },
+      "C12": {
+        "name": "Burger varieties",
+        "n_queries": 6,
+        "ndcg@5": 0.9426367612802559,
+        "recall@10": 1.0,
+        "mrr": 1.0
+      },
+      "C13": {
+        "name": "Taco varieties",
+        "n_queries": 8,
+        "ndcg@5": 0.5302117292520648,
+        "recall@10": 0.6083333333333333,
+        "mrr": 0.6666666666666666
+      },
+      "C14": {
+        "name": "Pasta varieties",
+        "n_queries": 8,
+        "ndcg@5": 0.8674667720922871,
+        "recall@10": 0.5990133897110641,
+        "mrr": 0.9375
+      },
+      "C15": {
+        "name": "Sandwich varieties",
+        "n_queries": 7,
+        "ndcg@5": 0.8381294551624539,
+        "recall@10": 0.7073351079562259,
+        "mrr": 0.9285714285714286
+      },
+      "C16": {
+        "name": "Salad varieties",
+        "n_queries": 7,
+        "ndcg@5": 0.8312574833365414,
+        "recall@10": 0.7314935064935064,
+        "mrr": 0.9285714285714286
+      },
+      "C17": {
+        "name": "Dessert varieties",
+        "n_queries": 8,
+        "ndcg@5": 0.9458550343234607,
+        "recall@10": 0.8146645021645021,
+        "mrr": 1.0
+      },
+      "C18": {
+        "name": "Chicken dishes",
+        "n_queries": 6,
+        "ndcg@5": 0.3932071305371809,
+        "recall@10": 0.22148148148148147,
+        "mrr": 0.6922348484848485
+      },
+      "C19": {
+        "name": "Beef dishes",
+        "n_queries": 6,
+        "ndcg@5": 0.6837734054647377,
+        "recall@10": 0.5020698791190594,
+        "mrr": 0.7638888888888888
+      },
+      "C20": {
+        "name": "Pork dishes",
+        "n_queries": 6,
+        "ndcg@5": 0.5001950080613341,
+        "recall@10": 0.3669753086419753,
+        "mrr": 0.6027777777777777
+      },
+      "C21": {
+        "name": "Seafood dishes",
+        "n_queries": 9,
+        "ndcg@5": 0.8189885045696346,
+        "recall@10": 0.5295014677993402,
+        "mrr": 0.9444444444444444
+      },
+      "C22": {
+        "name": "Ingredient focus",
+        "n_queries": 13,
+        "ndcg@5": 0.7910638266599063,
+        "recall@10": 0.6600636205899364,
+        "mrr": 0.8846153846153846
+      },
+      "C23": {
+        "name": "Typical dish names",
+        "n_queries": 12,
+        "ndcg@5": 0.7505039500533953,
+        "recall@10": 0.6663728632478633,
+        "mrr": 0.8842592592592592
+      },
+      "C24": {
+        "name": "Pizza varieties",
+        "n_queries": 3,
+        "ndcg@5": 0.8326722540855865,
+        "recall@10": 0.8888888888888888,
+        "mrr": 0.8333333333333334
+      },
+      "C25": {
+        "name": "Occasion / meal-time",
+        "n_queries": 2,
+        "ndcg@5": 0.915209948681596,
+        "recall@10": 0.12430293218204713,
+        "mrr": 1.0
+      }
+    },
+    "by_difficulty": {
+      "Easy": {
+        "n_queries": 126,
+        "ndcg@5": 0.7414331084592101,
+        "recall@10": 0.6336376744713469,
+        "mrr": 0.861974961974962
+      },
+      "Medium": {
+        "n_queries": 58,
+        "ndcg@5": 0.5706083419768896,
+        "recall@10": 0.471245015059783,
+        "mrr": 0.7612288221891269
+      },
+      "Hard": {
+        "n_queries": 25,
+        "ndcg@5": 0.44919401097626116,
+        "recall@10": 0.3442194473934286,
+        "mrr": 0.6566197691197692
+      }
+    }
+  },
+  "eval_seconds": 19.4
 }

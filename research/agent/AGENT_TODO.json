@@ -1,15 +1,6 @@
 {
-  "iteration": 117,
+  "iteration": 118,
   "pending_tasks": [
-    {
-      "action": "run_experiment",
-      "family": "bi-encoder",
-      "name": "sbert-gte-large",
-      "eval_args": "--engine sbert --model thenlper/gte-large",
-      "setup": "",
-      "description": "re-run: iteration 69 failed on a broken transformers import (mismatched torchvision on that machine) and was never re-run",
-      "reasoning": "In the LLM hybrid pipeline, Qwen2.5-32B candidate rankings achieved an MRR record of 0.8836 and 0.8168 NDCG@5 with MiniLM-L12, while BAAI/bge-reranker-v2-m3 demonstrated dramatically superior discrimination on C04 cooking methods (0.9229 vs 0.8583) and C08 dietary constraints (0.7188 vs 0.5375), making their combination a strong candidate to surpass the 0.8195 overall benchmark ceiling. In the non-LLM bi-encoder family, where BAAI/bge-base-en-v1.5 currently leads at 0.6359 NDCG@5, the widely benchmarked 335M-parameter thenlper/gte-large model offers significantly higher capacity and pre-training diversity without requiring prompt prefixes."
-    },
     {
       "action": "run_experiment",
       "family": "llm",

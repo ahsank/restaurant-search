@@ -18,6 +18,7 @@ llm-qwen2.5-7b-instruct,llm,SUCCESS,0.708,0.7759,0.776,0.09,NVIDIA RTX PRO 6000 
 crossencoder-ms-marco-electra-base,cross-encoder,SUCCESS,0.6905,0.5864,0.834,0.2052,NVIDIA RTX PRO 6000 Blackwell Server Edition,0.1327,209,48.7,9a97427,2026-11-04T20:58:45,--engine crossencoder --model cross-encoder/ms-marco-electra-base
 crossencoder-ms-marco-MiniLM-L6-v2,cross-encoder,SUCCESS,0.6904,0.5914,0.8309,0.0563,NVIDIA RTX PRO 6000 Blackwell Server Edition,0.1365,209,17.6,3c74162,2026-11-04T20:58:25,--engine crossencoder --model cross-encoder/ms-marco-MiniLM-L6-v2
 crossencoder-ms-marco-MiniLM-L12-v2,cross-encoder,SUCCESS,0.6883,0.5923,0.8307,0.0823,NVIDIA RTX PRO 6000 Blackwell Server Edition,0.1354,209,23.2,8077eea,2026-11-04T20:58:00,--engine crossencoder --model cross-encoder/ms-marco-MiniLM-L12-v2
+sbert-gte-large,bi-encoder,SUCCESS,0.6621,0.557,0.8117,0.0097,NVIDIA RTX PRO 6000 Blackwell Server Edition,0.1322,209,19.4,fe1f26c,2026-11-04T22:51:25,--engine sbert --model thenlper/gte-large
 colbert-colbertv2.0,late-interaction,SUCCESS,0.6583,0.5733,0.8036,0.031,Tesla T4,0.1309,209,21.5,fd939cd,2026-11-03T14:45:22,--engine colbert
 baseline-enhanced,lexical,SUCCESS,0.6514,0.598,0.774,0.0267,NVIDIA RTX PRO 6000 Blackwell Server Edition,0.1296,209,5.6,d05b0d7,2026-11-04T20:53:16,--engine enhanced
 sbert-bge-base-en-v1.5,bi-encoder,SUCCESS,0.6477,0.5572,0.8084,0.0048,NVIDIA RTX PRO 6000 Blackwell Server Edition,0.1294,209,11.9,1f8edda,2026-11-04T21:00:01,--engine sbert --model BAAI/bge-base-en-v1.5
@@ -27,4 +28,3 @@ softbm25-conceptnet,word-vector,SUCCESS,0.5741,0.5231,0.734,0.0125,NVIDIA RTX PR
 sbert-all-mpnet-base-v2,bi-encoder,SUCCESS,0.5608,0.4658,0.7486,0.005,NVIDIA RTX PRO 6000 Blackwell Server Edition,0.112,209,12.3,e43f609,2026-11-04T20:59:47,--engine sbert --model all-mpnet-base-v2
 sbert-all-MiniLM-L6-v2,bi-encoder,SUCCESS,0.5398,0.4685,0.6982,0.0035,NVIDIA RTX PRO 6000 Blackwell Server Edition,0.1079,209,9.8,a6468ae,2026-11-04T20:59:35,--engine sbert --model all-MiniLM-L6-v2
 baseline-text,lexical,SUCCESS,0.4562,0.4804,0.4789,0.0003,NVIDIA RTX PRO 6000 Blackwell Server Edition,0.0912,209,0.1,5022f82,2026-11-04T20:53:23,--engine text
-sbert-gte-large,bi-encoder,EVAL_FAILED,,,,,Tesla T4,,,25.6,555b10b,2026-11-03T03:17:42,--engine sbert --model thenlper/gte-large
