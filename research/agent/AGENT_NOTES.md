@@ -833,3 +833,25 @@ RuntimeError: Engine core initialization failed. See root cause above. Failed co
 RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}
 
 ```
+
+### Iteration 75: llm-qwen2.5-7b-instruct (SETUP_FAILED)
+- Result: `research/agent/results/llm-qwen2.5-7b-instruct.json` | commit `79a40e4` | 161.3s
+- Setup: `python research/search/llm_search.py --model Qwen/Qwen2.5-7B-Instruct --out research/agent/runs/qwen2.5-7b-instruct.jsonl --gpu-memory-utilization 0.85`
+- Eval args: `--engine llm --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl` | family `llm`
+- Error:
+```
+Exit code 1 (full output: research/agent/runs/logs/llm-qwen2.5-7b-instruct.setup.log)
+Key lines:
+(EngineCore pid=2501) ERROR 11-04 20:19:02 [core.py:1584]     kernel_warmup(self)
+(EngineCore pid=2501) ERROR 11-04 20:19:02 [core.py:1584]     ~~~~~~~~~~~~~^^^^^^
+(EngineCore pid=2501) ERROR 11-04 20:19:02 [core.py:1584]   File "/usr/local/lib/python3.13/dist-packages/vllm/model_executor/warmup/kernel_warmup.py", line 165, in kernel_warmup
+(EngineCore pid=2501) ERROR 11-04 20:19:02 [core.py:1584]     from vllm.model_executor.warmup.minimax_m3_msa_warmup import (
+(EngineCore pid=2501) ERROR 11-04 20:19:02 [core.py:1584]         minimax_m3_msa_warmup,
+(EngineCore pid=2501) ERROR 11-04 20:19:02 [core.py:1584]   File "/usr/local/lib/python3.13/dist-packages/vllm/model_executor/warmup/minimax_m3_msa_warmup.py", line 10, in <module>
+(EngineCore pid=2501) ERROR 11-04 20:19:02 [core.py:1584]     from vllm.models.minimax_m3.nvidia.model import MiniMaxM3SparseAttention
+(EngineCore pid=2501) ERROR 11-04 20:19:02 [core.py:1584]   File "/usr/local/lib/python3.13/dist-packages/vllm/models/minimax_m3/__init__.py", line 17, in <module>
+(EngineCore pid=2501) ERROR 11-04 20:19:02 [core.py:1584]     from .nvidia.model import (
+(EngineCore pid=2501) ERROR 11-04 20:19:02 [core.py:1584]     ...<2 lines>...
+(EngineCore pid=2501) ERROR 11-04 20:19:02 [core.py:1584]   File "/usr/local/lib/python3.13/dist-packages/vllm/models/minimax_m3/nvidia/model.py", line 78, in <module>
+(EngineCore pid=2501) ERROR 11
+```
