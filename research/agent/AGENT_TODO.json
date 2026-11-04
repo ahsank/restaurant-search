@@ -1,14 +1,6 @@
 {
-  "iteration": 99,
+  "iteration": 100,
   "pending_tasks": [
-    {
-      "action": "run_experiment",
-      "family": "bi-encoder",
-      "name": "sbert-bge-large-en-v1.5",
-      "setup": "",
-      "eval_args": "--engine sbert --model BAAI/bge-large-en-v1.5",
-      "description": "re-run after the 7 query rewrites and today's label fixes"
-    },
     {
       "action": "run_experiment",
       "family": "bi-encoder",
