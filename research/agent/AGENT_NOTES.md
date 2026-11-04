@@ -1174,3 +1174,9 @@ t.py", line 129, in make_client
 - Eval args: `--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L6-v2 --strict-grade` | family `llm`
 - ndcg@5 0.7936 | recall@10 0.8108 | mrr 0.879 | 0.2007 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.1526 | 206/209 queries judged
 - Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.2461, C03 Attribute / implied meaning 0.5565, C09 Synonym / paraphrase 0.6311, C18 Chicken dishes 0.6401, C02 Ingredient generalization 0.6424
+
+### Iteration 115: hybrid-qwen2.5-7b-ms-marco-MiniLM-L6-v2 (SUCCESS)
+- Result: `research/agent/results/hybrid-qwen2.5-7b-ms-marco-MiniLM-L6-v2.json` | commit `543b25b` | 9.0s
+- Eval args: `--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L6-v2` | family `llm`
+- ndcg@5 0.8067 | recall@10 0.8111 | mrr 0.8717 | 0.2008 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.1551 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.2461, C08 Dietary constraint / negation 0.4807, C09 Synonym / paraphrase 0.5915, C03 Attribute / implied meaning 0.6008, C02 Ingredient generalization 0.6022
