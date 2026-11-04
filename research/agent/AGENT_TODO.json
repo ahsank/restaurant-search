@@ -115,14 +115,6 @@
     },
     {
       "action": "run_experiment",
-      "family": "late-interaction",
-      "name": "colbert-colbertv2.0",
-      "setup": "",
-      "eval_args": "--engine colbert",
-      "description": "re-run after the 7 query rewrites and today's label fixes"
-    },
-    {
-      "action": "run_experiment",
       "family": "cross-encoder",
       "name": "crossencoder-bge-reranker-large",
       "setup": "",

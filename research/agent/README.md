@@ -79,6 +79,15 @@ fine-tuning); CPU-only work such as keyword-search changes is left for cheaper s
 session doesn't generate LLM rankings above ~3B (Qwen2.5-7B doesn't fit a T4) but can replay existing
 rankings. Each result records its GPU, and timings are compared only between runs on the same GPU.
 
+## Python packages on Colab
+
+The notebook installs vLLM first, in its own pip call, so pip brings in vLLM's exact torch, torchvision and
+transformers versions. It then prints an import check (`torch … | torchvision … | vllm …`). If that line
+says IMPORT CHECK FAILED, LLM runs will fail; the output of failed experiment commands is kept in
+`runs/logs/`. ColBERT's library, pylate, pins transformers ≤ 5.3 while vLLM needs ≥ 5.10, so it is off by
+default (`INSTALL_PYLATE = False`) and the agents are told not to plan ColBERT runs. For a ColBERT session,
+set `INSTALL_PYLATE = True` and `INSTALL_VLLM = False`.
+
 ## Large artifacts are reproduced, not committed
 
 Model weights, checkpoints, datasets and vector files go to `/content/scratch` or `models/` and are
