@@ -1196,3 +1196,9 @@ t.py", line 129, in make_client
 - Eval args: `--engine sbert --model thenlper/gte-large` | family `bi-encoder`
 - ndcg@5 0.6621 | recall@10 0.557 | mrr 0.8117 | 0.0097 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.1322 | 206/209 queries judged
 - Weakest categories (NDCG@5): C03 Attribute / implied meaning 0.3355, C10 Multi-constraint compositional 0.3422, C18 Chicken dishes 0.3932, C02 Ingredient generalization 0.414, C04 Cooking method synonyms 0.483
+
+### Iteration 118: hybrid-qwen2.5-7b-minilm-l6-boost2 (SUCCESS)
+- Result: `research/agent/results/hybrid-qwen2.5-7b-minilm-l6-boost2.json` | commit `9a94454` | 11.0s
+- Eval args: `--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L6-v2 --grade-boost 2.0` | family `llm`
+- ndcg@5 0.8323 | recall@10 0.8362 | mrr 0.8924 | 0.0977 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.1633 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.2461, C03 Attribute / implied meaning 0.5771, C08 Dietary constraint / negation 0.6361, C24 Pizza varieties 0.6667, C09 Synonym / paraphrase 0.675
