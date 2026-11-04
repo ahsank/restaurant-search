@@ -21,7 +21,7 @@ runs on the same GPU. `–` = not recorded (re-run it).
 | # | Experiment | Family | Efficiency | NDCG@5 | s/query | GPU |
 |---|---|---|---|---|---|---|
 | 1 | hybrid-qwen2.5-14b-minilm-l12-boost2 | llm | 0.1581 | 0.8203 | 0.1894 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 2 | hybrid-qwen2.5-7b-minilm-l12-boost2 | llm | 0.1575 | 0.8195 | 0.2033 | – |
+| 2 | hybrid-qwen2.5-7b-minilm-l12-boost2 | llm | 0.1563 | 0.8135 | 0.2048 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
 | 3 | hybrid-qwen2.5-32b-minilm-l12-boost2 | llm | 0.1556 | 0.8314 | 0.3437 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
 | 4 | hybrid-qwen2.5-7b-minilm-l12-boost3 | llm | 0.1549 | 0.8057 | 0.2025 | – |
 | 5 | hybrid-qwen2.5-32b-bge-reranker-v2-m3 | llm | 0.1546 | 0.8369 | 0.4143 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
