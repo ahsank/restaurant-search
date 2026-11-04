@@ -1,14 +1,6 @@
 {
-  "iteration": 95,
+  "iteration": 96,
   "pending_tasks": [
-    {
-      "action": "run_experiment",
-      "family": "cross-encoder",
-      "name": "crossencoder-ms-marco-electra-base",
-      "setup": "",
-      "eval_args": "--engine crossencoder --model cross-encoder/ms-marco-electra-base",
-      "description": "re-run after the 7 query rewrites and today's label fixes"
-    },
     {
       "action": "run_experiment",
       "family": "bi-encoder",

@@ -33,10 +33,10 @@ runs on the same GPU. `–` = not recorded (re-run it).
 | 11 | hybrid-qwen2.5-7b-bge-reranker-large | llm | 0.1495 | 0.7877 | 0.2676 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
 | 12 | crossencoder-ms-marco-MiniLM-L6-v2 | cross-encoder | 0.1365 | 0.6904 | 0.0563 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
 | 13 | crossencoder-ms-marco-MiniLM-L12-v2 | cross-encoder | 0.1354 | 0.6883 | 0.0823 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 14 | crossencoder-bge-reranker-v2-m3 | cross-encoder | 0.1319 | 0.7406 | 0.6159 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 15 | colbert-colbertv2.0 | late-interaction | 0.1309 | 0.6583 | 0.0310 | Tesla T4 |
-| 16 | baseline-enhanced | lexical | 0.1296 | 0.6514 | 0.0267 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 17 | crossencoder-ms-marco-electra-base | cross-encoder | 0.1287 | 0.6806 | 0.2876 | – |
+| 14 | crossencoder-ms-marco-electra-base | cross-encoder | 0.1327 | 0.6905 | 0.2052 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 15 | crossencoder-bge-reranker-v2-m3 | cross-encoder | 0.1319 | 0.7406 | 0.6159 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 16 | colbert-colbertv2.0 | late-interaction | 0.1309 | 0.6583 | 0.0310 | Tesla T4 |
+| 17 | baseline-enhanced | lexical | 0.1296 | 0.6514 | 0.0267 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
 | 18 | crossencoder-bge-reranker-large | cross-encoder | 0.1278 | 0.7181 | 0.6175 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
 | 19 | sbert-bge-base-en-v1.5 | bi-encoder | 0.1271 | 0.6359 | 0.0044 | – |
 | 20 | sbert-mxbai-embed-large | bi-encoder | 0.1249 | 0.6278 | 0.0271 | NVIDIA L4 |
