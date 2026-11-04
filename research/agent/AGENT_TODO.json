@@ -1,14 +1,6 @@
 {
-  "iteration": 89,
+  "iteration": 90,
   "pending_tasks": [
-    {
-      "action": "run_experiment",
-      "family": "lexical",
-      "name": "baseline-enhanced",
-      "setup": "",
-      "eval_args": "--engine enhanced",
-      "description": "re-run after the 7 query rewrites and today's label fixes"
-    },
     {
       "action": "run_experiment",
       "family": "lexical",
