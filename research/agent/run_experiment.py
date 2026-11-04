@@ -43,6 +43,7 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 AGENT_DIR = REPO_ROOT / "research" / "agent"
 EVALUATE = REPO_ROOT / "research" / "search" / "evaluate.py"
 METRICS = ("ndcg@5", "recall@10", "mrr")
+LOG_DIR = AGENT_DIR / "runs" / "logs"   # full output of failed setup / eval commands
 
 # Method family of each engine, so the agents improve every kind of approach, not only the current
 # leader. Anything that calls an LLM (including hybrids) is "llm". New engines pass --family.
@@ -77,20 +78,44 @@ def git_commit_sha() -> str | None:
         return None
 
 
-def run_logged(cmd, shell: bool, timeout: float | None) -> tuple[bool, str, float]:
-    """(ok, combined output tail, seconds). Output is streamed to stdout as well."""
+# Lines worth surfacing from a failed command's output: tools such as vLLM print the root cause
+# well above the final traceback, which a plain tail cuts off.
+_KEY_LINE = re.compile(r"(Error|Exception|error:|CUDA|out of memory|OOM|not supported|No module named|"
+                       r"Killed|Traceback|FAILED|failed|ERROR)")
+
+
+def summarize_failure(out: str, max_key_lines: int = 40, tail: int = 1500) -> str:
+    """Key error lines from the whole output (deduplicated, in order) plus the tail."""
+    keys, seen = [], set()
+    for line in out.splitlines():
+        s = line.strip()
+        if s and _KEY_LINE.search(s) and not s.startswith("File ") and s not in seen:
+            seen.add(s)
+            keys.append(s[:400])
+    key_text = "\n".join(keys[-max_key_lines:])
+    return f"Key lines:\n{key_text}\n\n--- last {tail} chars ---\n{out[-tail:]}"
+
+
+def run_logged(cmd, shell: bool, timeout: float | None, log_path: Path | None = None) -> tuple[bool, str, float]:
+    """(ok, output tail or failure summary, seconds). On failure the full output is written to log_path."""
     print(f"$ {cmd if shell else ' '.join(map(str, cmd))}", flush=True)
     t0 = time.time()
     try:
         proc = subprocess.run(cmd, shell=shell, cwd=REPO_ROOT, capture_output=True, text=True, timeout=timeout)
+        out = proc.stdout + ("\n--- STDERR ---\n" + proc.stderr if proc.stderr.strip() else "")
+        failed = f"Exit code {proc.returncode}" if proc.returncode != 0 else None
     except subprocess.TimeoutExpired as e:
-        out = (e.stdout or b"").decode() if isinstance(e.stdout, bytes) else (e.stdout or "")
-        return False, f"Timed out after {timeout:.0f}s\n{out[-2000:]}", time.time() - t0
-    out = proc.stdout + ("\n--- STDERR ---\n" + proc.stderr if proc.stderr.strip() else "")
-    print(proc.stdout[-3000:], flush=True)
-    if proc.returncode != 0:
-        return False, f"Exit code {proc.returncode}\n{out[-3000:]}", time.time() - t0
-    return True, out[-3000:], time.time() - t0
+        dec = lambda b: b.decode(errors="replace") if isinstance(b, bytes) else (b or "")
+        out = dec(e.stdout) + "\n--- STDERR ---\n" + dec(e.stderr)
+        failed = f"Timed out after {timeout:.0f}s"
+    print(out[-3000:], flush=True)
+    if not failed:
+        return True, out[-3000:], time.time() - t0
+    if log_path:
+        log_path.parent.mkdir(parents=True, exist_ok=True)
+        log_path.write_text(out[-1_000_000:], encoding="utf-8")   # text, well under the notebook's 20 MB commit limit
+        failed += f" (full output: {log_path.relative_to(REPO_ROOT) if log_path.is_relative_to(REPO_ROOT) else log_path})"
+    return False, f"{failed}\n{summarize_failure(out)}", time.time() - t0
 
 
 def safe_name(name: str) -> str:
@@ -209,7 +234,7 @@ def write_notes(notes_file: Path, row: dict) -> None:
         lines.append("- Weakest categories (NDCG@5): " + ", ".join(
             f"{cid} {v.get('name', '')} {fmt(v.get('ndcg@5'))}" for cid, v in cats[:5]))
     else:
-        lines.append(f"- Error:\n```\n{(row.get('error') or '')[-800:]}\n```")
+        lines.append(f"- Error:\n```\n{(row.get('error') or '')[:1500]}\n```")
     notes_file.parent.mkdir(parents=True, exist_ok=True)
     with open(notes_file, "a", encoding="utf-8") as f:
         f.write("\n".join(lines) + "\n")
@@ -255,7 +280,8 @@ def main() -> None:
     t0 = time.time()
     try:
         if args.setup:
-            ok, out, secs = run_logged(args.setup, shell=True, timeout=args.setup_timeout)
+            ok, out, secs = run_logged(args.setup, shell=True, timeout=args.setup_timeout,
+                                         log_path=LOG_DIR / f"{name}.setup.log")
             row["setup_seconds"] = round(secs, 1)
             if not ok:
                 row.update(status="SETUP_FAILED", error=out)
@@ -263,7 +289,8 @@ def main() -> None:
             with tempfile.TemporaryDirectory() as tmp:
                 metrics_path = Path(tmp) / "metrics.json"
                 cmd = [sys.executable, str(EVALUATE), *eval_args, "--save-metrics", str(metrics_path)]
-                ok, out, secs = run_logged(cmd, shell=False, timeout=args.eval_timeout)
+                ok, out, secs = run_logged(cmd, shell=False, timeout=args.eval_timeout,
+                                             log_path=LOG_DIR / f"{name}.eval.log")
                 row["eval_seconds"] = round(secs, 1)
                 if ok and metrics_path.exists():
                     m = json.loads(metrics_path.read_text())
