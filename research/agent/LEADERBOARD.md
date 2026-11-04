@@ -9,7 +9,7 @@ runs on the same GPU. `–` = not recorded (re-run it).
 | Family | Best experiment | NDCG@5 | Recall@10 | MRR | s/query | GPU | Efficiency | Experiments |
 |---|---|---|---|---|---|---|---|---|
 | lexical | baseline-enhanced | 0.6514 | 0.5980 | 0.7740 | 0.0267 | NVIDIA RTX PRO 6000 Blackwell Server Edition | 0.1296 | 2 |
-| word-vector | softbm25-conceptnet | 0.5704 | 0.5279 | 0.7318 | 0.0370 | NVIDIA L4 | 0.1133 | 1 |
+| word-vector | softbm25-conceptnet | 0.5741 | 0.5231 | 0.7340 | 0.0125 | NVIDIA RTX PRO 6000 Blackwell Server Edition | 0.1145 | 1 |
 | bi-encoder | sbert-bge-base-en-v1.5 | 0.6477 | 0.5572 | 0.8084 | 0.0048 | NVIDIA RTX PRO 6000 Blackwell Server Edition | 0.1294 | 5 |
 | late-interaction | colbert-colbertv2.0 | 0.6583 | 0.5733 | 0.8036 | 0.0310 | Tesla T4 | 0.1309 | 1 |
 | cross-encoder | crossencoder-bge-reranker-v2-m3 | 0.7406 | 0.6120 | 0.8906 | 0.6159 | NVIDIA RTX PRO 6000 Blackwell Server Edition | 0.1319 | 5 |
@@ -41,7 +41,7 @@ runs on the same GPU. `–` = not recorded (re-run it).
 | 19 | sbert-mxbai-embed-large | bi-encoder | 0.1287 | 0.6446 | 0.0097 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
 | 20 | crossencoder-bge-reranker-large | cross-encoder | 0.1278 | 0.7181 | 0.6175 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
 | 21 | sbert-bge-large-en-v1.5 | bi-encoder | 0.1263 | 0.6325 | 0.0073 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 22 | softbm25-conceptnet | word-vector | 0.1133 | 0.5704 | 0.0370 | NVIDIA L4 |
+| 22 | softbm25-conceptnet | word-vector | 0.1145 | 0.5741 | 0.0125 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
 | 23 | sbert-all-mpnet-base-v2 | bi-encoder | 0.1120 | 0.5608 | 0.0050 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
 | 24 | sbert-all-MiniLM-L6-v2 | bi-encoder | 0.1079 | 0.5398 | 0.0035 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
 | 25 | baseline-text | lexical | 0.0912 | 0.4562 | 0.0003 | NVIDIA RTX PRO 6000 Blackwell Server Edition |

@@ -1,13 +1,4 @@
 {
-  "iteration": 101,
-  "pending_tasks": [
-    {
-      "action": "run_experiment",
-      "family": "word-vector",
-      "name": "softbm25-conceptnet",
-      "setup": "mkdir -p /content/scratch && [ -f /content/scratch/numberbatch-en-19.08.txt.gz ] || wget -q -O /content/scratch/numberbatch-en-19.08.txt.gz https://conceptnet.s3.amazonaws.com/downloads/2019/numberbatch/numberbatch-en-19.08.txt.gz",
-      "eval_args": "--engine soft_bm25 --vectors /content/scratch/numberbatch-en-19.08.txt.gz",
-      "description": "re-run after the 7 query rewrites and today's label fixes"
-    }
-  ]
+  "iteration": 102,
+  "pending_tasks": []
 }

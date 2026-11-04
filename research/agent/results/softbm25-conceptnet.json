@@ -1,11 +1,11 @@
 {
   "name": "softbm25-conceptnet",
-  "description": "Phrase-Aware Soft-BM25 with ConceptNet Numberbatch after fixing hyphen/slash tokenization, singular/plural fallback, stop-word filtering, and restaurant cuisine indexing",
+  "description": "re-run after the 7 query rewrites and today's label fixes",
   "status": "SUCCESS",
-  "iteration": 64,
-  "timestamp": "2026-10-18T17:24:32",
-  "git_commit": "5a9d6a9",
-  "gpu": "NVIDIA L4",
+  "iteration": 101,
+  "timestamp": "2026-11-04T21:00:54",
+  "git_commit": "31ab190",
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
   "result_file": "research/agent/results/softbm25-conceptnet.json",
   "family": "word-vector",
   "setup": "mkdir -p /content/scratch && [ -f /content/scratch/numberbatch-en-19.08.txt.gz ] || wget -q -O /content/scratch/numberbatch-en-19.08.txt.gz https://conceptnet.s3.amazonaws.com/downloads/2019/numberbatch/numberbatch-en-19.08.txt.gz",
@@ -15,17 +15,17 @@
     "--vectors",
     "/content/scratch/numberbatch-en-19.08.txt.gz"
   ],
-  "seconds": 45.0,
+  "seconds": 33.8,
   "timing": {
-    "seconds_per_query": 0.037,
-    "search_seconds_per_query": 0.037,
+    "seconds_per_query": 0.0125,
+    "search_seconds_per_query": 0.0125,
     "rankings_generation_seconds_per_query": 0.0
   },
   "metrics": {
     "overall": {
-      "ndcg@5": 0.570441595402029,
-      "recall@10": 0.5279387257318022,
-      "mrr": 0.7317741749020285,
+      "ndcg@5": 0.5741157587541976,
+      "recall@10": 0.5230552955033169,
+      "mrr": 0.7339585640202504,
       "n_queries": 209,
       "n_with_judgments": 206
     },
@@ -34,28 +34,28 @@
         "name": "Cuisine type inference",
         "n_queries": 8,
         "ndcg@5": 0.44219787566585034,
-        "recall@10": 0.22001354889782,
+        "recall@10": 0.20817846369316959,
         "mrr": 0.7365196078431373
       },
       "C02": {
         "name": "Ingredient generalization",
         "n_queries": 10,
-        "ndcg@5": 0.23410965764820685,
-        "recall@10": 0.17438423645320195,
-        "mrr": 0.4143607177341487
+        "ndcg@5": 0.22807386248187317,
+        "recall@10": 0.18589217296113847,
+        "mrr": 0.497396432019863
       },
       "C03": {
         "name": "Attribute / implied meaning",
         "n_queries": 12,
-        "ndcg@5": 0.26672755153160016,
-        "recall@10": 0.20298821548821547,
-        "mrr": 0.5885170976603201
+        "ndcg@5": 0.2725624354011607,
+        "recall@10": 0.1967271234512614,
+        "mrr": 0.5861519607843138
       },
       "C04": {
         "name": "Cooking method synonyms",
         "n_queries": 10,
         "ndcg@5": 0.42448205861429217,
-        "recall@10": 0.32746800301148127,
+        "recall@10": 0.3236801242236025,
         "mrr": 0.7559523809523809
       },
       "C05": {
@@ -68,15 +68,15 @@
       "C06": {
         "name": "Stemming & lemmatization",
         "n_queries": 10,
-        "ndcg@5": 0.5911744744946524,
-        "recall@10": 0.6791941391941392,
-        "mrr": 0.7093333333333334
+        "ndcg@5": 0.5838638959675391,
+        "recall@10": 0.6458608058608059,
+        "mrr": 0.7098484848484848
       },
       "C07": {
         "name": "Hyphenation / spacing / stop words",
         "n_queries": 14,
-        "ndcg@5": 0.536293369412178,
-        "recall@10": 0.4606837606837607,
+        "ndcg@5": 0.5713665077521852,
+        "recall@10": 0.4637437088656601,
         "mrr": 0.5970246684532399
       },
       "C08": {
@@ -89,22 +89,22 @@
       "C09": {
         "name": "Synonym / paraphrase",
         "n_queries": 10,
-        "ndcg@5": 0.5221106909226605,
-        "recall@10": 0.4241919191919192,
-        "mrr": 0.7019230769230769
+        "ndcg@5": 0.48819467039529885,
+        "recall@10": 0.4211554211554212,
+        "mrr": 0.6162087912087912
       },
       "C10": {
         "name": "Multi-constraint compositional",
         "n_queries": 2,
         "ndcg@5": 0.44542705445803465,
-        "recall@10": 0.32894736842105265,
+        "recall@10": 0.3214285714285714,
         "mrr": 0.625
       },
       "C11": {
         "name": "Soup varieties",
         "n_queries": 7,
-        "ndcg@5": 0.3629713682731396,
-        "recall@10": 0.39325150349995075,
+        "ndcg@5": 0.3473192007617723,
+        "recall@10": 0.3700113378684807,
         "mrr": 0.5248917748917749
       },
       "C12": {
@@ -124,9 +124,9 @@
       "C14": {
         "name": "Pasta varieties",
         "n_queries": 8,
-        "ndcg@5": 0.774600399665234,
-        "recall@10": 0.6216429911551863,
-        "mrr": 0.9375
+        "ndcg@5": 0.8335299916647982,
+        "recall@10": 0.6221615378592122,
+        "mrr": 1.0
       },
       "C15": {
         "name": "Sandwich varieties",
@@ -139,14 +139,14 @@
         "name": "Salad varieties",
         "n_queries": 7,
         "ndcg@5": 0.770444292383069,
-        "recall@10": 0.6016542980828695,
+        "recall@10": 0.5993867243867245,
         "mrr": 0.8928571428571429
       },
       "C17": {
         "name": "Dessert varieties",
         "n_queries": 8,
-        "ndcg@5": 0.838444824981664,
-        "recall@10": 0.8515625,
+        "ndcg@5": 0.8399203203773176,
+        "recall@10": 0.8337053571428571,
         "mrr": 0.9375
       },
       "C18": {
@@ -159,8 +159,8 @@
       "C19": {
         "name": "Beef dishes",
         "n_queries": 6,
-        "ndcg@5": 0.6223193866542586,
-        "recall@10": 0.5833333333333334,
+        "ndcg@5": 0.6145866372902196,
+        "recall@10": 0.5611111111111111,
         "mrr": 0.9166666666666666
       },
       "C20": {
@@ -174,21 +174,21 @@
         "name": "Seafood dishes",
         "n_queries": 9,
         "ndcg@5": 0.7120666247012364,
-        "recall@10": 0.6304300637633972,
+        "recall@10": 0.62937936767724,
         "mrr": 0.7814814814814814
       },
       "C22": {
         "name": "Ingredient focus",
         "n_queries": 13,
-        "ndcg@5": 0.6249269884719563,
-        "recall@10": 0.5956303040971233,
+        "ndcg@5": 0.6564924728648047,
+        "recall@10": 0.605245688712508,
         "mrr": 0.9259259259259258
       },
       "C23": {
         "name": "Typical dish names",
         "n_queries": 12,
-        "ndcg@5": 0.7358215529652514,
-        "recall@10": 0.7291857448107448,
+        "ndcg@5": 0.73005727980317,
+        "recall@10": 0.7083524114774115,
         "mrr": 0.8708333333333332
       },
       "C24": {
@@ -208,25 +208,25 @@
     },
     "by_difficulty": {
       "Easy": {
-        "n_queries": 125,
-        "ndcg@5": 0.664599449427094,
-        "recall@10": 0.6210772425947989,
-        "mrr": 0.8004254471454472
+        "n_queries": 126,
+        "ndcg@5": 0.6718567332703291,
+        "recall@10": 0.6168291457087284,
+        "mrr": 0.8020502572089874
       },
       "Medium": {
-        "n_queries": 55,
-        "ndcg@5": 0.4659315750079875,
-        "recall@10": 0.4090499649905442,
-        "mrr": 0.6661593495668183
+        "n_queries": 58,
+        "ndcg@5": 0.43918804977926174,
+        "recall@10": 0.38077124223288594,
+        "mrr": 0.6448904341130338
       },
       "Hard": {
-        "n_queries": 29,
-        "ndcg@5": 0.33883849419199696,
-        "recall@10": 0.33165285007390266,
-        "mrr": 0.5405205734793059
+        "n_queries": 25,
+        "ndcg@5": 0.37004504655027576,
+        "recall@10": 0.36109938476709635,
+        "mrr": 0.5787948455128732
       }
     }
   },
   "setup_seconds": 0.0,
-  "eval_seconds": 45.0
+  "eval_seconds": 33.8
 }

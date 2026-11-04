@@ -1045,3 +1045,10 @@ Capturing CUDA graphs (PIECEWISE):  43%|████▎     | 22/51 [00:22<00:03
 - Eval args: `--engine sbert --model mixedbread-ai/mxbai-embed-large-v1 --query-prefix Represent this sentence for searching relevant passages: ` | family `bi-encoder`
 - ndcg@5 0.6446 | recall@10 0.5396 | mrr 0.8119 | 0.0097 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.1287 | 206/209 queries judged
 - Weakest categories (NDCG@5): C18 Chicken dishes 0.3479, C02 Ingredient generalization 0.3525, C03 Attribute / implied meaning 0.3823, C13 Taco varieties 0.4357, C04 Cooking method synonyms 0.4832
+
+### Iteration 101: softbm25-conceptnet (SUCCESS)
+- Result: `research/agent/results/softbm25-conceptnet.json` | commit `31ab190` | 33.8s
+- Setup: `mkdir -p /content/scratch && [ -f /content/scratch/numberbatch-en-19.08.txt.gz ] || wget -q -O /content/scratch/numberbatch-en-19.08.txt.gz https://conceptnet.s3.amazonaws.com/downloads/2019/numberbatch/numberbatch-en-19.08.txt.gz`
+- Eval args: `--engine soft_bm25 --vectors /content/scratch/numberbatch-en-19.08.txt.gz` | family `word-vector`
+- ndcg@5 0.5741 | recall@10 0.5231 | mrr 0.734 | 0.0125 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.1145 | 206/209 queries judged
+- Weakest categories (NDCG@5): C08 Dietary constraint / negation 0.2131, C02 Ingredient generalization 0.2281, C03 Attribute / implied meaning 0.2726, C11 Soup varieties 0.3473, C04 Cooking method synonyms 0.4245
