@@ -1,10 +1,10 @@
 {
   "name": "hybrid-qwen2.5-7b-minilm-l6-strict-grade",
-  "description": "re-run after the 7 query rewrites and today's label fixes",
+  "description": "re-run: LLM rankings regenerated with the interpreter fix (earlier runs used the wrong python)",
   "status": "SUCCESS",
-  "iteration": 87,
-  "timestamp": "2026-11-04T20:52:57",
-  "git_commit": "c0f4b64",
+  "iteration": 114,
+  "timestamp": "2026-11-04T22:08:45",
+  "git_commit": "6a670f3",
   "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
   "result_file": "research/agent/results/hybrid-qwen2.5-7b-minilm-l6-strict-grade.json",
   "family": "llm",
@@ -18,7 +18,7 @@
     "cross-encoder/ms-marco-MiniLM-L6-v2",
     "--strict-grade"
   ],
-  "seconds": 7.7,
+  "seconds": 9.1,
   "timing": {
     "seconds_per_query": 0.2007,
     "search_seconds_per_query": 0.0093,
@@ -230,5 +230,5 @@
       }
     }
   },
-  "eval_seconds": 7.7
+  "eval_seconds": 9.1
 }
