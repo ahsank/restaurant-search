@@ -1,10 +1,10 @@
 {
   "name": "llm-qwen2.5-14b-instruct",
-  "description": "regenerate Qwen/Qwen2.5-14B-Instruct rankings (query texts changed) and re-run after the 7 query rewrites and today's label fixes",
-  "status": "SETUP_FAILED",
-  "iteration": 76,
-  "timestamp": "2026-11-04T20:19:07",
-  "git_commit": "a16bc3a",
+  "description": "re-run: LLM rankings regenerated with the interpreter fix (earlier runs used the wrong python)",
+  "status": "SUCCESS",
+  "iteration": 103,
+  "timestamp": "2026-11-04T21:54:32",
+  "git_commit": "66214a4",
   "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
   "result_file": "research/agent/results/llm-qwen2.5-14b-instruct.json",
   "family": "llm",
@@ -15,9 +15,218 @@
     "--rankings",
     "research/agent/runs/qwen2.5-14b-instruct.jsonl"
   ],
-  "seconds": 129.3,
-  "timing": null,
-  "metrics": null,
-  "setup_seconds": 129.3,
-  "error": "Exit code 1 (full output: research/agent/runs/logs/llm-qwen2.5-14b-instruct.setup.log)\nKey lines:\n(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]     from vllm.transformers_utils.processors.minimax_m3 import (\n(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]     ...<5 lines>...\n(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]   File \"/usr/local/lib/python3.13/dist-packages/vllm/transformers_utils/processors/minimax_m3.py\", line 19, in <module>\n(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]     from torchvision.transforms import InterpolationMode\n(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584] ModuleNotFoundError: No module named 'torchvision'\nCapturing CUDA graphs (PIECEWISE):   0%|          | 0/51 [00:00<?, ?it/s]\nCapturing CUDA graphs (PIECEWISE):   2%|\u258f         | 1/51 [00:00<00:05,  9.08it/s]\nCapturing CUDA graphs (PIECEWISE):   6%|\u258c         | 3/51 [00:00<00:03, 12.24it/s]\nCapturing CUDA graphs (PIECEWISE):  10%|\u2589         | 5/51 [00:00<00:03, 13.08it/s]\nCapturing CUDA graphs (PIECEWISE):  14%|\u2588\u258e        | 7/51 [00:00<00:03, 13.40it/s]\nCapturing CUDA graphs (PIECEWISE):  18%|\u2588\u258a        | 9/51 [00:00<00:03, 13.94it/s]\nCapturing CUDA graphs (PIECEWISE):  22%|\u2588\u2588\u258f       | 11/51 [00:00<00:02, 14.52it/s]\nCapturing CUDA graphs (PIECEWISE):  25%|\u2588\u2588\u258c       | 13/51 [00:00<00:02, 14.96it/s]\nCapturing CUDA graphs (PIECEWISE):  29%|\u2588\u2588\u2589       | 15/51 [00:01<00:02, 15.30it/s]\nCapturing CUDA graphs (PIECEWISE):  33%|\u2588\u2588\u2588\u258e      | 17/51 [00:01<00:02, 15.70it/s]\nCapturing CUDA graphs (PIECEWISE):  37%|\u2588\u2588\u2588\u258b      | 19/51 [00:01<00:01, 16.20it/s]\nCapturing CUDA graphs (PIECEWISE):  41%|\u2588\u2588\u2588\u2588      | 21/51 [00:01<00:01, 16.57it/s]\nCapturing CUDA graphs (PIECEWISE):  45%|\u2588\u2588\u2588\u2588\u258c     | 23/51 [00:01<00:01, 16.87it/s]\nCapturing CUDA graphs (PIECEWISE):  49%|\u2588\u2588\u2588\u2588\u2589     | 25/51 [00:01<00:01, 17.08it/s]\nCapturing CUDA graphs (PIECEWISE):  53%|\u2588\u2588\u2588\u2588\u2588\u258e    | 27/51 [00:01<00:01, 17.27it/s]\nCapturing CUDA graphs (PIECEWISE):  57%|\u2588\u2588\u2588\u2588\u2588\u258b    | 29/51 [00:01<00:01, 17.49it/s]\nCapturing CUDA graphs (PIECEWISE):  61%|\u2588\u2588\u2588\u2588\u2588\u2588    | 31/51 [00:01<00:01, 17.64it/s]\nCapturing CUDA graphs (PIECEWISE):  65%|\u2588\u2588\u2588\u2588\u2588\u2588\u258d   | 33/51 [00:02<00:01, 17.52it/s]\nCapturing CUDA graphs (PIECEWISE):  69%|\u2588\u2588\u2588\u2588\u2588\u2588\u258a   | 35/51 [00:02<00:00, 17.74it/s]\nCapturing CUDA graphs (PIECEWISE):  73%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258e  | 37/51 [00:02<00:00, 17.99it/s]\nCapturing CUDA graphs (PIECEWISE):  76%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258b  | 39/51 [00:02<00:00, 18.18it/s]\nCapturing CUDA graphs (PIECEWISE):  80%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588  | 41/51 [00:02<00:00, 18.13it/s]\nCapturing CUDA graphs (PIECEWISE):  84%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258d | 43/51 [00:02<00:00, 18.35it/s]\nCapturing CUDA graphs (PIECEWISE):  88%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258a | 45/51 [00:02<00:00, 18.50it/s]\nCapturing CUDA graphs (PIECEWISE):  92%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258f| 47/51 [00:02<00:00, 18.50it/s]\nCapturing CUDA graphs (PIECEWISE):  96%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258c| 49/51 [00:02<00:00, 18.82it/s]\nCapturing CUDA graphs (PIECEWISE): 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 51/51 [00:03<00:00, 18.66it/s]\nCapturing CUDA graphs (PIECEWISE): 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 51/51 [00:03<00:00, 16.74it/s]\nCapturing CUDA graphs (FULL):   0%|          | 0/2 [00:00<?, ?it/s]\nCapturing CUDA graphs (FULL): 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 2/2 [00:00<00:00, 18.77it/s]\nCapturing CUDA graphs (FULL): 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 2/2 [00:00<00:00, 18.75it/s]\nTraceback (most recent call last):\nModuleNotFoundError: No module named 'torchvision'\nraise RuntimeError(\nRuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}\n\n--- last 1500 chars ---\nt.py\", line 129, in make_client\n    return SyncMPClient(\n        vllm_config,\n    ...<2 lines>...\n        renderer=renderer,\n    )\n  File \"/usr/local/lib/python3.13/dist-packages/vllm/tracing/otel.py\", line 175, in sync_wrapper\n    return func(*args, **kwargs)\n  File \"/usr/local/lib/python3.13/dist-packages/vllm/v1/engine/core_client.py\", line 966, in __init__\n    super().__init__(\n    ~~~~~~~~~~~~~~~~^\n        asyncio_mode=False,\n        ^^^^^^^^^^^^^^^^^^^\n    ...<3 lines>...\n        renderer=renderer,\n        ^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/usr/local/lib/python3.13/dist-packages/vllm/v1/engine/core_client.py\", line 699, in __init__\n    with launch_core_engines(\n         ~~~~~~~~~~~~~~~~~~~^\n        vllm_config, executor_class, log_stats, addresses\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    ) as engine_launch:\n    ^\n  File \"/usr/lib/python3.13/contextlib.py\", line 148, in __exit__\n    next(self.gen)\n    ~~~~^^^^^^^^^^\n  File \"/usr/local/lib/python3.13/dist-packages/vllm/v1/engine/utils.py\", line 1393, in launch_core_engines\n    wait_for_engine_startup(\n    ~~~~~~~~~~~~~~~~~~~~~~~^\n        handshake_socket,\n        ^^^^^^^^^^^^^^^^^\n    ...<4 lines>...\n        launch,\n        ^^^^^^^\n    )\n    ^\n  File \"/usr/local/lib/python3.13/dist-packages/vllm/v1/engine/utils.py\", line 1473, in wait_for_engine_startup\n    raise RuntimeError(\n    ...<8 lines>...\n    )\nRuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}\n"
+  "seconds": 314.7,
+  "timing": {
+    "seconds_per_query": 0.1746,
+    "search_seconds_per_query": 0.0,
+    "rankings_generation_seconds_per_query": 0.1746
+  },
+  "metrics": {
+    "overall": {
+      "ndcg@5": 0.7326439701862753,
+      "recall@10": 0.7953548497224887,
+      "mrr": 0.791756241331484,
+      "n_queries": 209,
+      "n_with_judgments": 206
+    },
+    "by_category": {
+      "C01": {
+        "name": "Cuisine type inference",
+        "n_queries": 8,
+        "ndcg@5": 0.6884096848100861,
+        "recall@10": 0.7198097041847041,
+        "mrr": 0.7916666666666666
+      },
+      "C02": {
+        "name": "Ingredient generalization",
+        "n_queries": 10,
+        "ndcg@5": 0.9042514411729874,
+        "recall@10": 0.9258119658119657,
+        "mrr": 0.9333333333333333
+      },
+      "C03": {
+        "name": "Attribute / implied meaning",
+        "n_queries": 12,
+        "ndcg@5": 0.4454054178353691,
+        "recall@10": 0.5886236698926285,
+        "mrr": 0.576388888888889
+      },
+      "C04": {
+        "name": "Cooking method synonyms",
+        "n_queries": 10,
+        "ndcg@5": 0.497383510510833,
+        "recall@10": 0.7008928571428571,
+        "mrr": 0.5625
+      },
+      "C05": {
+        "name": "Spelling variations",
+        "n_queries": 15,
+        "ndcg@5": 0.9016878481787065,
+        "recall@10": 0.9076923076923077,
+        "mrr": 0.9339285714285714
+      },
+      "C06": {
+        "name": "Stemming & lemmatization",
+        "n_queries": 10,
+        "ndcg@5": 0.8428189177808371,
+        "recall@10": 0.96,
+        "mrr": 0.9
+      },
+      "C07": {
+        "name": "Hyphenation / spacing / stop words",
+        "n_queries": 14,
+        "ndcg@5": 0.6741314816464256,
+        "recall@10": 0.7438492063492064,
+        "mrr": 0.7285714285714285
+      },
+      "C08": {
+        "name": "Dietary constraint / negation",
+        "n_queries": 10,
+        "ndcg@5": 0.5912104417035446,
+        "recall@10": 0.6218100545686753,
+        "mrr": 0.7037037037037037
+      },
+      "C09": {
+        "name": "Synonym / paraphrase",
+        "n_queries": 10,
+        "ndcg@5": 0.799015659911593,
+        "recall@10": 0.8840909090909091,
+        "mrr": 0.9142857142857143
+      },
+      "C10": {
+        "name": "Multi-constraint compositional",
+        "n_queries": 2,
+        "ndcg@5": 0.19519002499605084,
+        "recall@10": 0.375,
+        "mrr": 0.5
+      },
+      "C11": {
+        "name": "Soup varieties",
+        "n_queries": 7,
+        "ndcg@5": 0.8704432348320019,
+        "recall@10": 0.9186507936507936,
+        "mrr": 0.9285714285714286
+      },
+      "C12": {
+        "name": "Burger varieties",
+        "n_queries": 6,
+        "ndcg@5": 0.7505774781176164,
+        "recall@10": 0.8333333333333334,
+        "mrr": 0.75
+      },
+      "C13": {
+        "name": "Taco varieties",
+        "n_queries": 8,
+        "ndcg@5": 0.8401989753273931,
+        "recall@10": 0.975,
+        "mrr": 0.7708333333333334
+      },
+      "C14": {
+        "name": "Pasta varieties",
+        "n_queries": 8,
+        "ndcg@5": 0.9208108628690113,
+        "recall@10": 0.8190464426877471,
+        "mrr": 1.0
+      },
+      "C15": {
+        "name": "Sandwich varieties",
+        "n_queries": 7,
+        "ndcg@5": 0.841508208701157,
+        "recall@10": 0.9183673469387755,
+        "mrr": 0.9285714285714286
+      },
+      "C16": {
+        "name": "Salad varieties",
+        "n_queries": 7,
+        "ndcg@5": 0.6627567595434332,
+        "recall@10": 0.7635467980295567,
+        "mrr": 0.6428571428571429
+      },
+      "C17": {
+        "name": "Dessert varieties",
+        "n_queries": 8,
+        "ndcg@5": 0.9396523763736425,
+        "recall@10": 0.9230769230769231,
+        "mrr": 0.9375
+      },
+      "C18": {
+        "name": "Chicken dishes",
+        "n_queries": 6,
+        "ndcg@5": 0.48963662396914276,
+        "recall@10": 0.7407407407407408,
+        "mrr": 0.625
+      },
+      "C19": {
+        "name": "Beef dishes",
+        "n_queries": 6,
+        "ndcg@5": 0.7306063031923326,
+        "recall@10": 0.7318840579710145,
+        "mrr": 0.8333333333333334
+      },
+      "C20": {
+        "name": "Pork dishes",
+        "n_queries": 6,
+        "ndcg@5": 0.6817960981857691,
+        "recall@10": 0.9083333333333333,
+        "mrr": 0.6944444444444445
+      },
+      "C21": {
+        "name": "Seafood dishes",
+        "n_queries": 9,
+        "ndcg@5": 0.6818434016127416,
+        "recall@10": 0.6594483947425124,
+        "mrr": 0.7222222222222222
+      },
+      "C22": {
+        "name": "Ingredient focus",
+        "n_queries": 13,
+        "ndcg@5": 0.6242958319051682,
+        "recall@10": 0.7327416173570019,
+        "mrr": 0.6923076923076923
+      },
+      "C23": {
+        "name": "Typical dish names",
+        "n_queries": 12,
+        "ndcg@5": 0.7544186421661866,
+        "recall@10": 0.7722416472416472,
+        "mrr": 0.7708333333333334
+      },
+      "C24": {
+        "name": "Pizza varieties",
+        "n_queries": 3,
+        "ndcg@5": 1.0,
+        "recall@10": 1.0,
+        "mrr": 1.0
+      },
+      "C25": {
+        "name": "Occasion / meal-time",
+        "n_queries": 2,
+        "ndcg@5": 0.7543701539552121,
+        "recall@10": 0.19256756756756757,
+        "mrr": 1.0
+      }
+    },
+    "by_difficulty": {
+      "Easy": {
+        "n_queries": 126,
+        "ndcg@5": 0.7933005999071606,
+        "recall@10": 0.8385697816624685,
+        "mrr": 0.8393565759637188
+      },
+      "Medium": {
+        "n_queries": 58,
+        "ndcg@5": 0.6488849100023854,
+        "recall@10": 0.7572187921365078,
+        "mrr": 0.7198275862068966
+      },
+      "Hard": {
+        "n_queries": 25,
+        "ndcg@5": 0.6060662495423699,
+        "recall@10": 0.6483916640656452,
+        "mrr": 0.7087662337662338
+      }
+    }
+  },
+  "setup_seconds": 314.6,
+  "eval_seconds": 0.1
 }
