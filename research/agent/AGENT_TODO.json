@@ -1,14 +1,6 @@
 {
-  "iteration": 108,
+  "iteration": 109,
   "pending_tasks": [
-    {
-      "action": "run_experiment",
-      "family": "llm",
-      "name": "hybrid-qwen2.5-7b-bge-reranker-large",
-      "setup": "",
-      "eval_args": "--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model BAAI/bge-reranker-large --grade-boost 2.0",
-      "description": "re-run: LLM rankings regenerated with the interpreter fix (earlier runs used the wrong python)"
-    },
     {
       "action": "run_experiment",
       "family": "llm",
