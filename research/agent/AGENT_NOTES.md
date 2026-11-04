@@ -855,3 +855,28 @@ Key lines:
 (EngineCore pid=2501) ERROR 11-04 20:19:02 [core.py:1584]   File "/usr/local/lib/python3.13/dist-packages/vllm/models/minimax_m3/nvidia/model.py", line 78, in <module>
 (EngineCore pid=2501) ERROR 11
 ```
+
+### Iteration 76: llm-qwen2.5-14b-instruct (SETUP_FAILED)
+- Result: `research/agent/results/llm-qwen2.5-14b-instruct.json` | commit `a16bc3a` | 129.3s
+- Setup: `python research/search/llm_search.py --model Qwen/Qwen2.5-14B-Instruct --out research/agent/runs/qwen2.5-14b-instruct.jsonl --gpu-memory-utilization 0.85`
+- Eval args: `--engine llm --rankings research/agent/runs/qwen2.5-14b-instruct.jsonl` | family `llm`
+- Error:
+```
+Exit code 1 (full output: research/agent/runs/logs/llm-qwen2.5-14b-instruct.setup.log)
+Key lines:
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]     from vllm.transformers_utils.processors.minimax_m3 import (
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]     ...<5 lines>...
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]   File "/usr/local/lib/python3.13/dist-packages/vllm/transformers_utils/processors/minimax_m3.py", line 19, in <module>
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]     from torchvision.transforms import InterpolationMode
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584] ModuleNotFoundError: No module named 'torchvision'
+Capturing CUDA graphs (PIECEWISE):   0%|          | 0/51 [00:00<?, ?it/s]
+Capturing CUDA graphs (PIECEWISE):   2%|▏         | 1/51 [00:00<00:05,  9.08it/s]
+Capturing CUDA graphs (PIECEWISE):   6%|▌         | 3/51 [00:00<00:03, 12.24it/s]
+Capturing CUDA graphs (PIECEWISE):  10%|▉         | 5/51 [00:00<00:03, 13.08it/s]
+Capturing CUDA graphs (PIECEWISE):  14%|█▎        | 7/51 [00:00<00:03, 13.40it/s]
+Capturing CUDA graphs (PIECEWISE):  18%|█▊        | 9/51 [00:00<00:03, 13.94it/s]
+Capturing CUDA graphs (PIECEWISE):  22%|██▏       | 11/51 [00:00<00:02, 14.52it/s]
+Capturing CUDA graphs (PIECEWISE):  25%|██▌       | 13/51 [00:00<00:02, 14.96it/s]
+Capturing CUDA graphs (PIECEWISE):  29%|██▉       | 15/51 [00:01<00:02, 15.30it/s]
+Capturing CUDA graphs (PIECEWISE):  33%|███▎      | 17/51 [00:01<00
+```

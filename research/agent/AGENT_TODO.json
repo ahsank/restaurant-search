@@ -1,14 +1,6 @@
 {
-  "iteration": 76,
+  "iteration": 77,
   "pending_tasks": [
-    {
-      "action": "run_experiment",
-      "family": "llm",
-      "name": "llm-qwen2.5-14b-instruct",
-      "setup": "python research/search/llm_search.py --model Qwen/Qwen2.5-14B-Instruct --out research/agent/runs/qwen2.5-14b-instruct.jsonl --gpu-memory-utilization 0.85",
-      "eval_args": "--engine llm --rankings research/agent/runs/qwen2.5-14b-instruct.jsonl",
-      "description": "regenerate Qwen/Qwen2.5-14B-Instruct rankings (query texts changed) and re-run after the 7 query rewrites and today's label fixes"
-    },
     {
       "action": "run_experiment",
       "family": "llm",

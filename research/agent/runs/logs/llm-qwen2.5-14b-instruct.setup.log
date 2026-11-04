@@ -1,0 +1,308 @@
+(MainProcess pid=3463) INFO 11-04 20:19:13 [startup.py:96] non-default args: {'max_model_len': 12288, 'enable_prefix_caching': True, 'gpu_memory_utilization': 0.85, 'disable_log_stats': True, 'model': 'Qwen/Qwen2.5-14B-Instruct'}
+(MainProcess pid=3463) INFO 11-04 20:19:14 [model.py:744] Resolved architecture: Qwen2ForCausalLM
+(MainProcess pid=3463) INFO 11-04 20:19:14 [model.py:2170] Using max model len 12288
+(MainProcess pid=3463) INFO 11-04 20:19:14 [scheduler.py:310] Chunked prefill is enabled with max_num_batched_tokens=16384.
+(MainProcess pid=3463) INFO 11-04 20:19:14 [kernel.py:480] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'], gelu_and_mul_sparse=['triton', 'native'])
+(EngineCore pid=3731) INFO 11-04 20:19:16 [core.py:139] Initializing a V1 LLM engine (v0.33.0) with config: model='Qwen/Qwen2.5-14B-Instruct', speculative_config=None, tokenizer='Qwen/Qwen2.5-14B-Instruct', skip_tokenizer_init=False, tokenizer_mode=auto, revision=main, tokenizer_revision=main, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=12288, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=None, quantization_config=None, enforce_eager=False, aux_output_config=AuxOutputConfig(enable_return_routed_experts=False, max_bytes=None), kv_cache_dtype=auto, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, per_request_spec_decode_metrics='none', kv_cache_metrics=False, kv_cache_metrics_sample=0.01, custom_histogram_buckets=None, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False, jit_monitor_mode='warn', jit_monitor_verbose=False), seed=0, served_model_name=Qwen/Qwen2.5-14B-Instruct, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.VLLM_COMPILE: 3>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['none'], 'ir_enable_torch_wrap': True, 'splitting_ops': ['vllm::unified_attention_with_output', 'vllm::unified_mla_attention_with_output', 'vllm::mamba_mixer2', 'vllm::mamba_mixer', 'vllm::short_conv', 'vllm::qwen4_exp_ple_short_conv', 'vllm::qwen4_exp_qsa_with_output', 'vllm::qwen4_exp_qsa_prepare_with_output', 'vllm::linear_attention', 'vllm::qwen_gdn_attention_core', 'vllm::qwen_gdn_attention_core_fused_norm_packed', 'vllm::gdn_attention_core_xpu', 'vllm::olmo_hybrid_gdn_full_forward', 'vllm::sparse_attn_indexer', 'vllm::rocm_aiter_sparse_attn_indexer', 'vllm::deepseek_v4_attention', 'vllm::hpc_rope_norm_forward', 'vllm::unified_kv_cache_update', 'vllm::unified_mla_kv_cache_update'], 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'cudagraph_decoder_replay': True, 'decoder_replay_cudagraph_capture_sizes': [], 'decoder_replay_trim_threshold': 768, 'compile_sizes': [], 'compile_ranges_endpoints': [16384], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.FULL_AND_PIECEWISE: (2, 1)>, 'cudagraph_num_of_warmups': 1, 'cudagraph_capture_sizes': [1, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 136, 144, 152, 160, 168, 176, 184, 192, 200, 208, 216, 224, 232, 240, 248, 256, 272, 288, 304, 320, 336, 352, 368, 384, 400, 416, 432, 448, 464, 480, 496, 512], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': False, 'fuse_act_quant': False, 'fuse_attn_quant': False, 'fuse_allreduce_rms': False, 'enable_qk_norm_rope_fusion': False, 'fuse_rope_kvcache_cat_mla': False, 'fuse_act_padding': False, 'fuse_qk_norm_rope_kvcache': False}, 'max_cudagraph_capture_size': 512, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': False, 'static_all_moe_layers': []}, kernel_config=KernelConfig(ir_op_priority=IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'], gelu_and_mul_sparse=['triton', 'native']), enable_flashinfer_autotune=True, enable_rocm_segmented_attn_autotune=False, enable_cutedsl_warmup=True, enable_jit_warmup=True, monokernel=False, moe_backend='auto', sparse_indexer_topk_backend='auto', linear_backend='auto', linear_backend_per_quant=None)
+(EngineCore pid=3731) INFO 11-04 20:19:17 [parallel_state.py:1929] world_size=1 rank=0 local_rank=0 distributed_init_method=file:///tmp/vllm_dist_7112458df35c40f6b2e50215c849cff6 backend=nccl
+(EngineCore pid=3731) INFO 11-04 20:19:17 [parallel_state.py:2385] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, ETP rank 0, EP rank N/A, EPLB rank N/A
+(EngineCore pid=3731) INFO 11-04 20:19:17 [gpu_worker.py:513] Using V2 Model Runner
+(EngineCore pid=3731) WARNING 11-04 20:19:17 [flashinfer.py:143] FlashInfer's precompiled kernels are missing or do not match flashinfer-python 0.7.2.post1 (flashinfer-cubin not installed, flashinfer-jit-cache not installed). FlashInfer then downloads and compiles kernels at startup, which can take several minutes, or fails to import mismatched ones. Run `vllm download-kernels` in this Python environment to install them.
+(EngineCore pid=3731) INFO 11-04 20:19:18 [model_runner.py:399] Loading model from scratch...
+(EngineCore pid=3731) INFO 11-04 20:19:18 [cuda.py:508] Using FLASH_ATTN attention backend out of potential backends: ['FLASH_ATTN', 'FLASHINFER', 'TRITON_ATTN', 'FLEX_ATTENTION'].
+(EngineCore pid=3731) INFO 11-04 20:19:18 [flash_attn.py:1122] Using FlashAttention version 2
+(EngineCore pid=3731) INFO 11-04 20:19:18 [base_loader.py:82] Initializing model took 0.532920 seconds
+(EngineCore pid=3731) INFO 11-04 20:20:48 [weight_utils.py:537] Time spent downloading weights for Qwen/Qwen2.5-14B-Instruct: 89.575713 seconds
+(EngineCore pid=3731) INFO 11-04 20:20:48 [weight_utils.py:1144] Filesystem type for checkpoints: OVERLAY. Checkpoint size: 27.51 GiB. Available RAM: 170.20 GiB.
+(EngineCore pid=3731) INFO 11-04 20:20:48 [weight_utils.py:1167] Auto-prefetch is disabled because the filesystem (OVERLAY) is not a recognized network FS (NFS/Lustre). If you want to force prefetching, start vLLM with --safetensors-load-strategy=prefetch.
+(EngineCore pid=3731) INFO 11-04 20:20:51 [default_loader.py:506] Loading weights took 2.56 seconds
+(EngineCore pid=3731) INFO 11-04 20:20:53 [model_runner.py:428] Model loading took 27.57 GiB memory and 95.033214 seconds
+(EngineCore pid=3731) INFO 11-04 20:20:53 [topk_topp_sampler.py:149] Using FlashInfer for top-p & top-k sampling.
+(EngineCore pid=3731) INFO 11-04 20:20:53 [torch_utils.py:281] Reducing Torch threads from 24 to 1 for serving. Set OMP_NUM_THREADS in the external environment to override.
+(EngineCore pid=3731) INFO 11-04 20:20:53 [utils.py:381] Using LBNHC KV cache layout.
+(EngineCore pid=3731) INFO 11-04 20:20:53 [monitor.py:40] [backbone] Starting torch.compile
+(EngineCore pid=3731) INFO 11-04 20:20:59 [backends.py:1125] [backbone] Using cache directory: /root/.cache/vllm/torch_compile_cache/1656663883/rank_0_0/backbone for vLLM's torch.compile
+(EngineCore pid=3731) INFO 11-04 20:20:59 [backends.py:1187] [backbone] Dynamo bytecode transform time: 5.25 s
+(EngineCore pid=3731) INFO 11-04 20:21:02 [backends.py:417] [backbone] Compiling a graph for compile range (1, 16384) takes 3.65 s
+(EngineCore pid=3731) INFO 11-04 20:21:05 [backends.py:948] collected artifacts: 49 entries, 3 artifacts, 4448504 bytes total
+(EngineCore pid=3731) INFO 11-04 20:21:05 [decorators.py:752] [backbone] saved AOT compiled function to /root/.cache/vllm/torch_compile_cache/torch_aot_compile/7fa014f388a685b5f4ba4a1b6738fa3a6c84e7346f2c5b2a0486bcad194dbc24/rank_0_0/model
+(EngineCore pid=3731) INFO 11-04 20:21:05 [monitor.py:62] [backbone] torch.compile took 12.13 s in total
+(EngineCore pid=3731) INFO 11-04 20:21:07 [monitor.py:91] [backbone] Initial profiling/warmup run took 1.31 s
+(EngineCore pid=3731) INFO 11-04 20:21:14 [model_runner.py:1163] Graph capturing finished in 4 secs, took 0.45 GiB
+(EngineCore pid=3731) INFO 11-04 20:21:14 [gpu_worker.py:772] Available KV cache memory: 49.66 GiB
+(EngineCore pid=3731) INFO 11-04 20:21:14 [gpu_worker.py:787] CUDA graph memory profiling is enabled (default since v0.21.0). The current --gpu-memory-utilization=0.8500 is equivalent to --gpu-memory-utilization=0.8440 without CUDA graph memory profiling. To maintain the same effective KV cache size as before, increase --gpu-memory-utilization to 0.8560. To disable, set VLLM_MEMORY_PROFILER_ESTIMATE_CUDAGRAPHS=0.
+(EngineCore pid=3731) INFO 11-04 20:21:14 [kv_cache_utils.py:1147] GPU KV cache size: 271,216 tokens, Maximum concurrency for 12,288 tokens per request: 22.07x
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584] EngineCore failed to start.
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584] Traceback (most recent call last):
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]   File "/usr/local/lib/python3.13/dist-packages/vllm/v1/engine/core.py", line 1555, in run_engine_core
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]     engine_core = EngineCoreProc(*args, engine_index=dp_rank, **kwargs)
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]   File "/usr/local/lib/python3.13/dist-packages/vllm/tracing/otel.py", line 175, in sync_wrapper
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]     return func(*args, **kwargs)
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]   File "/usr/local/lib/python3.13/dist-packages/vllm/v1/engine/core.py", line 1232, in __init__
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]     super().__init__(
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]     ~~~~~~~~~~~~~~~~^
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]         vllm_config,
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]         ^^^^^^^^^^^^
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]     ...<3 lines>...
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]         internal_dp_balancing,
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]         ^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]     )
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]     ^
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]   File "/usr/local/lib/python3.13/dist-packages/vllm/v1/engine/core.py", line 163, in __init__
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]     kv_cache_config = self._initialize_kv_caches(vllm_config)
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]   File "/usr/local/lib/python3.13/dist-packages/vllm/tracing/otel.py", line 175, in sync_wrapper
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]     return func(*args, **kwargs)
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]   File "/usr/local/lib/python3.13/dist-packages/vllm/v1/engine/core.py", line 389, in _initialize_kv_caches
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]     self.model_executor.compile_or_warm_up_model()
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]   File "/usr/local/lib/python3.13/dist-packages/vllm/v1/executor/abstract.py", line 135, in compile_or_warm_up_model
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]     compilation_times: list[CompilationTimes] = self.collective_rpc(
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]                                                 ~~~~~~~~~~~~~~~~~~~^
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]         "compile_or_warm_up_model"
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]     )
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]     ^
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]   File "/usr/local/lib/python3.13/dist-packages/vllm/v1/executor/uniproc_executor.py", line 103, in collective_rpc
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]     result = run_method(self.driver_worker, method, args, kwargs)
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]   File "/usr/local/lib/python3.13/dist-packages/vllm/v1/serial_utils.py", line 508, in run_method
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]     return func(*args, **kwargs)
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]   File "/usr/local/lib/python3.13/dist-packages/vllm/tracing/otel.py", line 175, in sync_wrapper
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]     return func(*args, **kwargs)
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]   File "/usr/local/lib/python3.13/dist-packages/vllm/v1/worker/gpu_worker.py", line 938, in compile_or_warm_up_model
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]     return self._compile_or_warm_up_model()
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]   File "/usr/local/lib/python3.13/dist-packages/vllm/v1/worker/gpu_worker.py", line 982, in _compile_or_warm_up_model
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]     kernel_warmup(self)
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]     ~~~~~~~~~~~~~^^^^^^
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]   File "/usr/local/lib/python3.13/dist-packages/vllm/model_executor/warmup/kernel_warmup.py", line 165, in kernel_warmup
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]     from vllm.model_executor.warmup.minimax_m3_msa_warmup import (
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]         minimax_m3_msa_warmup,
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]     )
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]   File "/usr/local/lib/python3.13/dist-packages/vllm/model_executor/warmup/minimax_m3_msa_warmup.py", line 10, in <module>
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]     from vllm.models.minimax_m3.nvidia.model import MiniMaxM3SparseAttention
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]   File "/usr/local/lib/python3.13/dist-packages/vllm/models/minimax_m3/__init__.py", line 17, in <module>
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]     from .nvidia.model import (
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]     ...<2 lines>...
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]     )
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]   File "/usr/local/lib/python3.13/dist-packages/vllm/models/minimax_m3/nvidia/model.py", line 78, in <module>
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]     from vllm.models.minimax_m3.common.mm_preprocess import (
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]     ...<3 lines>...
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]     )
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]   File "/usr/local/lib/python3.13/dist-packages/vllm/models/minimax_m3/common/mm_preprocess.py", line 42, in <module>
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]     from vllm.transformers_utils.processors.minimax_m3 import (
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]     ...<5 lines>...
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]     )
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]   File "/usr/local/lib/python3.13/dist-packages/vllm/transformers_utils/processors/minimax_m3.py", line 19, in <module>
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584]     from torchvision.transforms import InterpolationMode
+(EngineCore pid=3731) ERROR 11-04 20:21:14 [core.py:1584] ModuleNotFoundError: No module named 'torchvision'
+(MainProcess pid=3463) INFO 11-04 20:21:15 [utils.py:628] [shutdown] Process manager: send sigterm to process EngineCore
+
+--- STDERR ---
+W1104 20:19:09.246000 3463 torch/_opaque_base.py:6] torch._opaque_base is deprecated, use torch._custom_class_base instead
+W1104 20:19:09.246000 3463 torch/_library/opaque_object.py:288] register_opaque_type is deprecated, use register_custom_class instead
+W1104 20:19:09.247000 3463 torch/_library/opaque_object.py:211] typ='value' is deprecated, use typ='constant' instead
+
+Fetching 10 files:   0%|          | 0/10 [00:00<?, ?it/s]
+Fetching 10 files:  20%|██        | 2/10 [00:00<00:00, 13.05it/s]
+Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 33.04it/s]
+Fetching 10 files: 100%|██████████| 10/10 [00:00<00:00, 30.22it/s]
+
+Loading safetensors checkpoint shards:   0% Completed | 0/8 [00:00<?, ?it/s]
+
+Loading safetensors checkpoint shards:  12% Completed | 1/8 [00:00<00:01,  3.52it/s]
+
+Loading safetensors checkpoint shards:  25% Completed | 2/8 [00:00<00:01,  3.11it/s]
+
+Loading safetensors checkpoint shards:  38% Completed | 3/8 [00:00<00:01,  3.01it/s]
+
+Loading safetensors checkpoint shards:  50% Completed | 4/8 [00:01<00:01,  2.96it/s]
+
+Loading safetensors checkpoint shards:  62% Completed | 5/8 [00:01<00:01,  2.93it/s]
+
+Loading safetensors checkpoint shards:  75% Completed | 6/8 [00:02<00:00,  2.92it/s]
+
+Loading safetensors checkpoint shards:  88% Completed | 7/8 [00:02<00:00,  2.91it/s]
+
+Loading safetensors checkpoint shards: 100% Completed | 8/8 [00:02<00:00,  3.45it/s]
+
+Loading safetensors checkpoint shards: 100% Completed | 8/8 [00:02<00:00,  3.16it/s]
+
+
+Capturing CUDA graphs (PIECEWISE):   0%|          | 0/51 [00:00<?, ?it/s]
+Capturing CUDA graphs (PIECEWISE):   2%|▏         | 1/51 [00:00<00:05,  9.08it/s]
+Capturing CUDA graphs (PIECEWISE):   6%|▌         | 3/51 [00:00<00:03, 12.24it/s]
+Capturing CUDA graphs (PIECEWISE):  10%|▉         | 5/51 [00:00<00:03, 13.08it/s]
+Capturing CUDA graphs (PIECEWISE):  14%|█▎        | 7/51 [00:00<00:03, 13.40it/s]
+Capturing CUDA graphs (PIECEWISE):  18%|█▊        | 9/51 [00:00<00:03, 13.94it/s]
+Capturing CUDA graphs (PIECEWISE):  22%|██▏       | 11/51 [00:00<00:02, 14.52it/s]
+Capturing CUDA graphs (PIECEWISE):  25%|██▌       | 13/51 [00:00<00:02, 14.96it/s]
+Capturing CUDA graphs (PIECEWISE):  29%|██▉       | 15/51 [00:01<00:02, 15.30it/s]
+Capturing CUDA graphs (PIECEWISE):  33%|███▎      | 17/51 [00:01<00:02, 15.70it/s]
+Capturing CUDA graphs (PIECEWISE):  37%|███▋      | 19/51 [00:01<00:01, 16.20it/s]
+Capturing CUDA graphs (PIECEWISE):  41%|████      | 21/51 [00:01<00:01, 16.57it/s]
+Capturing CUDA graphs (PIECEWISE):  45%|████▌     | 23/51 [00:01<00:01, 16.87it/s]
+Capturing CUDA graphs (PIECEWISE):  49%|████▉     | 25/51 [00:01<00:01, 17.08it/s]
+Capturing CUDA graphs (PIECEWISE):  53%|█████▎    | 27/51 [00:01<00:01, 17.27it/s]
+Capturing CUDA graphs (PIECEWISE):  57%|█████▋    | 29/51 [00:01<00:01, 17.49it/s]
+Capturing CUDA graphs (PIECEWISE):  61%|██████    | 31/51 [00:01<00:01, 17.64it/s]
+Capturing CUDA graphs (PIECEWISE):  65%|██████▍   | 33/51 [00:02<00:01, 17.52it/s]
+Capturing CUDA graphs (PIECEWISE):  69%|██████▊   | 35/51 [00:02<00:00, 17.74it/s]
+Capturing CUDA graphs (PIECEWISE):  73%|███████▎  | 37/51 [00:02<00:00, 17.99it/s]
+Capturing CUDA graphs (PIECEWISE):  76%|███████▋  | 39/51 [00:02<00:00, 18.18it/s]
+Capturing CUDA graphs (PIECEWISE):  80%|████████  | 41/51 [00:02<00:00, 18.13it/s]
+Capturing CUDA graphs (PIECEWISE):  84%|████████▍ | 43/51 [00:02<00:00, 18.35it/s]
+Capturing CUDA graphs (PIECEWISE):  88%|████████▊ | 45/51 [00:02<00:00, 18.50it/s]
+Capturing CUDA graphs (PIECEWISE):  92%|█████████▏| 47/51 [00:02<00:00, 18.50it/s]
+Capturing CUDA graphs (PIECEWISE):  96%|█████████▌| 49/51 [00:02<00:00, 18.82it/s]
+Capturing CUDA graphs (PIECEWISE): 100%|██████████| 51/51 [00:03<00:00, 18.66it/s]
+Capturing CUDA graphs (PIECEWISE): 100%|██████████| 51/51 [00:03<00:00, 16.74it/s]
+
+Capturing CUDA graphs (FULL):   0%|          | 0/2 [00:00<?, ?it/s]
+Capturing CUDA graphs (FULL): 100%|██████████| 2/2 [00:00<00:00, 18.77it/s]
+Capturing CUDA graphs (FULL): 100%|██████████| 2/2 [00:00<00:00, 18.75it/s]
+Process EngineCore:
+Traceback (most recent call last):
+  File "/usr/lib/python3.13/multiprocessing/process.py", line 313, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "/usr/lib/python3.13/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/vllm/v1/engine/core.py", line 1588, in run_engine_core
+    raise e
+  File "/usr/local/lib/python3.13/dist-packages/vllm/v1/engine/core.py", line 1555, in run_engine_core
+    engine_core = EngineCoreProc(*args, engine_index=dp_rank, **kwargs)
+  File "/usr/local/lib/python3.13/dist-packages/vllm/tracing/otel.py", line 175, in sync_wrapper
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.13/dist-packages/vllm/v1/engine/core.py", line 1232, in __init__
+    super().__init__(
+    ~~~~~~~~~~~~~~~~^
+        vllm_config,
+        ^^^^^^^^^^^^
+    ...<3 lines>...
+        internal_dp_balancing,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/usr/local/lib/python3.13/dist-packages/vllm/v1/engine/core.py", line 163, in __init__
+    kv_cache_config = self._initialize_kv_caches(vllm_config)
+  File "/usr/local/lib/python3.13/dist-packages/vllm/tracing/otel.py", line 175, in sync_wrapper
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.13/dist-packages/vllm/v1/engine/core.py", line 389, in _initialize_kv_caches
+    self.model_executor.compile_or_warm_up_model()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/lib/python3.13/dist-packages/vllm/v1/executor/abstract.py", line 135, in compile_or_warm_up_model
+    compilation_times: list[CompilationTimes] = self.collective_rpc(
+                                                ~~~~~~~~~~~~~~~~~~~^
+        "compile_or_warm_up_model"
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/usr/local/lib/python3.13/dist-packages/vllm/v1/executor/uniproc_executor.py", line 103, in collective_rpc
+    result = run_method(self.driver_worker, method, args, kwargs)
+  File "/usr/local/lib/python3.13/dist-packages/vllm/v1/serial_utils.py", line 508, in run_method
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.13/dist-packages/vllm/tracing/otel.py", line 175, in sync_wrapper
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.13/dist-packages/vllm/v1/worker/gpu_worker.py", line 938, in compile_or_warm_up_model
+    return self._compile_or_warm_up_model()
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/usr/local/lib/python3.13/dist-packages/vllm/v1/worker/gpu_worker.py", line 982, in _compile_or_warm_up_model
+    kernel_warmup(self)
+    ~~~~~~~~~~~~~^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/vllm/model_executor/warmup/kernel_warmup.py", line 165, in kernel_warmup
+    from vllm.model_executor.warmup.minimax_m3_msa_warmup import (
+        minimax_m3_msa_warmup,
+    )
+  File "/usr/local/lib/python3.13/dist-packages/vllm/model_executor/warmup/minimax_m3_msa_warmup.py", line 10, in <module>
+    from vllm.models.minimax_m3.nvidia.model import MiniMaxM3SparseAttention
+  File "/usr/local/lib/python3.13/dist-packages/vllm/models/minimax_m3/__init__.py", line 17, in <module>
+    from .nvidia.model import (
+    ...<2 lines>...
+    )
+  File "/usr/local/lib/python3.13/dist-packages/vllm/models/minimax_m3/nvidia/model.py", line 78, in <module>
+    from vllm.models.minimax_m3.common.mm_preprocess import (
+    ...<3 lines>...
+    )
+  File "/usr/local/lib/python3.13/dist-packages/vllm/models/minimax_m3/common/mm_preprocess.py", line 42, in <module>
+    from vllm.transformers_utils.processors.minimax_m3 import (
+    ...<5 lines>...
+    )
+  File "/usr/local/lib/python3.13/dist-packages/vllm/transformers_utils/processors/minimax_m3.py", line 19, in <module>
+    from torchvision.transforms import InterpolationMode
+ModuleNotFoundError: No module named 'torchvision'
+Traceback (most recent call last):
+  File "/content/restaurant-search/research/search/llm_search.py", line 358, in <module>
+    llm = load_llm(args.model or DEFAULT_MODEL, args.max_model_len, args.gpu_memory_utilization, args.dtype)
+  File "/content/restaurant-search/research/search/llm_search.py", line 165, in load_llm
+    return LLM(
+        model=model_name,
+    ...<3 lines>...
+        dtype=dtype,
+    )
+  File "/usr/local/lib/python3.13/dist-packages/vllm/entrypoints/llm.py", line 341, in __init__
+    self.llm_engine = LLMEngine.from_engine_args(
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        engine_args=engine_args, usage_context=UsageContext.LLM_CLASS
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/usr/local/lib/python3.13/dist-packages/vllm/v1/engine/llm_engine.py", line 191, in from_engine_args
+    return cls(
+        vllm_config=vllm_config,
+    ...<4 lines>...
+        multiprocess_mode=enable_multiprocessing,
+    )
+  File "/usr/local/lib/python3.13/dist-packages/vllm/v1/engine/llm_engine.py", line 116, in __init__
+    self.engine_core = EngineCoreClient.make_client(
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        multiprocess_mode=multiprocess_mode,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        renderer=renderer,
+        ^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/usr/local/lib/python3.13/dist-packages/vllm/v1/engine/core_client.py", line 129, in make_client
+    return SyncMPClient(
+        vllm_config,
+    ...<2 lines>...
+        renderer=renderer,
+    )
+  File "/usr/local/lib/python3.13/dist-packages/vllm/tracing/otel.py", line 175, in sync_wrapper
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.13/dist-packages/vllm/v1/engine/core_client.py", line 966, in __init__
+    super().__init__(
+    ~~~~~~~~~~~~~~~~^
+        asyncio_mode=False,
+        ^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        renderer=renderer,
+        ^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/usr/local/lib/python3.13/dist-packages/vllm/v1/engine/core_client.py", line 699, in __init__
+    with launch_core_engines(
+         ~~~~~~~~~~~~~~~~~~~^
+        vllm_config, executor_class, log_stats, addresses
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ) as engine_launch:
+    ^
+  File "/usr/lib/python3.13/contextlib.py", line 148, in __exit__
+    next(self.gen)
+    ~~~~^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/vllm/v1/engine/utils.py", line 1393, in launch_core_engines
+    wait_for_engine_startup(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        handshake_socket,
+        ^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        launch,
+        ^^^^^^^
+    )
+    ^
+  File "/usr/local/lib/python3.13/dist-packages/vllm/v1/engine/utils.py", line 1473, in wait_for_engine_startup
+    raise RuntimeError(
+    ...<8 lines>...
+    )
+RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}
