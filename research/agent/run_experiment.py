@@ -96,34 +96,12 @@ def summarize_failure(out: str, max_key_lines: int = 40, tail: int = 1500) -> st
     return f"Key lines:\n{key_text}\n\n--- last {tail} chars ---\n{out[-tail:]}"
 
 
-def python_shim_env() -> dict:
-    """Environment whose PATH makes `python`, `python3` and `pip` in shell commands mean this interpreter.
-
-    On Colab, `python` on PATH is a different interpreter from the notebook kernel's, with its own
-    packages: a setup command like `python research/search/llm_search.py` then ran the Colab image's
-    vLLM without the torchvision the notebook had installed into the kernel's interpreter."""
-    shim = Path(tempfile.gettempdir()) / "agent-python-shim"
-    shim.mkdir(exist_ok=True)
-    for name in ("python", "python3"):
-        link = shim / name
-        if not (link.is_symlink() and os.readlink(link) == sys.executable):
-            link.unlink(missing_ok=True)
-            link.symlink_to(sys.executable)
-    pip = shim / "pip"
-    pip.write_text(f'#!/bin/sh\nexec "{sys.executable}" -m pip "$@"\n')
-    pip.chmod(0o755)
-    env = os.environ.copy()
-    env["PATH"] = f"{shim}{os.pathsep}{env.get('PATH', '')}"
-    return env
-
-
 def run_logged(cmd, shell: bool, timeout: float | None, log_path: Path | None = None) -> tuple[bool, str, float]:
     """(ok, output tail or failure summary, seconds). On failure the full output is written to log_path."""
     print(f"$ {cmd if shell else ' '.join(map(str, cmd))}", flush=True)
     t0 = time.time()
     try:
-        proc = subprocess.run(cmd, shell=shell, cwd=REPO_ROOT, capture_output=True, text=True, timeout=timeout,
-                              env=python_shim_env())
+        proc = subprocess.run(cmd, shell=shell, cwd=REPO_ROOT, capture_output=True, text=True, timeout=timeout)
         out = proc.stdout + ("\n--- STDERR ---\n" + proc.stderr if proc.stderr.strip() else "")
         failed = f"Exit code {proc.returncode}" if proc.returncode != 0 else None
     except subprocess.TimeoutExpired as e:

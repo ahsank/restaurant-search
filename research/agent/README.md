@@ -79,14 +79,23 @@ fine-tuning); CPU-only work such as keyword-search changes is left for cheaper s
 session doesn't generate LLM rankings above ~3B (Qwen2.5-7B doesn't fit a T4) but can replay existing
 rankings. Each result records its GPU, and timings are compared only between runs on the same GPU.
 
-## Python packages on Colab
+## Python packages and interpreters
 
-The notebook installs vLLM first, in its own pip call, so pip brings in vLLM's exact torch, torchvision and
-transformers versions. It then prints an import check (`torch … | torchvision … | vllm …`). If that line
-says IMPORT CHECK FAILED, LLM runs will fail; the output of failed experiment commands is kept in
-`runs/logs/`. ColBERT's library, pylate, pins transformers ≤ 5.3 while vLLM needs ≥ 5.10, so it is off by
-default (`INSTALL_PYLATE = False`) and the agents are told not to plan ColBERT runs. For a ColBERT session,
-set `INSTALL_PYLATE = True` and `INSTALL_VLLM = False`.
+Every experiment step runs with the command-line `python`, as it would in a local terminal: the
+notebook installs packages with `python -m pip`, then starts `python research/agent/run_experiment.py`,
+which runs the setup command (e.g. `python research/search/llm_search.py ...`) and `evaluate.py` with that
+same interpreter. The agents' `run_shell` installs and `setup_machine.sh` also use `python` / `pip`. On
+Colab the notebook's own Python is a different interpreter; it only gets `google-genai`, for the Gemini
+agents. To run outside Colab, use the commands under "Running an experiment by hand" in an environment
+where `python` has the packages.
+
+vLLM is installed in a pip call of its own, so pip brings vLLM's exact torch and transformers versions.
+If torchvision is still missing (Colab's preinstalled vLLM doesn't bring it), the notebook adds the release
+matching torch. It then prints an import check (`torch … | torchvision … | vllm …`). If that line says
+IMPORT CHECK FAILED, LLM runs will fail; the output of failed experiment commands is kept in `runs/logs/`.
+ColBERT's library, pylate, pins transformers ≤ 5.3 while vLLM needs ≥ 5.10, so it is off by default
+(`INSTALL_PYLATE = False`) and the agents are told not to plan ColBERT runs. For a ColBERT session, set
+`INSTALL_PYLATE = True` and `INSTALL_VLLM = False`.
 
 ## Large artifacts are reproduced, not committed
 
