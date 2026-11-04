@@ -1,14 +1,6 @@
 {
-  "iteration": 80,
+  "iteration": 81,
   "pending_tasks": [
-    {
-      "action": "run_experiment",
-      "family": "llm",
-      "name": "hybrid-qwen2.5-32b-minilm-l12-boost2",
-      "setup": "",
-      "eval_args": "--engine hybrid --rankings research/agent/runs/qwen2.5-32b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L12-v2 --grade-boost 2.0",
-      "description": "re-run after the 7 query rewrites and today's label fixes"
-    },
     {
       "action": "run_experiment",
       "family": "llm",
