@@ -1,14 +1,6 @@
 {
-  "iteration": 100,
+  "iteration": 101,
   "pending_tasks": [
-    {
-      "action": "run_experiment",
-      "family": "bi-encoder",
-      "name": "sbert-mxbai-embed-large",
-      "setup": "",
-      "eval_args": "--engine sbert --model mixedbread-ai/mxbai-embed-large-v1 --query-prefix 'Represent this sentence for searching relevant passages: '",
-      "description": "re-run after the 7 query rewrites and today's label fixes"
-    },
     {
       "action": "run_experiment",
       "family": "word-vector",

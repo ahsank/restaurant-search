@@ -1039,3 +1039,9 @@ Capturing CUDA graphs (PIECEWISE):  43%|████▎     | 22/51 [00:22<00:03
 - Eval args: `--engine sbert --model BAAI/bge-large-en-v1.5` | family `bi-encoder`
 - ndcg@5 0.6325 | recall@10 0.5499 | mrr 0.8075 | 0.0073 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.1263 | 206/209 queries judged
 - Weakest categories (NDCG@5): C18 Chicken dishes 0.298, C02 Ingredient generalization 0.3328, C03 Attribute / implied meaning 0.34, C13 Taco varieties 0.4246, C04 Cooking method synonyms 0.436
+
+### Iteration 100: sbert-mxbai-embed-large (SUCCESS)
+- Result: `research/agent/results/sbert-mxbai-embed-large.json` | commit `cf9f583` | 16.1s
+- Eval args: `--engine sbert --model mixedbread-ai/mxbai-embed-large-v1 --query-prefix Represent this sentence for searching relevant passages: ` | family `bi-encoder`
+- ndcg@5 0.6446 | recall@10 0.5396 | mrr 0.8119 | 0.0097 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.1287 | 206/209 queries judged
+- Weakest categories (NDCG@5): C18 Chicken dishes 0.3479, C02 Ingredient generalization 0.3525, C03 Attribute / implied meaning 0.3823, C13 Taco varieties 0.4357, C04 Cooking method synonyms 0.4832
