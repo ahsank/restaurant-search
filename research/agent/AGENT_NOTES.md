@@ -997,3 +997,9 @@ Capturing CUDA graphs (PIECEWISE):  43%|████▎     | 22/51 [00:22<00:03
 - Eval args: `--engine crossencoder --model BAAI/bge-reranker-v2-m3` | family `cross-encoder`
 - ndcg@5 0.7406 | recall@10 0.612 | mrr 0.8906 | 0.6159 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.1319 | 206/209 queries judged
 - Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.0535, C03 Attribute / implied meaning 0.4815, C08 Dietary constraint / negation 0.5218, C04 Cooking method synonyms 0.5247, C02 Ingredient generalization 0.5303
+
+### Iteration 93: crossencoder-ms-marco-MiniLM-L12-v2 (SUCCESS)
+- Result: `research/agent/results/crossencoder-ms-marco-MiniLM-L12-v2.json` | commit `8077eea` | 23.2s
+- Eval args: `--engine crossencoder --model cross-encoder/ms-marco-MiniLM-L12-v2` | family `cross-encoder`
+- ndcg@5 0.6883 | recall@10 0.5923 | mrr 0.8307 | 0.0823 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.1354 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.1921, C03 Attribute / implied meaning 0.3756, C08 Dietary constraint / negation 0.3823, C02 Ingredient generalization 0.3992, C04 Cooking method synonyms 0.4822
