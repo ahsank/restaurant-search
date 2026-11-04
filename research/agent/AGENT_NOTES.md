@@ -955,3 +955,9 @@ Capturing CUDA graphs (PIECEWISE):  43%|████▎     | 22/51 [00:22<00:03
 - Eval args: `--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L12-v2 --grade-boost 3.0` | family `llm`
 - ndcg@5 0.8128 | recall@10 0.8231 | mrr 0.8701 | 0.2049 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.1562 | 206/209 queries judged
 - Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.1969, C08 Dietary constraint / negation 0.5531, C03 Attribute / implied meaning 0.6005, C09 Synonym / paraphrase 0.6088, C02 Ingredient generalization 0.6419
+
+### Iteration 86: hybrid-qwen2.5-7b-minilm-l6-boost2 (SUCCESS)
+- Result: `research/agent/results/hybrid-qwen2.5-7b-minilm-l6-boost2.json` | commit `9277b1e` | 10.3s
+- Eval args: `--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model cross-encoder/ms-marco-MiniLM-L6-v2 --grade-boost 2.0` | family `llm`
+- ndcg@5 0.8218 | recall@10 0.8206 | mrr 0.885 | 0.2007 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.158 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.2461, C08 Dietary constraint / negation 0.5318, C03 Attribute / implied meaning 0.5752, C09 Synonym / paraphrase 0.6311, C02 Ingredient generalization 0.6509
