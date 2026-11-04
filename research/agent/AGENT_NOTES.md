@@ -801,3 +801,35 @@ ModuleNotFoundError: Could not import module 'TrainerCallback'. Are this object'
 RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}
 
 ```
+
+### Iteration 74: llm-qwen2.5-14b-instruct (SETUP_FAILED)
+- Result: `research/agent/results/llm-qwen2.5-14b-instruct.json` | commit `6e5c04f` | 129.5s
+- Setup: `python research/search/llm_search.py --model Qwen/Qwen2.5-14B-Instruct --out research/agent/runs/qwen2.5-14b-instruct.jsonl --gpu-memory-utilization 0.85`
+- Eval args: `--engine llm --rankings research/agent/runs/qwen2.5-14b-instruct.jsonl` | family `llm`
+- Error:
+```
+~~~~~~~~~^
+        vllm_config, executor_class, log_stats, addresses
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ) as engine_launch:
+    ^
+  File "/usr/lib/python3.13/contextlib.py", line 148, in __exit__
+    next(self.gen)
+    ~~~~^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/vllm/v1/engine/utils.py", line 1393, in launch_core_engines
+    wait_for_engine_startup(
+    ~~~~~~~~~~~~~~~~~~~~~~~^
+        handshake_socket,
+        ^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        launch,
+        ^^^^^^^
+    )
+    ^
+  File "/usr/local/lib/python3.13/dist-packages/vllm/v1/engine/utils.py", line 1473, in wait_for_engine_startup
+    raise RuntimeError(
+    ...<8 lines>...
+    )
+RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}
+
+```
