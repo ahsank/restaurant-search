@@ -28,8 +28,8 @@ runs on the same GPU. `–` = not recorded (re-run it).
 | 6 | hybrid-qwen2.5-7b-minilm-l6-boost2 | llm | 0.1541 | 0.8013 | 0.1987 | – |
 | 7 | hybrid-qwen2.5-7b-ms-marco-MiniLM-L6-v2 | llm | 0.1521 | 0.7909 | 0.1987 | – |
 | 8 | hybrid-qwen2.5-7b-bge-reranker-v2-m3 | llm | 0.1513 | 0.7969 | 0.2674 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 9 | hybrid-qwen2.5-7b-electra-boost2 | llm | 0.1512 | 0.7888 | 0.2172 | – |
-| 10 | hybrid-qwen2.5-7b-minilm-l6-strict-grade | llm | 0.1512 | 0.7858 | 0.1987 | – |
+| 9 | hybrid-qwen2.5-7b-minilm-l6-strict-grade | llm | 0.1512 | 0.7858 | 0.1987 | – |
+| 10 | hybrid-qwen2.5-7b-electra-boost2 | llm | 0.1500 | 0.7827 | 0.2188 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
 | 11 | hybrid-qwen2.5-7b-bge-reranker-large | llm | 0.1495 | 0.7877 | 0.2676 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
 | 12 | crossencoder-ms-marco-MiniLM-L6-v2 | cross-encoder | 0.1338 | 0.6770 | 0.0607 | – |
 | 13 | crossencoder-ms-marco-MiniLM-L12-v2 | cross-encoder | 0.1323 | 0.6747 | 0.0985 | – |
