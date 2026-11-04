@@ -1,14 +1,6 @@
 {
-  "iteration": 92,
+  "iteration": 93,
   "pending_tasks": [
-    {
-      "action": "run_experiment",
-      "family": "cross-encoder",
-      "name": "crossencoder-bge-reranker-v2-m3",
-      "setup": "",
-      "eval_args": "--engine crossencoder --model BAAI/bge-reranker-v2-m3",
-      "description": "re-run after the 7 query rewrites and today's label fixes"
-    },
     {
       "action": "run_experiment",
       "family": "cross-encoder",

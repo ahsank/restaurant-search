@@ -991,3 +991,9 @@ Capturing CUDA graphs (PIECEWISE):  43%|████▎     | 22/51 [00:22<00:03
 - Eval args: `--engine crossencoder --model BAAI/bge-reranker-large` | family `cross-encoder`
 - ndcg@5 0.7181 | recall@10 0.6095 | mrr 0.8569 | 0.6175 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.1278 | 206/209 queries judged
 - Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.0365, C03 Attribute / implied meaning 0.3328, C08 Dietary constraint / negation 0.421, C02 Ingredient generalization 0.4804, C09 Synonym / paraphrase 0.5148
+
+### Iteration 92: crossencoder-bge-reranker-v2-m3 (SUCCESS)
+- Result: `research/agent/results/crossencoder-bge-reranker-v2-m3.json` | commit `1870c0e` | 136.0s
+- Eval args: `--engine crossencoder --model BAAI/bge-reranker-v2-m3` | family `cross-encoder`
+- ndcg@5 0.7406 | recall@10 0.612 | mrr 0.8906 | 0.6159 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.1319 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.0535, C03 Attribute / implied meaning 0.4815, C08 Dietary constraint / negation 0.5218, C04 Cooking method synonyms 0.5247, C02 Ingredient generalization 0.5303
