@@ -1,14 +1,6 @@
 {
-  "iteration": 123,
+  "iteration": 124,
   "pending_tasks": [
-    {
-      "action": "run_experiment",
-      "family": "llm",
-      "name": "hybrid-qwen2.5-7b-bge-reranker-v2-m3",
-      "setup": "",
-      "eval_args": "--engine hybrid --rankings research/agent/runs/qwen2.5-7b-instruct.jsonl --model BAAI/bge-reranker-v2-m3 --grade-boost 2.0",
-      "description": "re-run on the regenerated 7B rankings: the old file lacked the 7 rewritten queries, which fell back to the cross-encoder"
-    },
     {
       "action": "run_experiment",
       "family": "llm",
