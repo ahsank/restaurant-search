@@ -1,10 +1,10 @@
 {
   "name": "hybrid-qwen2.5-7b-bge-reranker-v2-m3",
-  "description": "re-run after the 7 query rewrites and today's label fixes",
+  "description": "re-run: LLM rankings regenerated with the interpreter fix (earlier runs used the wrong python)",
   "status": "SUCCESS",
-  "iteration": 82,
-  "timestamp": "2026-11-04T20:51:42",
-  "git_commit": "d932f35",
+  "iteration": 109,
+  "timestamp": "2026-11-04T22:07:16",
+  "git_commit": "6967d2d",
   "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
   "result_file": "research/agent/results/hybrid-qwen2.5-7b-bge-reranker-v2-m3.json",
   "family": "llm",
@@ -19,7 +19,7 @@
     "--grade-boost",
     "2.0"
   ],
-  "seconds": 23.2,
+  "seconds": 24.6,
   "timing": {
     "seconds_per_query": 0.2674,
     "search_seconds_per_query": 0.076,
@@ -231,5 +231,5 @@
       }
     }
   },
-  "eval_seconds": 23.2
+  "eval_seconds": 24.6
 }
