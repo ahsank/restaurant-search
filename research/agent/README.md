@@ -27,7 +27,8 @@ Colab tab still has the old code, and saving it would overwrite newer changes; t
 
 The planner and code agent are told: don't modify `data/` or the metric code, don't train on or
 hard-code anything from the benchmark queries, labels or menu items, use `run_shell` only for
-installing packages and downloading models, don't commit large artifacts (add setup steps to
+installing packages and downloading models, never uninstall or swap torch, torchvision,
+transformers or vllm, don't commit large artifacts (add setup steps to
 `setup_machine.sh` instead), and add a request to `HUMAN_ACTIONS.md` when the evaluation or a label
 looks wrong. Apart from the 20 MB file limit below, these are prompt rules, not enforced; the review
 checklist below is how to catch a violation.
@@ -91,7 +92,8 @@ where `python` has the packages.
 
 vLLM is installed in a pip call of its own, so pip brings vLLM's exact torch and transformers versions.
 If torchvision is still missing (Colab's preinstalled vLLM doesn't bring it), the notebook adds the release
-matching torch. It then prints an import check (`torch … | torchvision … | vllm …`). If that line says
+matching torch. This runs after `setup_machine.sh`, which once uninstalled torchvision (iteration 71) and so
+broke every later LLM run. It then prints an import check (`torch … | torchvision … | vllm …`). If that line says
 IMPORT CHECK FAILED, LLM runs will fail; the output of failed experiment commands is kept in `runs/logs/`.
 ColBERT's library, pylate, pins transformers ≤ 5.3 while vLLM needs ≥ 5.10, so it is off by default
 (`INSTALL_PYLATE = False`) and the agents are told not to plan ColBERT runs. For a ColBERT session, set
