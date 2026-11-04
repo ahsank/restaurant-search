@@ -1027,3 +1027,9 @@ Capturing CUDA graphs (PIECEWISE):  43%|████▎     | 22/51 [00:22<00:03
 - Eval args: `--engine sbert --model all-mpnet-base-v2` | family `bi-encoder`
 - ndcg@5 0.5608 | recall@10 0.4658 | mrr 0.7486 | 0.005 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.112 | 206/209 queries judged
 - Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.2426, C03 Attribute / implied meaning 0.247, C13 Taco varieties 0.2788, C04 Cooking method synonyms 0.2955, C18 Chicken dishes 0.3203
+
+### Iteration 98: sbert-bge-base-en-v1.5 (SUCCESS)
+- Result: `research/agent/results/sbert-bge-base-en-v1.5.json` | commit `1f8edda` | 11.9s
+- Eval args: `--engine sbert --model BAAI/bge-base-en-v1.5` | family `bi-encoder`
+- ndcg@5 0.6477 | recall@10 0.5572 | mrr 0.8084 | 0.0048 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.1294 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.1497, C03 Attribute / implied meaning 0.2929, C02 Ingredient generalization 0.3533, C18 Chicken dishes 0.4804, C04 Cooking method synonyms 0.4933

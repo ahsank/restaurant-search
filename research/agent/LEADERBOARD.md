@@ -10,7 +10,7 @@ runs on the same GPU. `–` = not recorded (re-run it).
 |---|---|---|---|---|---|---|---|---|
 | lexical | baseline-enhanced | 0.6514 | 0.5980 | 0.7740 | 0.0267 | NVIDIA RTX PRO 6000 Blackwell Server Edition | 0.1296 | 2 |
 | word-vector | softbm25-conceptnet | 0.5704 | 0.5279 | 0.7318 | 0.0370 | NVIDIA L4 | 0.1133 | 1 |
-| bi-encoder | sbert-bge-base-en-v1.5 | 0.6359 | 0.5600 | 0.7974 | 0.0044 | – | 0.1271 | 5 |
+| bi-encoder | sbert-bge-base-en-v1.5 | 0.6477 | 0.5572 | 0.8084 | 0.0048 | NVIDIA RTX PRO 6000 Blackwell Server Edition | 0.1294 | 5 |
 | late-interaction | colbert-colbertv2.0 | 0.6583 | 0.5733 | 0.8036 | 0.0310 | Tesla T4 | 0.1309 | 1 |
 | cross-encoder | crossencoder-bge-reranker-v2-m3 | 0.7406 | 0.6120 | 0.8906 | 0.6159 | NVIDIA RTX PRO 6000 Blackwell Server Edition | 0.1319 | 5 |
 | llm | hybrid-qwen2.5-32b-bge-reranker-v2-m3 | 0.8369 | 0.7972 | 0.9089 | 0.4143 | NVIDIA RTX PRO 6000 Blackwell Server Edition | 0.1546 | 11 |
@@ -37,8 +37,8 @@ runs on the same GPU. `–` = not recorded (re-run it).
 | 15 | crossencoder-bge-reranker-v2-m3 | cross-encoder | 0.1319 | 0.7406 | 0.6159 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
 | 16 | colbert-colbertv2.0 | late-interaction | 0.1309 | 0.6583 | 0.0310 | Tesla T4 |
 | 17 | baseline-enhanced | lexical | 0.1296 | 0.6514 | 0.0267 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 18 | crossencoder-bge-reranker-large | cross-encoder | 0.1278 | 0.7181 | 0.6175 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 19 | sbert-bge-base-en-v1.5 | bi-encoder | 0.1271 | 0.6359 | 0.0044 | – |
+| 18 | sbert-bge-base-en-v1.5 | bi-encoder | 0.1294 | 0.6477 | 0.0048 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 19 | crossencoder-bge-reranker-large | cross-encoder | 0.1278 | 0.7181 | 0.6175 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
 | 20 | sbert-mxbai-embed-large | bi-encoder | 0.1249 | 0.6278 | 0.0271 | NVIDIA L4 |
 | 21 | sbert-bge-large-en-v1.5 | bi-encoder | 0.1237 | 0.6191 | 0.0072 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
 | 22 | softbm25-conceptnet | word-vector | 0.1133 | 0.5704 | 0.0370 | NVIDIA L4 |

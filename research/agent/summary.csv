@@ -17,7 +17,7 @@ crossencoder-ms-marco-MiniLM-L6-v2,cross-encoder,SUCCESS,0.6904,0.5914,0.8309,0.
 crossencoder-ms-marco-MiniLM-L12-v2,cross-encoder,SUCCESS,0.6883,0.5923,0.8307,0.0823,NVIDIA RTX PRO 6000 Blackwell Server Edition,0.1354,209,23.2,8077eea,2026-11-04T20:58:00,--engine crossencoder --model cross-encoder/ms-marco-MiniLM-L12-v2
 colbert-colbertv2.0,late-interaction,SUCCESS,0.6583,0.5733,0.8036,0.031,Tesla T4,0.1309,209,21.5,fd939cd,2026-11-03T14:45:22,--engine colbert
 baseline-enhanced,lexical,SUCCESS,0.6514,0.598,0.774,0.0267,NVIDIA RTX PRO 6000 Blackwell Server Edition,0.1296,209,5.6,d05b0d7,2026-11-04T20:53:16,--engine enhanced
-sbert-bge-base-en-v1.5,bi-encoder,SUCCESS,0.6359,0.56,0.7974,0.0044,,0.1271,209,9.6,1fb6879,2026-10-16T02:34:46,--engine sbert --model BAAI/bge-base-en-v1.5
+sbert-bge-base-en-v1.5,bi-encoder,SUCCESS,0.6477,0.5572,0.8084,0.0048,NVIDIA RTX PRO 6000 Blackwell Server Edition,0.1294,209,11.9,1f8edda,2026-11-04T21:00:01,--engine sbert --model BAAI/bge-base-en-v1.5
 sbert-mxbai-embed-large,bi-encoder,SUCCESS,0.6278,0.5389,0.7998,0.0271,NVIDIA L4,0.1249,209,48.5,e722ef8,2026-11-03T02:15:39,--engine sbert --model mixedbread-ai/mxbai-embed-large-v1 --query-prefix Represent this sentence for searching relevant passages: 
 sbert-bge-large-en-v1.5,bi-encoder,SUCCESS,0.6191,0.5516,0.7945,0.0072,NVIDIA RTX PRO 6000 Blackwell Server Edition,0.1237,209,20.1,6918681,2026-10-18T16:39:00,--engine sbert --model BAAI/bge-large-en-v1.5
 softbm25-conceptnet,word-vector,SUCCESS,0.5704,0.5279,0.7318,0.037,NVIDIA L4,0.1133,209,45.0,5a9d6a9,2026-10-18T17:24:32,--engine soft_bm25 --vectors /content/scratch/numberbatch-en-19.08.txt.gz
