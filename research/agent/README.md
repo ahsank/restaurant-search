@@ -36,7 +36,8 @@ checklist below is how to catch a violation.
 
 | File | Written by | Contents |
 |---|---|---|
-| `AGENT_TODO.json` | notebook | `pending_tasks`, `completed_tasks`, `iteration` |
+| `AGENT_TODO.json` | notebook | `iteration` (next task number) and `pending_tasks`; kept small |
+| `completed_tasks.jsonl` | notebook | One line per finished task: `iteration`, `completed_at`, and the task as queued (action, name, eval_args, setup, details, ...) |
 | `AGENT_NOTES.md` | notebook, `run_experiment.py` | Plans (hypotheses), experiment results, code-change summaries with the changed files |
 | `results/<name>.json` | `run_experiment.py` | Latest run of one experiment: `status` (SUCCESS / SETUP_FAILED / EVAL_FAILED), `setup`, `eval_args`, `git_commit`, `seconds`, and `metrics` with `overall`, `by_category`, `by_difficulty` (same layout as `evaluate.py --save-metrics`); `error` when it failed |
 | `results/history.jsonl` | `run_experiment.py` | One line per run with key metrics, so overwritten results stay visible |
