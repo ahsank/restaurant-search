@@ -1107,3 +1107,10 @@ t.py", line 129, in make_client
 - Eval args: `--engine llm --rankings research/agent/runs/qwen2.5-14b-instruct.jsonl` | family `llm`
 - ndcg@5 0.7326 | recall@10 0.7954 | mrr 0.7918 | 0.1746 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.1416 | 206/209 queries judged
 - Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.1952, C03 Attribute / implied meaning 0.4454, C18 Chicken dishes 0.4896, C04 Cooking method synonyms 0.4974, C08 Dietary constraint / negation 0.5912
+
+### Iteration 104: llm-qwen2.5-32b-instruct (SUCCESS)
+- Result: `research/agent/results/llm-qwen2.5-32b-instruct.json` | commit `2c76bc9` | 335.2s
+- Setup: `python research/search/llm_search.py --model Qwen/Qwen2.5-32B-Instruct --out research/agent/runs/qwen2.5-32b-instruct.jsonl --gpu-memory-utilization 0.85`
+- Eval args: `--engine llm --rankings research/agent/runs/qwen2.5-32b-instruct.jsonl` | family `llm`
+- ndcg@5 0.778 | recall@10 0.7866 | mrr 0.8282 | 0.3316 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.1459 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.285, C03 Attribute / implied meaning 0.4397, C08 Dietary constraint / negation 0.6611, C12 Burger varieties 0.6667, C24 Pizza varieties 0.6667
