@@ -1318,3 +1318,9 @@ FileNotFoundError: [Errno 2] No such file or directory: 'research/agent/gemma-3-
 - Eval args: `--engine llm --rankings research/agent/runs/gpt-oss-20b.jsonl` | family `llm`
 - ndcg@5 0.7686 | recall@10 0.8148 | mrr 0.8303 | 1.4608 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.119 | 206/209 queries judged
 - Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.3422, C25 Occasion / meal-time 0.4152, C03 Attribute / implied meaning 0.5205, C07 Hyphenation / spacing / stop words 0.5333, C08 Dietary constraint / negation 0.5618
+
+### Iteration 126: hybrid-llama4-scout-bge-reranker-v2-m3 (SUCCESS)
+- Result: `research/agent/results/hybrid-llama4-scout-bge-reranker-v2-m3.json` | commit `bd18a09` | 84.9s
+- Eval args: `--engine hybrid --rankings research/agent/runs/llm-llama-4-scout-17b-16e-instruct-quantized.jsonl --model BAAI/bge-reranker-v2-m3 --grade-boost 2.0` | family `llm`
+- ndcg@5 0.8701 | recall@10 0.8495 | mrr 0.9459 | 0.3901 s/query on NVIDIA L4 | efficiency 0.1614 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.4078, C03 Attribute / implied meaning 0.6831, C08 Dietary constraint / negation 0.6984, C18 Chicken dishes 0.7679, C06 Stemming & lemmatization 0.7866
