@@ -1247,3 +1247,67 @@ t.py", line 129, in make_client
 
 ### Session Gemini usage
 - (no Gemini calls)
+
+### llm-gpt-oss-20b (SUCCESS)
+- Result: `research/agent/results/llm-gpt-oss-20b.json` | commit `f2ef610` | 231.3s
+- Setup: `python research/search/llm_search.py --model openai/gpt-oss-20b --max-tokens 4096 --gpu-memory-utilization 0.85 --out research/agent/runs/gpt-oss-20b.jsonl`
+- Eval args: `--engine llm --rankings research/agent/runs/gpt-oss-20b.jsonl` | family `llm`
+- ndcg@5 0.7447 | recall@10 0.8195 | mrr 0.7992 | 0.9096 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.126 | 206/209 queries judged
+- Weakest categories (NDCG@5): C25 Occasion / meal-time 0.2544, C10 Multi-constraint compositional 0.393, C08 Dietary constraint / negation 0.443, C01 Cuisine type inference 0.4685, C04 Cooking method synonyms 0.545
+
+### llm-gpt-oss-120b (SUCCESS)
+- Result: `research/agent/results/llm-gpt-oss-120b.json` | commit `f2ef610` | 777.8s
+- Setup: `python research/search/llm_search.py --model openai/gpt-oss-120b --max-tokens 8192 --gpu-memory-utilization 0.85 --out research/agent/runs/gpt-oss-120b.jsonl`
+- Eval args: `--engine llm --rankings research/agent/runs/gpt-oss-120b.jsonl` | family `llm`
+- ndcg@5 0.7427 | recall@10 0.778 | mrr 0.8296 | 2.4206 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.1001 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.3496, C01 Cuisine type inference 0.4465, C25 Occasion / meal-time 0.497, C07 Hyphenation / spacing / stop words 0.5028, C08 Dietary constraint / negation 0.507
+
+### llm-gemma-3-12b-it (EVAL_FAILED)
+- Result: `research/agent/results/llm-gemma-3-12b-it.json` | commit `f2ef610` | 81.8s
+- Setup: `python research/search/llm_search.py --model google/gemma-3-12b-it --gpu-memory-utilization 0.85 --out research/agent/runs/gemma-3-12b-it.jsonl`
+- Eval args: `--engine llm --rankings research/agent/gemma-3-12b-it.jsonl` | family `llm`
+- Error:
+```
+Exit code 1 (full output: research/agent/runs/logs/llm-gemma-3-12b-it.eval.log)
+Key lines:
+Traceback (most recent call last):
+FileNotFoundError: [Errno 2] No such file or directory: 'research/agent/gemma-3-12b-it.jsonl'
+
+--- last 1500 chars ---
+Replaying LLM rankings from research/agent/gemma-3-12b-it.jsonl
+
+--- STDERR ---
+Traceback (most recent call last):
+  File "/content/restaurant-search/research/search/evaluate.py", line 337, in <module>
+    search = engines.build_search_fn(args, restaurants, menus)
+  File "/content/restaurant-search/research/search/engines.py", line 96, in build_search_fn
+    return replay_search_fn(args.rankings)
+  File "/content/restaurant-search/research/search/llm_search.py", line 330, in replay_search_fn
+    rankings = load_rankings(path)
+  File "/content/restaurant-search/research/search/llm_search.py", line 320, in load_rankings
+    with open(path, encoding="utf-8") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'research/agent/gemma-3-12b-it.jsonl'
+
+```
+
+### llm-gemma-3-12b-it (SUCCESS)
+- Result: `research/agent/results/llm-gemma-3-12b-it.json` | commit `f2ef610` | 82.0s
+- Setup: `python research/search/llm_search.py --model google/gemma-3-12b-it --gpu-memory-utilization 0.85 --out research/agent/runs/gemma-3-12b-it.jsonl`
+- Eval args: `--engine llm --rankings research/agent/runs/gemma-3-12b-it.jsonl` | family `llm`
+- ndcg@5 0.6742 | recall@10 0.7612 | mrr 0.7612 | 0.1455 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.131 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.0848, C18 Chicken dishes 0.2818, C08 Dietary constraint / negation 0.4525, C03 Attribute / implied meaning 0.4899, C02 Ingredient generalization 0.4932
+
+### llm-gemma-3-27b-it (SUCCESS)
+- Result: `research/agent/results/llm-gemma-3-27b-it.json` | commit `f2ef610` | 380.9s
+- Setup: `python research/search/llm_search.py --model google/gemma-3-27b-it --gpu-memory-utilization 0.85 --out research/agent/runs/gemma-3-27b-it.jsonl`
+- Eval args: `--engine llm --rankings research/agent/runs/gemma-3-27b-it.jsonl` | family `llm`
+- ndcg@5 0.7449 | recall@10 0.7936 | mrr 0.8521 | 0.6411 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.132 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.2544, C03 Attribute / implied meaning 0.4978, C08 Dietary constraint / negation 0.5131, C07 Hyphenation / spacing / stop words 0.5463, C18 Chicken dishes 0.5499
+
+### llm-llama-4-scout-17b-16e-instruct-quantized (SUCCESS)
+- Result: `research/agent/results/llm-llama-4-scout-17b-16e-instruct-quantized.json` | commit `f2ef610` | 239.7s
+- Setup: `python research/search/llm_search.py --model RedHatAI/Llama-4-Scout-17B-16E-Instruct-quantized.w4a16 --gpu-memory-utilization 0.85 --out research/agent/runs/llm-llama-4-scout-17b-16e-instruct-quantized.jsonl`
+- Eval args: `--engine llm --rankings research/agent/runs/llm-llama-4-scout-17b-16e-instruct-quantized.jsonl` | family `llm`
+- ndcg@5 0.7893 | recall@10 0.814 | mrr 0.8654 | 0.1608 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.1529 | 206/209 queries judged
+- Weakest categories (NDCG@5): C03 Attribute / implied meaning 0.4987, C10 Multi-constraint compositional 0.5044, C08 Dietary constraint / negation 0.5582, C18 Chicken dishes 0.5745, C07 Hyphenation / spacing / stop words 0.6661

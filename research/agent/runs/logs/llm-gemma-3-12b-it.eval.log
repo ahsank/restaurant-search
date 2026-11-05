@@ -1,0 +1,14 @@
+Replaying LLM rankings from research/agent/gemma-3-12b-it.jsonl
+
+--- STDERR ---
+Traceback (most recent call last):
+  File "/content/restaurant-search/research/search/evaluate.py", line 337, in <module>
+    search = engines.build_search_fn(args, restaurants, menus)
+  File "/content/restaurant-search/research/search/engines.py", line 96, in build_search_fn
+    return replay_search_fn(args.rankings)
+  File "/content/restaurant-search/research/search/llm_search.py", line 330, in replay_search_fn
+    rankings = load_rankings(path)
+  File "/content/restaurant-search/research/search/llm_search.py", line 320, in load_rankings
+    with open(path, encoding="utf-8") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'research/agent/gemma-3-12b-it.jsonl'
