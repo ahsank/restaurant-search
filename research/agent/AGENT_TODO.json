@@ -1,4 +1,21 @@
 {
   "iteration": 126,
-  "pending_tasks": []
+  "pending_tasks": [
+    {
+      "action": "run_experiment",
+      "family": "llm",
+      "name": "hybrid-llama4-scout-bge-reranker-v2-m3",
+      "setup": "",
+      "eval_args": "--engine hybrid --rankings research/agent/runs/llm-llama-4-scout-17b-16e-instruct-quantized.jsonl --model BAAI/bge-reranker-v2-m3 --grade-boost 2.0",
+      "description": "Llama 4 Scout rankings (NDCG@5 0.789, MRR 0.865) with the best reranker; compare with hybrid-qwen2.5-32b-bge-reranker-v2-m3 (0.843). Replays existing rankings, no LLM download."
+    },
+    {
+      "action": "run_experiment",
+      "family": "llm",
+      "name": "llm-gpt-oss-20b-low",
+      "setup": "python research/search/llm_search.py --model openai/gpt-oss-20b --reasoning-effort low --max-tokens 8192 --gpu-memory-utilization 0.85 --out research/agent/runs/gpt-oss-20b-low.jsonl",
+      "eval_args": "--engine llm --rankings research/agent/runs/gpt-oss-20b-low.jsonl",
+      "description": "gpt-oss-20b with low reasoning effort: does it keep most of medium's quality (NDCG@5 0.769 at 1.46 s/query, 9% of answers cut off at 8192 tokens) at a fraction of the time?"
+    }
+  ]
 }

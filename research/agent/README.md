@@ -28,7 +28,8 @@ Colab tab still has the old code, and saving it would overwrite newer changes; t
 The planner and code agent are told: don't modify `data/` or the metric code, don't train on or
 hard-code anything from the benchmark queries, labels or menu items, use `run_shell` only for
 installing packages and downloading models, never uninstall or swap torch, torchvision,
-transformers or vllm, don't commit large artifacts (add setup steps to
+transformers or vllm, generate LLM rankings only with the allowed models (Qwen2.5 7B/14B/32B,
+Llama 4 Scout 4-bit, gpt-oss-20b; the VM disk can't hold more), don't commit large artifacts (add setup steps to
 `setup_machine.sh` instead), and add a request to `HUMAN_ACTIONS.md` when the evaluation or a label
 looks wrong. Apart from the 20 MB file limit below, these are prompt rules, not enforced; the review
 checklist below is how to catch a violation.

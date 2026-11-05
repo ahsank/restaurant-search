@@ -216,27 +216,32 @@ class ServerLLM:
         with urllib.request.urlopen(req, timeout=self.timeout) as resp:
             return json.loads(resp.read())
 
-    def complete(self, conversations: list[list[dict]], max_tokens: int) -> list[str]:
+    def complete(self, conversations: list[list[dict]], max_tokens: int,
+                 reasoning_effort: str | None = None) -> list[str]:
         from concurrent.futures import ThreadPoolExecutor
 
         def one(messages):
-            out = self._request("/v1/chat/completions", {
-                "model": self.model, "messages": messages,
-                "temperature": 0.0, "max_tokens": max_tokens,
-            })
+            body = {"model": self.model, "messages": messages, "temperature": 0.0, "max_tokens": max_tokens}
+            if reasoning_effort:
+                body["reasoning_effort"] = reasoning_effort
+            out = self._request("/v1/chat/completions", body)
             return out["choices"][0]["message"]["content"]
 
         with ThreadPoolExecutor(self.workers) as pool:
             return list(pool.map(one, conversations))
 
 
-def _complete(llm, conversations: list[list[dict]], max_tokens: int) -> list[str]:
-    """Generated text per conversation, from a ServerLLM or an in-process vLLM engine."""
+def _complete(llm, conversations: list[list[dict]], max_tokens: int,
+              reasoning_effort: str | None = None) -> list[str]:
+    """Generated text per conversation, from a ServerLLM or an in-process vLLM engine.
+    reasoning_effort ("low" / "medium" / "high") is for gpt-oss, whose chat template reads it
+    (default medium); None leaves the prompt unchanged, as other models expect."""
     if isinstance(llm, ServerLLM):
-        return llm.complete(conversations, max_tokens)
+        return llm.complete(conversations, max_tokens, reasoning_effort)
     from vllm import SamplingParams
     params = SamplingParams(temperature=0.0, max_tokens=max_tokens)
-    outputs = llm.chat(conversations, params, use_tqdm=len(conversations) > 50)
+    kwargs = {"chat_template_kwargs": {"reasoning_effort": reasoning_effort}} if reasoning_effort else {}
+    outputs = llm.chat(conversations, params, use_tqdm=len(conversations) > 50, **kwargs)
     return [o.outputs[0].text for o in outputs]
 
 
@@ -246,6 +251,7 @@ def rank_queries(
     restaurants: dict,
     menus: dict,
     max_tokens: int = 768,
+    reasoning_effort: str | None = None,
 ) -> list[dict]:
     """
     Score every query against every restaurant in one batch. llm is an
@@ -262,7 +268,7 @@ def rank_queries(
             jobs.append((q, rid))
             conversations.append(build_messages(q["query_text"], blocks[rid]))
 
-    texts = _complete(llm, conversations, max_tokens)
+    texts = _complete(llm, conversations, max_tokens, reasoning_effort)
 
     rows: dict[str, dict] = {}
     for (q, rid), text in zip(jobs, texts):
@@ -279,9 +285,11 @@ def rank_queries(
     return list(rows.values())
 
 
-def search(query: str, llm, restaurants: dict, menus: dict) -> list[dict]:
+def search(query: str, llm, restaurants: dict, menus: dict, max_tokens: int = 768,
+           reasoning_effort: str | None = None) -> list[dict]:
     """Ad-hoc single query (e.g. from a notebook); same ranking as the benchmark run."""
-    return rank_queries(llm, [{"query_id": "adhoc", "query_text": query}], restaurants, menus)[0]["results"]
+    return rank_queries(llm, [{"query_id": "adhoc", "query_text": query}], restaurants, menus,
+                        max_tokens=max_tokens, reasoning_effort=reasoning_effort)[0]["results"]
 
 
 def run(
@@ -294,6 +302,7 @@ def run(
     max_tokens: int = 768,
     gpu_memory_utilization: float = 0.90,
     llm=None,
+    reasoning_effort: str | None = None,
 ) -> list[dict]:
     """rank_queries() over the benchmark, written as a rankings JSONL (meta line first)."""
     if llm is None:
@@ -302,7 +311,7 @@ def run(
     n_prompts = len(queries) * len(menus)
     print(f"{len(queries)} queries x {len(menus)} restaurants = {n_prompts} prompts", flush=True)
     t0 = time.time()
-    rows = rank_queries(llm, queries, restaurants, menus, max_tokens=max_tokens)
+    rows = rank_queries(llm, queries, restaurants, menus, max_tokens=max_tokens, reasoning_effort=reasoning_effort)
     elapsed = time.time() - t0
     print(f"Generated in {elapsed:.1f}s ({elapsed / max(len(queries), 1):.2f}s per query)", flush=True)
 
@@ -310,7 +319,9 @@ def run(
     with open(out_path, "w", encoding="utf-8") as f:
         f.write(json.dumps({"meta": {
             "model": model_name, "n_queries": len(queries), "n_prompts": n_prompts,
-            "seconds": round(elapsed, 1), "system_prompt": SYSTEM_PROMPT,
+            "seconds": round(elapsed, 1), "max_tokens": max_tokens,
+            **({"reasoning_effort": reasoning_effort} if reasoning_effort else {}),
+            "system_prompt": SYSTEM_PROMPT,
         }}) + "\n")
         for row in rows:
             f.write(json.dumps(row, ensure_ascii=False) + "\n")
@@ -361,6 +372,9 @@ if __name__ == "__main__":
     parser.add_argument("--max-model-len", type=int, default=12288)
     parser.add_argument("--max-tokens", type=int, default=768, help="Max generated tokens per prompt")
     parser.add_argument("--gpu-memory-utilization", type=float, default=0.90)
+    parser.add_argument("--reasoning-effort", choices=["low", "medium", "high"],
+                        help="gpt-oss only: how long the model reasons before answering (model default: medium). "
+                             "Low is faster; reasoning models also need a larger --max-tokens, e.g. 8192")
     parser.add_argument("--dtype", default="auto",
                         help='vLLM weight dtype (default: auto = checkpoint dtype; "half" on GPUs without bf16, e.g. T4)')
     parser.add_argument("--all-restaurants", action="store_true",
@@ -379,13 +393,14 @@ if __name__ == "__main__":
     if args.terms:
         query = " ".join(args.terms)
         t0 = time.time()
-        results = search(query, llm, restaurants, menus)
+        results = search(query, llm, restaurants, menus, args.max_tokens, args.reasoning_effort)
         print(f"\nQuery: '{query}'  ({model_name}, {time.time() - t0:.1f}s)\n")
         print_results(results, restaurants)
         sys.exit(0)
 
     queries = load_queries()[: args.limit] if args.limit else load_queries()
-    run(queries, restaurants, menus, model_name, args.out, max_tokens=args.max_tokens, llm=llm)
+    run(queries, restaurants, menus, model_name, args.out, max_tokens=args.max_tokens, llm=llm,
+        reasoning_effort=args.reasoning_effort)
 
     results = evaluate(replay_search_fn(args.out),
                        query_ids={q["query_id"] for q in queries})
