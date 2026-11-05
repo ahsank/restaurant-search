@@ -48,7 +48,7 @@ runs on the same GPU. `–` = not recorded (re-run it).
 | 26 | sbert-mxbai-embed-large | bi-encoder | 0.1287 | 0.6446 | 0.0097 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
 | 27 | crossencoder-bge-reranker-large | cross-encoder | 0.1278 | 0.7181 | 0.6175 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
 | 28 | sbert-bge-large-en-v1.5 | bi-encoder | 0.1263 | 0.6325 | 0.0073 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 29 | llm-gpt-oss-20b | llm | 0.1260 | 0.7447 | 0.9096 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 29 | llm-gpt-oss-20b | llm | 0.1190 | 0.7686 | 1.4608 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
 | 30 | softbm25-conceptnet | word-vector | 0.1145 | 0.5741 | 0.0125 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
 | 31 | sbert-all-mpnet-base-v2 | bi-encoder | 0.1120 | 0.5608 | 0.0050 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
 | 32 | sbert-all-MiniLM-L6-v2 | bi-encoder | 0.1079 | 0.5398 | 0.0035 | NVIDIA RTX PRO 6000 Blackwell Server Edition |

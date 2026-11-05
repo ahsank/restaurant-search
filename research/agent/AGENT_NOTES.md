@@ -1311,3 +1311,10 @@ FileNotFoundError: [Errno 2] No such file or directory: 'research/agent/gemma-3-
 - Eval args: `--engine llm --rankings research/agent/runs/llm-llama-4-scout-17b-16e-instruct-quantized.jsonl` | family `llm`
 - ndcg@5 0.7893 | recall@10 0.814 | mrr 0.8654 | 0.1608 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.1529 | 206/209 queries judged
 - Weakest categories (NDCG@5): C03 Attribute / implied meaning 0.4987, C10 Multi-constraint compositional 0.5044, C08 Dietary constraint / negation 0.5582, C18 Chicken dishes 0.5745, C07 Hyphenation / spacing / stop words 0.6661
+
+### llm-gpt-oss-20b (SUCCESS)
+- Result: `research/agent/results/llm-gpt-oss-20b.json` | commit `b26a5c9` | 393.5s
+- Setup: `python research/search/llm_search.py --model openai/gpt-oss-20b --max-tokens 8192 --gpu-memory-utilization 0.85 --out research/agent/runs/gpt-oss-20b.jsonl`
+- Eval args: `--engine llm --rankings research/agent/runs/gpt-oss-20b.jsonl` | family `llm`
+- ndcg@5 0.7686 | recall@10 0.8148 | mrr 0.8303 | 1.4608 s/query on NVIDIA RTX PRO 6000 Blackwell Server Edition | efficiency 0.119 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.3422, C25 Occasion / meal-time 0.4152, C03 Attribute / implied meaning 0.5205, C07 Hyphenation / spacing / stop words 0.5333, C08 Dietary constraint / negation 0.5618
