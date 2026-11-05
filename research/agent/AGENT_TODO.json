@@ -1,13 +1,4 @@
 {
-  "iteration": 127,
-  "pending_tasks": [
-    {
-      "action": "run_experiment",
-      "family": "llm",
-      "name": "llm-gpt-oss-20b-low",
-      "setup": "python research/search/llm_search.py --model openai/gpt-oss-20b --reasoning-effort low --max-tokens 8192 --gpu-memory-utilization 0.85 --out research/agent/runs/gpt-oss-20b-low.jsonl",
-      "eval_args": "--engine llm --rankings research/agent/runs/gpt-oss-20b-low.jsonl",
-      "description": "gpt-oss-20b with low reasoning effort: does it keep most of medium's quality (NDCG@5 0.769 at 1.46 s/query, 9% of answers cut off at 8192 tokens) at a fraction of the time?"
-    }
-  ]
+  "iteration": 128,
+  "pending_tasks": []
 }

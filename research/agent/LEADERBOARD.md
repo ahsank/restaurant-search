@@ -13,7 +13,7 @@ runs on the same GPU. `–` = not recorded (re-run it).
 | bi-encoder | sbert-gte-large | 0.6621 | 0.5570 | 0.8117 | 0.0097 | NVIDIA RTX PRO 6000 Blackwell Server Edition | 0.1322 | 6 |
 | late-interaction | colbert-colbertv2.0 | 0.6583 | 0.5733 | 0.8036 | 0.0310 | Tesla T4 | 0.1309 | 1 |
 | cross-encoder | crossencoder-bge-reranker-v2-m3 | 0.7406 | 0.6120 | 0.8906 | 0.6159 | NVIDIA RTX PRO 6000 Blackwell Server Edition | 0.1319 | 5 |
-| llm | hybrid-llama4-scout-bge-reranker-v2-m3 | 0.8701 | 0.8495 | 0.9459 | 0.3901 | NVIDIA L4 | 0.1614 | 20 |
+| llm | hybrid-llama4-scout-bge-reranker-v2-m3 | 0.8701 | 0.8495 | 0.9459 | 0.3901 | NVIDIA L4 | 0.1614 | 21 |
 | other | (none yet) | | | | | | | 0 |
 
 ## Efficiency = NDCG@5 / (seconds per query + 5)
@@ -55,3 +55,4 @@ runs on the same GPU. `–` = not recorded (re-run it).
 | 33 | sbert-all-MiniLM-L6-v2 | bi-encoder | 0.1079 | 0.5398 | 0.0035 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
 | 34 | llm-gpt-oss-120b | llm | 0.1001 | 0.7427 | 2.4206 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
 | 35 | baseline-text | lexical | 0.0912 | 0.4562 | 0.0003 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 36 | llm-gpt-oss-20b-low | llm | 0.0854 | 0.7507 | 3.7895 | NVIDIA L4 |

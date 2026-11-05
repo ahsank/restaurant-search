@@ -1324,3 +1324,10 @@ FileNotFoundError: [Errno 2] No such file or directory: 'research/agent/gemma-3-
 - Eval args: `--engine hybrid --rankings research/agent/runs/llm-llama-4-scout-17b-16e-instruct-quantized.jsonl --model BAAI/bge-reranker-v2-m3 --grade-boost 2.0` | family `llm`
 - ndcg@5 0.8701 | recall@10 0.8495 | mrr 0.9459 | 0.3901 s/query on NVIDIA L4 | efficiency 0.1614 | 206/209 queries judged
 - Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.4078, C03 Attribute / implied meaning 0.6831, C08 Dietary constraint / negation 0.6984, C18 Chicken dishes 0.7679, C06 Stemming & lemmatization 0.7866
+
+### Iteration 127: llm-gpt-oss-20b-low (SUCCESS)
+- Result: `research/agent/results/llm-gpt-oss-20b-low.json` | commit `55e9203` | 1131.0s
+- Setup: `python research/search/llm_search.py --model openai/gpt-oss-20b --reasoning-effort low --max-tokens 8192 --gpu-memory-utilization 0.85 --out research/agent/runs/gpt-oss-20b-low.jsonl`
+- Eval args: `--engine llm --rankings research/agent/runs/gpt-oss-20b-low.jsonl` | family `llm`
+- ndcg@5 0.7507 | recall@10 0.8038 | mrr 0.8089 | 3.7895 s/query on NVIDIA L4 | efficiency 0.0854 | 206/209 queries judged
+- Weakest categories (NDCG@5): C03 Attribute / implied meaning 0.3776, C25 Occasion / meal-time 0.4048, C10 Multi-constraint compositional 0.4351, C07 Hyphenation / spacing / stop words 0.554, C01 Cuisine type inference 0.5798
