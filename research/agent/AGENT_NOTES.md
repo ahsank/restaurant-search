@@ -1331,3 +1331,6 @@ FileNotFoundError: [Errno 2] No such file or directory: 'research/agent/gemma-3-
 - Eval args: `--engine llm --rankings research/agent/runs/gpt-oss-20b-low.jsonl` | family `llm`
 - ndcg@5 0.7507 | recall@10 0.8038 | mrr 0.8089 | 3.7895 s/query on NVIDIA L4 | efficiency 0.0854 | 206/209 queries judged
 - Weakest categories (NDCG@5): C03 Attribute / implied meaning 0.3776, C25 Occasion / meal-time 0.4048, C10 Multi-constraint compositional 0.4351, C07 Hyphenation / spacing / stop words 0.554, C01 Cuisine type inference 0.5798
+
+### Session Gemini usage
+- (no Gemini calls)
