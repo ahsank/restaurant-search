@@ -125,12 +125,16 @@ _PAIR = re.compile(r"\[\s*(\d+)\s*,\s*([0-2])\s*\]")
 _ANSWER_MARKERS = ("<|channel|>final<|message|>", "assistantfinal", "</think>")
 
 
+_REASONING_STARTS = ("analysis", "<|channel|>analysis", "<think>")
+
+
 def strip_reasoning(text: str) -> str:
-    """The text after the last reasoning-to-answer marker, or all of it if there is none."""
+    """The text after the last reasoning-to-answer marker. Reasoning that never reached an answer
+    (cut off by --max-tokens) gives "", so its half-formed guesses aren't parsed as rankings."""
     for marker in _ANSWER_MARKERS:
         if marker in text:
             return text.rsplit(marker, 1)[1]
-    return text
+    return "" if text.lstrip().startswith(_REASONING_STARTS) else text
 
 
 def parse_response(text: str, n_items: int) -> list[tuple[int, int]]:
