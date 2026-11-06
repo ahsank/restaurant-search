@@ -1345,3 +1345,9 @@ FileNotFoundError: [Errno 2] No such file or directory: 'research/agent/gemma-3-
 - Eval args: `--engine filtered` | family `lexical`
 - ndcg@5 0.6551 | recall@10 0.6029 | mrr 0.7707 | 0.1023 s/query on NVIDIA L4 | efficiency 0.1284 | 206/209 queries judged
 - Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.1021, C03 Attribute / implied meaning 0.2327, C02 Ingredient generalization 0.2376, C01 Cuisine type inference 0.2391, C08 Dietary constraint / negation 0.2788
+
+### Iteration 129: hybrid-llama4-scout-minilm-l6-boost2 (SUCCESS)
+- Result: `research/agent/results/hybrid-llama4-scout-minilm-l6-boost2.json` | commit `7ef1373` | 32.2s
+- Eval args: `--engine hybrid --rankings research/agent/runs/llm-llama-4-scout-17b-16e-instruct-quantized.jsonl --model cross-encoder/ms-marco-MiniLM-L6-v2 --grade-boost 2.0` | family `llm`
+- ndcg@5 0.8577 | recall@10 0.8438 | mrr 0.9191 | 0.1823 s/query on NVIDIA L4 | efficiency 0.1655 | 206/209 queries judged
+- Weakest categories (NDCG@5): C04 Cooking method synonyms 0.6032, C03 Attribute / implied meaning 0.6053, C08 Dietary constraint / negation 0.7131, C18 Chicken dishes 0.7467, C06 Stemming & lemmatization 0.7824

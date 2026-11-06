@@ -13,47 +13,48 @@ runs on the same GPU. `–` = not recorded (re-run it).
 | bi-encoder | sbert-gte-large | 0.6621 | 0.5570 | 0.8117 | 0.0097 | NVIDIA RTX PRO 6000 Blackwell Server Edition | 0.1322 | 6 |
 | late-interaction | colbert-colbertv2.0 | 0.6583 | 0.5733 | 0.8036 | 0.0310 | Tesla T4 | 0.1309 | 1 |
 | cross-encoder | crossencoder-bge-reranker-v2-m3 | 0.7406 | 0.6120 | 0.8906 | 0.6159 | NVIDIA RTX PRO 6000 Blackwell Server Edition | 0.1319 | 5 |
-| llm | hybrid-llama4-scout-bge-reranker-v2-m3 | 0.8701 | 0.8495 | 0.9459 | 0.3901 | NVIDIA L4 | 0.1614 | 21 |
+| llm | hybrid-llama4-scout-bge-reranker-v2-m3 | 0.8701 | 0.8495 | 0.9459 | 0.3901 | NVIDIA L4 | 0.1614 | 22 |
 | other | (none yet) | | | | | | | 0 |
 
 ## Efficiency = NDCG@5 / (seconds per query + 5)
 
 | # | Experiment | Family | Efficiency | NDCG@5 | s/query | GPU |
 |---|---|---|---|---|---|---|
-| 1 | hybrid-qwen2.5-7b-minilm-l6-boost2 | llm | 0.1633 | 0.8323 | 0.0977 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 2 | hybrid-qwen2.5-7b-minilm-l12-boost3 | llm | 0.1624 | 0.8286 | 0.1012 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 3 | hybrid-qwen2.5-7b-minilm-l12-boost2 | llm | 0.1622 | 0.8277 | 0.1012 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 4 | hybrid-llama4-scout-bge-reranker-v2-m3 | llm | 0.1614 | 0.8701 | 0.3901 | NVIDIA L4 |
-| 5 | hybrid-qwen2.5-14b-minilm-l12-boost2 | llm | 0.1613 | 0.8361 | 0.1841 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 6 | hybrid-qwen2.5-7b-ms-marco-MiniLM-L6-v2 | llm | 0.1594 | 0.8126 | 0.0977 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 7 | hybrid-qwen2.5-7b-minilm-l6-strict-grade | llm | 0.1584 | 0.8076 | 0.0977 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 8 | hybrid-qwen2.5-7b-bge-reranker-v2-m3 | llm | 0.1577 | 0.8117 | 0.1471 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 9 | hybrid-qwen2.5-7b-electra-boost2 | llm | 0.1575 | 0.8049 | 0.1111 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 10 | hybrid-qwen2.5-32b-minilm-l12-boost2 | llm | 0.1572 | 0.8402 | 0.3436 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 11 | hybrid-qwen2.5-7b-bge-reranker-large | llm | 0.1565 | 0.8056 | 0.1470 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 12 | hybrid-qwen2.5-32b-bge-reranker-v2-m3 | llm | 0.1562 | 0.8428 | 0.3964 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 13 | llm-llama-4-scout-17b-16e-instruct-quantized | llm | 0.1529 | 0.7893 | 0.1608 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 14 | llm-qwen2.5-32b-instruct | llm | 0.1459 | 0.7780 | 0.3316 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 15 | llm-qwen2.5-14b-instruct | llm | 0.1416 | 0.7326 | 0.1746 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 16 | llm-qwen2.5-7b-instruct | llm | 0.1391 | 0.7080 | 0.0900 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 17 | crossencoder-ms-marco-MiniLM-L6-v2 | cross-encoder | 0.1365 | 0.6904 | 0.0563 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 18 | crossencoder-ms-marco-MiniLM-L12-v2 | cross-encoder | 0.1354 | 0.6883 | 0.0823 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 19 | crossencoder-ms-marco-electra-base | cross-encoder | 0.1327 | 0.6905 | 0.2052 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 20 | sbert-gte-large | bi-encoder | 0.1322 | 0.6621 | 0.0097 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 21 | llm-gemma-3-27b-it | llm | 0.1320 | 0.7449 | 0.6411 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 22 | crossencoder-bge-reranker-v2-m3 | cross-encoder | 0.1319 | 0.7406 | 0.6159 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 23 | llm-gemma-3-12b-it | llm | 0.1310 | 0.6742 | 0.1455 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 24 | colbert-colbertv2.0 | late-interaction | 0.1309 | 0.6583 | 0.0310 | Tesla T4 |
-| 25 | baseline-enhanced | lexical | 0.1296 | 0.6514 | 0.0267 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 26 | sbert-bge-base-en-v1.5 | bi-encoder | 0.1294 | 0.6477 | 0.0048 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 27 | sbert-mxbai-embed-large | bi-encoder | 0.1287 | 0.6446 | 0.0097 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 28 | baseline-filtered | lexical | 0.1284 | 0.6551 | 0.1023 | NVIDIA L4 |
-| 29 | crossencoder-bge-reranker-large | cross-encoder | 0.1278 | 0.7181 | 0.6175 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 30 | sbert-bge-large-en-v1.5 | bi-encoder | 0.1263 | 0.6325 | 0.0073 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 31 | llm-gpt-oss-20b | llm | 0.1190 | 0.7686 | 1.4608 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 32 | softbm25-conceptnet | word-vector | 0.1145 | 0.5741 | 0.0125 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 33 | sbert-all-mpnet-base-v2 | bi-encoder | 0.1120 | 0.5608 | 0.0050 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 34 | sbert-all-MiniLM-L6-v2 | bi-encoder | 0.1079 | 0.5398 | 0.0035 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 35 | llm-gpt-oss-120b | llm | 0.1001 | 0.7427 | 2.4206 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 36 | baseline-text | lexical | 0.0912 | 0.4562 | 0.0003 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
-| 37 | llm-gpt-oss-20b-low | llm | 0.0854 | 0.7507 | 3.7895 | NVIDIA L4 |
+| 1 | hybrid-llama4-scout-minilm-l6-boost2 | llm | 0.1655 | 0.8577 | 0.1823 | NVIDIA L4 |
+| 2 | hybrid-qwen2.5-7b-minilm-l6-boost2 | llm | 0.1633 | 0.8323 | 0.0977 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 3 | hybrid-qwen2.5-7b-minilm-l12-boost3 | llm | 0.1624 | 0.8286 | 0.1012 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 4 | hybrid-qwen2.5-7b-minilm-l12-boost2 | llm | 0.1622 | 0.8277 | 0.1012 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 5 | hybrid-llama4-scout-bge-reranker-v2-m3 | llm | 0.1614 | 0.8701 | 0.3901 | NVIDIA L4 |
+| 6 | hybrid-qwen2.5-14b-minilm-l12-boost2 | llm | 0.1613 | 0.8361 | 0.1841 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 7 | hybrid-qwen2.5-7b-ms-marco-MiniLM-L6-v2 | llm | 0.1594 | 0.8126 | 0.0977 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 8 | hybrid-qwen2.5-7b-minilm-l6-strict-grade | llm | 0.1584 | 0.8076 | 0.0977 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 9 | hybrid-qwen2.5-7b-bge-reranker-v2-m3 | llm | 0.1577 | 0.8117 | 0.1471 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 10 | hybrid-qwen2.5-7b-electra-boost2 | llm | 0.1575 | 0.8049 | 0.1111 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 11 | hybrid-qwen2.5-32b-minilm-l12-boost2 | llm | 0.1572 | 0.8402 | 0.3436 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 12 | hybrid-qwen2.5-7b-bge-reranker-large | llm | 0.1565 | 0.8056 | 0.1470 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 13 | hybrid-qwen2.5-32b-bge-reranker-v2-m3 | llm | 0.1562 | 0.8428 | 0.3964 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 14 | llm-llama-4-scout-17b-16e-instruct-quantized | llm | 0.1529 | 0.7893 | 0.1608 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 15 | llm-qwen2.5-32b-instruct | llm | 0.1459 | 0.7780 | 0.3316 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 16 | llm-qwen2.5-14b-instruct | llm | 0.1416 | 0.7326 | 0.1746 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 17 | llm-qwen2.5-7b-instruct | llm | 0.1391 | 0.7080 | 0.0900 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 18 | crossencoder-ms-marco-MiniLM-L6-v2 | cross-encoder | 0.1365 | 0.6904 | 0.0563 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 19 | crossencoder-ms-marco-MiniLM-L12-v2 | cross-encoder | 0.1354 | 0.6883 | 0.0823 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 20 | crossencoder-ms-marco-electra-base | cross-encoder | 0.1327 | 0.6905 | 0.2052 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 21 | sbert-gte-large | bi-encoder | 0.1322 | 0.6621 | 0.0097 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 22 | llm-gemma-3-27b-it | llm | 0.1320 | 0.7449 | 0.6411 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 23 | crossencoder-bge-reranker-v2-m3 | cross-encoder | 0.1319 | 0.7406 | 0.6159 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 24 | llm-gemma-3-12b-it | llm | 0.1310 | 0.6742 | 0.1455 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 25 | colbert-colbertv2.0 | late-interaction | 0.1309 | 0.6583 | 0.0310 | Tesla T4 |
+| 26 | baseline-enhanced | lexical | 0.1296 | 0.6514 | 0.0267 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 27 | sbert-bge-base-en-v1.5 | bi-encoder | 0.1294 | 0.6477 | 0.0048 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 28 | sbert-mxbai-embed-large | bi-encoder | 0.1287 | 0.6446 | 0.0097 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 29 | baseline-filtered | lexical | 0.1284 | 0.6551 | 0.1023 | NVIDIA L4 |
+| 30 | crossencoder-bge-reranker-large | cross-encoder | 0.1278 | 0.7181 | 0.6175 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 31 | sbert-bge-large-en-v1.5 | bi-encoder | 0.1263 | 0.6325 | 0.0073 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 32 | llm-gpt-oss-20b | llm | 0.1190 | 0.7686 | 1.4608 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 33 | softbm25-conceptnet | word-vector | 0.1145 | 0.5741 | 0.0125 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 34 | sbert-all-mpnet-base-v2 | bi-encoder | 0.1120 | 0.5608 | 0.0050 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 35 | sbert-all-MiniLM-L6-v2 | bi-encoder | 0.1079 | 0.5398 | 0.0035 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 36 | llm-gpt-oss-120b | llm | 0.1001 | 0.7427 | 2.4206 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 37 | baseline-text | lexical | 0.0912 | 0.4562 | 0.0003 | NVIDIA RTX PRO 6000 Blackwell Server Edition |
+| 38 | llm-gpt-oss-20b-low | llm | 0.0854 | 0.7507 | 3.7895 | NVIDIA L4 |

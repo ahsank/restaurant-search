@@ -1,14 +1,4 @@
 {
-  "iteration": 129,
-  "pending_tasks": [
-    {
-      "action": "run_experiment",
-      "family": "llm",
-      "name": "hybrid-llama4-scout-minilm-l6-boost2",
-      "eval_args": "--engine hybrid --rankings research/agent/runs/llm-llama-4-scout-17b-16e-instruct-quantized.jsonl --model cross-encoder/ms-marco-MiniLM-L6-v2 --grade-boost 2.0",
-      "setup": "",
-      "description": "Evaluate hybrid search combining Llama-4-Scout-17B candidates with fast ms-marco-MiniLM-L6-v2 cross-encoder reranking and grade-boost 2.0 to maximize efficiency.",
-      "reasoning": "Recent campaign iterations focused almost exclusively on the LLM family, leaving non-LLM methods untested despite having significant room for efficiency and accuracy gains. For the non-LLM task, we evaluate the lexical engine with `--engine filtered`, which suppresses restaurant-level context matches when query terms already appear in item-level text, directly tackling false-positive drift on cuisine terms. For the second task, we pair the newly generated Llama-4-Scout-17B candidates (which led to 0.8701 NDCG@5 with bge-reranker-v2-m3) with the much faster `cross-encoder/ms-marco-MiniLM-L6-v2` reranker and grade-boost 2.0, hypothesizing that lower reranking latency combined with Scout's candidate recall will set a new benchmark record for efficiency."
-    }
-  ]
+  "iteration": 130,
+  "pending_tasks": []
 }
