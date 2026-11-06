@@ -1351,3 +1351,6 @@ FileNotFoundError: [Errno 2] No such file or directory: 'research/agent/gemma-3-
 - Eval args: `--engine hybrid --rankings research/agent/runs/llm-llama-4-scout-17b-16e-instruct-quantized.jsonl --model cross-encoder/ms-marco-MiniLM-L6-v2 --grade-boost 2.0` | family `llm`
 - ndcg@5 0.8577 | recall@10 0.8438 | mrr 0.9191 | 0.1823 s/query on NVIDIA L4 | efficiency 0.1655 | 206/209 queries judged
 - Weakest categories (NDCG@5): C04 Cooking method synonyms 0.6032, C03 Attribute / implied meaning 0.6053, C08 Dietary constraint / negation 0.7131, C18 Chicken dishes 0.7467, C06 Stemming & lemmatization 0.7824
+
+### Session Gemini usage
+- gemini-3.8-flash: 21 requests, 914,744 input tokens (805,994 cached), 1,041 output, 13,687 thinking
