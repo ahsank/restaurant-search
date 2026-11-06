@@ -262,9 +262,12 @@ def rank_queries(
     entries = {rid: menu_entries(items) for rid, items in menus.items()}
     blocks = {rid: menu_block(restaurants[rid], entries[rid]) for rid in menus}
 
+    # Restaurant-major order: all queries for one menu, then the next. vLLM serves prompts roughly in
+    # order, so each menu's prefix stays in its cache while it is in use; query-major order evicts
+    # every menu between queries on a GPU whose cache can't hold all menus at once (e.g. 8B on an L4).
     jobs, conversations = [], []
-    for q in queries:
-        for rid in menus:
+    for rid in menus:
+        for q in queries:
             jobs.append((q, rid))
             conversations.append(build_messages(q["query_text"], blocks[rid]))
 
