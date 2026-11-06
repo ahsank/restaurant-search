@@ -1334,3 +1334,14 @@ FileNotFoundError: [Errno 2] No such file or directory: 'research/agent/gemma-3-
 
 ### Session Gemini usage
 - (no Gemini calls)
+
+### Plan (iteration 128)
+- Hypothesis: Recent campaign iterations focused almost exclusively on the LLM family, leaving non-LLM methods untested despite having significant room for efficiency and accuracy gains. For the non-LLM task, we evaluate the lexical engine with `--engine filtered`, which suppresses restaurant-level context matches when query terms already appear in item-level text, directly tackling false-positive drift on cuisine terms. For the second task, we pair the newly generated Llama-4-Scout-17B candidates (which led to 0.8701 NDCG@5 with bge-reranker-v2-m3) with the much faster `cross-encoder/ms-marco-MiniLM-L6-v2` reranker and grade-boost 2.0, hypothesizing that lower reranking latency combined with Scout's candidate recall will set a new benchmark record for efficiency.
+- Queued (lexical): run_experiment baseline-filtered
+- Queued (llm): run_experiment hybrid-llama4-scout-minilm-l6-boost2
+
+### Iteration 128: baseline-filtered (SUCCESS)
+- Result: `research/agent/results/baseline-filtered.json` | commit `5ecda21` | 21.5s
+- Eval args: `--engine filtered` | family `lexical`
+- ndcg@5 0.6551 | recall@10 0.6029 | mrr 0.7707 | 0.1023 s/query on NVIDIA L4 | efficiency 0.1284 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.1021, C03 Attribute / implied meaning 0.2327, C02 Ingredient generalization 0.2376, C01 Cuisine type inference 0.2391, C08 Dietary constraint / negation 0.2788
