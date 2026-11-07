@@ -1354,3 +1354,10 @@ FileNotFoundError: [Errno 2] No such file or directory: 'research/agent/gemma-3-
 
 ### Session Gemini usage
 - gemini-3.8-flash: 21 requests, 914,744 input tokens (805,994 cached), 1,041 output, 13,687 thinking
+
+### llm-llama-3-8b-instruct (SUCCESS)
+- Result: `research/agent/results/llm-llama-3-8b-instruct.json` | commit `d040ab6` | 567.8s
+- Setup: `python research/search/llm_search.py --model meta-llama/Meta-Llama-3-8B-Instruct --max-model-len 8192 --gpu-memory-utilization 0.92 --out research/agent/runs/llama-3-8b-instruct.jsonl`
+- Eval args: `--engine llm --rankings research/agent/runs/llama-3-8b-instruct.jsonl` | family `llm`
+- ndcg@5 0.6134 | recall@10 0.7514 | mrr 0.666 | 2.3986 s/query on NVIDIA L4 | efficiency 0.0829 | 206/209 queries judged
+- Weakest categories (NDCG@5): C10 Multi-constraint compositional 0.1416, C03 Attribute / implied meaning 0.3239, C01 Cuisine type inference 0.3629, C13 Taco varieties 0.3915, C18 Chicken dishes 0.5005
