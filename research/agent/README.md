@@ -76,10 +76,11 @@ the notes; multiply by Google's per-token prices to compare sessions.
 
 The notebook detects the GPU at the start of each session (`GPU_TIER` in the install cell: `large`
 ≥ 40 GB such as G4/A100, `medium` such as L4, `small` such as T4, or `cpu`) and gives both agents the
-matching rules. A large-GPU session is spent on work that needs it (LLM rankings, comparing LLMs,
-fine-tuning); CPU-only work such as keyword-search changes is left for cheaper sessions. A small-GPU
-session doesn't generate LLM rankings above ~3B (Qwen2.5-7B doesn't fit a T4) but can replay existing
-rankings. Each result records its GPU, and timings are compared only between runs on the same GPU.
+matching rules. A large-GPU session (G4, A100 and up) is spent on GPU-intensive work (LLM rankings,
+comparing LLMs, fine-tuning, large rerankers); CPU-only and small-GPU work is left for other sessions.
+GPU time on L4 and smaller is plentiful, so those sessions choose freely, CPU-only approaches included.
+A small-GPU session doesn't generate LLM rankings above ~3B (Qwen2.5-7B doesn't fit a T4) but can replay
+existing rankings. Each result records its GPU, and timings are compared only between runs on the same GPU.
 
 ## Python packages and interpreters
 
