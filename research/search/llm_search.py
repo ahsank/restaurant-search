@@ -110,9 +110,10 @@ def menu_block(restaurant: dict, entries: list[dict]) -> str:
     return "\n".join(header) + "\n\nMENU:\n" + "\n".join(lines)
 
 
-def build_messages(query: str, menu: str) -> list[dict]:
+def build_messages(query: str, menu: str, system_prompt: str | None = None) -> list[dict]:
+    """system_prompt: replaces SYSTEM_PROMPT (e.g. to try a prompt from a notebook)."""
     return [
-        {"role": "system", "content": SYSTEM_PROMPT},
+        {"role": "system", "content": SYSTEM_PROMPT if system_prompt is None else system_prompt},
         {"role": "user", "content": f"{menu}\n\nQUERY: {query}"},
     ]
 
@@ -252,6 +253,7 @@ def rank_queries(
     menus: dict,
     max_tokens: int = 768,
     reasoning_effort: str | None = None,
+    system_prompt: str | None = None,
 ) -> list[dict]:
     """
     Score every query against every restaurant in one batch. llm is an
@@ -269,7 +271,7 @@ def rank_queries(
     for rid in menus:
         for q in queries:
             jobs.append((q, rid))
-            conversations.append(build_messages(q["query_text"], blocks[rid]))
+            conversations.append(build_messages(q["query_text"], blocks[rid], system_prompt))
 
     texts = _complete(llm, conversations, max_tokens, reasoning_effort)
 
@@ -289,10 +291,11 @@ def rank_queries(
 
 
 def search(query: str, llm, restaurants: dict, menus: dict, max_tokens: int = 768,
-           reasoning_effort: str | None = None) -> list[dict]:
+           reasoning_effort: str | None = None, system_prompt: str | None = None) -> list[dict]:
     """Ad-hoc single query (e.g. from a notebook); same ranking as the benchmark run."""
     return rank_queries(llm, [{"query_id": "adhoc", "query_text": query}], restaurants, menus,
-                        max_tokens=max_tokens, reasoning_effort=reasoning_effort)[0]["results"]
+                        max_tokens=max_tokens, reasoning_effort=reasoning_effort,
+                        system_prompt=system_prompt)[0]["results"]
 
 
 def run(
@@ -306,15 +309,18 @@ def run(
     gpu_memory_utilization: float = 0.90,
     llm=None,
     reasoning_effort: str | None = None,
+    system_prompt: str | None = None,
 ) -> list[dict]:
-    """rank_queries() over the benchmark, written as a rankings JSONL (meta line first)."""
+    """rank_queries() over the benchmark, written as a rankings JSONL (meta line first).
+    system_prompt replaces SYSTEM_PROMPT; the prompt used is recorded in the meta line."""
     if llm is None:
         llm = load_llm(model_name, max_model_len, gpu_memory_utilization)
 
     n_prompts = len(queries) * len(menus)
     print(f"{len(queries)} queries x {len(menus)} restaurants = {n_prompts} prompts", flush=True)
     t0 = time.time()
-    rows = rank_queries(llm, queries, restaurants, menus, max_tokens=max_tokens, reasoning_effort=reasoning_effort)
+    rows = rank_queries(llm, queries, restaurants, menus, max_tokens=max_tokens,
+                        reasoning_effort=reasoning_effort, system_prompt=system_prompt)
     elapsed = time.time() - t0
     print(f"Generated in {elapsed:.1f}s ({elapsed / max(len(queries), 1):.2f}s per query)", flush=True)
 
@@ -324,7 +330,7 @@ def run(
             "model": model_name, "n_queries": len(queries), "n_prompts": n_prompts,
             "seconds": round(elapsed, 1), "max_tokens": max_tokens,
             **({"reasoning_effort": reasoning_effort} if reasoning_effort else {}),
-            "system_prompt": SYSTEM_PROMPT,
+            "system_prompt": SYSTEM_PROMPT if system_prompt is None else system_prompt,
         }}) + "\n")
         for row in rows:
             f.write(json.dumps(row, ensure_ascii=False) + "\n")
