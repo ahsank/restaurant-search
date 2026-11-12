@@ -143,8 +143,10 @@ juanita-cantina,C06-05,Arroz Con Pollo,1,
 juanita-cantina,C06-05,Camarones Mojo de Ajo,2,
 juanita-cantina,C06-05,Camarones à la Diabla,2,
 juanita-cantina,C06-07,Calamari,2,
+juanita-cantina,C06-07,Breaded Calamari,2,
 juanita-cantina,C06-09,Pollo Asado,2,
 juanita-cantina,C06-09,Pollo Chipotle,1,
+juanita-cantina,C06-09,Juanita Chicken Burger,1,pollo asado (seasoned) chicken in a burger
 juanita-cantina,C07-03,3 Street Tacos,2,
 juanita-cantina,C07-03,Burrito Al Pastor,2,
 juanita-cantina,C07-03,Tacos Al Carbon,1,
@@ -228,6 +230,8 @@ juanita-cantina,C13-01,Taco Birria,2,
 juanita-cantina,C13-01,Tacos Al Carbon,2,
 juanita-cantina,C13-01,Tacos De Camarones,2,
 juanita-cantina,C13-01,Tacos de Pescado,2,
+juanita-cantina,C13-01,Three Hard Tacos,2,
+juanita-cantina,C13-01,Three Cantina Tacos,2,
 juanita-cantina,C13-02,Tacos de Pescado,2,
 juanita-cantina,C13-03,3 Street Tacos,1,
 juanita-cantina,C13-03,Taco Birria,2,
@@ -241,6 +245,10 @@ juanita-cantina,C13-06,Tacos Al Carbon,1,
 juanita-cantina,C13-07,Three Hard Tacos,2,
 juanita-cantina,C13-08,3 Street Tacos,2,
 juanita-cantina,C13-08,Tacos Al Carbon,1,
+juanita-cantina,C13-08,Tacos de Pescado,2,soft tortillas
+juanita-cantina,C13-08,Tacos De Camarones,2,flour tortilla
+juanita-cantina,C13-08,Taco Birria,2,corn tortillas dipped in salsa
+juanita-cantina,C13-08,Three Cantina Tacos,1,shell not stated
 juanita-cantina,C16-01,Avocado Tostada,1,
 juanita-cantina,C16-01,Caesar Salad,2,
 juanita-cantina,C16-01,Cantina Salad,2,
@@ -415,3 +423,50 @@ juanita-cantina,C25-02,Three Cantina Tacos,2,
 juanita-cantina,C25-02,Three Ceviche Tostadas,2,
 juanita-cantina,C25-02,Three Hard Tacos,2,
 juanita-cantina,C25-02,Tijuana Nachos,2,
+juanita-cantina,C02-06,Queso Dip with Chorizo,1,"cheese dip; Mexican chorizo is usually fresh, not cured"
+juanita-cantina,C08-05,Taco Salad,2,"no nuts listed, like Plaza Garcia's Taco Salad"
+juanita-cantina,C07-12,3 Street Tacos,2,tagged gluten-free
+juanita-cantina,C07-12,Arroz Con Pollo,2,tagged gluten-free
+juanita-cantina,C07-12,Avocado Tostada,2,tagged gluten-free
+juanita-cantina,C07-12,Beef Fajitas,2,tagged gluten-free
+juanita-cantina,C07-12,Caesar Salad,2,tagged gluten-free
+juanita-cantina,C07-12,Camarones Mojo de Ajo,2,tagged gluten-free
+juanita-cantina,C07-12,Camarones con Bacon,2,tagged gluten-free
+juanita-cantina,C07-12,Camarones à la Crema,2,tagged gluten-free
+juanita-cantina,C07-12,Camarones à la Diabla,2,tagged gluten-free
+juanita-cantina,C07-12,Cantina Salad,2,tagged gluten-free
+juanita-cantina,C07-12,Carne Asada,2,tagged gluten-free
+juanita-cantina,C07-12,Carne Asada Fajitas,2,tagged gluten-free
+juanita-cantina,C07-12,Carne and Camaron,2,tagged gluten-free
+juanita-cantina,C07-12,Chicken Fajitas,2,tagged gluten-free
+juanita-cantina,C07-12,Chipotle Shrimp Enchiladas,2,tagged gluten-free
+juanita-cantina,C07-12,Enchiladas Rojas,2,tagged gluten-free
+juanita-cantina,C07-12,Enchiladas Suizas,2,tagged gluten-free
+juanita-cantina,C07-12,Enchiladas en Mole,2,tagged gluten-free
+juanita-cantina,C07-12,Fresh Avocado,2,tagged gluten-free
+juanita-cantina,C07-12,Jalapeño with Bacon,2,tagged gluten-free
+juanita-cantina,C07-12,Mexican Steak,2,tagged gluten-free
+juanita-cantina,C07-12,Michoacan Carnitas,2,tagged gluten-free
+juanita-cantina,C07-12,Nacho Supreme,2,tagged gluten-free
+juanita-cantina,C07-12,Pollo Ala Crema,2,tagged gluten-free
+juanita-cantina,C07-12,Pollo Asado,2,tagged gluten-free
+juanita-cantina,C07-12,Pollo Chipotle,2,tagged gluten-free
+juanita-cantina,C07-12,Pollo en Mole,2,tagged gluten-free
+juanita-cantina,C07-12,Posole,2,tagged gluten-free
+juanita-cantina,C07-12,Queso Dip,2,tagged gluten-free
+juanita-cantina,C07-12,Queso Dip with Chorizo,2,tagged gluten-free
+juanita-cantina,C07-12,Queso with Spinach,2,tagged gluten-free
+juanita-cantina,C07-12,Ribeye Steak,2,tagged gluten-free
+juanita-cantina,C07-12,Seafood Enchiladas,2,tagged gluten-free
+juanita-cantina,C07-12,Shrimp Ceviche,2,tagged gluten-free
+juanita-cantina,C07-12,Shrimp Fajitas,2,tagged gluten-free
+juanita-cantina,C07-12,Shrimp Juanita,2,tagged gluten-free
+juanita-cantina,C07-12,Spinach Enchilada,2,tagged gluten-free
+juanita-cantina,C07-12,Steak Tapiqueño,2,tagged gluten-free
+juanita-cantina,C07-12,Tacos Al Carbon,2,tagged gluten-free
+juanita-cantina,C07-12,Tijuana Nachos,2,tagged gluten-free
+juanita-cantina,C07-12,Tortilla Soup,2,tagged gluten-free
+juanita-cantina,C07-12,Veggie Enchiladas,2,tagged gluten-free
+juanita-cantina,C07-12,Veggie Fajitas,2,tagged gluten-free
+juanita-cantina,C07-12,Veggie Tostadas,2,tagged gluten-free
+juanita-cantina,C07-12,Wings,2,tagged gluten-free

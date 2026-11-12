@@ -134,6 +134,8 @@ rimini-restaurant,C05-10,The Sunday Sauce Pasta,2,
 rimini-restaurant,C05-10,Panna Bolognese,1,
 rimini-restaurant,C05-10,Sausage & Peppers Rigatoni,1,
 rimini-restaurant,C05-10,Wild Boar Rose Bolognese,1,
+rimini-restaurant,C05-10,Baked Kobe Ziti,1,baked pasta in meat sauce
+rimini-restaurant,C05-10,Pasta Cone,1,to-go pasta with a Bolognese option
 rimini-restaurant,C05-11,Cannoli Corleone,2,
 rimini-restaurant,C06-05,Filetto Mignon alla Marsala,1,
 rimini-restaurant,C06-05,Pollo Marsala con Sacchetti,1,
@@ -305,3 +307,7 @@ rimini-restaurant,C23-08,Baked Kobe Ziti,1,
 rimini-restaurant,C23-09,Three Cheese Mushroom Risotto,2,
 rimini-restaurant,C24-01,Sicilian Pizza Pie,2,
 rimini-restaurant,C24-02,Sicilian Pizza Pie,2,
+rimini-restaurant,C06-07,Calamari & Prawns Fritti,2,"lightly battered, fried calamari"
+rimini-restaurant,C06-09,Pollo Marsala con Sacchetti,0,"chicken in marsala sauce, not seasoned"
+rimini-restaurant,C07-10,Filetto Mignon alla Marsala,0,"a steak dish, not pasta"
+rimini-restaurant,C07-10,Pasta Scampi Rose,0,creamy sauce

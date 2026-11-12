@@ -85,11 +85,12 @@ plaza-garcia,C02-07,Fajitas Steak,1,
 plaza-garcia,C02-07,Steak Garcia Ranchero,1,
 plaza-garcia,C02-07,Steak Matador,2,
 plaza-garcia,C02-07,Steak Tampiqueno,2,
-plaza-garcia,C02-09,Burrito Chile Verde,1,
+plaza-garcia,C02-09,Burrito Chile Verde,2,pork in green tomatillo sauce
 plaza-garcia,C02-09,Carnitas De Puerco,2,
 plaza-garcia,C02-09,Chile Verde,2,
 plaza-garcia,C02-09,Piernas De Puerco,2,
 plaza-garcia,C02-09,Enchiladas Verdes,2,
+plaza-garcia,C02-09,Expresso Burrito,2,chile verde is pork
 plaza-garcia,C03-01,Camarones Bravos,2,
 plaza-garcia,C03-01,Camarones a la Diabla,2,
 plaza-garcia,C03-01,Garlic Shrimp,1,
@@ -195,6 +196,8 @@ plaza-garcia,C06-05,Garlic Shrimp,2,
 plaza-garcia,C06-09,Pollo Asado,2,
 plaza-garcia,C06-09,Pollo Chipotle,1,
 plaza-garcia,C06-09,Pollo Ranchero,2,marinated chicken breast with spices = seasoned chicken (listed for this query in the benchmark doc)
+plaza-garcia,C06-09,Pollo a la Crema,0,"chicken in cream sauce, not seasoned"
+plaza-garcia,C06-09,Carlos Salad,1,marinated chicken (or shrimp) on a salad
 plaza-garcia,C07-03,Burrito Al Pastor,2,
 plaza-garcia,C07-03,Street Tacos,2,
 plaza-garcia,C07-03,Tacos Al Pastor,2,
@@ -223,6 +226,8 @@ plaza-garcia,C08-09,Seafood Enchiladas,2,
 plaza-garcia,C08-09,Sopa Del Mar,1,
 plaza-garcia,C08-09,Coctel de Camaron,2,
 plaza-garcia,C08-09,Pescado a la Parrilla,2,
+plaza-garcia,C08-09,Tacos De Pescado,2,fish tacos dinner
+plaza-garcia,C08-09,Tacos De Camaron,2,shrimp tacos dinner
 plaza-garcia,C09-01,Camarones Garcia,2,
 plaza-garcia,C09-01,Camarones a la Diabla,2,
 plaza-garcia,C09-01,Camarones al Mojo de Ajo,2,
@@ -239,6 +244,7 @@ plaza-garcia,C09-06,Bean Dip,1,
 plaza-garcia,C09-06,Queso Fundido,2,
 plaza-garcia,C09-07,Ceviche De Camarones,2,
 plaza-garcia,C10-01,Vegetarian Fajitas,1,
+plaza-garcia,C10-01,Taco Salad Vegetariano,1,vegetarian in a tortilla shell; not spicy
 plaza-garcia,C10-02,Camarones a la Diabla,2,
 plaza-garcia,C10-02,Camarones al Mojo de Ajo,2,
 plaza-garcia,C10-02,Ceviche De Camarones,2,
@@ -280,6 +286,10 @@ plaza-garcia,C13-06,Street Tacos,2,
 plaza-garcia,C13-06,Tacos Al Carbon,1,
 plaza-garcia,C13-08,Tacos Al Carbon,2,
 plaza-garcia,C13-08,Tacos Al Pastor,2,
+plaza-garcia,C13-08,Tacos De Asada,2,soft tacos
+plaza-garcia,C13-08,Tacos De Camaron,2,flour tortillas
+plaza-garcia,C13-08,Tacos De Pescado,1,shell not stated
+plaza-garcia,C13-08,Kids Taco,1,hard or soft
 plaza-garcia,C15-03,Torta Garcia,1,
 plaza-garcia,C16-01,Carlos Salad,2,
 plaza-garcia,C16-01,Cesar Salad,2,
@@ -440,3 +450,9 @@ plaza-garcia,C23-12,Ceviche De Camarones,2,
 plaza-garcia,C23-12,Coctel de Camaron,1,
 plaza-garcia,C24-01,Mexican Pizza,2,
 plaza-garcia,C24-03,Mexican Pizza,2,
+plaza-garcia,C07-12,Enchiladas Vegetarianas,2,tagged gluten-free
+plaza-garcia,C07-12,Fiesta Avocado,2,tagged gluten-free
+plaza-garcia,C07-12,Spinach Enchiladas,2,tagged gluten-free
+plaza-garcia,C07-12,Tostada,2,tagged gluten-free
+plaza-garcia,C07-12,Vegetarian Fajitas,2,tagged gluten-free
+plaza-garcia,C07-12,Veggie Quesadilla,2,tagged gluten-free

@@ -18,6 +18,7 @@ due-cucina,C02-08,Burrata Salad,2,burrata (fresh mozzarella) salad
 due-cucina,C02-09,Bolognese Ragu',1,
 due-cucina,C02-09,Carbonara,2,
 due-cucina,C02-09,Zozzona,2,
+due-cucina,C02-09,Short Ribs Ragu',0,short ribs are beef unless stated
 due-cucina,C03-03,Carbonara,2,
 due-cucina,C03-03,Ravioli Burro & Salvia,2,
 due-cucina,C03-03,Zozzona,1,
@@ -44,7 +45,8 @@ due-cucina,C04-08,Short Ribs Ragu',2,
 due-cucina,C04-08,Lasagna alla Bolognese,1,
 due-cucina,C05-05,Carbonara,2,
 due-cucina,C05-06,Tiramisu,2,
-due-cucina,C05-10,Bolognese Ragu',2,
+due-cucina,C05-10,Bolognese Ragu',1,"Bolognese, but not rigatoni"
+due-cucina,C05-10,Lasagna alla Bolognese,1,"Bolognese, but lasagna"
 due-cucina,C05-11,Cannolo Siciliano,2,
 due-cucina,C05-12,Burrata Salad,2,
 due-cucina,C05-14,Caprese,2,
@@ -64,6 +66,10 @@ due-cucina,C07-08,Ravioli Burro & Salvia,2,
 due-cucina,C07-08,Short Ribs Ragu',2,
 due-cucina,C07-08,Zozzona,2,
 due-cucina,C07-10,Pomodoro,2,
+due-cucina,C07-10,Short Ribs Ragu',1,dairy-free on request
+due-cucina,C07-10,Polpette,1,no dairy in its allergen list (the lists are not complete)
+due-cucina,C07-10,Bolognese Ragu',1,no dairy in its allergen list (the lists are not complete)
+due-cucina,C07-10,Mushroom & White Truffle Oil,0,likely butter or parmesan; dairy not stated
 due-cucina,C07-11,Bolognese Ragu',1,
 due-cucina,C07-11,Carbonara,1,
 due-cucina,C07-11,Pomodoro,1,
@@ -74,6 +80,11 @@ due-cucina,C07-12,Zozzona,1,
 due-cucina,C07-12,Basil Pesto,1,
 due-cucina,C07-12,Carbonara,1,
 due-cucina,C07-12,Short Ribs Ragu',1,
+due-cucina,C07-12,Bolognese Ragu',1,gluten-free available / on request
+due-cucina,C07-12,Burrata Salad,2,tagged gluten-free
+due-cucina,C07-12,Eggplant Parmigiana,2,tagged gluten-free
+due-cucina,C07-12,Mediterranea Salad,2,tagged gluten-free
+due-cucina,C07-12,Side Salad,2,tagged gluten-free
 due-cucina,C07-14,Cannolo Siciliano,1,
 due-cucina,C08-02,Mediterranea,2,
 due-cucina,C08-03,Eggplant Parmigiana,2,
