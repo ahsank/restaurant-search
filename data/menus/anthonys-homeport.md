@@ -198,7 +198,7 @@ Available Mondays-Fridays until 5:30 PM. Choice of appetizer, entree, and desser
 - Salmon Ponzu Bowl — $24.00
   Chargrilled wild Alaskan salmon and glazed with ponzu sauce. Served over Jasmine rice and a market green salad.
 - Dungeness Crab & Shrimp Toast — $24.00
-  Chargrilled with lime and cilantro in a warm tortilla and cabbage, tomato and salsa mayo. Served with chips and salsa.
+  Warm mix of Dungeness crab, Oregon Coast bay shrimp, artichoke served with toasted sourdough bread.
 - Wild Salmon Tacos — $24.00
   Chargrilled with lime and cilantro in a warm tortilla and cabbage, tomato and salsa mayo. Served with chips and salsa.
 - Rockfish Tacos — $20.00
